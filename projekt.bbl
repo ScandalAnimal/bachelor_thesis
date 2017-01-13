@@ -1,0 +1,16 @@
+\begin{thebibliography}{1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+\providecommand{\selectlanguage}[1]{\relax}
+\providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem{Crama-bool}
+CRAMA, Y.; HAMMER., P.~L.: \emph{Boolean Functions: Theory, Algorithms, and
+  Applications}. NY, New York: Cambridge University Press, 2011, ISBN
+  9780521847513, \doi{10.1017/CBO9780511852008}.
+
+\end{thebibliography}

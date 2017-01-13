@@ -1,0 +1,93 @@
+\chapter{Úvod}
+TODO
+\chapter{Booleovske funkcie}
+Booleovské funkcie majú v dnešnej dobe veľké využitie. V matematike sa využívajú na určenie pravdivostnej hodnoty výrokov, v elektrotechnike na vytváranie kombinačných obvodov, takisto ich môžeme vidieť na pozadí teórie hier či v legislatíve.
+
+Existujú viaceré možnosti znázornenia booleovskej funkcie, napríklad pomocou pravdivostnej tabuľky, booleovskeho výrazu, Karnaughovej mapy, obvodu alebo grafu. 
+
+\section{Definícia booleovskej funkcie}
+Ako uvádza Crama \cite{Crama-bool}, booleovská funkcia je každá funkcia $f: \mathcal{B}^{n} \rightarrow \mathcal{B}$, kde $\mathcal{B}$ je množina $\{0,1\}$, $n$ je kladné prirodzené číslo, a $\mathcal{B}^{n}$ označuje $n$-násobný kartézsky súčin množiny $\mathcal{B}$ samej so sebou. Každý bod funkcie $X^*$ = ($x_1,x_2, \ldots, x_n$) naberá hodnotu buď 0 alebo 1.
+
+Celkový počet booleovskych funkcií pre $n$ premenných je $2^{2^n}$. Je to dané tým, že na každom riadku sa môže vyskytnúť jedna z hodnôt $\{0,1\}$, a riadkov je toľko, koľko je všetkých možných kombinácií vstupných parametrov ($2^n$).  Pravdivostné tabuľky majú dobré využitie pre funkcie do 4-5 parametrov. Pre vyšší počet parametrov sa stávajú neprehľadnými. Počet možných booleovských funkcií pre niektoré hodnoty $n$ sa nachádza v Tabuľke {\ref{table:functionCountExample}}.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|r|l|} \hline
+		n & počet funkcií \\ \hline
+		1 & 4   \\
+		2 & 16  \\
+		3 & 256 \\
+		5 & 4.29497 $\times 10^9$ \\ \hline
+	\end{tabular}
+	\caption{Počet booleovských funkcií pre vybrané hodnoty $n$}
+	\label{table:functionCountExample}
+\end{table}
+
+V mnohých aplikáciách sa namiesto hodnôt \{0,1\} používa iná dvojica, napríklad \{true,false\}, \{on,off\}, \{áno,nie\}, vždy to ale označuje opačné hodnoty. 
+Množina $\mathcal{B}$ spolu so základnými booleovskymi operáciami konjunkciou, disjunkciou a negáciou tvorí Booleovsku algebru {\color{red} ODKAZ}.
+
+\section{Reprezentácia booleovskych funkcií (zmeniť názov)}
+
+{\color{red}
+popis možností ako pracovať s booleovskymi funkciami , predbežne BDD, logicky obvod
+}
+
+\vspace*{0.5\baselineskip}
+Pre definíciu konkrétnej booleovskej funkcie sa najčastejšie využíva tzv. pravdivostná tabuľka. Je to tabuľka, v ktorej na každom riadku je hodnota funkcie pri inú kombináciu vstupných hodnôt funkcie. Príklad pravdivostnej tabuľky pre 2 vstupné hodnoty sa nachádza v Tabuľke \ref{table:truthTable}. 
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c|c|} \hline
+		$(x_1,x_2)$ & $f(x_1,x_2)$ \\ \hline
+		$(0,0)$ & 0 \\
+		$(0,1)$ & 1 \\
+		$(1,0)$ & 1 \\
+		$(1,1)$ & 0 \\ \hline
+	\end{tabular}
+	\caption{Pravdivostná tabuľka}
+	\label{table:truthTable}
+\end{table}
+
+
+\section{Algebraická normálna forma}
+
+Algebraická normálna forma (skrátene ANF) je jeden z možných spôsobov reprezentácie booleovskych funkcií. Iný názov pre zápis v ANF je aj Zhegalkinov polynóm {\color{red} ODKAZ} alebo Reed-Mullerov výraz {\color{red} ODKAZ}.
+	
+Celá ANF má hodnotu 1 alebo 0, ale skladá sa z viacerých termov {\color{red} ODKAZ}, ktoré majú takisto hodnotu 1 alebo 0. Každý term vznikol kombináciou premenných spojených operáciou AND. Termy sú spojené pomocou operácie XOR. Operácia NOT nie je v ANF povolená.
+
+	Priklad :
+{\color{green}
+	a $\oplus$ b $\oplus$ ab $\oplus$ abc}
+
+Z programátorského pohľadu môžeme hodnotu každého termu reprezentovať ako integer mod 2. Každý term je v terminológií podľa {\color{red} ODKAZ na polynómy} jednoduchým polynómom, ktorý v sebe neobsahuje koeficienty ani exponenty. Koeficienty nepotrebujeme pretože 1 je jediný nenulový koeficient. Exponenty nie sú potrebné pretože v móde mod 2 platí: $x^2$ = x. Preto napríklad aj zložitejší polynóm ako $3^x2^y5^z$ môžeme prepísať na xyz.
+	
+Pomocou operácií $\wedge$ a $\neg$ dokážeme vytvoriť všetky ostatné operácie v Booleovskej algebre. Ďalšie operácie sú tvorené len kombináciou týchto dvoch operácií. Keďže v ANF je nie povolená operácia NOT, musíme si ju nejako vytvoriť. Negácia v ANF vzniká XORom premennej a logickej jedničky: x$\oplus$1.
+
+%	or in standard propositional logic symbols:
+	
+%	${a\veebar b\veebar \left(a\wedge b\right)\veebar \left(a\wedge b\wedge c\right)} $ 
+
+{\color{red}
+An example application is the representation of the Boolean 2-out-of-3 threshold or {\color{blue} median operation} as the Zhegalkin polynomial xy$\oplus$yz$\oplus$zx, which is 1 when at least two of the variables are 1 and 0 otherwise.
+
+There are three known methods generally used for the computation of the Zhegalkin polynomial.
+
+\begin{itemize}
+	\item	Using the Method of Indeterminate Coefficients
+	\item 	By constructing the Canonical Disjunctive Normal Form
+	\item	By using tables
+\end{itemize}}
+{\color{blue} DOVYSVETLIT vsetky 3}
+
+\chapter{Existujúce knižnice}
+
+\begin{itemize}
+	\item	CUDD - http://vlsi.colorado.edu/~fabio/CUDD/cudd.pdf
+	\item 	CacBDD - http://www.kailesu.net/CacBDD/CacBDD.pdf
+	\item 	BuDDy - http://www.drdobbs.com/the-buddy-library-boolean-expressions/184401847
+	\item	nejaka C\# kniznica - http://dispatcher.swu.bg/BCL/
+	\item CORAL - https://www.yumpu.com/en/document/view/20494846/a-modern-c-library-for-the-manipulation-of-boolean-functions
+\end{itemize}
+	{\color{red} rozpisat na podkapitoly}
+
+\chapter{Záver}
