@@ -13,4 +13,8 @@ CRAMA, Y.; HAMMER., P.~L.: \emph{Boolean Functions: Theory, Algorithms, and
   Applications}. NY, New York: Cambridge University Press, 2011, ISBN
   9780521847513, \doi{10.1017/CBO9780511852008}.
 
+\bibitem{CUDD-manual}
+Somenzi, F.: CUDD: CU Decision Diagram Package 3.0.0. [Online; 19.01.2017].
+\newline\urlprefix\url{http://vlsi.colorado.edu/~fabio/CUDD/cudd.pdf}
+
 \end{thebibliography}
