@@ -141,10 +141,19 @@ Existuú viaceré knižnice vytvorené za účelom manipulácie s Booleovskymi f
 	
 	Ďalšie informácie o knižnici sa dajú dohľadať v manuáli \cite{CUDD-manual}.
 	
+	\section{CacBDD}
+	Knižnica CacBDD je verejne dostupná\footnote{ \url{http://kailesu.net/CacBDD/}} podobne ako knižnica CUDD, narozdiel od nej je ale implementovaná v jazyku C++. Je založená na prehľadávaní do hĺbky.
+	 
+	\vspace*{0.5\baselineskip}
+	Poskytuje základné operácie pre manipuláciu s BDD. BDD uzly sú uložené v jednom poli a využíva indexy uzlov v tomto poli namiesto ukazateľov na uzly ako tomu je v CUDD. Nevyužíva počítadlo referencií na uzly. Garbace collector je volaný len ak dôjde pamäť. Funguje trošku inak ako v prípade CUDD, prechádza všetky uzly v poli, a tie na ktoré sa nikto neodkazuje a ani nie sú koreňmi, označí ako voľné uzly, nemaže ich a tým šetrí výpočtový čas. Knižnica využíva dynamické zväčšovanie tabuľky výpočtov podľa potreby, ak dôjde počet voľných miest. V knižnice je veľmi dobre implementované ukladanie medzivýsledkov, čo takisto pridáva na rýchlosti.
+	
+	\vspace*{0.5\baselineskip}
+	Ďalšie informácie sú popísané v manuáli \cite{CacBDD-manual}, kde aj ukázané, že knižnica pracuje rýchlejšie než knižnica CUDD.
+
+
 **********************************************************
 
 \begin{itemize}
-	\item 	CacBDD - http://www.kailesu.net/CacBDD/CacBDD.pdf
 	\item 	BuDDy - http://www.drdobbs.com/the-buddy-library-boolean-expressions/184401847
 	\item	nejaka C\# kniznica - http://dispatcher.swu.bg/BCL/
 	\item CORAL - https://www.yumpu.com/en/document/view/20494846/a-modern-c-library-for-the-manipulation-of-boolean-functions

@@ -9,9 +9,14 @@
 \providecommand{\eprint}[2][]{\url{#2}}
 
 \bibitem{Crama-bool}
-CRAMA, Y.; HAMMER., P.~L.: \emph{Boolean Functions: Theory, Algorithms, and
+Crama, Y.; Hammer, P.~L.: \emph{Boolean Functions: Theory, Algorithms, and
   Applications}. NY, New York: Cambridge University Press, 2011, ISBN
   9780521847513, \doi{10.1017/CBO9780511852008}.
+
+\bibitem{CacBDD-manual}
+Guanfeng, L.; Kaile, S.; Yanyan, X.: CacBDD: A BDD Package with Dynamic Cache
+  Management. [Online; 20.01.2017].
+\newline\urlprefix\url{http://www.kailesu.net/CacBDD/CacBDD.pdf}
 
 \bibitem{CUDD-manual}
 Somenzi, F.: CUDD: CU Decision Diagram Package 3.0.0. [Online; 19.01.2017].
