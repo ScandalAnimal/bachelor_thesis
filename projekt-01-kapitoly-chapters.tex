@@ -150,16 +150,40 @@ Existuú viaceré knižnice vytvorené za účelom manipulácie s Booleovskymi f
 	\vspace*{0.5\baselineskip}
 	Ďalšie informácie sú popísané v manuáli \cite{CacBDD-manual}, kde aj ukázané, že knižnica pracuje rýchlejšie než knižnica CUDD.
 
-
-**********************************************************
-
-\begin{itemize}
-	\item 	BuDDy - http://www.drdobbs.com/the-buddy-library-boolean-expressions/184401847
-	\item	nejaka C\# kniznica - http://dispatcher.swu.bg/BCL/
-	\item CORAL - https://www.yumpu.com/en/document/view/20494846/a-modern-c-library-for-the-manipulation-of-boolean-functions
-\end{itemize}
-	{\color{red} rozpisat na podkapitoly}
+\section{BuDDy}
+	Knižnica BuDDy je ďalšou knižnicou na prácu s Booleovskymi výrazmi. Je naprogramovaná v jazyku C, ale obsahuje obaľovacie C++ rozhranie pre jednoduchšiu prácu. 
 	
+	\vspace*{0.5\baselineskip}
+	Obsahuje vlastný Garbage Collector, cache pamäť na uchovanie medzivýsledkov. Takmer každé nastavenie činnosti sa dá ručne prenastaviť, ale obsahuje aj základné nastavenia pre užívateľov, ktorí sa v nastaveniach hrabať nechcú.
+
+	\vspace*{0.5\baselineskip}
+	Knižnica obsahuje veľké množstvo funkcií a operácií, ktoré sa dajú použiť na prácu s Booleovskymi funkciami. Všetky výsledky v BuDDy sú reprezentované vektormi, a tým pádom sa s nimi v C++ ľahšie manipuluje.
+	
+	\section{BCL - Class Library for Boolean Function Manipulation}
+	Knižnica pre manipuláciu s Booleovskymi funkciami vytvorená v jazyku C\#, je vhodná pre využitie v jazykoch z rodiny .NET Framework. 
+	
+	\vspace*{0.5\baselineskip}
+	Obsahuje viaceré interné reprezentácie Booleovskych funkcií, ako sú pravdivostné tabuľky, booleovske výrazy a BDD.  Každá z reprezentácií obsahuje metódy na zjednodušenie funkcie, vytvorenie novej funkcie aplikovaním operátoru na 2 funkcie, na nahradenie premennej konštantou a pre nahradenie premennej inou funkciou.
+	
+	\vspace*{0.5\baselineskip}
+	Knižnica sa využíva hlavne na výskumné účely, pretože obsahuje užitočné funkcie na určenie Shannonovho rozvoja, zistenie linearity a monotónnosti funkcie a mnohé ďalšie.
+	Takisto obsahuje metódy konverzie medzi reprezentáciami, okrem iných aj konvertor z pravdivostnej tabuľky na ANF, DNF, CNF a BDD.
+	
+	
+	\section{CORAL}
+	Knižnica napísaná v jazyku C++, ktorá bola zamýšľaná na použitie v logických programovacích jazykoch, ale aj v iných. Podobne ako ostatné knižnice využíva ROBDD - Reduced Ordered BDD. Knižnica je zameraná hlavne na pamäťovú efektivitu a na optimalizáciu.
+	
+	\section{BDD}
+	Knižnica napísaná v C, primárne zameraná na operačné systémy UNIX, pre prácu mimo UNIX je potrebné upraviť správcu pamäte. Knižnica je rozsahovo veľmi malá\footnote{ \url{http://www.cs.cmu.edu/afs/cs/project/modck/pub/www/bdd.html} }. 
+	
+	\vspace*{0.5\baselineskip}
+	Obsahuje nástroje na sekvenčné overovanie, cache pamäť na ukladanie výsledkov, kam sa ukladajú úplne všetky medzivýsledky, kvantifikácie viacerých premenných a substitúcie. Okrem toho obsahuje nástroje na analýzu BDD, napríklad histogram, možnosť uloženia BDD do súborov.
+	
+	\vspace*{0.5\baselineskip}
+	Garbage collector funguje na báze počítadla referencií alebo na princípe "zmaž všetko okrem". Takisto používateľ dokáže nastaviť limit na počet uzlov, operácie samé zmažú pamäť ak by museli prekročiť tento limit. Knižnica poskytuje aj možnosť dynamického preusporiadania premenných.
+
+\section{PPBF BDD - Parallel partial breadth-first expansion}
+	Knižnica\footnote{\url{http://www.cs.cmu.edu/~bwolen/software/} } pre multiprocesorové paralelné spracovanie BDD. Na prácu potrebuje zdieľanú pamäť. Poskytuje operácie nad kombinačnými obvodmi. 
 	
 \chapter{TODO}	
 	ODKAZY:
