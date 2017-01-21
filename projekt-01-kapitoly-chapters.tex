@@ -9,7 +9,7 @@ TODO
 	\item kratky popis vytvoreneho riesenia
 \end{itemize}
 \chapter{Booleovske funkcie}
-Táto kapitola popisuje čo sú to booleovske funkcie, čo môžu obsahovať a ako ich môžeme prehľadne znázorniť. Ďalej sú popísané rôzne normalizované formy zápisu booleovskych funkcií, primárne algebraická normálna forma. 
+V tejto kapitole sa nachádza teoretický úvod do problematiky booleovskych funkcií, postupne bude definované čo vlastne sú booleovske funkcie, čo sa dá pomocou nich popísať a aký môže byť ich obsah. Ďalej budú popísané rôzne možnosti zobrazenia booleovskych funkcií napríklad pravdivostné tabuľky a ďalšie. Kapitola takisto definuje rôzne normalizované formy zápisu booleovskych funkcií, pričom dôraz bude kladený hlavne na algebraickú normálnu formu, ktorej reprezentácia je cieľom celej práce.
 
 \section{Definícia booleovskej funkcie}
 Ako uvádza Crama \cite{Crama-bool}, booleovská funkcia je každá funkcia $f: \mathcal{B}^{n} \rightarrow \mathcal{B}$, kde $\mathcal{B}$ je množina $\{0,1\}$, $n$ je kladné prirodzené číslo, a $\mathcal{B}^{n}$ označuje $n$-násobný kartézsky súčin množiny $\mathcal{B}$ samej so sebou. Každý bod funkcie $X^*$ = ($x_1,x_2, \ldots, x_n$) naberá hodnotu buď 0 alebo 1.
@@ -30,8 +30,36 @@ Celkový počet booleovskych funkcií pre $n$ premenných je $2^{2^n}$. Je to da
 \end{table}
 
 V mnohých aplikáciách sa namiesto hodnôt \{0,1\} používa iná dvojica, napríklad \{true,false\}, \{on,off\}, \{áno,nie\}, vždy to ale označuje opačné hodnoty. 
-Množina $\mathcal{B}$ spolu so základnými booleovskymi operáciami konjunkciou, disjunkciou a negáciou tvorí Booleovsku algebru.
+Množina $\mathcal{B}$ spolu so základnými booleovskymi operáciami konjunkciou, disjunkciou a negáciou tvorí Booleovsku algebru. Booleovskú algebru tvorí niekoľko základných pravidiel, ktoré sú popísané v Tabuľke \ref{table:boolAlgebra}.
 
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|l l|} \hline
+		asociativita & $(x \vee y) \vee z = x \vee (y \vee z)$ \\
+		& $(x \wedge y) \wedge z = x \wedge (y \wedge z)$ \\
+		komutativita &  $x \vee y = y \vee x$ \\
+		& $x \wedge y = y \wedge x$ \\
+		absorpcia & $x \vee (x \wedge y) = x$ \\
+		& $x \wedge (x \vee y) = x$ \\
+		distributívnosť & $x \vee (y \wedge z) = (x \vee y) \wedge (x \vee z)$ \\
+		& $x \wedge (y \vee z) = x \wedge y \vee x \wedge z$ \\
+		komplementarita & $x \vee \neg x = 1$ \\
+		&  $x \wedge \neg x = 0$ \\  
+		agresivita nuly & $x \wedge 0 = 0$ \\
+		agresivita jednotky & $x \vee 1 = 1$ \\
+		idempotencia & $x \vee x = x$ \\
+		& $x \wedge x = x$ \\ 
+		absorpcia negácie & $x \vee (\neg x \wedge y) = x \vee y$ \\
+		& $x \wedge (\neg x \vee y) = x \wedge y$ \\ 
+		dvojitá negácia & $\neg (\neg x) = x$ \\ 
+		De Morganove zákony & $\neg x \wedge \neg y = \neg (x \vee y)$ \\
+		& $\neg x \vee \neg y = \neg (x \wedge y)$ \\ \hline
+	\end{tabular}
+	\caption{Pravidlá Boolovskej algebry}
+	\label{table:boolAlgebra}
+\end{table}
+
+\newpage
 \section{Reprezentácia booleovskych funkcií}
 Booleovske funkcie môžu byť vyjadrené rôznymi spôsobmi. Záleží hlavne na tom, čo plánujeme s danou funkciou robiť. Niektoré zápisy sú vhodnejšie na matematické výpočty, iné zase na prehľadné prezeranie dát. 
 
@@ -53,37 +81,40 @@ Prvým možným zápisom je tzv. pravdivostná tabuľka. Je to tabuľka, v ktore
 
 Upravenou formou pravdivostnej tabuľky je Karnaughova mapa. Je to forma zápisu ktorá prevádza n-rozmernú booleovsku funkciu do 2-rozmernej. Využíva sa hlavne pri minimalizácii funkcií. Príklad sa nachádza na Obrázku \ref{picture:KarnaughMap}
 
-\begin{figure}[ht]
-	\centering
-	\scalebox{0.90}
-	{\includegraphics{obrazky-figures/KarnaughMap.png}}
-	\caption{Karnaughova Mapa}
-	\label{picture:KarnaughMap}
-\end{figure}
 
 Ďalším zo zápisov je logický obvod. Ide o schému, ktorá graficky zobrazuje booleovsku funkciu. Tento zápis je vhodnejší pre fyzikálne zamerané úlohy, alebo pre pokročilejšie úlohy, ktoré obsahujú zložitejšie funkcie, a tie sa dajú prehľadne zobraziť logickým obvodom. Príklad zobrazenia funkcie $(A \wedge B) \vee C$ vidíme na Obrázku \ref{picture:logicalCircuit}
 
 \begin{figure}[ht]
 	\centering
-	\scalebox{0.80}
-	{\includegraphics{obrazky-figures/logicalCircuit.png}}
-	\caption{Logický obvod}
-	\label{picture:logicalCircuit}
+	\begin{minipage}{.5\textwidth}
+		\centering
+		{\includegraphics{obrazky-figures/KarnaughMap.png}}
+		\caption{Karnaughova Mapa}
+		\label{picture:KarnaughMap}
+	\end{minipage}%
+	\begin{minipage}{.5\textwidth}
+		\centering
+		{\includegraphics{obrazky-figures/logicalCircuit.png}}
+		\caption{Logický obvod}
+		\label{picture:logicalCircuit}
+	\end{minipage}
 \end{figure}
 
-V technických odvetviach sa využívajú určité štandardné výrazy, ktoré sa dajú dobre využiť pri vytváraní kombinačných obvodov. Tieto výrazy sa nazývajú normálne formy a existuje ich niekoľko. Rôznymi typmi normálnych foriem sa zaoberá nasledujúca sekcia.
+V technických odvetviach sa využívajú určité štandardné výrazy, ktoré sa dajú dobre využiť pri vytváraní kombinačných obvodov. Tieto výrazy sa nazývajú normálne formy a existuje ich niekoľko. Rôznymi typmi normálnych foriem sa zaoberá sekcia \ref{normal-forms}.
 
-\section{Normálne formy}
+Pre strojovú reprezentáciu Booleovskych funkcií sa ukázali ako najvhodnejšie binárne rozhodovacie diagramy (BDD) a ich rôzne modifikácie, bude im venovaná samostatná sekcia \ref{bdds}.
+
+\section{Normálne formy} \label{normal-forms}
 Normálna forma je každý výraz v tvare:
 
 $$T_1 \quad op \quad T_2 \quad op \quad T_3 \quad op \quad \ldots \quad op \quad T_n$$
 
 kde množina $\{T_1,T_2,T_3 \ldots T_n\}$ sú navzájom rôzne termy rovnakého typu a $op$ je operácia v Boolovskej algebre.
-Podľa typu termov a typu operácie poznáme niekoľko základných normálnych foriem.
+Podľa typu termov a typu operácie poznáme niekoľko základných normálnych foriem. \cite{Hazewinkel-math}
 
 \begin{itemize}
 	\item disjunktívna - termy sú konjunkciou premenných a operáciou je disjunkcia
-	\item konjunktívna - termy sú disjunkciou premeenných a operáciou je konjunkcia  
+	\item konjunktívna - termy sú disnkciou premeenných a operáciou je konjunkcia  
 \end{itemize}
 
 Ak sa v každom terme v spomenutých normálnych formách vyskytuje premenná práve raz, tieto normálne formy nazývame úplná disjunktívna/konjunktívna normálna forma. 
@@ -117,7 +148,7 @@ An example application is the representation of the Boolean 2-out-of-3 threshold
 	\item 	Canonical Disjunctive Normal Form
 \end{itemize}}
 
-\section{Binárne rozhodovacie diagramy}
+\section{Binárne rozhodovacie diagramy} \label{bdds}
 TODO
 
 \chapter{Existujúce knižnice}
@@ -187,15 +218,7 @@ Existuú viaceré knižnice vytvorené za účelom manipulácie s Booleovskymi f
 	
 \chapter{TODO}	
 	ODKAZY:
-	
-	Boolovske funkcie:
-	\begin{itemize}
-		\item Crama, Y; Hammer, P. L. (2011), Boolean Functions, Cambridge University Press.
-		\item Hazewinkel, Michiel, ed. (2001), "Boolean function", Encyclopedia of Mathematics, Springer, ISBN 978-1-55608-010-4
-		\item Janković, Dragan; Stanković, Radomir S.; Moraga, Claudio (November 2003). "Arithmetic expressions optimisation using dual polarity property" (PDF). Serbian Journal of Electrical Engineering. 1 (71-80, number 1). Retrieved 2015-06-07.
-		\item Mano, M. M.; Ciletti, M. D. (2013), Digital Design, Pearson.
-					
-	\end{itemize}
+				
 	Pravdivostne tabulky:
 	\begin{itemize}
 		\item Georg Henrik von Wright (1955). "Ludwig Wittgenstein, A Biographical Sketch". The Philosophical Review. 64 (4): 527–545 (p. 532, note 9). doi:10.2307/2182631. JSTOR 2182631.

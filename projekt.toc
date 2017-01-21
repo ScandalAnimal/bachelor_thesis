@@ -2,22 +2,20 @@
 \contentsline {chapter}{\numberline {1}\IeC {\'U}vod}{2}{chapter.1}
 \contentsline {chapter}{\numberline {2}Booleovske funkcie}{3}{chapter.2}
 \contentsline {section}{\numberline {2.1}Defin\IeC {\'\i }cia booleovskej funkcie}{3}{section.2.1}
-\contentsline {section}{\numberline {2.2}Reprezent\IeC {\'a}cia booleovskych funkci\IeC {\'\i }}{3}{section.2.2}
-\contentsline {section}{\numberline {2.3}Norm\IeC {\'a}lne formy}{4}{section.2.3}
+\contentsline {section}{\numberline {2.2}Reprezent\IeC {\'a}cia booleovskych funkci\IeC {\'\i }}{4}{section.2.2}
+\contentsline {section}{\numberline {2.3}Norm\IeC {\'a}lne formy}{5}{section.2.3}
 \contentsline {section}{\numberline {2.4}Algebraick\IeC {\'a} norm\IeC {\'a}lna forma}{5}{section.2.4}
-\contentsline {section}{\numberline {2.5}Bin\IeC {\'a}rne rozhodovacie diagramy}{5}{section.2.5}
-\contentsline {chapter}{\numberline {3}Existuj\IeC {\'u}ce kni\IeC {\v z}nice}{6}{chapter.3}
-\contentsline {section}{\numberline {3.1}Colorado University Decision Diagram Package - CUDD}{6}{section.3.1}
-\contentsline {section}{\numberline {3.2}CacBDD}{6}{section.3.2}
-\contentsline {section}{\numberline {3.3}BuDDy}{7}{section.3.3}
-\contentsline {section}{\numberline {3.4}BCL - Class Library for Boolean Function Manipulation}{7}{section.3.4}
-\contentsline {section}{\numberline {3.5}CORAL}{7}{section.3.5}
-\contentsline {section}{\numberline {3.6}BDD}{8}{section.3.6}
-\contentsline {section}{\numberline {3.7}PPBF BDD - Parallel partial breadth-first expansion}{8}{section.3.7}
-\contentsline {chapter}{\numberline {4}TODO}{9}{chapter.4}
-\contentsline {chapter}{\numberline {5}Z\IeC {\'a}ver}{11}{chapter.5}
-\contentsline {chapter}{Literat\IeC {\'u}ra}{12}{chapter*.2}
-\contentsline {chapter}{Pr\IeC {\'\i }lohy}{13}{section*.3}
-\contentsline {chapter}{\numberline {A}Jak pracovat s touto \IeC {\v s}ablonou}{14}{appendix.A}
-\contentsline {paragraph}{Pozor na \IeC {\v c}\IeC {\'\i }slov\IeC {\'a}n\IeC {\'\i } str\IeC {\'a}nek!}{15}{section*.5}
+\contentsline {section}{\numberline {2.5}Bin\IeC {\'a}rne rozhodovacie diagramy}{6}{section.2.5}
+\contentsline {chapter}{\numberline {3}Existuj\IeC {\'u}ce kni\IeC {\v z}nice}{7}{chapter.3}
+\contentsline {section}{\numberline {3.1}Colorado University Decision Diagram Package - CUDD}{7}{section.3.1}
+\contentsline {section}{\numberline {3.2}CacBDD}{7}{section.3.2}
+\contentsline {section}{\numberline {3.3}BuDDy}{8}{section.3.3}
+\contentsline {section}{\numberline {3.4}BCL - Class Library for Boolean Function Manipulation}{8}{section.3.4}
+\contentsline {section}{\numberline {3.5}CORAL}{8}{section.3.5}
+\contentsline {section}{\numberline {3.6}BDD}{9}{section.3.6}
+\contentsline {section}{\numberline {3.7}PPBF BDD - Parallel partial breadth-first expansion}{9}{section.3.7}
+\contentsline {chapter}{\numberline {4}TODO}{10}{chapter.4}
+\contentsline {chapter}{\numberline {5}Z\IeC {\'a}ver}{12}{chapter.5}
+\contentsline {chapter}{Literat\IeC {\'u}ra}{13}{chapter*.2}
+\contentsline {chapter}{Pr\IeC {\'\i }lohy}{14}{section*.3}
 \contentsfinish 

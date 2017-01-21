@@ -18,6 +18,10 @@ Guanfeng, L.; Kaile, S.; Yanyan, X.: CacBDD: A BDD Package with Dynamic Cache
   Management. [Online; 20.01.2017].
 \newline\urlprefix\url{http://www.kailesu.net/CacBDD/CacBDD.pdf}
 
+\bibitem{Hazewinkel-math}
+Hazewinkel, M.: \emph{Encyclopaedia of Mathematics}. Springer, 1994, ISBN
+  9781556080104.
+
 \bibitem{CUDD-manual}
 Somenzi, F.: CUDD: CU Decision Diagram Package 3.0.0. [Online; 19.01.2017].
 \newline\urlprefix\url{http://vlsi.colorado.edu/~fabio/CUDD/cudd.pdf}
