@@ -15,7 +15,7 @@
 \contentsline {section}{\numberline {3.6}BDD}{9}{section.3.6}
 \contentsline {section}{\numberline {3.7}PPBF BDD - Parallel partial breadth-first expansion}{9}{section.3.7}
 \contentsline {chapter}{\numberline {4}TODO}{10}{chapter.4}
-\contentsline {chapter}{\numberline {5}Z\IeC {\'a}ver}{12}{chapter.5}
-\contentsline {chapter}{Literat\IeC {\'u}ra}{13}{chapter*.2}
-\contentsline {chapter}{Pr\IeC {\'\i }lohy}{14}{section*.3}
+\contentsline {chapter}{\numberline {5}Z\IeC {\'a}ver}{13}{chapter.5}
+\contentsline {chapter}{Literat\IeC {\'u}ra}{14}{chapter*.2}
+\contentsline {chapter}{Pr\IeC {\'\i }lohy}{15}{section*.3}
 \contentsfinish 

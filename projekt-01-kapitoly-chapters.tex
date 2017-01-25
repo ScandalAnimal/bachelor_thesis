@@ -1,12 +1,12 @@
 \chapter{Úvod}
 Booleovské funkcie majú v dnešnej dobe veľké využitie. V matematike sa využívajú na určenie pravdivostnej hodnoty výrokov, v elektrotechnike na vytváranie kombinačných obvodov, takisto ich môžeme vidieť na pozadí teórie hier či v legislatíve.
 
-TODO
+O COM PISAT:
 \begin{itemize}
 	\item popisat motivaciu k projektu
 	\item aktualne pouzivane reprezentacie
 	\item existujuce riesenie
-	\item kratky popis vytvoreneho riesenia
+	\item popis vytvoreneho riesenia
 \end{itemize}
 \chapter{Booleovske funkcie}
 V tejto kapitole sa nachádza teoretický úvod do problematiky booleovskych funkcií, postupne bude definované čo vlastne sú booleovske funkcie, čo sa dá pomocou nich popísať a aký môže byť ich obsah. Ďalej budú popísané rôzne možnosti zobrazenia booleovskych funkcií napríklad pravdivostné tabuľky a ďalšie. Kapitola takisto definuje rôzne normalizované formy zápisu booleovskych funkcií, pričom dôraz bude kladený hlavne na algebraickú normálnu formu, ktorej reprezentácia je cieľom celej práce.
@@ -149,7 +149,23 @@ An example application is the representation of the Boolean 2-out-of-3 threshold
 \end{itemize}}
 
 \section{Binárne rozhodovacie diagramy} \label{bdds}
-TODO
+Binárne rozhodovacie diagramy (BDD) sú triedou grafov, ktorá je prevažne využívaná ako dátová štruktúra pre reprezentáciu Booleovskych funkcií. Používajú sa na riešenie problémov ekvivalencie výrazov. Sú veľmi dôležité v oblastiach HW designu a optimalizácie.  
+
+\vspace*{0.5\baselineskip}
+Pre BDD platia tieto pravidlá:
+\begin{itemize}
+	\item BDD obsahuje práve 1 uzol, ktorý nemá žiadnych predchodcov - nazývame ho koreň
+	\item obsahuje 1 alebo 2 uzly, ktoré nemajú ďalších nasledovníkov (označuje 0, resp. 1)
+	\item všetky ostatné uzly sú označené názvom premennej a majú práve 2 nasledovníkov: {\color{red} 0-child a 1-child}, hrany vedúce k týmto nasledovníkom sú označené 0 a 1
+	\item každý synovský uzol je označený buď ako 0,1 alebo premennou vyššou ako označenie otcovského uzlu.
+\end{itemize}
+
+Označenie BDD sa často používa pre označenie iného typu binárneho rozhodovacieho diagramu, a to ROBDD (Reduced Ordered BDD). V podstate sa jedná o optimalizovaný klasický BDD. Pre ROBDD platia 2 pravidlá oproti BDD:
+
+\begin{itemize}
+	\item ordered - ak sa premenné na rôznych cestách v diagramu vyskytujú všade v rovnakom poradí
+	\item reduced - všetky izomorfné podgrafy sú spojené, a každý uzol, ktorého deti sú izomorfné je zanedbaný
+\end{itemize} 
 
 \chapter{Existujúce knižnice}
 Existuú viaceré knižnice vytvorené za účelom manipulácie s Booleovskymi funkciami. Nasledujúca kapitola sa zaoberá niektorými vybranými, hlavne tými, ktoré využívajú binárne rozhodovacie stromy (BDD).
@@ -226,14 +242,33 @@ Existuú viaceré knižnice vytvorené za účelom manipulácie s Booleovskymi f
 		\item Ludwig Wittgenstein (1922) Tractatus Logico-Philosophicus \url{http://www.gutenberg.org/ebooks/5740?msg=welcome_stranger}
 		\item Anellis, Irving H. (2012). "Peirce's Truth-functional Analysis and the Origin of the Truth Table". History and Philosophy of Logic. 33: 87–97. doi:10.1080/01445340.2011.621702.
 	\end{itemize}
-	Zhegalkin:
+BDD:
+	\begin{itemize}
+		\item  Graph-Based Algorithms for Boolean Function Manipulation, Randal E. Bryant, 1986
+		\item C. Y. Lee. "Representation of Switching Circuits by Binary-Decision Programs". Bell System Technical Journal, 38:985–999, 1959.
+		\item Sheldon B. Akers. Binary Decision Diagrams, IEEE Transactions on Computers, C-27(6):509–516, June 1978.
+		\item Raymond T. Boute, "The Binary Decision Machine as a programmable controller". EUROMICRO Newsletter, Vol. 1(2):16–22, January 1976.
+		\item Randal E. Bryant. "Graph-Based Algorithms for Boolean Function Manipulation". IEEE Transactions on Computers, C-35(8):677–691, 1986.
+		\item R. E. Bryant, "Symbolic Boolean Manipulation with Ordered Binary Decision Diagrams", ACM Computing Surveys, Vol. 24, No. 3 (September, 1992), pp. 293–318.
+		\item Karl S. Brace, Richard L. Rudell and Randal E. Bryant. "Efficient Implementation of a BDD Package". In Proceedings of the 27th ACM/IEEE Design Automation Conference (DAC 1990), pages 40–45. IEEE Computer Society Press, 1990.
+		\item http://scpd.stanford.edu/knuth/index.jsp
+		\item R.M. Jensen. "CLab: A C+ + library for fast backtrack-free interactive product configuration". Proceedings of the Tenth International Conference on Principles and Practice of Constraint Programming, 2004.
+		\item H.L. Lipmaa. "First CPIR Protocol with Data-Dependent Computation". ICISC 2009.
+		\item Beate Bollig, Ingo Wegener. Improving the Variable Ordering of OBDDs Is NP-Complete, IEEE Transactions on Computers, 45(9):993–1002, September 1996.
+		\item Detlef Sieling. "The nonapproximability of OBDD minimization." Information and Computation 172, 103–138. 2002.
+		\item Rice, Michael. "A Survey of Static Variable Ordering Heuristics for Efficient BDD/MDD Construction" (PDF).
+		\item Philipp Woelfel. "Bounds on the OBDD-size of integer multiplication via universal hashing." Journal of Computer and System Sciences 71, pp. 520-534, 2005.
+		\item Richard J. Lipton. "BDD's and Factoring". Gödel's Lost Letter and P=NP, 2009.
+		\item Andersen, H. R. (1999). "An Introduction to Binary Decision Diagrams" (PDF). Lecture Notes. IT University of Copenhagen.
+	\end{itemize}
+	ANF:
 	\begin{itemize}
 		\item Bell, Eric (1927). "Arithmetic of Logic". Transactions of the American Mathematical Society. Transactions of the American Mathematical Society, Vol. 29, No. 3. 29 (3): 597–611. doi:10.2307/1989098. JSTOR 1989098.
 		\item Gindikin, S.G. (1972). Algebraic Logic. Moscow: Nauka (English translation Springer-Verlag 1985). ISBN 0-387-96179-8.
 		\item Stone, Marshall (1936). "The Theory of Representations for Boolean Algebras". Transactions of the American Mathematical Society. Transactions of the American Mathematical Society, Vol. 40, No. 1. 40 (1): 37–111. doi:10.2307/1989664. ISSN 0002-9947. JSTOR 1989664.
 		\item Zhegalkin, Ivan Ivanovich (1927). "On the Technique of Calculating Propositions in Symbolic Logic". Matematicheskii Sbornik. 43: 9–28.
 	\end{itemize}
-KOnjunktivna NF:
+KNF:
 	\begin{itemize}
 		\item Paul Jackson, Daniel Sheridan: Clause Form Conversions for Boolean Circuits. In: Holger H. Hoos, David G. Mitchell (Eds.): Theory and Applications of Satisfiability Testing, 7th International Conference, SAT 2004, Vancouver, BC, Canada, May 10–13, 2004, Revised Selected Papers. Lecture Notes in Computer Science 3542, Springer 2005, pp. 183–198
 		\item G.S. Tseitin: On the complexity of derivation in propositional calculus. In: Slisenko, A.O. (ed.) Structures in Constructive Mathematics and Mathematical Logic, Part II, Seminars in Mathematics (translated from Russian), pp. 115–125. Steklov Mathematical Institute (1968)
