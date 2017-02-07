@@ -1,21 +1,30 @@
+
 #include <stdio.h>
-#include "inputs.h"
+#include <assert.h>
 #include "hashmap.h"
 
 int main(int argc, char *argv[]) {
-    myStructure s[10];
-    addVar(s,'A');
-    addVar(s,'B');
-    addVar(s,'C');
-    for (int i = 0; i < 10; i++) {
-        printf("%c\n",s[i].name);
-    }
 
-    int requestedCapacity = 256;
+    long requestedCapacity = 256L;
+    int loadFactor = 10;
 
-    void* map = createHashMap(requestedCapacity);
+    tHashMap* map = createHashMap(requestedCapacity, loadFactor);
     long cap = getHashMapCapacity(map);
-    printf("%ld\n",cap);
+    printf("Size : %ld\n",cap);
+
+    printf(isHashMapEmpty(map) ? "Map is empty\n" : "Map is not empty\n");
+
+    int insertedValue = 5;
+
+    insertToHashMap(map,"A",insertedValue);
+    int x = selectFromHashMap(map,"A");
+    printf("Value: %d\n", x);
+
+    assert(x == insertedValue);
+
+    printf(isHashMapEmpty(map) ? "Map is empty\n" : "Map is not empty\n");
+
+    printf("Assert OK\n");
     freeHashMap(map);
     return 0;
 }
