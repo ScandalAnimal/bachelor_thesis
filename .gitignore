@@ -1,2 +1,6 @@
 
 CODE/\.idea/
+
+CODE/cmake-build-debug/
+
+CODE/CMakeLists\.txt
