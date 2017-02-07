@@ -11,9 +11,11 @@ int main(int argc, char *argv[]) {
         printf("%c\n",s[i].name);
     }
 
-    anyType map = createHashMap();
-    int size = getHashMapSize(map);
-    printf("%d\n",size);
+    int requestedCapacity = 256;
+
+    void* map = createHashMap(requestedCapacity);
+    long cap = getHashMapCapacity(map);
+    printf("%ld\n",cap);
     freeHashMap(map);
     return 0;
 }
