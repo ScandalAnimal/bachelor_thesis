@@ -10,31 +10,32 @@
 #define DEFAULT_HASHMAP_CAPACITY 256
 
 typedef struct hashMapRecord {
-    char* key;
+    unsigned char *key;
     int value;
+    bool used;
 } tHashMapRecord;
 
 typedef struct hashMap {
     tHashMapRecord *records;
-    long capacity;
+    unsigned int capacity;
     long usedCapacity;
-    int loadFactor;
+    double loadFactor;
 } tHashMap;
 
-extern void*    createHashMap(long, int);
+extern void*    createHashMap(unsigned int, double);
 
-// TODO think about return type
-extern void     insertToHashMap(void*, char*, int);
-extern int      selectFromHashMap(void*, char*);
+// TODO think about return enum
+extern bool     insertToHashMap(void*, unsigned char *, int);
+extern int      selectFromHashMap(void*, unsigned char*);
 
 extern bool     isHashMapEmpty(void*);
 extern void     freeHashMap(void*);
 extern long     getHashMapCapacity(void*);
 
-extern bool     isKeyInHashMap(void*, char*);
-extern void     removeFromHashMap(void*, char*);
+extern bool     isKeyInHashMap(void*, unsigned char*);
+extern void     removeFromHashMap(void*, unsigned char*);
 extern void     clearHashMap(void*);
 
-extern char*    printHashMap(void*);
+extern void     printHashMap(void*);
 
 #endif //CODE_HASHMAP_H
