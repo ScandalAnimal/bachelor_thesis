@@ -80,12 +80,12 @@ void freeHashMap(void* m) {
     free(map);
 }
 
-long getHashMapCapacity(void* m) {
+unsigned int getHashMapCapacity(void* m) {
     tHashMap* map = (tHashMap*) m;
     return (map != NULL) ? map->capacity : 0;
 }
 
-bool insertToHashMap(void* m, unsigned char *key, int value) {
+bool insertToHashMap(void* m, unsigned char *key, bool value) {
     tHashMap* map = (tHashMap*) m;
 
     int indexToInsert = generateIndex(m,key);
@@ -120,7 +120,7 @@ bool insertToHashMap(void* m, unsigned char *key, int value) {
     return true;
 }
 
-int selectFromHashMap(void* m, unsigned char* key) {
+bool selectFromHashMap(void* m, unsigned char* key) {
     tHashMap* map = (tHashMap*) m;
 
     int index = generateIndex(m,key);
@@ -169,7 +169,8 @@ void printHashMap(void* m) {
         tHashMapRecord record = map->records[i];
         if (record.used) {
             zeroRecords = false;
-            printf("%u |  %s ----- %d\n",i,record.key, record.value);
+            printf("%u |  %s ----- ",i,record.key);
+            fputs(record.value ? "true\n" : "false\n", stdout);
         }
 //        printf("%u |  %s ----- %d\n",i,record.key, record.value);
 

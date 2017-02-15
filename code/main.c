@@ -8,13 +8,13 @@ int main(int argc, char *argv[]) {
 
     tEvaluator evaluator = initEvaluator();
 
-    addVariable(&evaluator, (unsigned char *) "A", 10);
-    addVariable(&evaluator, (unsigned char *) "B", 20);
-    addVariable(&evaluator, (unsigned char *) "C", 30);
-    addVariable(&evaluator, (unsigned char *) "D", 40);
-    addVariable(&evaluator, (unsigned char *) "E", 50);
-    addVariable(&evaluator, (unsigned char *) "F", 60);
-    addVariable(&evaluator, (unsigned char *) "GHI", 70);
+    addVariable(&evaluator, (unsigned char *) "A", true);
+    addVariable(&evaluator, (unsigned char *) "B", true);
+    addVariable(&evaluator, (unsigned char *) "C", false);
+    addVariable(&evaluator, (unsigned char *) "D", false);
+    addVariable(&evaluator, (unsigned char *) "E", true);
+    addVariable(&evaluator, (unsigned char *) "F", true);
+    addVariable(&evaluator, (unsigned char *) "GHI", false);
     printHashMap(evaluator.variables);
 
     destroyEvaluator(&evaluator);

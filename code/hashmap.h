@@ -11,7 +11,7 @@
 
 typedef struct hashMapRecord {
     unsigned char *key;
-    int value;
+    bool value;
     bool used;
 } tHashMapRecord;
 
@@ -22,20 +22,20 @@ typedef struct hashMap {
     double loadFactor;
 } tHashMap;
 
-extern void*    createHashMap(unsigned int, double);
+extern void*        createHashMap(unsigned int, double);
 
 // TODO think about return enum
-extern bool     insertToHashMap(void*, unsigned char *, int);
-extern int      selectFromHashMap(void*, unsigned char*);
+extern bool         insertToHashMap(void*, unsigned char *, bool);
+extern bool          selectFromHashMap(void*, unsigned char*);
 
-extern bool     isHashMapEmpty(void*);
-extern void     freeHashMap(void*);
-extern long     getHashMapCapacity(void*);
+extern bool         isHashMapEmpty(void*);
+extern void         freeHashMap(void*);
+extern unsigned int getHashMapCapacity(void*);
 
-extern bool     isKeyInHashMap(void*, unsigned char*);
-extern void     removeFromHashMap(void*, unsigned char*);
-extern void     clearHashMap(void*);
+extern bool         isKeyInHashMap(void*, unsigned char*);
+extern void         removeFromHashMap(void*, unsigned char*);
+extern void         clearHashMap(void*);
 
-extern void     printHashMap(void*);
+extern void         printHashMap(void*);
 
 #endif //CODE_HASHMAP_H
