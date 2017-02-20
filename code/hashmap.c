@@ -100,13 +100,11 @@ bool insertToHashMap(void* m, unsigned char *key, bool value) {
                 return false;
             };
             printf("Return from rehash\n");
-            printf("New size: %d\n",map->capacity);
             insertToHashMap(map,key,value);
-            map->usedCapacity++;
         }
     }
     else {
-        map->records[indexToInsert].key = key;
+        sprintf((char *) map->records[indexToInsert].key, "%s", (const char *) key);
         map->records[indexToInsert].value = value;
         map->records[indexToInsert].used = true;
         map->usedCapacity++;
@@ -120,11 +118,11 @@ bool insertToHashMap(void* m, unsigned char *key, bool value) {
     return true;
 }
 
-bool selectFromHashMap(void* m, unsigned char* key) {
+void selectFromHashMap(void* m, unsigned char* key, tHashMapRecord* ret) {
     tHashMap* map = (tHashMap*) m;
 
     int index = generateIndex(m,key);
-    return map->records[index].value;
+    *ret = map->records[index];
 }
 
 bool isHashMapEmpty(void* m) {

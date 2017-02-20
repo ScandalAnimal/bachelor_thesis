@@ -14,7 +14,7 @@ tEvaluator initEvaluator() {
     return evaluator;
 }
 
-void addVariable(void* e, unsigned char *key, int value) {
+void addVariable(void* e, unsigned char *key, bool value) {
     tEvaluator *evaluator = (tEvaluator *) e;
     insertToHashMap(evaluator->variables,key,value);
 }

@@ -8,6 +8,6 @@ set(SOURCE_FILES
         code/evaluator.h
         code/hashmap.c
         code/hashmap.h
-        code/main.c)
+        code/main.c code/utils.c code/utils.h)
 
 add_executable(bachelor_thesis ${SOURCE_FILES})
