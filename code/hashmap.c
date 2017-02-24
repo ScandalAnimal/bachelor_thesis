@@ -7,18 +7,18 @@
 #include <string.h>
 #include "hashmap.h"
 
-unsigned int generateIndex(void* m, unsigned char* key) {
+unsigned int generateIndex(void* m, char* key) {
 
     tHashMap* map = (tHashMap*) m;
-    unsigned int mask;
-    unsigned int range = 0xFFFFFFFF;
-    unsigned int character;
+    int mask;
+    int range = 0xFFFFFFFF;
+    int character;
 
     for (unsigned int i = 0; i < strlen((const char *) key); i++) {
         character = key[i];
         range ^= character;
         for (int j = 7; j >= 0; j--) {
-            mask = (unsigned int) -(range & 1);
+            mask = -(range & 1);
             range = (range >> 1) ^ (0xEDB88320 & mask);
         }
     }
@@ -28,7 +28,7 @@ unsigned int generateIndex(void* m, unsigned char* key) {
 
 bool rehash(void *m) {
 
-    printf("---------REHASHING\n");
+//    printf("---------REHASHING\n");
     tHashMap* map = (tHashMap*) m;
 
     tHashMapRecord* newRecords;
@@ -85,13 +85,14 @@ unsigned int getHashMapCapacity(void* m) {
     return (map != NULL) ? map->capacity : 0;
 }
 
-bool insertToHashMap(void* m, unsigned char *key, bool value) {
+bool insertToHashMap(void* m, char *key, bool value) {
     tHashMap* map = (tHashMap*) m;
 
     int indexToInsert = generateIndex(m,key);
-    printf("Inserting: %s on index %d\n", key, indexToInsert);
+//    printf("Inserting: %s on index %d\n", key, indexToInsert);
 
     if (map->records[indexToInsert].used) {
+//        printf("USED\n");
         if (strcmp((const char *) key, (const char *) map->records[indexToInsert].key) == 0) {
             map->records[indexToInsert].value = value;
         }
@@ -99,11 +100,12 @@ bool insertToHashMap(void* m, unsigned char *key, bool value) {
             if (!rehash(map)) {
                 return false;
             };
-            printf("Return from rehash\n");
+//            printf("Return from rehash\n");
             insertToHashMap(map,key,value);
         }
     }
     else {
+//        printf("NOT USED\n");
         sprintf((char *) map->records[indexToInsert].key, "%s", (const char *) key);
         map->records[indexToInsert].value = value;
         map->records[indexToInsert].used = true;
@@ -118,7 +120,7 @@ bool insertToHashMap(void* m, unsigned char *key, bool value) {
     return true;
 }
 
-void selectFromHashMap(void* m, unsigned char* key, tHashMapRecord* ret) {
+void selectFromHashMap(void* m, char* key, tHashMapRecord* ret) {
     tHashMap* map = (tHashMap*) m;
 
     int index = generateIndex(m,key);
@@ -130,7 +132,7 @@ bool isHashMapEmpty(void* m) {
     return (map->usedCapacity == 0);
 }
 
-bool isKeyInHashMap(void* m, unsigned char* key) {
+bool isKeyInHashMap(void* m, char* key) {
 
     tHashMap* map = (tHashMap*) m;
 
@@ -138,7 +140,7 @@ bool isKeyInHashMap(void* m, unsigned char* key) {
     return (map->records[index].used);
 }
 
-void removeFromHashMap(void* m, unsigned char* key) {
+void removeFromHashMap(void* m, char* key) {
 
     tHashMap* map = (tHashMap*) m;
 
@@ -168,12 +170,12 @@ void printHashMap(void* m) {
         if (record.used) {
             zeroRecords = false;
             printf("%u |  %s ----- ",i,record.key);
-            fputs(record.value ? "true\n" : "false\n", stdout);
+            fputs(record.value ? "true #\n" : "false #\n", stdout);
         }
 //        printf("%u |  %s ----- %d\n",i,record.key, record.value);
 
     }
-    printf("Pocet zaznamov: %ld\n", map->usedCapacity);
+    printf("Pocet zaznamov: %d/%d\n", map->usedCapacity, map->capacity);
     if (zeroRecords) {
         printf("Mapa neobsahuje ziadne zaznamy.\n");
     }

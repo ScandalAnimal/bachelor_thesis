@@ -10,7 +10,7 @@
 #define DEFAULT_HASHMAP_CAPACITY 256
 
 typedef struct hashMapRecord {
-    unsigned char key[50]; // TODO: change to macro
+    char key[50]; // TODO: change to macro
     bool value;
     bool used;
 } tHashMapRecord;
@@ -18,22 +18,22 @@ typedef struct hashMapRecord {
 typedef struct hashMap {
     tHashMapRecord *records;
     unsigned int capacity;
-    long usedCapacity;
+    unsigned int usedCapacity;
     double loadFactor;
 } tHashMap;
 
 extern void*        createHashMap(unsigned int, double);
 
 // TODO think about return enum
-extern bool             insertToHashMap(void*, unsigned char *, bool);
-extern void             selectFromHashMap(void*, unsigned char*, tHashMapRecord*);
+extern bool             insertToHashMap(void*, char *, bool);
+extern void             selectFromHashMap(void*, char*, tHashMapRecord*);
 
 extern bool             isHashMapEmpty(void*);
 extern void             freeHashMap(void*);
 extern unsigned int     getHashMapCapacity(void*);
 
-extern bool             isKeyInHashMap(void*, unsigned char*);
-extern void             removeFromHashMap(void*, unsigned char*);
+extern bool             isKeyInHashMap(void*, char*);
+extern void             removeFromHashMap(void*, char*);
 extern void             clearHashMap(void*);
 
 extern void             printHashMap(void*);
