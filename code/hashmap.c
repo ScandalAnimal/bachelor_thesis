@@ -54,6 +54,7 @@ bool rehash(void *m) {
 }
 
 void* createHashMap(unsigned int initialCapacity, double loadFactor) {
+ 
     if (initialCapacity <= 0L) {
         initialCapacity = DEFAULT_HASHMAP_CAPACITY;
     }
@@ -169,7 +170,7 @@ void printHashMap(void* m) {
         tHashMapRecord record = map->records[i];
         if (record.used) {
             zeroRecords = false;
-            printf("%u |  %s ----- ",i,record.key);
+            printf("%3u |  %s ----- ",i,record.key);
             fputs(record.value ? "true #\n" : "false #\n", stdout);
         }
 //        printf("%u |  %s ----- %d\n",i,record.key, record.value);

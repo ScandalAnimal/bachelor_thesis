@@ -22,7 +22,7 @@ typedef struct hashMap {
     double loadFactor;
 } tHashMap;
 
-extern void*        createHashMap(unsigned int, double);
+extern void*        	createHashMap(unsigned int, double);
 
 // TODO think about return enum
 extern bool             insertToHashMap(void*, char *, bool);
