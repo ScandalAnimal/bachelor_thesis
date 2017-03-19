@@ -3,8 +3,10 @@ EXEC=project
 CC=gcc
 RM=rm -f
 
-all: hashmap.o node.o utils.o variable.o main.o
-	$(CC) $(CFLAGS) -o $(EXEC) hashmap.o node.o utils.o variable.o main.o
+SRC=anf.o hashmap.o node.o utils.o variable.o main.o
+
+all: $(SRC)
+	$(CC) $(CFLAGS) -o $(EXEC) $(SRC)
 
 clean:
 	$(RM) *.o $(EXEC)

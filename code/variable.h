@@ -13,6 +13,6 @@ typedef struct variable {
 } variable;
 
 extern variable* createVariable(void*, char*, bool);
-extern void 	 createVariables(void*, char**, bool[]);
+extern void 	 createVariables(void*, char**, int, bool[]);
 
 #endif //CODE_VARIABLE_H

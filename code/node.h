@@ -13,7 +13,7 @@ typedef struct node {
 } node;
 
 extern node createNode();
-extern node createNodeWithVariables(char**);
+extern node createNodeWithVariables(char**, int);
 extern void addVariableToNode(char*, node*);
 extern void printNode(node);
 

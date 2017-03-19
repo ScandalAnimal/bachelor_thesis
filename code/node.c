@@ -12,12 +12,12 @@ node createNode() {
     return node;
 }
 
-node createNodeWithVariables(char* variables[]) {
+node createNodeWithVariables(char* variables[], int size) {
 
     node node;
     node.length = 0;
 
-    for (int i = 0; i < sizeof(&variables) - 1; i++) { // - 1 because of /0 in array
+    for (int i = 0; i < size; i++) {
         node.variables[i] = variables[i];
         node.length++;
     }
@@ -34,16 +34,16 @@ void addVariableToNode(char* identifier, node* node) {
 
 void printNode(node node) {
 
-    printf("********************************\nUzol:\n");
+    printf("********************************\nUzol:\n | ");
     for (int i = 0; i < node.length; i++) {
-        printf("  |  %s",node.variables[i]);
+        printf("%s",node.variables[i]);
         if (node.length - i > 1) {
             printf(" & ");
         }
-        printf("\n");
+        // printf("\n");
     }
     printf("\n");
 
-    printf("Pocet premennych: %d\n", node.length);
+    // printf("Pocet premennych: %d\n", node.length);
     printf("********************************\n");
 }

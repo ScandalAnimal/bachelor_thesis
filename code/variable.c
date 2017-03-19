@@ -22,11 +22,11 @@ variable* createVariable(void* m, char* name, bool value) {
     return var;
 }
 
-void createVariables(void* m, char* names[], bool values[]) {
+void createVariables(void* m, char* names[], int size, bool values[]) {
 
     tHashMap* map = (tHashMap*) m;
 
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < size; i++) {
 
         // TODO: is this needed?
 

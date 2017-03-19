@@ -170,7 +170,7 @@ void printHashMap(void* m) {
         tHashMapRecord record = map->records[i];
         if (record.used) {
             zeroRecords = false;
-            printf("%3u |  %s ----- ",i,record.key);
+            printf("%4u |  %15s ----- ",i,record.key);
             fputs(record.value ? "true #\n" : "false #\n", stdout);
         }
 //        printf("%u |  %s ----- %d\n",i,record.key, record.value);
