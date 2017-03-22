@@ -8,11 +8,12 @@
 #include <stdbool.h>
 
 typedef struct variable {
-    char name[50]; // TODO: change to macro
+    char* name;
     bool value;
-} variable;
+} tVar;
 
-extern variable* createVariable(void*, char*, bool);
-extern void 	 createVariables(void*, char**, int, bool[]);
+extern tVar  createVar(char*, bool);
+extern tVar* createVariable(unsigned int, char*, bool);
+// extern void 	 createVariables(void*, char**, int, bool[]);
 
 #endif //CODE_VARIABLE_H

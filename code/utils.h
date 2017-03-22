@@ -6,6 +6,7 @@
 #define BACHELOR_THESIS_UTILS_H
 
 #include <stdbool.h>
+#include "variable.h"
 
 extern bool getRandomBooleanValue();
 extern int getDigitCount(int);

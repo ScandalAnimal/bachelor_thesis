@@ -6,15 +6,18 @@
 #define CODE_NODE_H
 
 #include <stdbool.h>
+#include "hashmap.h"
+#include "variable.h"
 
 typedef struct node {
     int length;
-    char* variables[10];
-} node;
+    char** variables;
+} tNode;
 
-extern node createNode();
-extern node createNodeWithVariables(char**, int);
-extern void addVariableToNode(char*, node*);
-extern void printNode(node);
+extern void* createNode();
+// extern node createNodeWithVariables(char**, int, bool[], void*);
+extern void addVariableToNode(char*, tNode*);
+extern void addVariablesToNode(tVar**, int, tNode*);
+extern void printNode(tNode*);
 
 #endif //CODE_NODE_H

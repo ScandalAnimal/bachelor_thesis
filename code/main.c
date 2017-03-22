@@ -7,82 +7,99 @@
 #include <string.h>
 #include <stdbool.h>
 #include "anf.h"
-#include "hashmap.h"
-#include "node.h"
+// #include "hashmap.h"
+// #include "node.h"
 #include "utils.h"
-#include "variable.h"
+// #include "variable.h"
 
 int main(int argc, char *argv[]) {
 
-    tHashMap* map = createHashMap(10,0.7);    
+    tANFBundle* bundle = createANFBundle(10, 0.7, 50);
 
-        variable* var1 = createVariable(map, "Celtics", true);
-        variable* var2 = createVariable(map, "Raptors", true);
-        variable* var3 = createVariable(map, "Knicks", true);
-        variable* var4 = createVariable(map, "76ers", true);
-        variable* var5 = createVariable(map, "Nets", true);
+    tVar var1 = createVarInBundle(bundle, "Celtics", true);
+    tVar var2 = createVarInBundle(bundle, "Raptors", true);
+    tVar var3 = createVarInBundle(bundle, "Knicks", true);
+    tVar var4 = createVarInBundle(bundle, "76ers", true);
+    tVar var5 = createVarInBundle(bundle, "Nets", true);
 
-        char* SE[] = { "Wizards", "Hawks", "Heat", "Hornets", "Magic" };
-        char* CE[] = { "Cavs", "Pacers", "Bucks", "Pistons", "Bulls" };
-        char* NW[] = { "Jazz", "Thunder", "Nuggets", "Blazers", "Timberwolves" };
-        char* PA[] = { "Warriors", "Clippers", "Kings", "Suns", "Lakers" };
-        char* SW[] = { "Spurs", "Rockets", "Grizzlies", "Mavericks", "Pelicans" };
-        bool values[] = { true, true, true, true, true };
+    //     char* SE[] = { "Wizards", "Hawks", "Heat", "Hornets", "Magic" };
+    //     char* CE[] = { "Cavs", "Pacers", "Bucks", "Pistons", "Bulls" };
+    //     char* NW[] = { "Jazz", "Thunder", "Nuggets", "Blazers", "Timberwolves" };
+    //     char* PA[] = { "Warriors", "Clippers", "Kings", "Suns", "Lakers" };
+    //     char* SW[] = { "Spurs", "Rockets", "Grizzlies", "Mavericks", "Pelicans" };
+    //     bool values[] = { true, true, true, true, true };
 
-        int SE_size = sizeof(SE) / sizeof(*SE);
-        int CE_size = sizeof(CE) / sizeof(*CE);
-        int NW_size = sizeof(NW) / sizeof(*NW);
-        int PA_size = sizeof(PA) / sizeof(*PA);
-        int SW_size = sizeof(SW) / sizeof(*SW);
+    //     int SE_size = sizeof(SE) / sizeof(*SE);
+    //     int CE_size = sizeof(CE) / sizeof(*CE);
+    //     int NW_size = sizeof(NW) / sizeof(*NW);
+    //     int PA_size = sizeof(PA) / sizeof(*PA);
+    //     int SW_size = sizeof(SW) / sizeof(*SW);
 
-        createVariables(map, SE, SE_size, values);
-        createVariables(map, CE, CE_size, values);
-        createVariables(map, NW, NW_size, values);
-        createVariables(map, PA, PA_size, values);
-        createVariables(map, SW, SW_size, values);
+    //     // createVariables(map, SE, SE_size, values);
+    //     // createVariables(map, CE, CE_size, values);
+    //     // createVariables(map, NW, NW_size, values);
+    //     // createVariables(map, PA, PA_size, values);
+    //     // createVariables(map, SW, SW_size, values);
      
-        node node1 = createNode();
-        node node2 = createNodeWithVariables(SE, SE_size);
-        node node3 = createNodeWithVariables(CE, CE_size);
-        node node4 = createNodeWithVariables(NW, NW_size);
-        node node5 = createNodeWithVariables(PA, PA_size);
-        node node6 = createNodeWithVariables(SW, SW_size);
+    tNode* node1 = createNodeInBundle(bundle);
+    // tNode* node2 = createNodeInBundle(bundle);
+    //     node node2 = createNodeWithVariables(SE, SE_size, values, map);
+    //     node node3 = createNodeWithVariables(CE, CE_size, values, map);
+    //     node node4 = createNodeWithVariables(NW, NW_size, values, map);
+    //     node node5 = createNodeWithVariables(PA, PA_size, values, map);
+    //     node node6 = createNodeWithVariables(SW, SW_size, values, map);
 
-        addVariableToNode(var1->name, &node1);
-        addVariableToNode(var2->name, &node1);
-        addVariableToNode(var3->name, &node1);
-        addVariableToNode(var4->name, &node1);
-        addVariableToNode(var5->name, &node1);
+    addVariableToNode(var1.name, node1);
+    addVariableToNode(var2.name, node1);
+    addVariableToNode(var3.name, node1);
+    addVariableToNode(var4.name, node1);
+    addVariableToNode(var5.name, node1);
 
-        // printNode(node1);
-        // printNode(node2);
+    // tVar* vars[] = {
+        // var1, var2, var3
+    // };
+    // int vars_size = sizeof(vars) / sizeof(*vars);
 
-        node nodes[] = {
-            node1,
-            node2,
-            node3,
-            node4,
-            node5,
-            node6
-        };
+    // printf("%d\n", vars_size);
+    // addVariablesToNode(vars, vars_size, node2);
 
-        int nodes_size = sizeof(nodes) / sizeof(*nodes);
+    printNode(node1);
+    // printNode(node2);
 
-        anf anf1 = createAnf();
-        anf anf2 = createAnfWithNodes(nodes, nodes_size);
+    //     node nodes[] = {
+    //         node1,
+    //         node2,
+    //         node3,
+    //         node4,
+    //         node5,
+    //         node6
+    //     };
 
-        // // TODO addNodeToAnf();
+    //     // int nodes_size = sizeof(nodes) / sizeof(*nodes);
 
-        printAnf(anf2);
+    //     // anf anf1 = createAnf();
+    //     // anf anf2 = createAnfWithNodes(nodes, nodes_size);
 
-    free(var1);
-    free(var2);
-    free(var3);
-    free(var4);
-    free(var5);
+    //     // // // TODO addNodeToAnf();
 
-    printHashMap(map);
-    freeHashMap(map);
+    //     // printAnf(anf2);
+
+    // free(var1->name);
+    // free(var1);
+    // free(var2);
+    // free(var3);
+    // free(var4);
+    // free(var5);
+
+    free(node1->variables);
+    // free(node1->variables.name);
+    free(node1);
+    // free(node2->variables);
+    // free(node2);
+
+    printBundle(bundle);
+    printBundleMap(bundle);
     
+    freeANFBundle(bundle);
     return 0;
 }
