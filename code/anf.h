@@ -10,35 +10,41 @@
 #include "hashmap.h"
 #include "variable.h"
 
+typedef struct anf {
+    int length;
+    tNode** nodes;
+} tAnf;
+
 typedef struct ANFBundle {
 	tHashMap* hashmap;
 	tNode** nodes;
 	unsigned int nodeCount;
-	// tVar** vars;
-	// unsigned int varsCount;
+	tAnf** anfs;
+	unsigned int anfsCount;
 	unsigned int maxVarLength;
 } tANFBundle;
-
-
-// typedef struct anf {
-//     int length;
-//     node nodes[10];
-// } anf;
 
 
 // initialCapacity, loadFactor, maxVariableNameLength
 extern void* 	createANFBundle(unsigned int, double, unsigned int);
 
 extern void  	freeANFBundle(tANFBundle*);
+
 extern void* 	createNodeInBundle(tANFBundle*);
+extern void*	createNodeWithVarsInBundle(tANFBundle*, tVar[], int);
+
 extern tVar		createVarInBundle(tANFBundle*, char*, bool);
+extern void		addVarsToBundle(tANFBundle*, tVar[], int);
 
 extern void  	printBundle(tANFBundle*);
 extern void		printBundleMap(tANFBundle*);
 
-// extern anf createAnf();
-// extern anf createAnfWithNodes(node[], int);
+extern void*	createAnf();
+extern void*	createAnfWithNodesInBundle(tANFBundle*, tNode**, int);
 // extern void addNodeToAnf(node, anf*);
-// extern void printAnf(anf);
+extern void 	addNodesToAnf(tNode**, int, tAnf*);
+
+extern void 	printAnf(tAnf*);
+extern void		freeAnf(tAnf*);
 
 #endif //CODE_ANF_H

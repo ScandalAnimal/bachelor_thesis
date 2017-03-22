@@ -22,32 +22,56 @@ int main(int argc, char *argv[]) {
     tVar var4 = createVarInBundle(bundle, "76ers", true);
     tVar var5 = createVarInBundle(bundle, "Nets", true);
 
-    //     char* SE[] = { "Wizards", "Hawks", "Heat", "Hornets", "Magic" };
-    //     char* CE[] = { "Cavs", "Pacers", "Bucks", "Pistons", "Bulls" };
-    //     char* NW[] = { "Jazz", "Thunder", "Nuggets", "Blazers", "Timberwolves" };
-    //     char* PA[] = { "Warriors", "Clippers", "Kings", "Suns", "Lakers" };
-    //     char* SW[] = { "Spurs", "Rockets", "Grizzlies", "Mavericks", "Pelicans" };
-    //     bool values[] = { true, true, true, true, true };
+    tVar SE[] = { 
+        createVar("Wizards", true), 
+        createVar("Hawks", true), 
+        createVar("Heat", true), 
+        createVar("Hornets", true), 
+        createVar("Magic", true) 
+    };
+    tVar CE[] = { 
+        createVar("Cavs", true), 
+        createVar("Pacers", true), 
+        createVar("Bucks", true), 
+        createVar("Pistons", true), 
+        createVar("Bulls", true) 
+    };
+    tVar NW[] = { 
+        createVar("Jazz", true), 
+        createVar("Thunder", true), 
+        createVar("Nuggets", true), 
+        createVar("Blazers", true), 
+        createVar("Timberwolves", true) 
+    };
+    tVar PA[] = { 
+        createVar("Warriors", true), 
+        createVar("Clippers", true), 
+        createVar("Kings", true), 
+        createVar("Suns", true), 
+        createVar("Lakers", true) 
+    };
+    tVar SW[] = { 
+        createVar("Spurs", true), 
+        createVar("Rockets", true), 
+        createVar("Grizzlies", true), 
+        createVar("Mavericks", true), 
+        createVar("Pelicans", true) 
+    };
 
-    //     int SE_size = sizeof(SE) / sizeof(*SE);
-    //     int CE_size = sizeof(CE) / sizeof(*CE);
-    //     int NW_size = sizeof(NW) / sizeof(*NW);
-    //     int PA_size = sizeof(PA) / sizeof(*PA);
-    //     int SW_size = sizeof(SW) / sizeof(*SW);
+    int SE_size = sizeof(SE) / sizeof(*SE);
+    int CE_size = sizeof(CE) / sizeof(*CE); 
+    int NW_size = sizeof(NW) / sizeof(*NW);
+    int PA_size = sizeof(PA) / sizeof(*PA);
+    int SW_size = sizeof(SW) / sizeof(*SW);
 
-    //     // createVariables(map, SE, SE_size, values);
-    //     // createVariables(map, CE, CE_size, values);
-    //     // createVariables(map, NW, NW_size, values);
-    //     // createVariables(map, PA, PA_size, values);
-    //     // createVariables(map, SW, SW_size, values);
+    addVarsToBundle(bundle, SE, SE_size);
      
     tNode* node1 = createNodeInBundle(bundle);
-    // tNode* node2 = createNodeInBundle(bundle);
-    //     node node2 = createNodeWithVariables(SE, SE_size, values, map);
-    //     node node3 = createNodeWithVariables(CE, CE_size, values, map);
-    //     node node4 = createNodeWithVariables(NW, NW_size, values, map);
-    //     node node5 = createNodeWithVariables(PA, PA_size, values, map);
-    //     node node6 = createNodeWithVariables(SW, SW_size, values, map);
+    tNode* node2 = createNodeWithVarsInBundle(bundle, SE, SE_size);
+    tNode* node3 = createNodeWithVarsInBundle(bundle, CE, CE_size);
+    tNode* node4 = createNodeWithVarsInBundle(bundle, NW, NW_size);
+    tNode* node5 = createNodeWithVarsInBundle(bundle, PA, PA_size);
+    tNode* node6 = createNodeWithVarsInBundle(bundle, SW, SW_size);
 
     addVariableToNode(var1.name, node1);
     addVariableToNode(var2.name, node1);
@@ -55,51 +79,42 @@ int main(int argc, char *argv[]) {
     addVariableToNode(var4.name, node1);
     addVariableToNode(var5.name, node1);
 
-    // tVar* vars[] = {
-        // var1, var2, var3
-    // };
-    // int vars_size = sizeof(vars) / sizeof(*vars);
-
-    // printf("%d\n", vars_size);
-    // addVariablesToNode(vars, vars_size, node2);
+    addVariablesToNode(NW, NW_size, node2);
 
     printNode(node1);
-    // printNode(node2);
+    printNode(node2);
 
-    //     node nodes[] = {
-    //         node1,
-    //         node2,
-    //         node3,
-    //         node4,
-    //         node5,
-    //         node6
-    //     };
+    tNode* nodes[] = {
+        node2,
+        node3,
+        node4,
+        node5,
+        node6
+    };
 
-    //     // int nodes_size = sizeof(nodes) / sizeof(*nodes);
+    int nodes_size = sizeof(nodes) / sizeof(*nodes);
 
-    //     // anf anf1 = createAnf();
-    //     // anf anf2 = createAnfWithNodes(nodes, nodes_size);
+    // anf anf1 = createAnf();
+    tAnf* anf2 = createAnfWithNodesInBundle(bundle, nodes, nodes_size);
 
     //     // // // TODO addNodeToAnf();
 
     //     // printAnf(anf2);
 
-    // free(var1->name);
-    // free(var1);
-    // free(var2);
-    // free(var3);
-    // free(var4);
-    // free(var5);
-
-    free(node1->variables);
-    // free(node1->variables.name);
-    free(node1);
-    // free(node2->variables);
-    // free(node2);
 
     printBundle(bundle);
     printBundleMap(bundle);
-    
+    printAnf(anf2);
+
+    freeNode(node1);
+    freeNode(node2);
+    freeNode(node3);
+    freeNode(node4);
+    freeNode(node5);
+    freeNode(node6);
+
+    freeAnf(anf2);
+
     freeANFBundle(bundle);
     return 0;
 }

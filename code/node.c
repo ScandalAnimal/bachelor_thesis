@@ -46,17 +46,21 @@ void addVariableToNode(char* identifier, tNode* node) {
     node->length++;
 }
 
-void addVariablesToNode(tVar* variables[], int size, tNode* node) {
+void addVariablesToNode(tVar variables[], int size, tNode* node) {
 
     int length = node->length;
 
-    node->variables = realloc(node->variables, sizeof(char *) * size);
+    node->variables = realloc(node->variables, sizeof(char *) * (length + size));
 
     for (int i = 0; i < size; i++) {
-        printf("ADDING: %s\n", variables[i]->name);
-        node->variables[length + i] = variables[i]->name;
+        node->variables[length + i] = variables[i].name;
         node->length++;
     }
+}
+
+void freeNode(tNode* node) {
+    free(node->variables);
+    free(node);
 }
 
 void printNode(tNode* node) {
