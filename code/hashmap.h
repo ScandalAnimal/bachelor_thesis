@@ -26,7 +26,7 @@ extern void*        	createHashMap(unsigned int, double);
 
 // TODO think about return enum
 extern bool             insertToHashMap(void*, char *, bool);
-extern void             selectFromHashMap(void*, char*, tHashMapRecord*);
+extern tHashMapRecord*  selectFromHashMap(void*, char*);
 
 extern bool             isHashMapEmpty(void*);
 extern void             freeHashMap(void*);

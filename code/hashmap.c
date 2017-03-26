@@ -121,11 +121,11 @@ bool insertToHashMap(void* m, char *key, bool value) {
     return true;
 }
 
-void selectFromHashMap(void* m, char* key, tHashMapRecord* ret) {
+tHashMapRecord* selectFromHashMap(void* m, char* key) {
     tHashMap* map = (tHashMap*) m;
 
     int index = generateIndex(m,key);
-    *ret = map->records[index];
+    return &(map->records[index]);
 }
 
 bool isHashMapEmpty(void* m) {

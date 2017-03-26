@@ -6,6 +6,7 @@
 #define CODE_NODE_H
 
 #include <stdbool.h>
+#include <string.h>
 #include "hashmap.h"
 #include "variable.h"
 

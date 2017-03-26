@@ -2,10 +2,6 @@
  * @author Maroš Vasilišin <mvasilisin@gmail.com>
  */
 
-#include <stdbool.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include "hashmap.h"
 #include "variable.h"
 
 tVar createVar(char* name, bool value) {
@@ -25,6 +21,15 @@ tVar* createVariable(unsigned int maxVarLength, char* name, bool value) {
     var->value = value;
 
     return var;
+}
+
+bool getVarValue(tHashMap* map, char* name) {
+
+    tHashMapRecord* record = selectFromHashMap(map, name);
+
+    // free(record);
+    return record->value;
+    // return true;
 }
 
 // void createVariables(void* m, char* names[], int size, bool values[]) {

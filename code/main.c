@@ -53,25 +53,24 @@ int main(int argc, char *argv[]) {
     tVar SW[] = { 
         createVar("Spurs", true), 
         createVar("Rockets", true), 
+        createVar("Rockets", true), 
+        createVar("Rockets", true), 
+        createVar("Rockets", true), 
         createVar("Grizzlies", true), 
+        createVar("Mavericks", true), 
+        createVar("Suns", false), 
         createVar("Mavericks", true), 
         createVar("Pelicans", true) 
     };
 
-    int SE_size = sizeof(SE) / sizeof(*SE);
-    int CE_size = sizeof(CE) / sizeof(*CE); 
-    int NW_size = sizeof(NW) / sizeof(*NW);
-    int PA_size = sizeof(PA) / sizeof(*PA);
-    int SW_size = sizeof(SW) / sizeof(*SW);
-
-    addVarsToBundle(bundle, SE, SE_size);
+    addVarsToBundle(bundle, SE, ARRAY_SIZE(SE));
      
     tNode* node1 = createNodeInBundle(bundle);
-    tNode* node2 = createNodeWithVarsInBundle(bundle, SE, SE_size);
-    tNode* node3 = createNodeWithVarsInBundle(bundle, CE, CE_size);
-    tNode* node4 = createNodeWithVarsInBundle(bundle, NW, NW_size);
-    tNode* node5 = createNodeWithVarsInBundle(bundle, PA, PA_size);
-    tNode* node6 = createNodeWithVarsInBundle(bundle, SW, SW_size);
+    tNode* node2 = createNodeWithVarsInBundle(bundle, SE, ARRAY_SIZE(SE));
+    tNode* node3 = createNodeWithVarsInBundle(bundle, CE, ARRAY_SIZE(CE));
+    tNode* node4 = createNodeWithVarsInBundle(bundle, NW, ARRAY_SIZE(NW));
+    tNode* node5 = createNodeWithVarsInBundle(bundle, PA, ARRAY_SIZE(PA));
+    tNode* node6 = createNodeWithVarsInBundle(bundle, SW, ARRAY_SIZE(SW));
 
     addVariableToNode(var1.name, node1);
     addVariableToNode(var2.name, node1);
@@ -79,10 +78,10 @@ int main(int argc, char *argv[]) {
     addVariableToNode(var4.name, node1);
     addVariableToNode(var5.name, node1);
 
-    addVariablesToNode(NW, NW_size, node2);
+    // addVariablesToNode(NW, NW_size, node2);
 
-    printNode(node1);
-    printNode(node2);
+    // printNode(node1);
+    // // printNode(node2);
 
     tNode* nodes[] = {
         node2,
@@ -92,22 +91,17 @@ int main(int argc, char *argv[]) {
         node6
     };
 
-    int nodes_size = sizeof(nodes) / sizeof(*nodes);
+    tAnf* anf2 = createAnfWithNodesInBundle(bundle, nodes, ARRAY_SIZE(nodes));
 
-    // anf anf1 = createAnf();
-    tAnf* anf2 = createAnfWithNodesInBundle(bundle, nodes, nodes_size);
+    // printBundle(bundle);
+    // printAnf(anf2);
 
-    //     // // // TODO addNodeToAnf();
+    iterateOverBundle(bundle);
 
-    //     // printAnf(anf2);
-
-
-    printBundle(bundle);
     printBundleMap(bundle);
-    printAnf(anf2);
 
     freeNode(node1);
-    freeNode(node2);
+    freeNode(node2); 
     freeNode(node3);
     freeNode(node4);
     freeNode(node5);

@@ -62,14 +62,37 @@ void* createNodeWithVarsInBundle(tANFBundle* bundle, tVar variables[], int lengt
 
     tNode* node = createNode();
 
-    addVariablesToNode(variables, length, node);
-    addVarsToBundle(bundle, variables, length);
+    tVar* varsWithoutDuplicity;
+    if (!(varsWithoutDuplicity = (tVar*) malloc(sizeof(tVar) * length))) {
+        return NULL;
+    }
+
+    bool found = false;
+    int insertedVars = 0;
+    for (int i = 0; i < length; i++) {
+        for (int j = 0; j < insertedVars; j++) {
+            if (strcmp(variables[i].name, varsWithoutDuplicity[j].name) == 0) {
+                found = true;
+            }
+        }
+        if (found) {
+            found = false;
+        }
+        else {
+            varsWithoutDuplicity[insertedVars] = variables[i];
+            insertedVars++;
+        }
+    }
+
+    addVariablesToNode(varsWithoutDuplicity, insertedVars, node);
+    addVarsToBundle(bundle, varsWithoutDuplicity, insertedVars);
 
     bundle->nodes = realloc(bundle->nodes, sizeof(tNode *) * (bundle->nodeCount + 1));
 
     bundle->nodes[bundle->nodeCount] = node;
     bundle->nodeCount++;    
 
+    free(varsWithoutDuplicity);
     return node;
 }
 
@@ -141,6 +164,23 @@ void* createAnfWithNodesInBundle(tANFBundle* bundle, tNode* nodes[], int size) {
 void freeAnf(tAnf* anf) {
     free(anf->nodes);
     free(anf);
+}
+
+void iterateOverBundle(tANFBundle* bundle) {
+
+    for (int i = 0; i < bundle->anfsCount; i++) {
+        tAnf* anf = bundle->anfs[i];
+        printf("********************************\nANF No: %d\n", i);
+        for (int j = 0; j < anf->length; j++) {
+            printf(" @ Node No: %d\n -- ", j);
+            for (int k = 0; k < anf->nodes[j]->length; k++) {
+                char* varName = anf->nodes[j]->variables[k];
+                printf("%s:%d ", varName, getVarValue(bundle->hashmap, varName));
+            }
+            printf("\n");
+        }
+        printf("********************************\n");
+    }
 }
 
 void printAnf(tAnf* anf) {

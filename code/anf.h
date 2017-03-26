@@ -44,6 +44,8 @@ extern void*	createAnfWithNodesInBundle(tANFBundle*, tNode**, int);
 // extern void addNodeToAnf(node, anf*);
 extern void 	addNodesToAnf(tNode**, int, tAnf*);
 
+extern void		iterateOverBundle(tANFBundle*);
+
 extern void 	printAnf(tAnf*);
 extern void		freeAnf(tAnf*);
 

@@ -40,6 +40,12 @@ void addVariableToNode(char* identifier, tNode* node) {
 
     int length = node->length;
 
+    for (int i = 0; i < length; i++) {
+        if (strcmp(node->variables[i], identifier) == 0) {
+            return;
+        }
+    }
+
     node->variables = realloc(node->variables, sizeof(char *) * (length+1));
 
     node->variables[length] = identifier;
