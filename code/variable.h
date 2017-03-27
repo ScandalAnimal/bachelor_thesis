@@ -16,7 +16,7 @@ typedef struct variable {
 } tVar;
 
 extern tVar		createVar(char*, bool);
-extern tVar* 	createVariable(unsigned int, char*, bool);
+// extern tVar* 	createVariable(unsigned int, char*, bool);
 extern bool	 	getVarValue(tHashMap*, char*);
 // extern void 	 createVariables(void*, char**, int, bool[]);
 

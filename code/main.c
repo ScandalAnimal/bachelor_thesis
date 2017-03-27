@@ -15,6 +15,9 @@
 int main(int argc, char *argv[]) {
 
     tANFBundle* bundle = createANFBundle(10, 0.7, 50);
+    if (bundle == NULL) {
+        return ERROR;
+    }
 
     tVar var1 = createVarInBundle(bundle, "Celtics", true);
     tVar var2 = createVarInBundle(bundle, "Raptors", true);
@@ -37,7 +40,7 @@ int main(int argc, char *argv[]) {
         createVar("Bulls", true) 
     };
     tVar NW[] = { 
-        createVar("Jazz", true), 
+        createVar("Jazz", false), 
         createVar("Thunder", true), 
         createVar("Nuggets", true), 
         createVar("Blazers", true), 
@@ -46,7 +49,7 @@ int main(int argc, char *argv[]) {
     tVar PA[] = { 
         createVar("Warriors", true), 
         createVar("Clippers", true), 
-        createVar("Kings", true), 
+        createVar("Kings", false), 
         createVar("Suns", true), 
         createVar("Lakers", true) 
     };
@@ -63,25 +66,47 @@ int main(int argc, char *argv[]) {
         createVar("Pelicans", true) 
     };
 
-    addVarsToBundle(bundle, SE, ARRAY_SIZE(SE));
+    createVarsInBundle(bundle, SE, ARRAY_SIZE(SE));
      
     tNode* node1 = createNodeInBundle(bundle);
+    if (node1 == NULL) {
+        return ERROR;
+    }
     tNode* node2 = createNodeWithVarsInBundle(bundle, SE, ARRAY_SIZE(SE));
+    if (node2 == NULL) {
+        return ERROR;
+    }
     tNode* node3 = createNodeWithVarsInBundle(bundle, CE, ARRAY_SIZE(CE));
+    if (node3 == NULL) {
+        return ERROR;
+    }
     tNode* node4 = createNodeWithVarsInBundle(bundle, NW, ARRAY_SIZE(NW));
+    if (node4 == NULL) {
+        return ERROR;
+    }
     tNode* node5 = createNodeWithVarsInBundle(bundle, PA, ARRAY_SIZE(PA));
+    if (node5 == NULL) {
+        return ERROR;
+    }
     tNode* node6 = createNodeWithVarsInBundle(bundle, SW, ARRAY_SIZE(SW));
+    if (node6 == NULL) {
+        return ERROR;
+    }
 
-    addVariableToNode(var1.name, node1);
-    addVariableToNode(var2.name, node1);
-    addVariableToNode(var3.name, node1);
-    addVariableToNode(var4.name, node1);
-    addVariableToNode(var5.name, node1);
+    addVariableToNode(var1, node1);
+    addVariableToNode(var2, node1);
+    addVariableToNode(var3, node1);
+    addVariableToNode(var4, node1);
+    addVariableToNode(var5, node1);
 
-    // addVariablesToNode(NW, NW_size, node2);
+    addVariablesToNode(NW, ARRAY_SIZE(NW), node2);
 
-    // printNode(node1);
-    // // printNode(node2);
+    printNode(node1);
+    printNode(node2);
+    printNode(node3);
+    printNode(node4);
+    printNode(node5);
+    printNode(node6);
 
     tNode* nodes[] = {
         node2,
@@ -93,10 +118,12 @@ int main(int argc, char *argv[]) {
 
     tAnf* anf2 = createAnfWithNodesInBundle(bundle, nodes, ARRAY_SIZE(nodes));
 
-    // printBundle(bundle);
-    // printAnf(anf2);
+    addNodeToAnf(node3, anf2);
 
-    iterateOverBundle(bundle);
+    printBundle(bundle);
+    printAnf(anf2);
+
+    // iterateOverBundle(bundle);
 
     printBundleMap(bundle);
 

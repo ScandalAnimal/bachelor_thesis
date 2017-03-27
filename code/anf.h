@@ -8,11 +8,13 @@
 #include <stdbool.h>
 #include "node.h"
 #include "hashmap.h"
+#include "error.h"
 #include "variable.h"
 
 typedef struct anf {
     int length;
     tNode** nodes;
+    bool value;
 } tAnf;
 
 typedef struct ANFBundle {
@@ -34,14 +36,14 @@ extern void* 	createNodeInBundle(tANFBundle*);
 extern void*	createNodeWithVarsInBundle(tANFBundle*, tVar[], int);
 
 extern tVar		createVarInBundle(tANFBundle*, char*, bool);
-extern void		addVarsToBundle(tANFBundle*, tVar[], int);
+extern void		createVarsInBundle(tANFBundle*, tVar[], int);
 
 extern void  	printBundle(tANFBundle*);
 extern void		printBundleMap(tANFBundle*);
 
 extern void*	createAnf();
 extern void*	createAnfWithNodesInBundle(tANFBundle*, tNode**, int);
-// extern void addNodeToAnf(node, anf*);
+extern void 	addNodeToAnf(tNode*, tAnf*);
 extern void 	addNodesToAnf(tNode**, int, tAnf*);
 
 extern void		iterateOverBundle(tANFBundle*);

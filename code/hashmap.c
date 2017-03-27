@@ -28,11 +28,11 @@ unsigned int generateIndex(void* m, char* key) {
 
 bool rehash(void *m) {
 
-//    printf("---------REHASHING\n");
     tHashMap* map = (tHashMap*) m;
 
     tHashMapRecord* newRecords;
     if (!(newRecords = calloc((size_t) 2 * map->capacity, sizeof(tHashMapRecord)))) {
+        fprintf(stderr, "%s\n", ERR_MALLOC);
         return false;
     }
 
@@ -60,11 +60,13 @@ void* createHashMap(unsigned int initialCapacity, double loadFactor) {
     }
     tHashMap* map;
     if (!(map = (tHashMap*) malloc(sizeof(tHashMap)))) {
+        fprintf(stderr, "%s\n", ERR_MALLOC);
         return NULL;
     }
 
     if (!(map->records = calloc((size_t) initialCapacity, sizeof(tHashMapRecord)))) {
         freeHashMap(map);
+        fprintf(stderr, "%s\n", ERR_MALLOC);
         return NULL;
     }
 
@@ -86,27 +88,23 @@ unsigned int getHashMapCapacity(void* m) {
     return (map != NULL) ? map->capacity : 0;
 }
 
-bool insertToHashMap(void* m, char *key, bool value) {
+int insertToHashMap(void* m, char *key, bool value) {
     tHashMap* map = (tHashMap*) m;
 
     int indexToInsert = generateIndex(m,key);
-//    printf("Inserting: %s on index %d\n", key, indexToInsert);
 
     if (map->records[indexToInsert].used) {
-//        printf("USED\n");
         if (strcmp((const char *) key, (const char *) map->records[indexToInsert].key) == 0) {
             map->records[indexToInsert].value = value;
         }
         else {
             if (!rehash(map)) {
-                return false;
+                return ERROR;
             };
-//            printf("Return from rehash\n");
             insertToHashMap(map,key,value);
         }
     }
     else {
-//        printf("NOT USED\n");
         sprintf((char *) map->records[indexToInsert].key, "%s", (const char *) key);
         map->records[indexToInsert].value = value;
         map->records[indexToInsert].used = true;
@@ -115,10 +113,10 @@ bool insertToHashMap(void* m, char *key, bool value) {
 
     if ((map->usedCapacity / map->capacity) > map->loadFactor) {
         if (!rehash(map)) {
-            return false;
+            return ERROR;
         };
     }
-    return true;
+    return OK;
 }
 
 tHashMapRecord* selectFromHashMap(void* m, char* key) {
@@ -138,7 +136,12 @@ bool isKeyInHashMap(void* m, char* key) {
     tHashMap* map = (tHashMap*) m;
 
     unsigned int index = generateIndex(map,key);
-    return (map->records[index].used);
+    if (strcmp(key, map->records[index].key) == 0) {
+        return (map->records[index].used);        
+    }
+    else {
+        return false;
+    }
 }
 
 void removeFromHashMap(void* m, char* key) {
@@ -173,7 +176,6 @@ void printHashMap(void* m) {
             printf("%4u |  %15s ----- ",i,record.key);
             fputs(record.value ? "true #\n" : "false #\n", stdout);
         }
-//        printf("%u |  %s ----- %d\n",i,record.key, record.value);
 
     }
     printf("Pocet zaznamov: %d/%d\n", map->usedCapacity, map->capacity);
@@ -182,6 +184,3 @@ void printHashMap(void* m) {
     }
     printf("********************************\n");
 }
-
-
-

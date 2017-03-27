@@ -6,8 +6,10 @@
 #define CODE_HASHMAP_H
 
 #include <stdbool.h>
+#include "error.h"
 
 #define DEFAULT_HASHMAP_CAPACITY 256
+// max hashmap tested - 1300 records
 
 typedef struct hashMapRecord {
     char key[50]; // TODO: change to macro
@@ -24,8 +26,7 @@ typedef struct hashMap {
 
 extern void*        	createHashMap(unsigned int, double);
 
-// TODO think about return enum
-extern bool             insertToHashMap(void*, char *, bool);
+extern int              insertToHashMap(void*, char *, bool);
 extern tHashMapRecord*  selectFromHashMap(void*, char*);
 
 extern bool             isHashMapEmpty(void*);
