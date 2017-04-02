@@ -9,10 +9,11 @@
 #include "error.h"
 
 #define DEFAULT_HASHMAP_CAPACITY 256
+#define MAX_KEY_LENGTH 256
 // max hashmap tested - 1300 records
 
 typedef struct hashMapRecord {
-    char key[50]; // TODO: change to macro
+    char key[MAX_KEY_LENGTH];
     bool value;
     bool used;
 } tHashMapRecord;
@@ -24,19 +25,27 @@ typedef struct hashMap {
     double loadFactor;
 } tHashMap;
 
-extern void*        	createHashMap(unsigned int, double);
 
-extern int              insertToHashMap(void*, char *, bool);
-extern tHashMapRecord*  selectFromHashMap(void*, char*);
+/*
+ * tMap is a pointer to an internally maintained data structure.
+ * Clients of this package do not need to know how hashmaps are
+ * represented.  They see and manipulate only tMaps.
+ */
+typedef void*  tMap;
 
-extern bool             isHashMapEmpty(void*);
-extern void             freeHashMap(void*);
-extern unsigned int     getHashMapCapacity(void*);
 
-extern bool             isKeyInHashMap(void*, char*);
-extern void             removeFromHashMap(void*, char*);
-extern void             clearHashMap(void*);
+extern tMap        		createHashMap(unsigned int, double);
+extern int              insertToHashMap(tMap, char *, bool);
+extern tHashMapRecord*  selectFromHashMap(tMap, char*);
 
-extern void             printHashMap(void*);
+extern bool             isHashMapEmpty(tMap);
+extern void             freeHashMap(tMap);
+extern unsigned int     getHashMapCapacity(tMap);
+
+extern bool             isKeyInHashMap(tMap, char*);
+extern int 	            removeFromHashMap(tMap, char*);
+extern void             clearHashMap(tMap);
+
+extern void             printHashMap(tMap);
 
 #endif //CODE_HASHMAP_H

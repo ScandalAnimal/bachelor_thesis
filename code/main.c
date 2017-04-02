@@ -12,8 +12,8 @@
 #include "utils.h"
 // #include "variable.h"
 
-int main(int argc, char *argv[]) {
-
+int main(int argc, char* argv[]) {
+    
     tANFBundle* bundle = createANFBundle(10, 0.7, 50);
     if (bundle == NULL) {
         return ERROR;

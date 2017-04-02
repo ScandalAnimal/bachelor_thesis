@@ -1,11 +1,49 @@
-/** 
- * @author Maroš Vasilišin <mvasilisin@gmail.com>
+/*
+ * Generic map implementation.
  */
+#include "hashmap.h"
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "hashmap.h"
+
+#define INITIAL_SIZE (256)
+#define MAX_CHAIN_LENGTH (8)
+
+/* We need to keep keys and values */
+typedef struct _hashmap_element{
+	char* key;
+	int in_use;
+	any_t data;
+} hashmap_element;
+
+/* A hashmap has some maximum size and current size,
+ * as well as the data to hold. */
+typedef struct _hashmap_map{
+	int table_size;
+	int size;
+	hashmap_element *data;
+} hashmap_map;
+
+/*
+ * Return an empty hashmap, or NULL on failure.
+ */
+map_t hashmap_new() {
+	hashmap_map* m = (hashmap_map*) malloc(sizeof(hashmap_map));
+	if(!m) goto err;
+
+	m->data = (hashmap_element*) calloc(INITIAL_SIZE, sizeof(hashmap_element));
+	if(!m->data) goto err;
+
+	m->table_size = INITIAL_SIZE;
+	m->size = 0;
+
+	return m;
+	err:
+		if (m)
+			hashmap_free(m);
+		return NULL;
+}
 
 /* The implementation here was originally done by Gary S. Brown.  I have
    borrowed the tables directly, and made some minor changes to the
@@ -108,8 +146,8 @@ static unsigned long crc32_tab[] = {
 
 /* Return a 32-bit CRC of the contents of the buffer. */
 
-unsigned long crc32(const unsigned char *s, unsigned int len) {
-
+unsigned long crc32(const unsigned char *s, unsigned int len)
+{
   unsigned int i;
   unsigned long crc32val;
   
@@ -117,270 +155,243 @@ unsigned long crc32(const unsigned char *s, unsigned int len) {
   for (i = 0;  i < len;  i ++)
     {
       crc32val =
-    crc32_tab[(crc32val ^ s[i]) & 0xff] ^
-      (crc32val >> 8);
+	crc32_tab[(crc32val ^ s[i]) & 0xff] ^
+	  (crc32val >> 8);
     }
   return crc32val;
 }
 
-unsigned int hash(tHashMap* map, char* keystring) {
+/*
+ * Hashing function for a string
+ */
+unsigned int hashmap_hash_int(hashmap_map * m, char* keystring){
 
     unsigned long key = crc32((unsigned char*)(keystring), strlen(keystring));
 
-    /* Robert Jenkins' 32 bit Mix Function */
-    key += (key << 12);
-    key ^= (key >> 22);
-    key += (key << 4);
-    key ^= (key >> 9);
-    key += (key << 10);
-    key ^= (key >> 2);
-    key += (key << 7);
-    key ^= (key >> 12);
+	/* Robert Jenkins' 32 bit Mix Function */
+	key += (key << 12);
+	key ^= (key >> 22);
+	key += (key << 4);
+	key ^= (key >> 9);
+	key += (key << 10);
+	key ^= (key >> 2);
+	key += (key << 7);
+	key ^= (key >> 12);
 
-    /* Knuth's Multiplicative Method */
-    key = (key >> 3) * 2654435761;
+	/* Knuth's Multiplicative Method */
+	key = (key >> 3) * 2654435761;
 
-    return key % map->capacity;
+	return key % m->table_size;
 }
 
-unsigned int generateIndex(tMap m, char* key) {
+/*
+ * Return the integer of the location in data
+ * to store the point to the item, or MAP_FULL.
+ */
+int hashmap_hash(map_t in, char* key){
+	int curr;
+	int i;
 
-    tHashMap* map = (tHashMap*) m;
+	/* Cast the hashmap */
+	hashmap_map* m = (hashmap_map *) in;
 
-    int current = hash(map, key);
+	/* If full, return immediately */
+	if(m->size >= (m->table_size/2)) return MAP_FULL;
 
-    /* Linear probing */
-    for (int i = 0; i < 8; i++) {
-        if (!map->records[current].used) {
-            return current;
-        }
+	/* Find the best index */
+	curr = hashmap_hash_int(m, key);
 
-        if (map->records[current].used && (strcmp(map->records[current].key, key) == 0)) {
-            return current;
-        }
+	/* Linear probing */
+	for(i = 0; i< MAX_CHAIN_LENGTH; i++){
+		if(m->data[curr].in_use == 0)
+			return curr;
 
-        current = (current + 1) % map->capacity;
-    }
+		if(m->data[curr].in_use == 1 && (strcmp(m->data[curr].key,key)==0))
+			return curr;
 
-    return ERR_MAP_FULL;
+		curr = (curr + 1) % m->table_size;
+	}
+
+	return MAP_FULL;
 }
 
-int rehash(tMap m) {
+/*
+ * Doubles the size of the hashmap, and rehashes all the elements
+ */
+int hashmap_rehash(map_t in){
+	int i;
+	int old_size;
+	hashmap_element* curr;
 
-    tHashMap* map = (tHashMap*) m;
+	/* Setup the new elements */
+	hashmap_map *m = (hashmap_map *) in;
+	hashmap_element* temp = (hashmap_element *)
+		calloc(2 * m->table_size, sizeof(hashmap_element));
+	if(!temp) return MAP_OMEM;
 
-    tHashMapRecord* newRecords;
-    if (!(newRecords = calloc((size_t) 2 * map->capacity, sizeof(tHashMapRecord)))) {
-        fprintf(stderr, "%d\n", ERR_MALLOC);
-        return ERR_MALLOC;
-    }
+	/* Update the array */
+	curr = m->data;
+	m->data = temp;
 
-    tHashMapRecord* oldRecords = map->records;
-    map->records = newRecords;
+	/* Update the size */
+	old_size = m->table_size;
+	m->table_size = 2 * m->table_size;
+	m->size = 0;
 
-    int oldMapCapacity = map->capacity;
-    map->capacity *= 2;
-    map->usedCapacity = 0;
-
-    for (int i = 0; i < oldMapCapacity; i++) {
+	/* Rehash the elements */
+	for(i = 0; i < old_size; i++){
         int status;
-        tHashMapRecord record = oldRecords[i];
-        if (record.used) {
-            status = insertToHashMap(map,record.key,record.value);
-            if (status != OK) {
-                return status;
+
+        if (curr[i].in_use == 0)
+            continue;
+            
+		status = hashmap_put(m, curr[i].key, curr[i].data);
+		if (status != MAP_OK)
+			return status;
+	}
+
+	free(curr);
+
+	return MAP_OK;
+}
+
+/*
+ * Add a pointer to the hashmap with some key
+ */
+int hashmap_put(map_t in, char* key, any_t value){
+	int index;
+	hashmap_map* m;
+
+	/* Cast the hashmap */
+	m = (hashmap_map *) in;
+
+	/* Find a place to put our value */
+	index = hashmap_hash(in, key);
+	while(index == MAP_FULL){
+		if (hashmap_rehash(in) == MAP_OMEM) {
+			return MAP_OMEM;
+		}
+		index = hashmap_hash(in, key);
+	}
+
+	/* Set the data */
+	m->data[index].data = value;
+	m->data[index].key = key;
+	m->data[index].in_use = 1;
+	m->size++; 
+
+	return MAP_OK;
+}
+
+/*
+ * Get your pointer out of the hashmap with a key
+ */
+int hashmap_get(map_t in, char* key, any_t *arg){
+	int curr;
+	int i;
+	hashmap_map* m;
+
+	/* Cast the hashmap */
+	m = (hashmap_map *) in;
+
+	/* Find data location */
+	curr = hashmap_hash_int(m, key);
+
+	/* Linear probing, if necessary */
+	for(i = 0; i<MAX_CHAIN_LENGTH; i++){
+
+        int in_use = m->data[curr].in_use;
+        if (in_use == 1){
+            if (strcmp(m->data[curr].key,key)==0){
+                *arg = (m->data[curr].data);
+                return MAP_OK;
             }
-        }
-    }
-    free(oldRecords);
-    return OK;
+		}
+
+		curr = (curr + 1) % m->table_size;
+	}
+
+	*arg = NULL;
+
+	/* Not found */
+	return MAP_MISSING;
 }
 
-tMap createHashMap(unsigned int initialCapacity, double loadFactor) {
+/*
+ * Iterate the function parameter over each element in the hashmap.  The
+ * additional any_t argument is passed to the function as its first
+ * argument and the hashmap element is the second.
+ */
+int hashmap_iterate(map_t in, PFany f, any_t item) {
+	int i;
 
-    if (initialCapacity <= 0L) {
-        initialCapacity = DEFAULT_HASHMAP_CAPACITY;
-    }
-    tHashMap* map;
-    if (!(map = (tHashMap*) malloc(sizeof(tHashMap)))) {
-        fprintf(stderr, "%d\n", ERR_MALLOC);
-        return NULL;
-    }
+	/* Cast the hashmap */
+	hashmap_map* m = (hashmap_map*) in;
 
-    if (!(map->records = calloc((size_t) initialCapacity, sizeof(tHashMapRecord)))) {
-        freeHashMap(map);
-        fprintf(stderr, "%d\n", ERR_MALLOC);
-        return NULL;
-    }
+	/* On empty hashmap, return immediately */
+	if (hashmap_length(m) <= 0)
+		return MAP_MISSING;	
 
-    // for (int i = 0; i < initialCapacity; i++) {
-    //     if (!(map->records[i]->key = malloc(sizeof(char) * MAX_KEY_LENGTH))) {
-    //         freeHashMap(map);
-    //         fprintf(stderr, "%s\n", ERR_MALLOC);
-    //         return NULL;
-    //     }
-    // }
+	/* Linear probing */
+	for(i = 0; i< m->table_size; i++)
+		if(m->data[i].in_use != 0) {
+			any_t data = (any_t) (m->data[i].data);
+			int status = f(item, data);
+			if (status != MAP_OK) {
+				return status;
+			}
+		}
 
-    map->capacity = initialCapacity;
-    map->usedCapacity = 0;
-    map->loadFactor = loadFactor;
-
-    return map;
+    return MAP_OK;
 }
 
-void freeHashMap(tMap m) {
-    tHashMap* map = (tHashMap*) m;
-    free(map->records);
-    free(map);
-}
+/*
+ * Remove an element with that key from the map
+ */
+int hashmap_remove(map_t in, char* key){
+	int i;
+	int curr;
+	hashmap_map* m;
 
-unsigned int getHashMapCapacity(tMap m) {
-    tHashMap* map = (tHashMap*) m;
-    return (map != NULL) ? map->capacity : 0;
-}
+	/* Cast the hashmap */
+	m = (hashmap_map *) in;
 
-int insertToHashMap(tMap m, char *key, bool value) {
+	/* Find key */
+	curr = hashmap_hash_int(m, key);
 
-    tHashMap* map = (tHashMap*) m;
+	/* Linear probing, if necessary */
+	for(i = 0; i<MAX_CHAIN_LENGTH; i++){
 
-    printf("Trying to insert: %s with value %d\n", key, value);
-    int indexToInsert = generateIndex(m,key);
-
-    printf("Inserting on index %d\n", indexToInsert);
-    while (indexToInsert == ERR_MAP_FULL){
-        if (rehash(map) == ERR_MALLOC) {
-            fprintf(stderr, "%d\n", ERR_MALLOC);
-            return ERR_MALLOC;
-        }
-        indexToInsert = generateIndex(m,key);
-    }
-
-    if (map->records[indexToInsert].used) {
-        printf("Index is used.\n");
-        if (strcmp((const char *) key, (const char *) map->records[indexToInsert].key) == 0) {
-            map->records[indexToInsert].value = value;
-        }
-        else {
-            printf("Gonna rehash\n");
-            if (rehash(map) != OK) {
-                return ERROR;
-            };
-            insertToHashMap(map,key,value);
-        }
-    }
-    else {
-        printf("Index is not used.\n");
-        sprintf((char *) map->records[indexToInsert].key, "%s", (const char *) key);
-        // map->records[indexToInsert].key = key;
-        map->records[indexToInsert].value = value;
-        map->records[indexToInsert].used = true;
-        map->usedCapacity++;
-        printf("Inserted: %s, %d and used are: %d\n", map->records[indexToInsert].key, 
-            map->records[indexToInsert].value, map->usedCapacity);
-    }
-
-    if ((map->usedCapacity / map->capacity) > map->loadFactor) {
-        printf("LOAD FACTOR\n");
-        if (rehash(map) != OK) {
-            return ERROR;
-        };
-    }
-    return OK;
-}
-
-tHashMapRecord* selectFromHashMap(tMap m, char* key) {
-    tHashMap* map = (tHashMap*) m;
-
-    int index = generateIndex(m,key);
-
-    /* Linear probing, if necessary */
-    for (int i = 0; i < 8; i++) {
-
-        bool used = map->records[index].used;
-        if (used) {
-            if (strcmp(map->records[index].key, key) == 0) {
-                return &(map->records[index]);
-            }
-        }
-
-        index = (index + 1) % map->capacity;
-    }
-
-    return NULL;
-}
-
-bool isHashMapEmpty(tMap m) {
-    tHashMap* map = (tHashMap*) m;
-    return (map->usedCapacity == 0);
-}
-
-bool isKeyInHashMap(tMap m, char* key) {
-
-    tHashMap* map = (tHashMap*) m;
-
-    unsigned int index = generateIndex(map,key);
-    if (strcmp(key, map->records[index].key) == 0) {
-        return (map->records[index].used);        
-    }
-    else {
-        return false;
-    }
-}
-
-int removeFromHashMap(tMap m, char* key) {
-
-    tHashMap* map = (tHashMap*) m;
-
-    unsigned int index = generateIndex(map,key);
-
-    /* Linear probing, if necessary */
-    for (int i = 0; i < 8; i++) {
-
-        int used = map->records[index].used;
-        if (used){
-            if (strcmp(map->records[index].key, key) == 0) {
-                
+        int in_use = m->data[curr].in_use;
+        if (in_use == 1){
+            if (strcmp(m->data[curr].key,key)==0){
                 /* Blank out the fields */
-                map->records[index].used = false;
-                // map->records[index].key = NULL;
+                m->data[curr].in_use = 0;
+                m->data[curr].data = NULL;
+                m->data[curr].key = NULL;
 
                 /* Reduce the size */
-                map->usedCapacity--;
+                m->size--;
+                return MAP_OK;
             }
-        }
-        index = (index + 1) % map->capacity;
-    }
-    return OK;    
+		}
+		curr = (curr + 1) % m->table_size;
+	}
+
+	/* Data not found */
+	return MAP_MISSING;
 }
 
-void clearHashMap(tMap m) {
-    tHashMap* map = (tHashMap*) m;
-
-    for (int i = 0; i < map->capacity; i++) {
-        map->records[i].used = false;
-        // map->records[i].key = NULL;
-    }
-    map->usedCapacity = 0;
+/* Deallocate the hashmap */
+void hashmap_free(map_t in){
+	hashmap_map* m = (hashmap_map*) in;
+	free(m->data);
+	free(m);
 }
 
-void printHashMap(tMap m) {
-    tHashMap* map = (tHashMap*) m;
-    bool zeroRecords = true;
-
-    printf("********************************\nObsah hash mapy:\n");
-    for (int i = 0; i < map->capacity; i++) {
-        tHashMapRecord record = map->records[i];
-        
-        if (record.used) {
-            zeroRecords = false;
-            printf("%4u |  %15s ----- ",i,record.key);
-            fputs(record.value ? "true #\n" : "false #\n", stdout);
-        }
-
-    }
-    printf("Pocet zaznamov: %d/%d\n", map->usedCapacity, map->capacity);
-    if (zeroRecords) {
-        printf("Mapa neobsahuje ziadne zaznamy.\n");
-    }
-    printf("********************************\n");
+/* Return the length of the hashmap */
+int hashmap_length(map_t in){
+	hashmap_map* m = (hashmap_map *) in;
+	if(m != NULL) return m->size;
+	else return 0;
 }
