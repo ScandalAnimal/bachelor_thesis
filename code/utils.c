@@ -20,3 +20,11 @@ int getDigitCount(int number) {
     }
     return count;
 }
+
+bool getTrue() {
+    return true;
+}
+
+bool getFalse() {
+    return false;
+}

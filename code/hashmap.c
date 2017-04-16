@@ -213,14 +213,6 @@ tMap createHashMap(unsigned int initialCapacity, double loadFactor) {
         return NULL;
     }
 
-    // for (int i = 0; i < initialCapacity; i++) {
-    //     if (!(map->records[i]->key = malloc(sizeof(char) * MAX_KEY_LENGTH))) {
-    //         freeHashMap(map);
-    //         fprintf(stderr, "%s\n", ERR_MALLOC);
-    //         return NULL;
-    //     }
-    // }
-
     map->capacity = initialCapacity;
     map->usedCapacity = 0;
     map->loadFactor = loadFactor;
@@ -271,7 +263,6 @@ int insertToHashMap(tMap m, char *key, bool value) {
     else {
         printf("Index is not used.\n");
         sprintf((char *) map->records[indexToInsert].key, "%s", (const char *) key);
-        // map->records[indexToInsert].key = key;
         map->records[indexToInsert].value = value;
         map->records[indexToInsert].used = true;
         map->usedCapacity++;
@@ -342,7 +333,6 @@ int removeFromHashMap(tMap m, char* key) {
                 
                 /* Blank out the fields */
                 map->records[index].used = false;
-                // map->records[index].key = NULL;
 
                 /* Reduce the size */
                 map->usedCapacity--;
@@ -358,7 +348,6 @@ void clearHashMap(tMap m) {
 
     for (int i = 0; i < map->capacity; i++) {
         map->records[i].used = false;
-        // map->records[i].key = NULL;
     }
     map->usedCapacity = 0;
 }

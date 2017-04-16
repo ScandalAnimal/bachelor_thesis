@@ -12,6 +12,21 @@ tVar createVar(char* name, bool value) {
     return var;    
 }
 
+tVar createTrueVar(char* name) {
+    
+    tVar var;
+    var.name = name;
+    var.value = true;
+    return var;    
+}
+
+tVar createFalseVar(char* name) {
+    
+    tVar var;
+    var.name = name;
+    var.value = false;
+    return var;    
+}
 // // tVar* createVariable(unsigned int maxVarLength, char* name, bool value) {
 
 // //     tVar* var = (tVar*) malloc(sizeof(tVar));

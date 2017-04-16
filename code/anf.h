@@ -23,12 +23,10 @@ typedef struct ANFBundle {
 	unsigned int nodeCount;
 	tAnf** anfs;
 	unsigned int anfsCount;
-	unsigned int maxVarLength;
 } tANFBundle;
 
-
-// initialCapacity, loadFactor, maxVariableNameLength
-extern void* 	createANFBundle(unsigned int, double, unsigned int);
+// initialCapacity, loadFactor
+extern void* 	createANFBundle(unsigned int, double);
 
 extern void  	freeANFBundle(tANFBundle*);
 
@@ -36,6 +34,8 @@ extern void* 	createNodeInBundle(tANFBundle*);
 extern void*	createNodeWithVarsInBundle(tANFBundle*, tVar[], int);
 
 extern tVar		createVarInBundle(tANFBundle*, char*, bool);
+extern tVar		createTrueVarInBundle(tANFBundle*, char*);
+extern tVar		createFalseVarInBundle(tANFBundle*, char*);
 extern void		createVarsInBundle(tANFBundle*, tVar[], int);
 
 extern void  	printBundle(tANFBundle*);

@@ -21,22 +21,22 @@ int main(int argc, char* argv[]) {
 
     tVar var1 = createVarInBundle(bundle, "Celtics", true);
     tVar var2 = createVarInBundle(bundle, "Raptors", true);
-    tVar var3 = createVarInBundle(bundle, "Knicks", true);
-    tVar var4 = createVarInBundle(bundle, "76ers", true);
+    tVar var3 = createTrueVarInBundle(bundle, "Knicks");
+    tVar var4 = createFalseVarInBundle(bundle, "76ers");
     tVar var5 = createVarInBundle(bundle, "Nets", true);
 
     tVar SE[] = { 
         createVar("Wizards", true), 
-        createVar("Hawks", true), 
+        createTrueVar("Hawks"), 
         createVar("Heat", true), 
-        createVar("Hornets", true), 
+        createFalseVar("Hornets"), 
         createVar("Magic", true) 
     };
     tVar CE[] = { 
         createVar("Cavs", true), 
-        createVar("Pacers", true), 
+        createVar("Pacers", getTrue()), 
         createVar("Bucks", true), 
-        createVar("Pistons", true), 
+        createVar("Pistons", getFalse()), 
         createVar("Bulls", true) 
     };
     tVar NW[] = { 

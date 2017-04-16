@@ -22,11 +22,11 @@ void freeANFBundle(tANFBundle* bundle) {
     free(bundle);
 }
 
-void* createANFBundle(unsigned int mapInitCapacity, double mapLoadFactor, unsigned int maxVarLength) {
+void* createANFBundle(unsigned int mapInitCapacity, double mapLoadFactor) {
 
     tANFBundle* bundle;
     if (!(bundle = (tANFBundle*) malloc(sizeof(tANFBundle)))) {
-        fprintf(stderr, "%s\n", ERR_MALLOC);
+        fprintf(stderr, "%d\n", ERR_MALLOC);
         return NULL;
     }
 
@@ -36,19 +36,17 @@ void* createANFBundle(unsigned int mapInitCapacity, double mapLoadFactor, unsign
     }
 
     if (!(bundle->nodes = malloc(sizeof(tNode *)))) {
-        fprintf(stderr, "%s\n", ERR_MALLOC);
+        fprintf(stderr, "%d\n", ERR_MALLOC);
         return NULL;
     };
 
     if (!(bundle->anfs = malloc(sizeof(tAnf *)))) {
-        fprintf(stderr, "%s\n", ERR_MALLOC);
+        fprintf(stderr, "%d\n", ERR_MALLOC);
         return NULL;
     };    
 
     bundle->nodeCount = 0;
     bundle->anfsCount = 0;
-
-    bundle->maxVarLength = maxVarLength;
 
     return bundle;
 }
@@ -58,7 +56,7 @@ void* createNodeInBundle(tANFBundle* bundle) {
     tNode* node = createNode();
 
     if (!(bundle->nodes = realloc(bundle->nodes, sizeof(tNode *) * (bundle->nodeCount + 1)))) {
-        fprintf(stderr, "%s\n", ERR_MALLOC);
+        fprintf(stderr, "%d\n", ERR_MALLOC);
         return NULL;
     }
 
@@ -78,7 +76,7 @@ void* createNodeWithVarsInBundle(tANFBundle* bundle, tVar variables[], int lengt
 
     tVar* varsWithoutDuplicity;
     if (!(varsWithoutDuplicity = (tVar*) malloc(sizeof(tVar) * length))) {
-        fprintf(stderr, "%s\n", ERR_MALLOC);
+        fprintf(stderr, "%d\n", ERR_MALLOC);
         return NULL;
     }
 
@@ -103,7 +101,7 @@ void* createNodeWithVarsInBundle(tANFBundle* bundle, tVar variables[], int lengt
     createVarsInBundle(bundle, varsWithoutDuplicity, insertedVars);
 
     if (!(bundle->nodes = realloc(bundle->nodes, sizeof(tNode *) * (bundle->nodeCount + 1)))) {
-        fprintf(stderr, "%s\n", ERR_MALLOC);
+        fprintf(stderr, "%d\n", ERR_MALLOC);
         return NULL;
     }
 
@@ -120,11 +118,43 @@ tVar createVarInBundle(tANFBundle* bundle, char* name, bool value) {
 
     if (!isKeyInHashMap(bundle->hashmap, name)) {
         if (ERROR == insertToHashMap(bundle->hashmap, var.name, var.value)) {
-           fprintf(stderr, "%s\n", ERR_INSERT);        
+           fprintf(stderr, "%d\n", ERR_INSERT);        
         }
     }
     else {
-       fprintf(stderr, "%s Key: %s\n", ERR_DUPLICATE, name);        
+       fprintf(stderr, "%d Key: %s\n", ERR_DUPLICATE, name);        
+    }
+
+    return var;
+}
+
+tVar createTrueVarInBundle(tANFBundle* bundle, char* name) {
+
+    tVar var = createTrueVar(name);
+
+    if (!isKeyInHashMap(bundle->hashmap, name)) {
+        if (ERROR == insertToHashMap(bundle->hashmap, var.name, var.value)) {
+           fprintf(stderr, "%d\n", ERR_INSERT);        
+        }
+    }
+    else {
+       fprintf(stderr, "%d Key: %s\n", ERR_DUPLICATE, name);        
+    }
+
+    return var;
+}
+
+tVar createFalseVarInBundle(tANFBundle* bundle, char* name) {
+
+    tVar var = createFalseVar(name);
+
+    if (!isKeyInHashMap(bundle->hashmap, name)) {
+        if (ERROR == insertToHashMap(bundle->hashmap, var.name, var.value)) {
+           fprintf(stderr, "%d\n", ERR_INSERT);        
+        }
+    }
+    else {
+       fprintf(stderr, "%d Key: %s\n", ERR_DUPLICATE, name);        
     }
 
     return var;
@@ -135,7 +165,7 @@ void createVarsInBundle(tANFBundle* bundle, tVar variables[], int length) {
     for (int i = 0; i < length; i++) {
         tVar var = variables[i];
         if (ERROR == insertToHashMap(bundle->hashmap, var.name, var.value)) {
-            fprintf(stderr, "%s\n", ERR_INSERT);        
+            fprintf(stderr, "%d\n", ERR_INSERT);        
         }
     } 
 }
@@ -144,13 +174,13 @@ void* createAnf() {
 
     tAnf* anf;
     if (!(anf = (tAnf*) malloc(sizeof(tAnf)))) {
-        fprintf(stderr, "%s\n", ERR_MALLOC);        
+        fprintf(stderr, "%d\n", ERR_MALLOC);        
         return NULL;
     }
 
     anf->length = 0;
     if (!(anf->nodes = malloc(sizeof(anf->nodes)))) {
-        fprintf(stderr, "%s\n", ERR_MALLOC);
+        fprintf(stderr, "%d\n", ERR_MALLOC);
         free(anf);
         return NULL;        
     }
@@ -188,7 +218,7 @@ void* createAnfWithNodesInBundle(tANFBundle* bundle, tNode* nodes[], int size) {
     addNodesToAnf(nodes, size, anf);
 
     if (!(bundle->anfs = realloc(bundle->anfs, sizeof(tAnf *) * (bundle->anfsCount + 1)))) {
-        fprintf(stderr, "%s\n", ERR_MALLOC);
+        fprintf(stderr, "%d\n", ERR_MALLOC);
         return NULL;
     }
 
@@ -254,3 +284,4 @@ void printBundleMap(tANFBundle* bundle) {
     printHashMap(bundle->hashmap);
 }
 
+    
