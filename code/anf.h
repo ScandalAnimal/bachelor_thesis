@@ -27,28 +27,37 @@ typedef struct ANFBundle {
 
 // initialCapacity, loadFactor
 extern void* 	createANFBundle(unsigned int, double);
-
 extern void  	freeANFBundle(tANFBundle*);
+extern void  	printBundle(tANFBundle*);
+extern void		printBundleMap(tANFBundle*);
+
+
+extern void*	createAnf();
+//TODO deleteAnfFromBundle()
+extern void		freeAnf(tAnf*);
+extern void 	printAnf(tAnf*);
+extern void*	createAnfWithNodesInBundle(tANFBundle*, tNode**, int);
+
 
 extern void* 	createNodeInBundle(tANFBundle*);
+//TODO deleteNodeFromBundle()
 extern void*	createNodeWithVarsInBundle(tANFBundle*, tVar[], int);
+
+
+extern void 	addNodeToAnf(tNode*, tAnf*);
+extern void 	addNodesToAnf(tNode**, int, tAnf*);
 
 extern tVar		createVarInBundle(tANFBundle*, char*, bool);
 extern tVar		createTrueVarInBundle(tANFBundle*, char*);
 extern tVar		createFalseVarInBundle(tANFBundle*, char*);
 extern void		createVarsInBundle(tANFBundle*, tVar[], int);
 
-extern void  	printBundle(tANFBundle*);
-extern void		printBundleMap(tANFBundle*);
 
-extern void*	createAnf();
-extern void*	createAnfWithNodesInBundle(tANFBundle*, tNode**, int);
-extern void 	addNodeToAnf(tNode*, tAnf*);
-extern void 	addNodesToAnf(tNode**, int, tAnf*);
+//TODO getNode()
+//TODO getAnf()
+//TODO getVar()
 
 extern void		iterateOverBundle(tANFBundle*);
 
-extern void 	printAnf(tAnf*);
-extern void		freeAnf(tAnf*);
 
 #endif //CODE_ANF_H
