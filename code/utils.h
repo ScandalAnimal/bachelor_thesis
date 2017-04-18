@@ -13,7 +13,4 @@
 extern bool 	getRandomBooleanValue();
 extern int 		getDigitCount(int);
 
-extern bool		getTrue();
-extern bool		getFalse();
-
 #endif //CODE_UTILS_H

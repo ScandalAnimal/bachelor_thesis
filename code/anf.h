@@ -32,32 +32,31 @@ extern void  	printBundle(tANFBundle*);
 extern void		printBundleMap(tANFBundle*);
 
 
-extern void*	createAnf();
-extern void		deleteAnfFromBundle(tANFBundle*, tAnf*);
+extern void*	createEmptyAnf();
+extern void*	createEmptyAnfInBundle(tANFBundle*);
+extern int  	addAnfToBundle(tANFBundle*, tAnf*);
+
+
+// extern void		deleteAnfFromBundle(tANFBundle*, tAnf*);
 extern void		freeAnf(tAnf*);
 extern void 	printAnf(tAnf*);
-extern void*	createAnfWithNodesInBundle(tANFBundle*, tNode**, int);
+// extern void*	createAnfWithNodesInBundle(tANFBundle*, tNode**, int);
 
 
-extern void* 	createNodeInBundle(tANFBundle*);
-extern void	 	deleteNodeFromBundle(tANFBundle*, tNode*);
-extern void*	createNodeWithVarsInBundle(tANFBundle*, tVar[], int);
+// extern void* 	createNodeInBundle(tANFBundle*);
+// extern void	 	deleteNodeFromBundle(tANFBundle*, tNode*);
+// extern void*	createNodeWithVarsInBundle(tANFBundle*, tVar[], int);
 
 
-extern void 	addNodeToAnf(tNode*, tAnf*);
-extern void 	addNodesToAnf(tNode**, int, tAnf*);
+// extern void 	addNodeToAnf(tNode*, tAnf*);
+// extern void 	addNodesToAnf(tNode**, int, tAnf*);
 
-extern tVar		createVarInBundle(tANFBundle*, char*, bool);
-extern tVar		createTrueVarInBundle(tANFBundle*, char*);
-extern tVar		createFalseVarInBundle(tANFBundle*, char*);
-extern void		createVarsInBundle(tANFBundle*, tVar[], int);
+// extern tVar		createVarInBundle(tANFBundle*, char*, bool);
+// extern tVar		createTrueVarInBundle(tANFBundle*, char*);
+// extern tVar		createFalseVarInBundle(tANFBundle*, char*);
+// extern void		createVarsInBundle(tANFBundle*, tVar[], int);
 
-
-//TODO getNode()
-//TODO getAnf()
-//TODO getVar()
-
-extern void		iterateOverBundle(tANFBundle*);
+// extern void		iterateOverBundle(tANFBundle*);
 
 
 #endif //CODE_ANF_H
