@@ -235,10 +235,10 @@ int insertToHashMap(tMap m, char *key, bool value) {
 
     tHashMap* map = (tHashMap*) m;
 
-    printf("Trying to insert: %s with value %d\n", key, value);
+    // printf("Trying to insert: %s with value %d\n", key, value);
     int indexToInsert = generateIndex(m,key);
 
-    printf("Inserting on index %d\n", indexToInsert);
+    // printf("Inserting on index %d\n", indexToInsert);
     while (indexToInsert == ERR_MAP_FULL){
         if (rehash(map) == ERR_MALLOC) {
             fprintf(stderr, "%d\n", ERR_MALLOC);
@@ -248,12 +248,12 @@ int insertToHashMap(tMap m, char *key, bool value) {
     }
 
     if (map->records[indexToInsert].used) {
-        printf("Index is used.\n");
+        // printf("Index is used.\n");
         if (strcmp((const char *) key, (const char *) map->records[indexToInsert].key) == 0) {
             map->records[indexToInsert].value = value;
         }
         else {
-            printf("Gonna rehash\n");
+            // printf("Gonna rehash\n");
             if (rehash(map) != OK) {
                 return ERROR;
             };
@@ -261,17 +261,17 @@ int insertToHashMap(tMap m, char *key, bool value) {
         }
     }
     else {
-        printf("Index is not used.\n");
+        // printf("Index is not used.\n");
         sprintf((char *) map->records[indexToInsert].key, "%s", (const char *) key);
         map->records[indexToInsert].value = value;
         map->records[indexToInsert].used = true;
         map->usedCapacity++;
-        printf("Inserted: %s, %d and used are: %d\n", map->records[indexToInsert].key, 
-            map->records[indexToInsert].value, map->usedCapacity);
+        // printf("Inserted: %s, %d and used are: %d\n", map->records[indexToInsert].key, 
+            // map->records[indexToInsert].value, map->usedCapacity);
     }
 
     if ((map->usedCapacity / map->capacity) > map->loadFactor) {
-        printf("LOAD FACTOR\n");
+        // printf("LOAD FACTOR\n");
         if (rehash(map) != OK) {
             return ERROR;
         };

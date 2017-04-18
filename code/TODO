@@ -2,8 +2,10 @@ TODO
 
 * Pondelok vecer, utorok poobede 
 		- doprogramovat todo
+		- ak boli NODES vytvorene rovno s ANF - zmazat aj tie + vars
+			- ak boli samostatne tak nechhat - nejaky flag asi	
 * Streda po IOD 
-		- zjednotit vypisy
+		- zjednotit vypisy + chybove hlasenia
 * Streda po IOD 
 		- demo priklady
 * Stvrtok pocas PRM, po IOD 
@@ -13,4 +15,8 @@ TODO
 * Piatok vecer 
 		- boolean satisfiability problem
 * Niekedy
+		- text
 		- preskumat ostatne package
+		- Makefile
+		- lib
+

@@ -33,14 +33,14 @@ extern void		printBundleMap(tANFBundle*);
 
 
 extern void*	createAnf();
-//TODO deleteAnfFromBundle()
+extern void		deleteAnfFromBundle(tANFBundle*, tAnf*);
 extern void		freeAnf(tAnf*);
 extern void 	printAnf(tAnf*);
 extern void*	createAnfWithNodesInBundle(tANFBundle*, tNode**, int);
 
 
 extern void* 	createNodeInBundle(tANFBundle*);
-//TODO deleteNodeFromBundle()
+extern void	 	deleteNodeFromBundle(tANFBundle*, tNode*);
 extern void*	createNodeWithVarsInBundle(tANFBundle*, tVar[], int);
 
 

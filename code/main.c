@@ -14,7 +14,7 @@
 
 int main(int argc, char* argv[]) {
     
-    tANFBundle* bundle = createANFBundle(10, 0.7, 50);
+    tANFBundle* bundle = createANFBundle(10, 0.7);
     if (bundle == NULL) {
         return ERROR;
     }
@@ -93,6 +93,8 @@ int main(int argc, char* argv[]) {
         return ERROR;
     }
 
+    tNode* nodeX = createNode();
+
     addVariableToNode(var1, node1);
     addVariableToNode(var2, node1);
     addVariableToNode(var3, node1);
@@ -101,31 +103,39 @@ int main(int argc, char* argv[]) {
 
     addVariablesToNode(NW, ARRAY_SIZE(NW), node2);
 
-    printNode(node1);
-    printNode(node2);
-    printNode(node3);
-    printNode(node4);
-    printNode(node5);
-    printNode(node6);
+    // printNode(node1);
+    // printNode(node2);
+    // printNode(node3);
+    // printNode(node4);
+    // printNode(node5);
+    // printNode(node6);
 
     tNode* nodes[] = {
         node2,
-        node3,
+        node3
+    };
+
+    tNode* nodes2[] = {
         node4,
         node5,
         node6
     };
 
     tAnf* anf2 = createAnfWithNodesInBundle(bundle, nodes, ARRAY_SIZE(nodes));
+    // tAnf* anf3 = createAnfWithNodesInBundle(bundle, nodes2, ARRAY_SIZE(nodes2));
 
-    addNodeToAnf(node3, anf2);
+    // addNodeToAnf(node3, anf2);
 
     printBundle(bundle);
-    printAnf(anf2);
+    // printAnf(anf2);
 
-    // iterateOverBundle(bundle);
+    iterateOverBundle(bundle);
 
-    printBundleMap(bundle);
+    // deleteAnfFromBundle(bundle, anf3);
+    deleteNodeFromBundle(bundle, node2);
+    printBundle(bundle);
+
+    // printBundleMap(bundle);
 
     freeNode(node1);
     freeNode(node2); 
@@ -134,7 +144,10 @@ int main(int argc, char* argv[]) {
     freeNode(node5);
     freeNode(node6);
 
+    freeNode(nodeX);
+
     freeAnf(anf2);
+    // freeAnf(anf3);
 
     freeANFBundle(bundle);
     return 0;

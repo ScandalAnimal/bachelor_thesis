@@ -11,5 +11,7 @@
 #define ERR_INSERT 		-3
 #define ERR_DUPLICATE 	-4
 #define ERR_MAP_FULL	-5
+#define ERR_DELETE		-6
+#define ERR_INANF		-7
 
 #endif //CODE_ERROR_H

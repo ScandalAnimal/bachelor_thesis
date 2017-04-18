@@ -23,13 +23,13 @@ void* createNode() {
     tNode* node;
 
     if (!(node = (tNode*) malloc(sizeof(tNode)))) {
-        fprintf(stderr, "%s\n", ERR_MALLOC);
+        fprintf(stderr, "%d\n", ERR_MALLOC);
         return NULL;
     }
 
     node->length = 0;
     if (!(node->variables = malloc(sizeof(node->variables)))) {
-        fprintf(stderr, "%s\n", ERR_MALLOC);
+        fprintf(stderr, "%d\n", ERR_MALLOC);
         free(node);
         return NULL;
     }
