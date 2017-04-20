@@ -18,9 +18,10 @@ typedef struct node {
 } tNode;
 
 extern void* 	createNode();
-// extern node createNodeWithVariables(char**, int, bool[], void*);
-extern void 	addVariableToNode(tVar, tNode*);
-extern void 	addVariablesToNode(tVar[], int, tNode*);
+extern void* 	createNodeWithVariables(tVar[], int);
+extern int	 	addVariableToNode(tVar, tNode*);
+extern int 		addVariablesToNode(tVar[], int, tNode*);
+extern int		deleteVariableFromNode(char*, tNode*);
 extern void 	printNode(tNode*);
 extern void 	freeNode(tNode*);
 

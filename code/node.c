@@ -37,49 +37,94 @@ void* createNode() {
     return node;
 }
 
-// // node createNodeWithVariables(char* variables[], int size, bool values[], void* m) {
 
-// //     tHashMap* map = (tHashMap*) m;
-
-// //     node node;
-// //     node.variables = malloc(sizeof(char *) * size);
-
-// //     node.length = 0;
-
-// //     for (int i = 0; i < size; i++) {
-// //         node.variables[i] = variables[i];
-// //         insertToHashMap(map, variables[i], values[i]);
-// //         node.length++;
-// //     }
-// //     return node;
-// // }
-
-void addVariableToNode(tVar variable, tNode* node) {
+int addVariableToNode(tVar variable, tNode* node) {
 
     int length = node->length;
 
+    if ((length != 0) && node->value == false) {
+        return OK;
+    }
+
     for (int i = 0; i < length; i++) {
         if (strcmp(node->variables[i].name, variable.name) == 0) {
-            return;
+            return ERR_DUPLICATE;
         }
     }
 
-    node->variables = realloc(node->variables, sizeof(tVar) * (length+1));
+    if (!(node->variables = realloc(node->variables, sizeof(tVar) * (length+1)))) {
+        fprintf(stderr, "%d\n", ERR_MALLOC);
+        return ERR_MALLOC;
+    }
 
     node->variables[length] = variable;
 
     setNodeValue(node, variable.value);
     node->length++;
+    return OK;
 }
 
-void addVariablesToNode(tVar variables[], int size, tNode* node) {
+int addVariablesToNode(tVar variables[], int size, tNode* node) {
 
     for (int i = 0; i < size; i++) {
         if ((node->length != 0) && node->value == false) {
             break;
         }
-        addVariableToNode(variables[i], node);
+        int addResult = addVariableToNode(variables[i], node);
+        if (addResult != OK) {
+            return addResult;
+        }
     }
+    return OK;
+}
+
+
+void* createNodeWithVariables(tVar variables[], int size) {
+
+    tNode* node = createNode();
+    if (node == NULL) {
+        return NULL;
+    }
+
+    if (addVariablesToNode(variables, size, node) != OK) {
+        freeNode(node);
+        return NULL;
+    }    
+    return node;
+}
+
+int deleteVariableFromNode(char* varName, tNode* node) {
+
+    bool found = false;
+    for (int i = 0; i < node->length; i++) {
+        if (strcmp(node->variables[i].name, varName) == 0) {
+            found = true;
+
+            for (int p = i; p < node->length; p++) {
+                node->variables[p] = node->variables[p+1];
+            }
+            node->length--;
+        }
+    }
+    if (!found) {
+        fprintf(stderr, "%d\n", ERR_DELETE);
+        return ERR_DELETE;
+    }
+    else {
+        for (int i = 0; i < node->length; i++) {
+            bool value = node->variables[i].value;
+            if (i == 0) {
+                node->value = value;
+            }
+            else {
+                if (node->value == false) {
+                    break;
+                }
+                node->value &= value;
+            }
+        }
+    }
+    return OK;
 }
 
 void freeNode(tNode* node) {

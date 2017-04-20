@@ -19,25 +19,6 @@ int main(int argc, char* argv[]) {
         return ERROR;
     }
 
-    tAnf* anf1 = createEmptyAnf();
-
-    printAnf(anf1);
-
-    tAnf* anf2 = createEmptyAnfInBundle(bundle);
-
-    printAnf(anf2);
-
-    printBundle(bundle);
-
-    addAnfToBundle(bundle, anf1);
-
-    printBundle(bundle);
-
-    freeAnf(anf1);
-    freeAnf(anf2);
-
-
-
     // tVar var1 = createVarInBundle(bundle, "Celtics", true);
     // tVar var2 = createVarInBundle(bundle, "Raptors", true);
     // tVar var3 = createTrueVarInBundle(bundle, "Knicks");
