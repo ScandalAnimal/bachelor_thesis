@@ -265,26 +265,30 @@ int addNodesToAnf(tNode* nodes[], int size, tAnf* anf) {
     return OK;
 }
 
-// void* createAnfWithNodesInBundle(tANFBundle* bundle, tNode* nodes[], int size) {
+void* createAnfWithNodesInBundle(tANFBundle* bundle, tNode* nodes[], int size) {
 
-//     tAnf* anf = createAnf();
+    tAnf* anf = createEmptyAnf();
 
-//     if (anf == NULL) {
-//         return NULL;
-//     }
+    if (anf == NULL) {
+        return NULL;
+    }
 
-//     addNodesToAnf(nodes, size, anf);
+    if (addNodesToAnf(nodes, size, anf) != OK) {
+        freeAnf(anf);
+        return NULL;
+    }
 
-//     if (!(bundle->anfs = realloc(bundle->anfs, sizeof(tAnf *) * (bundle->anfsCount + 1)))) {
-//         fprintf(stderr, "%d\n", ERR_MALLOC);
-//         return NULL;
-//     }
+    if (!(bundle->anfs = realloc(bundle->anfs, sizeof(tAnf *) * (bundle->anfsCount + 1)))) {
+        fprintf(stderr, "%d\n", ERR_MALLOC);
+        freeAnf(anf);
+        return NULL;
+    }
 
-//     bundle->anfs[bundle->anfsCount] = anf;
-//     bundle->anfsCount++;    
+    bundle->anfs[bundle->anfsCount] = anf;
+    bundle->anfsCount++;    
 
-//     return anf;
-// }
+    return anf;
+}
 
 int deleteAnfFromBundle(tANFBundle* bundle, tAnf* anf) {
 
@@ -293,7 +297,7 @@ int deleteAnfFromBundle(tANFBundle* bundle, tAnf* anf) {
         if (anf == bundle->anfs[i]) {
             found = true;
 
-            for (int p = i; p < bundle->anfsCount; p++) {
+            for (int p = i; p < bundle->anfsCount - 1; p++) {
                 bundle->anfs[p] = bundle->anfs[p+1];
             }
             bundle->anfsCount--;
@@ -327,7 +331,7 @@ int deleteNodeFromBundle(tANFBundle* bundle, tNode* node) {
         if (node == bundle->nodes[i]) {
             found = true;
 
-            for (int p = i; p < bundle->nodeCount; p++) {
+            for (int p = i; p < bundle->nodeCount - 1; p++) {
                 bundle->nodes[p] = bundle->nodes[p+1];
             }
             bundle->nodeCount--;
@@ -379,12 +383,34 @@ void printAnf(tAnf* anf) {
     printf("********************************\n");
 }
 
+int getNodeCountFromAnfs(tAnf* anfs[], int length) {
+
+    int nodeCount = 0;
+    for (int i = 0; i < length; i++) {
+        nodeCount += anfs[i]->length;
+    }
+    return nodeCount;
+}
+
+int getVarCountFromAnfs(tAnf* anfs[], int length) {
+
+    int varCount = 0;
+    for (int i = 0; i < length; i++) {
+        for (int j = 0; j < anfs[i]->length; j++) {
+            varCount += anfs[i]->nodes[j]->length;
+        }
+    }
+    return varCount;   
+}
+
 void printBundle(tANFBundle* bundle) {
 
     printf("*******************\n");
-    printf("Node Count:     %d\n", bundle->nodeCount);
-    printf("Anfs Count:     %d\n", bundle->anfsCount);
-    printf("Variable Count: %d\n", bundle->hashmap->usedCapacity);
+    printf("Anfs Count               : %d\n", bundle->anfsCount);
+    printf("     with %d nodes.\n", getNodeCountFromAnfs(bundle->anfs, bundle->anfsCount));
+    printf("     with %d vars.\n", getVarCountFromAnfs(bundle->anfs, bundle->anfsCount));
+    printf("Nodes created without Anf: %d\n", bundle->nodeCount);
+    printf("Vars  created without Anf: %d\n", bundle->hashmap->usedCapacity);
     // printf("Max Var Length: %d\n", bundle->maxVarLength);
     printf("*******************\n");
 }

@@ -100,7 +100,7 @@ int deleteVariableFromNode(char* varName, tNode* node) {
         if (strcmp(node->variables[i].name, varName) == 0) {
             found = true;
 
-            for (int p = i; p < node->length; p++) {
+            for (int p = i; p < node->length - 1; p++) {
                 node->variables[p] = node->variables[p+1];
             }
             node->length--;

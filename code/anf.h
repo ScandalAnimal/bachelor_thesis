@@ -39,16 +39,14 @@ extern int		deleteAnfFromBundle(tANFBundle*, tAnf*);
 extern void		freeAnf(tAnf*);
 extern void 	printAnf(tAnf*);
 
-//extern void*	createAnfWithNodesInBundle(tANFBundle*, tNode**, int);
-
+extern void*	createAnfWithNodesInBundle(tANFBundle*, tNode**, int);
 
 extern void* 	createNodeInBundle(tANFBundle*);
 extern int	 	deleteNodeFromBundle(tANFBundle*, tNode*);
 extern void*	createNodeWithVarsInBundle(tANFBundle*, tVar[], int);
 
-
-//extern int 		addNodeToAnf(tNode*, tAnf*);
-//extern int 		addNodesToAnf(tNode**, int, tAnf*);
+extern int 		addNodeToAnf(tNode*, tAnf*);
+extern int 		addNodesToAnf(tNode**, int, tAnf*);
 
 extern tVar		createVarInBundle(tANFBundle*, char*, bool);
 extern tVar		createTrueVarInBundle(tANFBundle*, char*);
