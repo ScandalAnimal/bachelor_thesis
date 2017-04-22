@@ -153,7 +153,7 @@ unsigned int generateIndex(tMap m, char* key) {
     for (int i = 0; i < 8; i++) {
         if (!map->records[current].used) {
             return current;
-        }
+              }
 
         if (map->records[current].used && (strcmp(map->records[current].key, key) == 0)) {
             return current;
@@ -372,4 +372,84 @@ void printHashMap(tMap m) {
         printf("Mapa neobsahuje ziadne zaznamy.\n");
     }
     printf("********************************\n");
+}
+
+int generateHashMapGraph(tMap m, char* filename) {
+
+    tHashMap* map = (tHashMap*) m;
+
+    FILE *file;
+    file = fopen(filename, "w");
+  
+    if (file == NULL) {
+        return ERR_OPEN;
+    }
+    fclose(file);
+
+    file = fopen(filename, "a");
+  
+    if (file == NULL) {
+        return ERR_OPEN;
+    }
+
+    fprintf(file, "digraph G { \nnodesep=.05;\nrankdir=LR;\nnode [shape=record,width=.3,height=.1];\nnode0 [label = \"");
+
+    int capacity = getHashMapCapacity(map);
+    int size = 7 * (capacity + 1) * getDigitCount(capacity); 
+    char mainNode[size];
+    strcpy(mainNode, "");
+    for (int i = 0; i < capacity; i++) {
+
+        char buffer[10];
+        snprintf(buffer, 10, "%d", i);
+        
+        strcat(mainNode, "<f");
+        strcat(mainNode, buffer);
+        strcat(mainNode, "> ");
+        strcat(mainNode, buffer);
+        if (i != capacity - 1) {
+            strcat(mainNode, " | ");
+        }
+    }
+    fprintf(file, "%s", mainNode);
+    fprintf(file, "\",height=2.5];\nnode [width = 1.5];\n");
+
+    int subNodeCounter = 1;
+    int subNodeSize = capacity * (37 + getDigitCount(capacity) + MAX_KEY_LENGTH);
+    char subNodes[subNodeSize];
+    strcpy(subNodes, "");
+    for (int i = 0; i < capacity; i++) {
+
+        if (map->records[i].used) {
+            char buffer[10];
+            snprintf(buffer, 10, "%d", subNodeCounter);
+
+            strcat(subNodes, "node");
+            strcat(subNodes, buffer);
+            strcat(subNodes, "[label = \"{ <n> ");
+            strcat(subNodes, map->records[i].key);
+            strcat(subNodes, " | ");
+            map->records[i].value ? strcat(subNodes, "true") : strcat(subNodes, "false");
+            strcat(subNodes, "}\"];\nnode0");
+            strcat(subNodes, buffer);
+            strcat(subNodes, ":f");
+            snprintf(buffer, 10, "%d", i);
+            strcat(subNodes, buffer);
+            strcat(subNodes, " -> node");
+            snprintf(buffer, 10, "%d", subNodeCounter);
+            strcat(subNodes, buffer);
+            strcat(subNodes, ":n;\n");
+
+            subNodeCounter++;
+        }
+        
+    }
+    fprintf(file, "%s\n", subNodes);
+
+    fprintf(file, "}\n");
+
+
+    fclose(file);
+    return OK;
+
 }

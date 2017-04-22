@@ -140,9 +140,9 @@ tVar createVarInBundle(tANFBundle* bundle, char* name, bool value) {
            fprintf(stderr, "%d\n", ERR_INSERT);        
         }
     }
-    // else {
-       // fprintf(stderr, "%d Key: %s\n", ERR_DUPLICATE, name);        
-    // }
+    else {
+       fprintf(stderr, "%d Key: %s\n", ERR_DUPLICATE, name);        
+    }
 
     return var;
 }
@@ -276,6 +276,13 @@ void* createAnfWithNodesInBundle(tANFBundle* bundle, tNode* nodes[], int size) {
     if (addNodesToAnf(nodes, size, anf) != OK) {
         freeAnf(anf);
         return NULL;
+    }
+
+    for (int i = 0; i < size; i++) {
+        if (createVarsInBundle(bundle, nodes[i]->variables, nodes[i]->length) != OK) {
+            freeAnf(anf);
+            return NULL;
+        }
     }
 
     if (!(bundle->anfs = realloc(bundle->anfs, sizeof(tAnf *) * (bundle->anfsCount + 1)))) {

@@ -1,0 +1,24 @@
+digraph G { 
+nodesep=.05;
+rankdir=LR;
+node [shape=record,width=.3,height=.1];
+node0 [label = "<f9> 9",height=2.5];
+node [width = 1.5];
+node1[label = "{ <n> var12 | true}"];
+node0:f0 -> node1:n;
+node2[label = "{ <n> var2 | true}"];
+node0:f1 -> node2:n;
+node3[label = "{ <n> var13 | true}"];
+node0:f2 -> node3:n;
+node4[label = "{ <n> var14 | true}"];
+node0:f3 -> node4:n;
+node5[label = "{ <n> var1 | true}"];
+node0:f6 -> node5:n;
+node6[label = "{ <n> var3 | true}"];
+node0:f7 -> node6:n;
+node7[label = "{ <n> var4 | true}"];
+node0:f8 -> node7:n;
+node8[label = "{ <n> var11 | true}"];
+node0:f9 -> node8:n;
+
+}

@@ -364,14 +364,14 @@ int anfWithNodesInBundle() {
     }
 
     printBundle(bundle);
-
+    printBundleMap(bundle);
+    
     freeNode(node1);
     freeNode(node2);
     freeNode(node3);
     freeNode(node4);
 
     freeAnf(anf1);
-
     freeANFBundle(bundle);
 
     freopen("/dev/tty", "w", stdout);
@@ -379,6 +379,83 @@ int anfWithNodesInBundle() {
     return OK;   
 }
 
+int anfWithNodesInBundle2() {
+
+    freopen ("./testOutput/5", "a+", stdout);
+
+    tANFBundle* bundle = createANFBundle(10, 0.7);
+    if (bundle == NULL) {
+        return ERROR;
+    }
+
+    tVar varArray[] = {
+        createVar("var1", true),
+        createVar("var2", true),
+        createVar("var3", true),
+        createVar("var4", true)
+    };
+
+    tVar varArray2[] = {
+        createVar("var11", true),
+        createVar("var12", true),
+        createVar("var13", true),
+        createVar("var14", true)
+    };
+
+    tNode* node1 = createNode();
+    if (node1 == NULL) {
+        freeANFBundle(bundle);
+        return ERROR;
+    }
+
+    if (addVariablesToNode(varArray, ARRAY_SIZE(varArray), node1) != OK) {
+        freeNode(node1);
+        freeANFBundle(bundle);
+        return ERROR;
+    } 
+
+    tNode* node2 = createNode();
+    if (node2 == NULL) {
+        freeANFBundle(bundle);
+        return ERROR;
+    }
+
+    if (addVariablesToNode(varArray2, ARRAY_SIZE(varArray2), node2) != OK) {
+        freeNode(node1);
+        freeANFBundle(bundle);
+        return ERROR;
+    } 
+
+    printNode(node1);
+    printNode(node2);
+
+    tNode* nodes[] = {
+        node1,
+        node2
+    };
+
+    tAnf* anf1 = createAnfWithNodesInBundle(bundle, nodes, ARRAY_SIZE(nodes));
+    if (anf1 == NULL) {
+        freeNode(node1);
+        freeNode(node2);
+        freeANFBundle(bundle);
+        return ERROR;
+    }
+
+    printBundle(bundle);
+    printBundleMap(bundle);
+    generateHashMapGraph(bundle->hashmap, "./test.gv");
+
+    freeNode(node1);
+    freeNode(node2);
+
+    freeAnf(anf1);
+    freeANFBundle(bundle);
+
+    freopen("/dev/tty", "w", stdout);
+
+    return OK;   
+}
 int main(int argc, char* argv[]) {
 
     struct stat st = {0};
@@ -391,5 +468,6 @@ int main(int argc, char* argv[]) {
     printf("TEST 02: %d\n", standaloneNodes());
     printf("TEST 03: %d\n", nodesInBundle());
     printf("TEST 04: %d\n", anfWithNodesInBundle());
+    printf("TEST 05: %d\n", anfWithNodesInBundle2());
 
 }
