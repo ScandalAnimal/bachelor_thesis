@@ -431,7 +431,6 @@ int generateHashMapGraph(tMap m, char* filename) {
             strcat(subNodes, " | ");
             map->records[i].value ? strcat(subNodes, "true") : strcat(subNodes, "false");
             strcat(subNodes, "}\"];\nnode0");
-            strcat(subNodes, buffer);
             strcat(subNodes, ":f");
             snprintf(buffer, 10, "%d", i);
             strcat(subNodes, buffer);

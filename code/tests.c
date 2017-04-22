@@ -298,6 +298,15 @@ int anfWithNodesInBundle() {
 
     printBundle(bundle);
 
+    tAnf* anf2 = createEmptyAnfInBundle(bundle);
+    if (anf1 == NULL) {
+        freeNode(node1);
+        freeNode(node2);
+        freeAnf(anf1);
+        freeANFBundle(bundle);
+        return ERROR;
+    }
+
     tVar varArray3[] = {
         createVar("var21", true),
         createVar("var22", true),
@@ -317,6 +326,7 @@ int anfWithNodesInBundle() {
         freeNode(node1);
         freeNode(node2);
         freeAnf(anf1);
+        freeAnf(anf2);
         freeANFBundle(bundle);
         return ERROR;
     }
@@ -326,6 +336,7 @@ int anfWithNodesInBundle() {
         freeNode(node2);
         freeNode(node3);
         freeAnf(anf1);
+        freeAnf(anf2);
         freeANFBundle(bundle);
         return ERROR;
     } 
@@ -335,6 +346,7 @@ int anfWithNodesInBundle() {
         freeNode(node1);
         freeNode(node2);
         freeAnf(anf1);
+        freeAnf(anf2);
         freeANFBundle(bundle);
         return ERROR;
     }
@@ -344,6 +356,7 @@ int anfWithNodesInBundle() {
         freeNode(node2);
         freeNode(node4);
         freeAnf(anf1);
+        freeAnf(anf2);
         freeANFBundle(bundle);
         return ERROR;
     } 
@@ -353,12 +366,13 @@ int anfWithNodesInBundle() {
         node4
     };
 
-    if (addNodesToAnf(nodes2, ARRAY_SIZE(nodes2), anf1) != OK) {
+    if (addNodesToAnf(bundle, nodes2, ARRAY_SIZE(nodes2), anf2) != OK) {
         freeNode(node1);
         freeNode(node2);
         freeNode(node3);
         freeNode(node4);
         freeAnf(anf1);
+        freeAnf(anf2);
         freeANFBundle(bundle);
         return ERROR;
     }
@@ -366,12 +380,15 @@ int anfWithNodesInBundle() {
     printBundle(bundle);
     printBundleMap(bundle);
     
+    generateBundleGraph(bundle, "./test4.gv");
+
     freeNode(node1);
     freeNode(node2);
     freeNode(node3);
     freeNode(node4);
 
     freeAnf(anf1);
+    freeAnf(anf2);
     freeANFBundle(bundle);
 
     freopen("/dev/tty", "w", stdout);
@@ -444,7 +461,7 @@ int anfWithNodesInBundle2() {
 
     printBundle(bundle);
     printBundleMap(bundle);
-    generateHashMapGraph(bundle->hashmap, "./test.gv");
+    generateHashMapGraph(bundle->hashmap, "./test5.gv");
 
     freeNode(node1);
     freeNode(node2);

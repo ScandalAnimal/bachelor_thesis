@@ -238,7 +238,7 @@ void* createEmptyAnfInBundle(tANFBundle* bundle) {
 }
 
 
-int addNodeToAnf(tNode* node, tAnf* anf) {
+int addNodeToAnf(tANFBundle* bundle, tNode* node, tAnf* anf) {
 
     int length = anf->length;    
 
@@ -247,16 +247,24 @@ int addNodeToAnf(tNode* node, tAnf* anf) {
         return ERROR;
     }
 
+    for (int i = 0; i < node->length; i++) {
+        if (!isKeyInHashMap(bundle->hashmap, node->variables[i].name)) {
+            if (ERROR == insertToHashMap(bundle->hashmap, node->variables[i].name, node->variables[i].value)) {
+                fprintf(stderr, "%d\n", ERR_INSERT);        
+            }
+        }
+    }
+
     anf->nodes[anf->length] = node;
     anf->length++;
     setAnfValue(anf, node->value);
     return OK;
 }
 
-int addNodesToAnf(tNode* nodes[], int size, tAnf* anf) {
+int addNodesToAnf(tANFBundle* bundle, tNode* nodes[], int size, tAnf* anf) {
 
     for (int i = 0; i < size; i++) {
-        int addResult = addNodeToAnf(nodes[i], anf);
+        int addResult = addNodeToAnf(bundle, nodes[i], anf);
         if (addResult != OK) {
             return addResult;
         }
@@ -273,7 +281,7 @@ void* createAnfWithNodesInBundle(tANFBundle* bundle, tNode* nodes[], int size) {
         return NULL;
     }
 
-    if (addNodesToAnf(nodes, size, anf) != OK) {
+    if (addNodesToAnf(bundle, nodes, size, anf) != OK) {
         freeAnf(anf);
         return NULL;
     }
@@ -417,7 +425,7 @@ void printBundle(tANFBundle* bundle) {
     printf("     with %d nodes.\n", getNodeCountFromAnfs(bundle->anfs, bundle->anfsCount));
     printf("     with %d vars.\n", getVarCountFromAnfs(bundle->anfs, bundle->anfsCount));
     printf("Nodes created without Anf: %d\n", bundle->nodeCount);
-    printf("Vars  created without Anf: %d\n", bundle->hashmap->usedCapacity);
+    printf("Variables                : %d\n", bundle->hashmap->usedCapacity);
     // printf("Max Var Length: %d\n", bundle->maxVarLength);
     printf("*******************\n");
 }
@@ -426,3 +434,209 @@ void printBundleMap(tANFBundle* bundle) {
     printHashMap(bundle->hashmap);
 }
     
+int generateAnfGraph(tAnf* anf, char* filename) {
+
+    FILE *file;
+    file = fopen(filename, "w");
+  
+    if (file == NULL) {
+        return ERR_OPEN;
+    }
+    fclose(file);
+
+    file = fopen(filename, "a");
+  
+    if (file == NULL) {
+        return ERR_OPEN;
+    }
+
+    fprintf(file, "digraph G {\nnodesep=.05;\nrankdir=LR;\nnode [shape=record,width=.1,height=.1];\nnode0 [label = \"<f0> anf\",height=2.5];\nnode [width = 1.5];\n");
+
+    int size = (50 + (3 * getDigitCount(anf->length))) * anf->length + 1; 
+    char nodeList[size];
+    int nodeCounter = 1;
+    strcpy(nodeList, "");
+    for (int i = 0; i < anf->length; i++) {
+
+        char buffer[10];
+        snprintf(buffer, 10, "%d", nodeCounter);
+
+        strcat(nodeList, "node");
+        strcat(nodeList, buffer);
+        strcat(nodeList, "[label = \"{ <n> node ");
+        strcat(nodeList, buffer);
+        strcat(nodeList, " }\"];\nnode0:f0 -> node");
+        snprintf(buffer, 10, "%d", nodeCounter);
+        strcat(nodeList, buffer);
+        strcat(nodeList, ":n;\n");
+
+        nodeCounter++;
+    }
+    fprintf(file, "%s", nodeList);
+    fprintf(file, "node [width = 1.5];\n");
+
+    size = 0;
+    for (int i = 0; i < anf->length; i++) {
+        size += anf->nodes[i]->length;            
+    }
+
+    size *= 100 + 1; 
+    char varList[size];
+    for (int i = 0; i < anf->length; i++) {
+        
+        for (int j = 0; j < anf->nodes[i]->length; j++) {
+            
+            char buffer[10];
+            snprintf(buffer, 10, "%d", nodeCounter);
+
+            strcat(varList, "node");
+            strcat(varList, buffer);
+            strcat(varList, "[label = \"{ <v> ");
+            
+            strcat(varList, anf->nodes[i]->variables[j].name);
+            strcat(varList, " | ");
+            anf->nodes[i]->variables[j].value ? strcat(varList, "true") : strcat(varList, "false");
+            strcat(varList, "}\"];\nnode");
+
+            snprintf(buffer, 10, "%d", i+1);
+            strcat(varList, buffer);
+            strcat(varList, ":n -> node");
+            snprintf(buffer, 10, "%d", nodeCounter);
+            strcat(varList, buffer);
+            strcat(varList, ":v;\n");
+
+            nodeCounter++;        
+        }
+    }
+
+    fprintf(file, "%s", varList);
+    fprintf(file, "}\n");
+
+
+//    node0:f0 -> node1:n;
+//    node0:f0 -> node2:n;
+//    node0:f0 -> node3:n;
+//    node0:f0 -> node4:n;
+//    node0:f0 -> node5:n;
+//    node2:p -> node6:n;
+//    node4:p -> node7:n;
+
+    fclose(file);
+    return OK;
+
+}
+
+int generateBundleGraph(tANFBundle* bundle, char* filename) {
+
+    FILE *file;
+    file = fopen(filename, "w");
+  
+    if (file == NULL) {
+        return ERR_OPEN;
+    }
+    fclose(file);
+
+    file = fopen(filename, "a");
+  
+    if (file == NULL) {
+        return ERR_OPEN;
+    }
+
+    fprintf(file, "digraph G {\nnodesep=.05;\nrankdir=LR;\nnode [shape=record,width=.1,height=.1];\nnode0 [label = \"<f0> bundle\",height=2.5];\nnode [width = 1.5];\n");
+
+//     int size = (50 + (3 * getDigitCount(anf->length))) * anf->length + 1; 
+//     char nodeList[size];
+//     int nodeCounter = 1;
+//     strcpy(nodeList, "");
+//     for (int i = 0; i < anf->length; i++) {
+
+//         char buffer[10];
+//         snprintf(buffer, 10, "%d", nodeCounter);
+
+//         strcat(nodeList, "node");
+//         strcat(nodeList, buffer);
+//         strcat(nodeList, "[label = \"{ <n> node ");
+//         strcat(nodeList, buffer);
+//         strcat(nodeList, " }\"];\nnode0:f0 -> node");
+//         snprintf(buffer, 10, "%d", nodeCounter);
+//         strcat(nodeList, buffer);
+//         strcat(nodeList, ":n;\n");
+
+//         nodeCounter++;
+//     }
+//     fprintf(file, "%s", nodeList);
+//     fprintf(file, "node [width = 1.5];\n");
+
+//     size = 0;
+//     for (int i = 0; i < anf->length; i++) {
+//         size += anf->nodes[i]->length;            
+//     }
+
+//     size *= 100 + 1; 
+//     char varList[size];
+//     for (int i = 0; i < anf->length; i++) {
+        
+//         for (int j = 0; j < anf->nodes[i]->length; j++) {
+            
+//             char buffer[10];
+//             snprintf(buffer, 10, "%d", nodeCounter);
+
+//             strcat(varList, "node");
+//             strcat(varList, buffer);
+//             strcat(varList, "[label = \"{ <v> ");
+            
+//             strcat(varList, anf->nodes[i]->variables[j].name);
+//             strcat(varList, " | ");
+//             anf->nodes[i]->variables[j].value ? strcat(varList, "true") : strcat(varList, "false");
+//             strcat(varList, "}\"];\nnode");
+
+//             snprintf(buffer, 10, "%d", i+1);
+//             strcat(varList, buffer);
+//             strcat(varList, ":n -> node");
+//             snprintf(buffer, 10, "%d", nodeCounter);
+//             strcat(varList, buffer);
+//             strcat(varList, ":v;\n");
+
+//             nodeCounter++;        
+//         }
+//     }
+
+//     fprintf(file, "%s", varList);
+    fprintf(file, "}\n");
+
+// digraph G {
+// nodesep=.05;
+// rankdir=LR;
+// node [shape=record,width=.1,height=.1];
+// node0 [label = "<f0> bundle", height=2.5];
+// node [width = 1.5];
+
+// node1 [label = "<a> anf 1"];
+// node0:f0 -> node1:a;
+// node2 [label = "<a> anf 2"];
+// node0:f0 -> node2:a;
+
+// node3[label = "{ <n> node 1 }"];
+// node1:a -> node3:n;
+// node4[label = "{ <n> node 2 }"];
+// node1:a -> node4:n;
+
+// node5[label = "{ <n> node 3 }"];
+// node2:a -> node5:n;
+// node6[label = "{ <n> node 4 }"];
+// node2:a -> node6:n;
+
+// node7[label = "{ <v> var1 | true}"];
+// node3:n -> node7:v;
+// node8[label = "{ <v> var2 | true}"];
+// node4:n -> node8:v;
+// node9[label = "{ <v> var3 | true}"];
+// node5:n -> node9:v;
+// node10[label = "{ <v> var4 | true}"];
+// node6:n -> node10:v;
+// }
+
+    fclose(file);
+    return OK;
+
+}
