@@ -378,41 +378,15 @@ int generateHashMapGraph(tMap m, char* filename) {
 
     tHashMap* map = (tHashMap*) m;
 
-    FILE *file;
-    file = fopen(filename, "w");
-  
-    if (file == NULL) {
-        return ERR_OPEN;
-    }
-    fclose(file);
+    FILE *file = openAndClearFile(filename);
 
-    file = fopen(filename, "a");
-  
     if (file == NULL) {
         return ERR_OPEN;
     }
 
-    fprintf(file, "digraph G { \nnodesep=.05;\nrankdir=LR;\nnode [shape=record,width=.3,height=.1];\nnode0 [label = \"");
-
+    printInitGraphSequence(file);
     int capacity = getHashMapCapacity(map);
-    int size = 7 * (capacity + 1) * getDigitCount(capacity); 
-    char mainNode[size];
-    strcpy(mainNode, "");
-    for (int i = 0; i < capacity; i++) {
-
-        char buffer[10];
-        snprintf(buffer, 10, "%d", i);
-        
-        strcat(mainNode, "<f");
-        strcat(mainNode, buffer);
-        strcat(mainNode, "> ");
-        strcat(mainNode, buffer);
-        if (i != capacity - 1) {
-            strcat(mainNode, " | ");
-        }
-    }
-    fprintf(file, "%s", mainNode);
-    fprintf(file, "\",height=2.5];\nnode [width = 1.5];\n");
+    printMultipleRootNodes(file, capacity);
 
     int subNodeCounter = 1;
     int subNodeSize = capacity * (37 + getDigitCount(capacity) + MAX_KEY_LENGTH);
@@ -445,8 +419,7 @@ int generateHashMapGraph(tMap m, char* filename) {
     }
     fprintf(file, "%s\n", subNodes);
 
-    fprintf(file, "}\n");
-
+    printEndGraphSequence(file);
 
     fclose(file);
     return OK;

@@ -6,7 +6,7 @@ RM=rm -f
 RMDIR=rm -rf
 MKDIR=mkdir
 
-SRC=anf.o hashmap.o node.o utils.o variable.o
+SRC=anf.o graph.o hashmap.o node.o utils.o variable.o
 MAIN=main.o
 TESTS=tests.o
 TEST_OUTPUT=./testOutput

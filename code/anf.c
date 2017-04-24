@@ -436,21 +436,14 @@ void printBundleMap(tANFBundle* bundle) {
     
 int generateAnfGraph(tAnf* anf, char* filename) {
 
-    FILE *file;
-    file = fopen(filename, "w");
-  
-    if (file == NULL) {
-        return ERR_OPEN;
-    }
-    fclose(file);
+    FILE *file = openAndClearFile(filename);
 
-    file = fopen(filename, "a");
-  
     if (file == NULL) {
         return ERR_OPEN;
     }
 
-    fprintf(file, "digraph G {\nnodesep=.05;\nrankdir=LR;\nnode [shape=record,width=.1,height=.1];\nnode0 [label = \"<f0> anf\",height=2.5];\nnode [width = 1.5];\n");
+    printInitGraphSequence(file);
+    printSingleRootNode(file, "anf");
 
     int size = (50 + (3 * getDigitCount(anf->length))) * anf->length + 1; 
     char nodeList[size];
@@ -482,6 +475,7 @@ int generateAnfGraph(tAnf* anf, char* filename) {
 
     size *= 100 + 1; 
     char varList[size];
+    strcpy(varList, "");
     for (int i = 0; i < anf->length; i++) {
         
         for (int j = 0; j < anf->nodes[i]->length; j++) {
@@ -510,16 +504,7 @@ int generateAnfGraph(tAnf* anf, char* filename) {
     }
 
     fprintf(file, "%s", varList);
-    fprintf(file, "}\n");
-
-
-//    node0:f0 -> node1:n;
-//    node0:f0 -> node2:n;
-//    node0:f0 -> node3:n;
-//    node0:f0 -> node4:n;
-//    node0:f0 -> node5:n;
-//    node2:p -> node6:n;
-//    node4:p -> node7:n;
+    printEndGraphSequence(file);
 
     fclose(file);
     return OK;
@@ -528,114 +513,110 @@ int generateAnfGraph(tAnf* anf, char* filename) {
 
 int generateBundleGraph(tANFBundle* bundle, char* filename) {
 
-    FILE *file;
-    file = fopen(filename, "w");
-  
-    if (file == NULL) {
-        return ERR_OPEN;
-    }
-    fclose(file);
+    FILE *file = openAndClearFile(filename);
 
-    file = fopen(filename, "a");
-  
     if (file == NULL) {
         return ERR_OPEN;
     }
 
-    fprintf(file, "digraph G {\nnodesep=.05;\nrankdir=LR;\nnode [shape=record,width=.1,height=.1];\nnode0 [label = \"<f0> bundle\",height=2.5];\nnode [width = 1.5];\n");
+    printInitGraphSequence(file);
+    printSingleRootNode(file, "bundle");
 
-//     int size = (50 + (3 * getDigitCount(anf->length))) * anf->length + 1; 
-//     char nodeList[size];
-//     int nodeCounter = 1;
-//     strcpy(nodeList, "");
-//     for (int i = 0; i < anf->length; i++) {
+    int size = (45 + (3 * getDigitCount(bundle->anfsCount))) * bundle->anfsCount + 1; 
+    char anfsList[size];
+    int nodeCounter = 1;
+    strcpy(anfsList, "");
+    for (int i = 0; i < bundle->anfsCount; i++) {
 
-//         char buffer[10];
-//         snprintf(buffer, 10, "%d", nodeCounter);
+        char buffer[10];
+        snprintf(buffer, 10, "%d", nodeCounter);
 
-//         strcat(nodeList, "node");
-//         strcat(nodeList, buffer);
-//         strcat(nodeList, "[label = \"{ <n> node ");
-//         strcat(nodeList, buffer);
-//         strcat(nodeList, " }\"];\nnode0:f0 -> node");
-//         snprintf(buffer, 10, "%d", nodeCounter);
-//         strcat(nodeList, buffer);
-//         strcat(nodeList, ":n;\n");
+        strcat(anfsList, "node");
+        strcat(anfsList, buffer);
+        strcat(anfsList, "[label = \"<a> anf ");
+        strcat(anfsList, buffer);
+        strcat(anfsList, "\"];\nnode0:f0 -> node");
+        strcat(anfsList, buffer);
+        strcat(anfsList, ":a;\n");
 
-//         nodeCounter++;
-//     }
-//     fprintf(file, "%s", nodeList);
-//     fprintf(file, "node [width = 1.5];\n");
+        nodeCounter++;
+    }
+    fprintf(file, "%s", anfsList);
 
-//     size = 0;
-//     for (int i = 0; i < anf->length; i++) {
-//         size += anf->nodes[i]->length;            
-//     }
+    int currentNodeIndex = 0;
+    int nodeIndex = 1;
 
-//     size *= 100 + 1; 
-//     char varList[size];
-//     for (int i = 0; i < anf->length; i++) {
+    for (int i = 0; i < bundle->anfsCount; i++) {
         
-//         for (int j = 0; j < anf->nodes[i]->length; j++) {
+        for (int j = 0; j < bundle->anfs[i]->length; j++) {
+
+            currentNodeIndex = nodeCounter;
+
+            size = (50 + (3 * getDigitCount(bundle->anfs[i]->length))) * bundle->anfs[i]->length + 1; 
+            char nodeList[size];
+            strcpy(nodeList, "");
             
-//             char buffer[10];
-//             snprintf(buffer, 10, "%d", nodeCounter);
+            char buffer[10];
+            snprintf(buffer, 10, "%d", nodeCounter);
 
-//             strcat(varList, "node");
-//             strcat(varList, buffer);
-//             strcat(varList, "[label = \"{ <v> ");
-            
-//             strcat(varList, anf->nodes[i]->variables[j].name);
-//             strcat(varList, " | ");
-//             anf->nodes[i]->variables[j].value ? strcat(varList, "true") : strcat(varList, "false");
-//             strcat(varList, "}\"];\nnode");
+            strcat(nodeList, "node");
+            strcat(nodeList, buffer);
+            strcat(nodeList, "[label = \"{ <n> node ");
+            snprintf(buffer, 10, "%d", nodeIndex);
+            strcat(nodeList, buffer);
+            strcat(nodeList, " }\"];\nnode");
+            snprintf(buffer, 10, "%d", i+1);
+            strcat(nodeList, buffer);
+            strcat(nodeList, ":a -> node");
+            snprintf(buffer, 10, "%d", nodeCounter);
+            snprintf(buffer, 10, "%d", nodeCounter);
+            strcat(nodeList, buffer);
+            strcat(nodeList, ":n;\n");
 
-//             snprintf(buffer, 10, "%d", i+1);
-//             strcat(varList, buffer);
-//             strcat(varList, ":n -> node");
-//             snprintf(buffer, 10, "%d", nodeCounter);
-//             strcat(varList, buffer);
-//             strcat(varList, ":v;\n");
+            nodeCounter++;
+            nodeIndex++;
+            fprintf(file, "%s", nodeList);
 
-//             nodeCounter++;        
-//         }
-//     }
+            size = 0;
+            for (int k = 0; k < bundle->anfs[i]->length; k++) {
+                size += bundle->anfs[i]->nodes[k]->length;            
+            }
 
-//     fprintf(file, "%s", varList);
-    fprintf(file, "}\n");
+            size *= 100 + 1; 
+            char varList[size];
+            strcpy(varList, "");
 
-// digraph G {
-// nodesep=.05;
-// rankdir=LR;
-// node [shape=record,width=.1,height=.1];
-// node0 [label = "<f0> bundle", height=2.5];
-// node [width = 1.5];
+        
+            for (int k = 0; k < bundle->anfs[i]->nodes[j]->length; k++) {
+                
+                char buffer[10];
+                snprintf(buffer, 10, "%d", nodeCounter);
 
-// node1 [label = "<a> anf 1"];
-// node0:f0 -> node1:a;
-// node2 [label = "<a> anf 2"];
-// node0:f0 -> node2:a;
+                strcat(varList, "node");
+                strcat(varList, buffer);
+                strcat(varList, "[label = \"{ <v> ");
+                
+                strcat(varList, bundle->anfs[i]->nodes[j]->variables[k].name);
+                strcat(varList, " | ");
+                bundle->anfs[i]->nodes[j]->variables[k].value ? strcat(varList, "true") : strcat(varList, "false");
+                strcat(varList, "}\"];\nnode");
 
-// node3[label = "{ <n> node 1 }"];
-// node1:a -> node3:n;
-// node4[label = "{ <n> node 2 }"];
-// node1:a -> node4:n;
+                snprintf(buffer, 10, "%d", currentNodeIndex);
+                strcat(varList, buffer);
+                strcat(varList, ":n -> node");
+                snprintf(buffer, 10, "%d", nodeCounter);
+                strcat(varList, buffer);
+                strcat(varList, ":v;\n");
 
-// node5[label = "{ <n> node 3 }"];
-// node2:a -> node5:n;
-// node6[label = "{ <n> node 4 }"];
-// node2:a -> node6:n;
+                nodeCounter++;        
+            }
 
-// node7[label = "{ <v> var1 | true}"];
-// node3:n -> node7:v;
-// node8[label = "{ <v> var2 | true}"];
-// node4:n -> node8:v;
-// node9[label = "{ <v> var3 | true}"];
-// node5:n -> node9:v;
-// node10[label = "{ <v> var4 | true}"];
-// node6:n -> node10:v;
-// }
-
+            fprintf(file, "%s", varList);
+    
+        }
+    }
+    printEndGraphSequence(file);
+    
     fclose(file);
     return OK;
 

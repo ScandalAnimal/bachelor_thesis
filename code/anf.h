@@ -7,6 +7,7 @@
 
 #include <stdbool.h>
 #include "node.h"
+#include "graph.h"
 #include "hashmap.h"
 #include "error.h"
 #include "variable.h"

@@ -379,7 +379,9 @@ int anfWithNodesInBundle() {
 
     printBundle(bundle);
     printBundleMap(bundle);
-    
+
+    printAnf(anf1);    
+    printAnf(anf2);    
     generateBundleGraph(bundle, "./test4.gv");
 
     freeNode(node1);

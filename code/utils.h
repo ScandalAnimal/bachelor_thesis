@@ -12,5 +12,6 @@
 
 extern bool 	getRandomBooleanValue();
 extern int 		getDigitCount(int);
+extern FILE*	openAndClearFile(char*);
 
 #endif //CODE_UTILS_H

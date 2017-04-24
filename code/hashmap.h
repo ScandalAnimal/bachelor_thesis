@@ -7,6 +7,7 @@
 
 #include <stdbool.h>
 #include "error.h"
+#include "graph.h"
 #include "utils.h"
 
 #define DEFAULT_HASHMAP_CAPACITY 256

@@ -20,3 +20,21 @@ int getDigitCount(int number) {
     }
     return count;
 }
+
+FILE* openAndClearFile(char* filename) {
+
+	FILE* file = fopen(filename, "w");
+  
+    if (file == NULL) {
+        return NULL;
+    }
+    fclose(file);
+
+    file = fopen(filename, "a");
+  
+    if (file == NULL) {
+        return NULL;
+    }
+
+    return file;
+}
