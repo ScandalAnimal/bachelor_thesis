@@ -382,8 +382,9 @@ int anfWithNodesInBundle() {
 
     printAnf(anf1);    
     printAnf(anf2);    
+    // generateHashMapGraph(bundle->hashmap, "./test4.gv");
     generateBundleGraph(bundle, "./test4.gv");
-
+    
     freeNode(node1);
     freeNode(node2);
     freeNode(node3);
@@ -463,7 +464,7 @@ int anfWithNodesInBundle2() {
 
     printBundle(bundle);
     printBundleMap(bundle);
-    generateHashMapGraph(bundle->hashmap, "./test5.gv");
+    generateAnfGraph(anf1, "./test5.gv");
 
     freeNode(node1);
     freeNode(node2);

@@ -389,35 +389,14 @@ int generateHashMapGraph(tMap m, char* filename) {
     printMultipleRootNodes(file, capacity);
 
     int subNodeCounter = 1;
-    int subNodeSize = capacity * (37 + getDigitCount(capacity) + MAX_KEY_LENGTH);
-    char subNodes[subNodeSize];
-    strcpy(subNodes, "");
     for (int i = 0; i < capacity; i++) {
-
         if (map->records[i].used) {
-            char buffer[10];
-            snprintf(buffer, 10, "%d", subNodeCounter);
 
-            strcat(subNodes, "node");
-            strcat(subNodes, buffer);
-            strcat(subNodes, "[label = \"{ <n> ");
-            strcat(subNodes, map->records[i].key);
-            strcat(subNodes, " | ");
-            map->records[i].value ? strcat(subNodes, "true") : strcat(subNodes, "false");
-            strcat(subNodes, "}\"];\nnode0");
-            strcat(subNodes, ":f");
-            snprintf(buffer, 10, "%d", i);
-            strcat(subNodes, buffer);
-            strcat(subNodes, " -> node");
-            snprintf(buffer, 10, "%d", subNodeCounter);
-            strcat(subNodes, buffer);
-            strcat(subNodes, ":n;\n");
-
+            printNodeWithValue(file, subNodeCounter, map->records[i].key, map->records[i].value);
+            printArrow(file, 0, i, subNodeCounter);
             subNodeCounter++;
         }
-        
     }
-    fprintf(file, "%s\n", subNodes);
 
     printEndGraphSequence(file);
 
