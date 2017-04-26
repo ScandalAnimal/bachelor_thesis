@@ -13,10 +13,32 @@ bool getRandomBooleanValue() {
 int getDigitCount(int number) {
     int count = 0;
 
+    if (number == 0) {
+        return 1;
+    }
+
     while(number != 0)
     {
         number /= 10;
         ++count;
     }
     return count;
+}
+
+FILE* openAndClearFile(char* filename) {
+
+	FILE* file = fopen(filename, "w");
+  
+    if (file == NULL) {
+        return NULL;
+    }
+    fclose(file);
+
+    file = fopen(filename, "a");
+  
+    if (file == NULL) {
+        return NULL;
+    }
+
+    return file;
 }

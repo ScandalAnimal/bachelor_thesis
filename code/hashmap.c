@@ -153,7 +153,7 @@ unsigned int generateIndex(tMap m, char* key) {
     for (int i = 0; i < 8; i++) {
         if (!map->records[current].used) {
             return current;
-        }
+              }
 
         if (map->records[current].used && (strcmp(map->records[current].key, key) == 0)) {
             return current;
@@ -372,4 +372,35 @@ void printHashMap(tMap m) {
         printf("Mapa neobsahuje ziadne zaznamy.\n");
     }
     printf("********************************\n");
+}
+
+int generateHashMapGraph(tMap m, char* filename) {
+
+    tHashMap* map = (tHashMap*) m;
+
+    FILE *file = openAndClearFile(filename);
+
+    if (file == NULL) {
+        return ERR_OPEN;
+    }
+
+    printInitGraphSequence(file);
+    int capacity = getHashMapCapacity(map);
+    printMultipleRootNodes(file, capacity);
+
+    int subNodeCounter = 1;
+    for (int i = 0; i < capacity; i++) {
+        if (map->records[i].used) {
+
+            printNodeWithValue(file, subNodeCounter, map->records[i].key, map->records[i].value);
+            printArrow(file, 0, i, subNodeCounter);
+            subNodeCounter++;
+        }
+    }
+
+    printEndGraphSequence(file);
+
+    fclose(file);
+    return OK;
+
 }

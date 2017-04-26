@@ -7,6 +7,8 @@
 
 #include <stdbool.h>
 #include "error.h"
+#include "graph.h"
+#include "utils.h"
 
 #define DEFAULT_HASHMAP_CAPACITY 256
 #define MAX_KEY_LENGTH 256
@@ -47,5 +49,6 @@ extern int 	            removeFromHashMap(tMap, char*);
 extern void             clearHashMap(tMap);
 
 extern void             printHashMap(tMap);
+extern int 				generateHashMapGraph(tMap, char*);
 
 #endif //CODE_HASHMAP_H

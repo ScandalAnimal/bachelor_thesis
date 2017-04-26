@@ -7,6 +7,7 @@
 
 #include <stdbool.h>
 #include "node.h"
+#include "graph.h"
 #include "hashmap.h"
 #include "error.h"
 #include "variable.h"
@@ -45,13 +46,16 @@ extern void* 	createNodeInBundle(tANFBundle*);
 extern int	 	deleteNodeFromBundle(tANFBundle*, tNode*);
 extern void*	createNodeWithVarsInBundle(tANFBundle*, tVar[], int);
 
-extern int 		addNodeToAnf(tNode*, tAnf*);
-extern int 		addNodesToAnf(tNode**, int, tAnf*);
+extern int 		addNodeToAnf(tANFBundle*, tNode*, tAnf*);
+extern int 		addNodesToAnf(tANFBundle*, tNode**, int, tAnf*);
 
 extern tVar		createVarInBundle(tANFBundle*, char*, bool);
 extern tVar		createTrueVarInBundle(tANFBundle*, char*);
 extern tVar		createFalseVarInBundle(tANFBundle*, char*);
 extern int		createVarsInBundle(tANFBundle*, tVar[], int);
+
+extern int 		generateAnfGraph(tAnf*, char*);
+extern int 		generateBundleGraph(tANFBundle*, char*);
 
 // extern void		iterateOverBundle(tANFBundle*);
 

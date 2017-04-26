@@ -140,9 +140,9 @@ tVar createVarInBundle(tANFBundle* bundle, char* name, bool value) {
            fprintf(stderr, "%d\n", ERR_INSERT);        
         }
     }
-    // else {
-       // fprintf(stderr, "%d Key: %s\n", ERR_DUPLICATE, name);        
-    // }
+    else {
+       fprintf(stderr, "%d Key: %s\n", ERR_DUPLICATE, name);        
+    }
 
     return var;
 }
@@ -238,7 +238,7 @@ void* createEmptyAnfInBundle(tANFBundle* bundle) {
 }
 
 
-int addNodeToAnf(tNode* node, tAnf* anf) {
+int addNodeToAnf(tANFBundle* bundle, tNode* node, tAnf* anf) {
 
     int length = anf->length;    
 
@@ -247,16 +247,24 @@ int addNodeToAnf(tNode* node, tAnf* anf) {
         return ERROR;
     }
 
+    for (int i = 0; i < node->length; i++) {
+        if (!isKeyInHashMap(bundle->hashmap, node->variables[i].name)) {
+            if (ERROR == insertToHashMap(bundle->hashmap, node->variables[i].name, node->variables[i].value)) {
+                fprintf(stderr, "%d\n", ERR_INSERT);        
+            }
+        }
+    }
+
     anf->nodes[anf->length] = node;
     anf->length++;
     setAnfValue(anf, node->value);
     return OK;
 }
 
-int addNodesToAnf(tNode* nodes[], int size, tAnf* anf) {
+int addNodesToAnf(tANFBundle* bundle, tNode* nodes[], int size, tAnf* anf) {
 
     for (int i = 0; i < size; i++) {
-        int addResult = addNodeToAnf(nodes[i], anf);
+        int addResult = addNodeToAnf(bundle, nodes[i], anf);
         if (addResult != OK) {
             return addResult;
         }
@@ -273,9 +281,16 @@ void* createAnfWithNodesInBundle(tANFBundle* bundle, tNode* nodes[], int size) {
         return NULL;
     }
 
-    if (addNodesToAnf(nodes, size, anf) != OK) {
+    if (addNodesToAnf(bundle, nodes, size, anf) != OK) {
         freeAnf(anf);
         return NULL;
+    }
+
+    for (int i = 0; i < size; i++) {
+        if (createVarsInBundle(bundle, nodes[i]->variables, nodes[i]->length) != OK) {
+            freeAnf(anf);
+            return NULL;
+        }
     }
 
     if (!(bundle->anfs = realloc(bundle->anfs, sizeof(tAnf *) * (bundle->anfsCount + 1)))) {
@@ -410,7 +425,7 @@ void printBundle(tANFBundle* bundle) {
     printf("     with %d nodes.\n", getNodeCountFromAnfs(bundle->anfs, bundle->anfsCount));
     printf("     with %d vars.\n", getVarCountFromAnfs(bundle->anfs, bundle->anfsCount));
     printf("Nodes created without Anf: %d\n", bundle->nodeCount);
-    printf("Vars  created without Anf: %d\n", bundle->hashmap->usedCapacity);
+    printf("Variables                : %d\n", bundle->hashmap->usedCapacity);
     // printf("Max Var Length: %d\n", bundle->maxVarLength);
     printf("*******************\n");
 }
@@ -419,3 +434,83 @@ void printBundleMap(tANFBundle* bundle) {
     printHashMap(bundle->hashmap);
 }
     
+int generateAnfGraph(tAnf* anf, char* filename) {
+
+    FILE *file = openAndClearFile(filename);
+
+    if (file == NULL) {
+        return ERR_OPEN;
+    }
+
+    printInitGraphSequence(file);
+    printSingleRootNode(file, "anf");
+
+    int nodeCounter = 1;
+    nodeCounter = printAnonymousNodes(file, anf->length, nodeCounter, "node", 0);
+
+    for (int i = 0; i < anf->length; i++) {
+        
+        for (int j = 0; j < anf->nodes[i]->length; j++) {
+
+            tVar var = anf->nodes[i]->variables[j];
+            printNodeWithValue(file, nodeCounter, var.name, var.value);
+            printArrow(file, i+1, NO_PORT, nodeCounter);
+            nodeCounter++;        
+        }
+    }
+
+    printEndGraphSequence(file);
+
+    fclose(file);
+    return OK;
+
+}
+
+int generateBundleGraph(tANFBundle* bundle, char* filename) {
+
+    FILE *file = openAndClearFile(filename);
+
+    if (file == NULL) {
+        return ERR_OPEN;
+    }
+
+    printInitGraphSequence(file);
+    printSingleRootNode(file, "bundle");
+
+    int nodeCounter = 1;
+    nodeCounter = printAnonymousNodes(file, bundle->anfsCount, nodeCounter, "anf", 0);
+        
+    int currentNodeIndex = 0;
+    int nodeIndex = 1;
+
+    for (int i = 0; i < bundle->anfsCount; i++) {
+        
+        for (int j = 0; j < bundle->anfs[i]->length; j++) {
+
+            int nodeNameSize = 6 + getDigitCount(nodeCounter); 
+            char nodeName[nodeNameSize];
+            snprintf(nodeName, nodeNameSize, "node %d", nodeIndex);
+            printNodeWithoutValue(file, nodeCounter, nodeName);
+            printArrow(file, i+1, NO_PORT, nodeCounter);
+            currentNodeIndex = nodeCounter;
+
+            nodeCounter++;
+            nodeIndex++;
+        
+            for (int k = 0; k < bundle->anfs[i]->nodes[j]->length; k++) {
+                
+                tVar var = bundle->anfs[i]->nodes[j]->variables[k];
+                printNodeWithValue(file, nodeCounter, var.name, var.value);
+                printArrow(file, currentNodeIndex, NO_PORT, nodeCounter);
+
+                nodeCounter++;        
+            }
+    
+        }
+    }
+    printEndGraphSequence(file);
+    
+    fclose(file);
+    return OK;
+
+}
