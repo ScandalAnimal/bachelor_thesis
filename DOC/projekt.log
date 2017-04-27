@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.4.22)  27 APR 2017 07:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.4.27)  27 APR 2017 11:37
 entering extended mode
 **./projekt.tex
 (projekt.tex
@@ -98,14 +98,14 @@ Package: babel 2016/04/23 3.9r The Babel package
 *************************************
 * Local config file bblopts.cfg used
 *
-("C:\Program Files\MiKTeX 2.9\tex\latex\arabi\bblopts.cfg"
+(C:\Users\mvasilisin\AppData\Roaming\MiKTeX\2.9\tex\latex\arabi\bblopts.cfg
 File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
  babel
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\babel-slovak\slovak.ldf"
+(C:\Users\mvasilisin\AppData\Roaming\MiKTeX\2.9\tex\latex\babel-slovak\slovak.l
+df
 Language: slovak 2008/07/06 v3.1a Slovak support from the babel system
-
-("C:\Program Files\MiKTeX 2.9\tex\generic\babel\babel.def"
+ ("C:\Program Files\MiKTeX 2.9\tex\generic\babel\babel.def"
 File: babel.def 2016/04/23 3.9r Babel common definitions
 \babel@savecnt=\count100
 \U@D=\dimen112
@@ -116,12 +116,11 @@ Package babel Info: Making ' an active character on input line 129.
 \cs@wordlen=\count101
 Package babel Info: Making - an active character on input line 294.
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\babel-czech\czech.ldf"
+(C:\Users\mvasilisin\AppData\Roaming\MiKTeX\2.9\tex\latex\babel-czech\czech.ldf
 Language: czech 2008/07/06 v3.1a Czech support from the babel system
 LaTeX Info: Redefining \uv on input line 210.
 \cs@wordlen=\count102
-)
-("C:\Program Files\MiKTeX 2.9\tex\latex\babel-english\english.ldf"
+) ("C:\Program Files\MiKTeX 2.9\tex\latex\babel-english\english.ldf"
 Language: english 2017/01/24 v3.3q English support from the babel system
 \l@canadian = a dialect from \language\l@american 
 \l@australian = a dialect from \language\l@british 
@@ -448,20 +447,20 @@ Package: fontenc 2017/01/24 v2.0c Standard LaTeX package
 File: t1enc.def 2017/01/24 v2.0c Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
 ))
-("C:\Program Files\MiKTeX 2.9\tex\latex\cmap\cmap.sty"
+(C:\Users\mvasilisin\AppData\Roaming\MiKTeX\2.9\tex\latex\cmap\cmap.sty
 Package: cmap 2008/03/06 v1.0h CMap support: searchable PDF
 
 
 Package cmap Warning: fontenc already loaded - some fonts may be unprocessed.
 
-) ("C:\Program Files\MiKTeX 2.9\tex\latex\url\url.sty"
+) (C:\Users\mvasilisin\AppData\Roaming\MiKTeX\2.9\tex\latex\url\url.sty
 \Urlmuskip=\muskip11
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\ms\ragged2e.sty"
+(C:\Users\mvasilisin\AppData\Roaming\MiKTeX\2.9\tex\latex\ms\ragged2e.sty
 Package: ragged2e 2009/05/21 v2.1 ragged2e Package (MS)
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\ms\everysel.sty"
+(C:\Users\mvasilisin\AppData\Roaming\MiKTeX\2.9\tex\latex\ms\everysel.sty
 Package: everysel 2011/10/28 v1.2 EverySelectfont Package (MS)
 )
 \CenteringLeftskip=\skip46
@@ -498,11 +497,10 @@ Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
 )
 \Gread@gobject=\count103
 ))
-("C:\Program Files\MiKTeX 2.9\tex\latex\etoolbox\etoolbox.sty"
+(C:\Users\mvasilisin\AppData\Roaming\MiKTeX\2.9\tex\latex\etoolbox\etoolbox.sty
 Package: etoolbox 2017/01/02 v2.4 e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count104
-)
-("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
+) ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
 Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
@@ -527,10 +525,9 @@ Package graphics Info: Driver file: pdftex.def on input line 99.
 \DESCRIPTION@totalleftmargin=\skip61
 \DESCRIPTION@linewidth=\skip62
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\opensans\opensans.sty"
+(C:\Users\mvasilisin\AppData\Roaming\MiKTeX\2.9\tex\latex\opensans\opensans.sty
 Package: opensans 2011/11/11 Opensans
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\slantsc\slantsc.sty"
+(C:\Users\mvasilisin\AppData\Roaming\MiKTeX\2.9\tex\latex\slantsc\slantsc.sty
 Package: slantsc 2012/01/01 v2.11 Provide Slanted an Italic Small Caps
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\ifthen.sty"
@@ -587,7 +584,7 @@ Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
 \c@LT@chunks=\count113
 \LT@p@ftn=\toks24
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\booktabs\booktabs.sty"
+(C:\Users\mvasilisin\AppData\Roaming\MiKTeX\2.9\tex\latex\booktabs\booktabs.sty
 Package: booktabs 2005/04/14 v1.61803 publication quality tables
 \heavyrulewidth=\dimen118
 \lightrulewidth=\dimen119
@@ -606,8 +603,7 @@ Package: booktabs 2005/04/14 v1.61803 publication quality tables
 \@thisruleclass=\count116
 \@lastruleclass=\count117
 \@thisrulewidth=\dimen130
-)
-("C:\Program Files\MiKTeX 2.9\tex\latex\xcolor\xcolor.sty"
+) (C:\Users\mvasilisin\AppData\Roaming\MiKTeX\2.9\tex\latex\xcolor\xcolor.sty
 Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-cfg\color.cfg"
@@ -625,9 +621,8 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\colortbl\colortbl.sty"
+(C:\Users\mvasilisin\AppData\Roaming\MiKTeX\2.9\tex\latex\colortbl\colortbl.sty
 Package: colortbl 2012/02/13 v1.0a Color table columns (DPC)
-
 ("C:\Program Files\MiKTeX 2.9\tex\latex\tools\array.sty"
 Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
 \col@sep=\dimen131
@@ -656,10 +651,10 @@ Package: tabularx 2016/02/03 v2.11 `tabularx' package (DPC)
 \TX@cols=\count119
 \TX@ftn=\toks27
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\blindtext\blindtext.sty"
+(C:\Users\mvasilisin\AppData\Roaming\MiKTeX\2.9\tex\latex\blindtext\blindtext.s
+ty
 Package: blindtext 2012/01/06 V2.0 blindtext-Package
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\tools\xspace.sty"
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\tools\xspace.sty"
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 )
 \c@blindtext=\count120
@@ -681,7 +676,7 @@ Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 \c@blind@pangramcount=\count136
 \c@blind@pangrammax=\count137
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\listings\listings.sty"
+(C:\Users\mvasilisin\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\listings.sty
 \lst@mode=\count138
 \lst@gtempboxa=\box34
 \lst@token=\toks28
@@ -694,33 +689,34 @@ Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 \lst@newlines=\count142
 \lst@lineno=\count143
 \lst@maxwidth=\dimen142
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstmisc.sty"
+(C:\Users\mvasilisin\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstmisc.sty
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
 \c@lstnumber=\count144
 \lst@skipnumbers=\count145
 \lst@framebox=\box35
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\listings\listings.cfg"
+(C:\Users\mvasilisin\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\listings.cfg
 File: listings.cfg 2015/06/04 1.6 listings configuration
 ))
 Package: listings 2015/06/04 1.6 (Carsten Heinz)
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\appendix\appendix.sty"
+(C:\Users\mvasilisin\AppData\Roaming\MiKTeX\2.9\tex\latex\appendix\appendix.sty
 Package: appendix 2009/09/02 v1.2b extra appendix facilities
 \c@@pps=\count146
 \c@@ppsavesec=\count147
 \c@@ppsaveapp=\count148
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\titlesec\titletoc.sty"
+(C:\Users\mvasilisin\AppData\Roaming\MiKTeX\2.9\tex\latex\titlesec\titletoc.sty
 Package: titletoc 2011/12/15 v1.6 TOC entries
 \ttl@leftsep=\dimen143
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\regexpatch\regexpatch.sty"
-("C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\expl3.sty"
+(C:\Users\mvasilisin\AppData\Roaming\MiKTeX\2.9\tex\latex\regexpatch\regexpatch
+.sty
+(C:\Users\mvasilisin\AppData\Roaming\MiKTeX\2.9\tex\latex\l3kernel\expl3.sty
 Package: expl3 2017/04/01 L3 programming layer (loader) 
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\expl3-code.tex"
+(C:\Users\mvasilisin\AppData\Roaming\MiKTeX\2.9\tex\latex\l3kernel\expl3-code.t
+ex
 Package: expl3 2017/04/01 L3 programming layer (code)
 \c_max_int=\count149
 \l_tmpa_int=\count150
@@ -816,14 +812,16 @@ Package: expl3 2017/04/01 L3 programming layer (code)
 \l__coffin_scaled_total_height_dim=\dimen173
 \l__coffin_scaled_width_dim=\dimen174
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\l3pdfmode.def"
+(C:\Users\mvasilisin\AppData\Roaming\MiKTeX\2.9\tex\latex\l3kernel\l3pdfmode.de
+f
 File: l3pdfmode.def 2017/03/18 v L3 Experimental driver: PDF mode
 \l__driver_color_stack_int=\count184
 \l__driver_tmp_box=\box51
 ))
 Package: regexpatch 2016/05/15 v0.2b Extending etoolbox patching commands
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\l3packages\xparse\xparse.sty"
+(C:\Users\mvasilisin\AppData\Roaming\MiKTeX\2.9\tex\latex\l3packages\xparse\xpa
+rse.sty
 Package: xparse 2017/04/01 L3 Experimental document command parser
 \l__xparse_current_arg_int=\count185
 \g__xparse_grabber_int=\count186
@@ -831,22 +829,26 @@ Package: xparse 2017/04/01 L3 Experimental document command parser
 \l__xparse_mandatory_args_int=\count188
 \l__xparse_v_nesting_int=\count189
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\l3experimental\l3str\l3regex.sty"
+(C:\Users\mvasilisin\AppData\Roaming\MiKTeX\2.9\tex\latex\l3experimental\l3str\
+l3regex.sty
 Package: l3regex 2017/04/01 L3 Experimental regular expressions
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\l3experimental\l3str\l3tl-build.sty"
+(C:\Users\mvasilisin\AppData\Roaming\MiKTeX\2.9\tex\latex\l3experimental\l3str\
+l3tl-build.sty
 Package: l3tl-build 2017/04/01 L3 Experimental token list construction
 \l__tl_build_start_index_int=\count190
 \l__tl_build_index_int=\count191
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\l3experimental\l3str\l3tl-analysis.sty"
+(C:\Users\mvasilisin\AppData\Roaming\MiKTeX\2.9\tex\latex\l3experimental\l3str\
+l3tl-analysis.sty
 Package: l3tl-analysis 2017/04/01 L3 Experimental token list analysis
 \l__tl_analysis_normal_int=\count192
 \l__tl_analysis_index_int=\count193
 \l__tl_analysis_nesting_int=\count194
 \l__tl_analysis_type_int=\count195
-) ("C:\Program Files\MiKTeX 2.9\tex\latex\l3experimental\l3str\l3str-convert.st
-y"
+)
+(C:\Users\mvasilisin\AppData\Roaming\MiKTeX\2.9\tex\latex\l3experimental\l3str\
+l3str-convert.sty
 Package: l3str-convert 2017/04/01 L3 Experimental string encoding conversions
 \l__str_internal_int=\count196
 \c__str_replacement_char_int=\count197
@@ -1151,7 +1153,8 @@ Package: l3str-convert 2017/04/01 L3 Experimental string encoding conversions
 . 
 . Defining command \xpatchparametertext with sig. '+m+m+m+m+m' on line 892.
 .................................................
-)) ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty"
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty"
 Package: hyperref 2016/06/24 v6.83q Hypertext links for LaTeX
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\hobsub-hyperref.sty"
@@ -1300,7 +1303,7 @@ File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ABD: EverySelectfont initializing macros
 LaTeX Info: Redefining \selectfont on input line 158.
 
-("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+(C:\Users\mvasilisin\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count313
 \scratchdimen=\dimen179
@@ -1348,7 +1351,7 @@ LaTeX Info: Redefining \nameref on input line 158.
 
 LaTeX Font Info:    Try loading font information for T1+qhv on input line 164.
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\tex-gyre\t1qhv.fd"
+(C:\Users\mvasilisin\AppData\Roaming\MiKTeX\2.9\tex\latex\tex-gyre\t1qhv.fd
 File: t1qhv.fd 2009/09/25 v1.2 font definition file for T1/qhv
 )
 \@obrlogo=\box54
@@ -1366,7 +1369,7 @@ put line 164.
 (pdftex.def)             Requested size: 116.65646pt x 115.17995pt.
 LaTeX Font Info:    Try loading font information for T1+fos on input line 164.
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\opensans\t1fos.fd"
+(C:\Users\mvasilisin\AppData\Roaming\MiKTeX\2.9\tex\latex\opensans\t1fos.fd
 File: t1fos.fd 2011/11/11 Fontinst v1.927 font definitions for T1/fos.
 )
 LaTeX Font Info:    Font shape `T1/fos/bx/n' in size <18> not available
@@ -1384,8 +1387,8 @@ LaTeX Font Info:    Font shape `T1/fos/bx/n' in size <10> not available
 (Font)              Font shape `T1/fos/b/n' tried instead on input line 164.
 [1
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map} <./template-fig/VUT_symbol
-_barevne_CMYK_CZ.pdf>] [2]
+{C:/Users/mvasilisin/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <./temp
+late-fig/VUT_symbol_barevne_CMYK_CZ.pdf>] [2]
 Overfull \hbox (0.15337pt too wide) in paragraph at lines 164--164
 \T1/lmr/bx/n/18 Kniºnica pre bo-olov-ské fun-kcie v al-geb-raic-kej nor-
  []
@@ -1420,7 +1423,7 @@ been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.15 \chapter
-             {Booleovske funkcie} [2
+             {Booleovske funkcie} \label{chapter_theory} [2
 
 ]
 Kapitola 2.
@@ -1432,7 +1435,7 @@ l.65 \end{table}
                  [3
 
 ] [4]
-<obrazky-figures/KarnaughMap.png, id=197, 220.57407pt x 128.73094pt>
+<obrazky-figures/KarnaughMap.png, id=202, 220.57407pt x 128.73094pt>
 File: obrazky-figures/KarnaughMap.png Graphic file (type png)
 
 <use obrazky-figures/KarnaughMap.png>
@@ -1444,7 +1447,7 @@ Overfull \hbox (4.33263pt too wide) in paragraph at lines 96--97
  [][] 
  []
 
-<obrazky-figures/logicalCircuit.png, id=199, 179.16937pt x 128.73094pt>
+<obrazky-figures/logicalCircuit.png, id=204, 179.16937pt x 128.73094pt>
 File: obrazky-figures/logicalCircuit.png Graphic file (type png)
 
 <use obrazky-figures/logicalCircuit.png>
@@ -1468,7 +1471,7 @@ LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10.95> not available
  [5 <./obrazky-figures/KarnaughMap.png> <./obrazky-figures/logicalCircuit.png>]
  [6] [7]
 Kapitola 3.
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 180.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 195.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd"
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -1493,7 +1496,7 @@ Kapitola 7.
 ]
 Kapitola 8.
 
-Overfull \hbox (1.76666pt too wide) in paragraph at lines 265--266
+Overfull \hbox (1.76666pt too wide) in paragraph at lines 280--281
 []\T1/lmr/m/n/10.95 Detlef Sie-ling. "The no-napp-ro-xi-ma-bi-lity of OBDD mi-n
 i-mi-za-tion.Ïnformation and Com-
  []
@@ -1520,37 +1523,39 @@ Package rerunfilecheck Info: File `projekt.out' has not changed.
 (rerunfilecheck)             Checksum: C2B2B555FC1B3AA733190928B4938306;3265.
  ) 
 Here is how much of TeX's memory you used:
- 22463 strings out of 493333
- 367129 string characters out of 3139197
- 442948 words of memory out of 3000000
- 25576 multiletter control sequences out of 15000+200000
+ 22474 strings out of 493333
+ 368842 string characters out of 3139179
+ 443283 words of memory out of 3000000
+ 25584 multiletter control sequences out of 15000+200000
  109151 words of font info for 90 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,11n,37p,10405b,415s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files/M
-iKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX 2.9/fonts/e
-nc/dvips/opensans/opensans-03.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/
-opensans/opensans-02.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/opensans/
-opensans-04.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/opensans/opensans-
-01.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/opensans/OpenSans-Bold.p
-fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/P
-rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Program Fi
-les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Program Files/MiKTeX 2.9/fon
-ts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
-public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
-fonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
-/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx10.pfb><C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files/MiKTe
-X 2.9/fonts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
-public/lm/lmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb>
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmri10.pfb><C:/Program Files
-/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts
-/type1/public/lm/lmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/
-lmtt9.pfb>
-Output written on projekt.pdf (21 pages, 636361 bytes).
+iKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Users/mvasilisin/AppData/Roaming
+/MiKTeX/2.9/fonts/enc/dvips/opensans/opensans-03.enc}{C:/Users/mvasilisin/AppDa
+ta/Roaming/MiKTeX/2.9/fonts/enc/dvips/opensans/opensans-02.enc}{C:/Users/mvasil
+isin/AppData/Roaming/MiKTeX/2.9/fonts/enc/dvips/opensans/opensans-04.enc}{C:/Us
+ers/mvasilisin/AppData/Roaming/MiKTeX/2.9/fonts/enc/dvips/opensans/opensans-01.
+enc}<C:/Users/mvasilisin/AppData/Roaming/MiKTeX/2.9/fonts/type1/public/opensans
+/OpenSans-Bold.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
+cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.p
+fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Fil
+es/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Program Files/MiKTeX
+ 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/font
+s/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
+blic/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
+fonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx10.pf
+b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Program Fil
+es/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX 2.9/font
+s/type1/public/lm/lmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/l
+mr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmri10.pfb><C:/Progr
+am Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2
+.9/fonts/type1/public/lm/lmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
+blic/lm/lmtt9.pfb>
+Output written on projekt.pdf (21 pages, 650221 bytes).
 PDF statistics:
- 370 PDF objects out of 1000 (max. 8388607)
- 56 named destinations out of 1000 (max. 500000)
+ 387 PDF objects out of 1000 (max. 8388607)
+ 59 named destinations out of 1000 (max. 500000)
  218 words of extra memory for PDF output out of 10000 (max. 10000000)
 

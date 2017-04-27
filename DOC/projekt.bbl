@@ -30,4 +30,9 @@ Koppelberg, S.: \emph{Handbook of Boolean algebras Volume 1}. North Holland,
 Somenzi, F.: CUDD: CU Decision Diagram Package 3.0.0. [Online; 19.01.2017].
 \newline\urlprefix\url{http://vlsi.colorado.edu/~fabio/CUDD/cudd.pdf}
 
+\bibitem{Feng-anf}
+Wu, C.-K.; Feng, D.: \emph{Boolean Functions and Their Applications in
+  Cryptography (Advances in Computer Science and Technology)}. Springer, 2016,
+  ISBN 978-3-662-48865-2.
+
 \end{thebibliography}

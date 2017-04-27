@@ -9,10 +9,10 @@ Reprezentácia pomocou BDD v informatike je síce najrozšírenejšia, ale boole
 
 Vytvorená knižnica poskytuje prostriedky pre efektívnu manipuláciu a zobrazovanie booleovskych funkcií v ANF. Motiváciou pre vytvorenie knižnice bolo vytvoriť slušnú alternatívu pre klasické reprezentácie pomocou BDD pre špecifické problémy, ktoré nepotrebujú komplexnuú reprezentáciu BDD, ale vystačia si aj s ANF.
 
-V tejto práci si v kapitole ?? povieme najskôr niečo teoreticky o rôznych reprezentáciách booleovskych funkcií, o ich výhodách a necýhodách. V kapitole ?? si odprezentujeme existujúce knižnice a ich vzužitie v praxi. V kapitola ?? sa budeme zaoberať technickým návrhom knižnice, v kapitole ?? jej konkrétnou implementáciou. Na záver si v kapitole ?? porovnáme vytvorenú knižnicu s existujúcimi a vyvodíme z toho závery. 
+V tejto práci si v kapitole \ref{chapter_theory} povieme najskôr niečo teoreticky o rôznych reprezentáciách booleovskych funkcií, o ich výhodách a necýhodách. V kapitole \ref{chapter_libraries} si odprezentujeme existujúce knižnice a ich využitie v praxi. V kapitole \ref{chapter_concept} sa budeme zaoberať technickým návrhom knižnice, v kapitole \ref{chapter_impl} jej konkrétnou implementáciou. Na záver si v kapitole \ref{chapter_result} porovnáme vytvorenú knižnicu s existujúcimi a vyvodíme z toho závery. 
  
 
-\chapter{Booleovske funkcie}
+\chapter{Booleovske funkcie} \label{chapter_theory}
 V tejto kapitole sa nachádza teoretický úvod do problematiky booleovskych funkcií, postupne bude definované čo vlastne sú booleovske funkcie, čo sa dá pomocou nich popísať a aký môže byť ich obsah. Ďalej budú popísané rôzne možnosti zobrazenia booleovskych funkcií napríklad pravdivostné tabuľky a ďalšie. Kapitola takisto definuje rôzne normalizované formy zápisu booleovskych funkcií, pričom dôraz bude kladený hlavne na algebraickú normálnu formu, ktorej reprezentácia je cieľom celej práce. Podrobnejšie bude popísaná aj reprezentácia binárnymi rozhodovacími diagramami, ktoré sú momentálne najpoužívanejšou reprezentáciou v oblasti počítačovej vedy.
 
 \section{Definícia booleovskej funkcie}
@@ -127,31 +127,46 @@ Ak vynecháme redundantné členy, nazývame ich iredundantné normálne formy.
 
 \section{Algebraická normálna forma}
 
-Algebraická normálna forma (skrátene ANF) je jeden z možných spôsobov reprezentácie booleovskych funkcií. Iný názov pre zápis v ANF je aj Zhegalkinov polynóm alebo Reed-Mullerov výraz.
-	
-Celá ANF má hodnotu z množiny $\{0,1\}$, a skladá sa z viacerých termov, ktoré majú takisto hodnotu z množiny $\{0,1\}$. Každý term vznikol kombináciou premenných spojených operáciou AND. Termy sú spojené pomocou operácie XOR. Operácia NOT nie je v ANF povolená.
-Príklad algebraickej normálnej formy: 
+Algebraická normálna forma (skrátene ANF) je jeden z možných spôsobov reprezentácie booleovskych funkcií. Je to jeden z najpoužívanejších sposobov reprezentácie v kryptografií. Podľa definície z knihy \textit{Boolean Functions and Their Applications in Cryptography} \cite{Feng-anf} je funkcia v ANF, ak je napísaná vo forme ako v \ref{eq_ANF_def}, kde $f(x)$ je daná funkcia, $c_0, c_i, c_{ij}, \dots,  c_{1,\dots,n}$ sú koeficienty o hodnote z množiny $\{0, 1\}$ a $\bigoplus$ reprezentuje operáciu XOR.
 
-$$A \quad \oplus \quad B \quad \oplus \quad AB \quad \oplus \quad ABC$$
+\begin{equation} \label{eq_ANF_def}
+f(x) = c_0 \bigoplus_{1 \leq i \leq n} c_ix_i \bigoplus_{1 \leq i \leq j \leq n} c_{ij}x_ix_j \bigoplus \dots \bigoplus c_{1,\dots,n}x_1x_2\dots x_n
+\end{equation}
 
-Z programátorského pohľadu môžeme hodnotu každého termu reprezentovať ako integer modulo 2. Každý term je v terminológií podľa {\color{red} ODKAZ} jednoduchým polynómom, ktorý v sebe neobsahuje koeficienty ani exponenty. Koeficienty nepotrebujeme, pretože 1 je jediný nenulový koeficient. Exponenty nie sú potrebné pretože v móde modulo 2 platí: $x^2 = x$. Preto napríklad aj zložitejší polynóm ako $3^x 2^y 5^z$ môžeme prepísať na $xyz$.
+Matematicky je dokázané, že pre každú booleovsku funkciu s danými konkrétnymi koeficientami sa dá vytvoriť unikátna ANF.
+
+Celá ANF má taktiež hodnotu z množiny $\{0, 1\}$. Jednotlivé výrazy medzi operátormi XOR nazývame termy. Termy v ANF vytvárame buď kombináciou premenných spojených operáciou AND  a vynásobením koeficientami, prípadne to može byť jeden samostatný koeficient, ak sa v terme premenná nevyskytuje. Príklad možeme vidieť v \ref{eq_ANF_example}. Ako vidíme, ANF sa skladá len z kombinácie operácií AND a XOR, žiadna ďalšia booleovska operácia nie je povolená. Špecificky spomeniem operáciu NOT, ktorá sa bežne vyskytuje v ostatných normálnych formách ako sú DNF a CNF, ale v ANF nie je povolená. 
+%Iný názov pre zápis v ANF je aj Zhegalkinov polynóm alebo Reed-Mullerov výraz.
 	
-\vspace*{0.5\baselineskip}
-Pomocou operácií $\wedge$ a $\neg$ dokážeme vytvoriť všetky ostatné operácie v Booleovskej algebre. Ďalšie operácie sú tvorené len kombináciou týchto dvoch operácií. Keďže v ANF je nie povolená operácia NOT, musíme si ju nejako vytvoriť. Negácia v ANF vzniká XORom premennej a logickej jedničky: x$\oplus$1.
+\begin{equation} \label{eq_ANF_example}
+1 \quad \bigoplus \quad A \quad \bigoplus \quad B \quad \bigoplus \quad AB \quad \bigoplus \quad ABC
+\end{equation}
+
+Ďalej Wu a Feng uvádzajú \cite{Feng-anf}, že počet premenných jedného termu sa nazýva algebraický stupeň termu. Celkový algebraický stupeň celej ANF je stupeň termu s najvyššou hodnotou z danej ANF, ale berú sa len termy s nenulovými koeficientami. Používaná notácia pre algebraický stupeň funkcie je $deg(f)$. Najvyšší možný stupeň booleovskej funkcie o $n$ premenných je $n$, a to len vtedy ako sa v ANF nachádza term, ktorý obsahuje všetkých $n$ premenných.
+
+Algebraický stupeň funkcie sa používa na určenie typu funkcie. Ak je stupeň nulový, funkcia je konštantná (neobsahuje žiadne premenné). Ak je stupeň 1, funkciu nazývame afínnou, a existuje ešte prípad, ak máme afínnnu funkciu bez konštantného termu $c_0$ z definície \ref{eq_ANF_def}, vtedy funkciu nazývame lineárnou. Afínna funkcia je teda buď lineárna alebo lineárna XOR konštanta 1. Takže obe varianty sa vlastne možu považovať za lineárne.
+
+Z programátorského pohľadu môžeme hodnotu každého termu reprezentovať ako integer modulo 2. Každý term je 
+%v terminológií podľa {\color{red} ODKAZ} 
+jednoduchým polynómom, ktorý v sebe neobsahuje koeficienty ani exponenty. Koeficienty nepotrebujeme, pretože 1 je jediný nenulový koeficient. Exponenty nie sú potrebné z dovodu, že každá individuálna premenná v ANF má algebraický stupeň najviac 1, keďže platí, že $x^n = x$, v nezávislosti na tom, či $x = 1$ alebo $x = 0$. Preto napríklad aj zložitejší polynóm ako $3^x 2^y 5^z$ môžeme prepísať na $xyz$ a jednoducho ho reprezentovať v programe.
+	
+
+%\vspace*{0.5\baselineskip}
+%Pomocou operácií $\wedge$ a $\neg$ dokážeme vytvoriť všetky ostatné operácie v Booleovskej algebre. Ďalšie operácie sú tvorené len kombináciou týchto dvoch operácií. Keďže v ANF je nie povolená operácia NOT, musíme si ju nejako vytvoriť. Negácia v ANF vzniká XORom premennej a logickej jedničky: x$\oplus$1.
 
 %	or in standard propositional logic symbols:
 	
 %	${a\veebar b\veebar \left(a\wedge b\right)\veebar \left(a\wedge b\wedge c\right)} $ 
 
-\vspace*{0.5\baselineskip}
+%\vspace*{0.5\baselineskip}
 
-{\color{red}
-An example application is the representation of the Boolean 2-out-of-3 threshold or {\color{blue} median operation} as the Zhegalkin polynomial xy$\oplus$yz$\oplus$zx, which is 1 when at least two of the variables are 1 and 0 otherwise.
+%{\color{red}
+%An example application is the representation of the Boolean 2-out-of-3 threshold or {\color{blue} median operation} as the Zhegalkin polynomial xy$\oplus$yz$\oplus$zx, which is 1 when at least two of the variables are 1 and 0 otherwise.
 
-\begin{itemize}
-	\item	Method of Indeterminate Coefficients
-	\item 	Canonical Disjunctive Normal Form
-\end{itemize}}
+%\begin{itemize}
+%	\item	Method of Indeterminate Coefficients
+%	\item 	Canonical Disjunctive Normal Form
+%\end{itemize}}
 
 \section{Binárne rozhodovacie diagramy} \label{bdds}
 Binárne rozhodovacie diagramy (BDD) sú triedou grafov, ktorá je prevažne využívaná ako dátová štruktúra pre reprezentáciu Booleovskych funkcií. Používajú sa na riešenie problémov ekvivalencie výrazov. Sú veľmi dôležité v oblastiach HW designu a optimalizácie.  
@@ -172,7 +187,7 @@ Označenie BDD sa často používa pre označenie iného typu binárneho rozhodo
 	\item reduced - všetky izomorfné podgrafy sú spojené, a každý uzol, ktorého deti sú izomorfné je zanedbaný
 \end{itemize} 
 
-\chapter{Existujúce knižnice}
+\chapter{Existujúce knižnice} \label{chapter_libraries}
 Existuú viaceré knižnice vytvorené za účelom manipulácie s Booleovskymi funkciami. Nasledujúca kapitola sa zaoberá niektorými vybranými, hlavne tými, ktoré využívajú binárne rozhodovacie stromy (BDD).
 
 \section{Colorado University Decision Diagram
@@ -237,9 +252,9 @@ Existuú viaceré knižnice vytvorené za účelom manipulácie s Booleovskymi f
 \section{PPBF BDD - Parallel partial breadth-first expansion}
 	Knižnica\footnote{\url{http://www.cs.cmu.edu/~bwolen/software/} } pre multiprocesorové paralelné spracovanie BDD. Na prácu potrebuje zdieľanú pamäť. Poskytuje operácie nad kombinačnými obvodmi. 
 	
-\chapter{Návrh}
-\chapter{Implementácia}
-\chapter{Vyhodnotenie}
+\chapter{Návrh} \label{chapter_concept}
+\chapter{Implementácia} \label{chapter_impl}
+\chapter{Vyhodnotenie} \label{chapter_result}
 \chapter{Záver}
 	
 	
@@ -268,13 +283,7 @@ BDD:
 		\item Richard J. Lipton. "BDD's and Factoring". Gödel's Lost Letter and P=NP, 2009.
 		\item Andersen, H. R. (1999). "An Introduction to Binary Decision Diagrams" (PDF). Lecture Notes. IT University of Copenhagen.
 	\end{itemize}
-	ANF:
-	\begin{itemize}
-		\item Bell, Eric (1927). "Arithmetic of Logic". Transactions of the American Mathematical Society. Transactions of the American Mathematical Society, Vol. 29, No. 3. 29 (3): 597–611. doi:10.2307/1989098. JSTOR 1989098.
-		\item Gindikin, S.G. (1972). Algebraic Logic. Moscow: Nauka (English translation Springer-Verlag 1985). ISBN 0-387-96179-8.
-		\item Stone, Marshall (1936). "The Theory of Representations for Boolean Algebras". Transactions of the American Mathematical Society. Transactions of the American Mathematical Society, Vol. 40, No. 1. 40 (1): 37–111. doi:10.2307/1989664. ISSN 0002-9947. JSTOR 1989664.
-		\item Zhegalkin, Ivan Ivanovich (1927). "On the Technique of Calculating Propositions in Symbolic Logic". Matematicheskii Sbornik. 43: 9–28.
-	\end{itemize}
+	
 KNF:
 	\begin{itemize}
 		\item Paul Jackson, Daniel Sheridan: Clause Form Conversions for Boolean Circuits. In: Holger H. Hoos, David G. Mitchell (Eds.): Theory and Applications of Satisfiability Testing, 7th International Conference, SAT 2004, Vancouver, BC, Canada, May 10–13, 2004, Revised Selected Papers. Lecture Notes in Computer Science 3542, Springer 2005, pp. 183–198
@@ -291,4 +300,8 @@ Majority function:
 Reed Muller:
 \begin{itemize}
 	\item Kebschull, U. and Rosenstiel, W., Efficient graph-based computation and manipulation of functional decision diagrams, Proceedings 4th European Conference on Design Automation, 1993, pp. 278–282
+\end{itemize}
+other:
+\begin{itemize}
+	\item Stone, Marshall (1936). "The Theory of Representations for Boolean Algebras". Transactions of the American Mathematical Society. Transactions of the American Mathematical Society, Vol. 40, No. 1. 40 (1): 37–111. doi:10.2307/1989664. ISSN 0002-9947. JSTOR 1989664.
 \end{itemize}
