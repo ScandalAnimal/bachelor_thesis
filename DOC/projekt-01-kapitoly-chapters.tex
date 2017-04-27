@@ -127,7 +127,7 @@ Ak vynecháme redundantné členy, nazývame ich iredundantné normálne formy.
 
 \section{Algebraická normálna forma}
 
-Algebraická normálna forma (skrátene ANF) je jeden z možných spôsobov reprezentácie booleovskych funkcií. Je to jeden z najpoužívanejších sposobov reprezentácie v kryptografií. Podľa definície z knihy \textit{Boolean Functions and Their Applications in Cryptography} \cite{Feng-anf} je funkcia v ANF, ak je napísaná vo forme ako v \ref{eq_ANF_def}, kde $f(x)$ je daná funkcia, $c_0, c_i, c_{ij}, \dots,  c_{1,\dots,n}$ sú koeficienty o hodnote z množiny $\{0, 1\}$ a $\bigoplus$ reprezentuje operáciu XOR.
+Algebraická normálna forma (skrátene ANF) je jeden z možných spôsobov reprezentácie booleovskych funkcií. Ďalším používaným označením je Reed-Mullerova expanzia \cite{Muller-anf}\cite{Reed-anf}. Dnešné vedomosti o ANF pomáhali formovať aj Davio \cite{davio-anf} a Zhegalkin \cite{zhegalkin-anf}.  Je to jeden z najpoužívanejších sposobov reprezentácie v kryptografií. Podľa definície z knihy \textit{Boolean Functions and Their Applications in Cryptography} \cite{Feng-anf} je funkcia v ANF, ak je napísaná vo forme ako v \ref{eq_ANF_def}, kde $f(x)$ je daná funkcia, $c_0, c_i, c_{ij}, \dots,  c_{1,\dots,n}$ sú koeficienty o hodnote z množiny $\{0, 1\}$ a $\bigoplus$ reprezentuje operáciu XOR.
 
 \begin{equation} \label{eq_ANF_def}
 f(x) = c_0 \bigoplus_{1 \leq i \leq n} c_ix_i \bigoplus_{1 \leq i \leq j \leq n} c_{ij}x_ix_j \bigoplus \dots \bigoplus c_{1,\dots,n}x_1x_2\dots x_n
@@ -144,48 +144,40 @@ Celá ANF má taktiež hodnotu z množiny $\{0, 1\}$. Jednotlivé výrazy medzi 
 
 Ďalej Wu a Feng uvádzajú \cite{Feng-anf}, že počet premenných jedného termu sa nazýva algebraický stupeň termu. Celkový algebraický stupeň celej ANF je stupeň termu s najvyššou hodnotou z danej ANF, ale berú sa len termy s nenulovými koeficientami. Používaná notácia pre algebraický stupeň funkcie je $deg(f)$. Najvyšší možný stupeň booleovskej funkcie o $n$ premenných je $n$, a to len vtedy ako sa v ANF nachádza term, ktorý obsahuje všetkých $n$ premenných.
 
-Algebraický stupeň funkcie sa používa na určenie typu funkcie. Ak je stupeň nulový, funkcia je konštantná (neobsahuje žiadne premenné). Ak je stupeň 1, funkciu nazývame afínnou, a existuje ešte prípad, ak máme afínnnu funkciu bez konštantného termu $c_0$ z definície \ref{eq_ANF_def}, vtedy funkciu nazývame lineárnou. Afínna funkcia je teda buď lineárna alebo lineárna XOR konštanta 1. Takže obe varianty sa vlastne možu považovať za lineárne.
+Algebraický stupeň funkcie sa používa na určenie typu funkcie. Ak je stupeň nulový, funkcia je konštantná (neobsahuje žiadne premenné). Ak je stupeň 1, funkciu nazývame afínnou, a existuje ešte prípad, ak máme afínnnu funkciu bez konštantného termu $c_0$ z definície \ref{eq_ANF_def}, vtedy funkciu nazývame lineárnou. Lineárna funkcia teda prechádza bodom [0,0], afínna nemusí. Afínna booleovska funkcia je teda buď lineárna alebo lineárna XOR konštanta 1. Takže obe varianty sa vlastne možu považovať za lineárne.
 
 Z programátorského pohľadu môžeme hodnotu každého termu reprezentovať ako integer modulo 2. Každý term je 
 %v terminológií podľa {\color{red} ODKAZ} 
 jednoduchým polynómom, ktorý v sebe neobsahuje koeficienty ani exponenty. Koeficienty nepotrebujeme, pretože 1 je jediný nenulový koeficient. Exponenty nie sú potrebné z dovodu, že každá individuálna premenná v ANF má algebraický stupeň najviac 1, keďže platí, že $x^n = x$, v nezávislosti na tom, či $x = 1$ alebo $x = 0$. Preto napríklad aj zložitejší polynóm ako $3^x 2^y 5^z$ môžeme prepísať na $xyz$ a jednoducho ho reprezentovať v programe.
 	
-
-%\vspace*{0.5\baselineskip}
-%Pomocou operácií $\wedge$ a $\neg$ dokážeme vytvoriť všetky ostatné operácie v Booleovskej algebre. Ďalšie operácie sú tvorené len kombináciou týchto dvoch operácií. Keďže v ANF je nie povolená operácia NOT, musíme si ju nejako vytvoriť. Negácia v ANF vzniká XORom premennej a logickej jedničky: x$\oplus$1.
-
-%	or in standard propositional logic symbols:
-	
-%	${a\veebar b\veebar \left(a\wedge b\right)\veebar \left(a\wedge b\wedge c\right)} $ 
-
-%\vspace*{0.5\baselineskip}
-
-%{\color{red}
-%An example application is the representation of the Boolean 2-out-of-3 threshold or {\color{blue} median operation} as the Zhegalkin polynomial xy$\oplus$yz$\oplus$zx, which is 1 when at least two of the variables are 1 and 0 otherwise.
-
-%\begin{itemize}
-%	\item	Method of Indeterminate Coefficients
-%	\item 	Canonical Disjunctive Normal Form
-%\end{itemize}}
-
-\section{Binárne rozhodovacie diagramy} \label{bdds}
-Binárne rozhodovacie diagramy (BDD) sú triedou grafov, ktorá je prevažne využívaná ako dátová štruktúra pre reprezentáciu Booleovskych funkcií. Používajú sa na riešenie problémov ekvivalencie výrazov. Sú veľmi dôležité v oblastiach HW designu a optimalizácie.  
-
 \vspace*{0.5\baselineskip}
-Pre BDD platia tieto pravidlá:
+Pomocou operácií AND $\wedge$ a NOT $\neg$ dokážeme vytvoriť všetky ostatné operácie v Booleovskej algebre. Ďalšie operácie sú tvorené len kombináciou týchto dvoch operácií. Keďže v ANF je nie povolená operácia NOT, musíme si ju nejako vytvoriť. Negácia v ANF vzniká XORom premennej a logickej jedničky: x $\bigoplus$ 1. Týmto sposobom dokážeme previesť do ANF aj funkcie z iných normálnych foriem, prípadne aj z iných reprezentácií.
+
+TODO:
 \begin{itemize}
-	\item BDD obsahuje práve 1 uzol, ktorý nemá žiadnych predchodcov - nazývame ho koreň
-	\item obsahuje 1 alebo 2 uzly, ktoré nemajú ďalších nasledovníkov (označuje 0, resp. 1)
-	\item všetky ostatné uzly sú označené názvom premennej a majú práve 2 nasledovníkov: {\color{red} 0-child a 1-child}, hrany vedúce k týmto nasledovníkom sú označené 0 a 1
-	\item každý synovský uzol je označený buď ako 0,1 alebo premennou vyššou ako označenie otcovského uzlu.
+	\item porovnanie s CNF a DNF
+	\item riesenie bf
+	\item boolean satisfiability
 \end{itemize}
 
-Označenie BDD sa často používa pre označenie iného typu binárneho rozhodovacieho diagramu, a to ROBDD (Reduced Ordered BDD). V podstate sa jedná o optimalizovaný klasický BDD. Pre ROBDD platia 2 pravidlá oproti BDD:
+\section{Binárne rozhodovacie diagramy} \label{bdds}
+Binárne rozhodovacie diagramy (BDD) sú triedou grafov, ktorá je prevažne využívaná ako dátová štruktúra pre reprezentáciu Booleovskych funkcií v dnešnej dobe. Existujú viaceré implementácie, ktoré sú postavené práve na BDD. Používajú sa na riešenie problémov ekvivalencie a splniteľnosti výrazov. Sú veľmi dôležité v oblastiach HW designu a optimalizácie.  
 
-\begin{itemize}
-	\item ordered - ak sa premenné na rôznych cestách v diagramu vyskytujú všade v rovnakom poradí
-	\item reduced - všetky izomorfné podgrafy sú spojené, a každý uzol, ktorého deti sú izomorfné je zanedbaný
-\end{itemize} 
+%\vspace*{0.5\baselineskip}
+%Pre BDD platia tieto pravidlá:
+%\begin{itemize}
+%	\item BDD obsahuje práve 1 uzol, ktorý nemá žiadnych predchodcov - nazývame ho koreň
+%	\item obsahuje 1 alebo 2 uzly, ktoré nemajú ďalších nasledovníkov (označuje 0, resp. 1)
+%	\item všetky ostatné uzly sú označené názvom premennej a majú práve 2 nasledovníkov: {\color{red} 0-child a 1-child}, hrany vedúce k týmto nasledovníkom sú označené 0 a 1
+%	\item každý synovský uzol je označený buď ako 0,1 alebo premennou vyššou ako označenie otcovského uzlu.
+%\end{itemize}
+
+%Označenie BDD sa často používa pre označenie iného typu binárneho rozhodovacieho diagramu, a to ROBDD (Reduced Ordered BDD). V podstate sa jedná o optimalizovaný klasický BDD. Pre ROBDD platia 2 pravidlá oproti BDD:
+
+%\begin{itemize}
+%	\item ordered - ak sa premenné na rôznych cestách v diagramu vyskytujú všade v rovnakom poradí
+%	\item reduced - všetky izomorfné podgrafy sú spojené, a každý uzol, ktorého deti sú izomorfné je zanedbaný
+%\end{itemize} 
 
 \chapter{Existujúce knižnice} \label{chapter_libraries}
 Existuú viaceré knižnice vytvorené za účelom manipulácie s Booleovskymi funkciami. Nasledujúca kapitola sa zaoberá niektorými vybranými, hlavne tými, ktoré využívajú binárne rozhodovacie stromy (BDD).
@@ -259,10 +251,6 @@ Existuú viaceré knižnice vytvorené za účelom manipulácie s Booleovskymi f
 	
 	
 \chapter{TODO}	
-
-boolean satisfability SAT, picosat
-
-	ODKAZY:
 				
 BDD:
 	\begin{itemize}
