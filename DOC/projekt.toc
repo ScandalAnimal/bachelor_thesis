@@ -19,6 +19,6 @@
 \contentsline {chapter}{\numberline {6}Vyhodnotenie}{13}{chapter.6}
 \contentsline {chapter}{\numberline {7}Z\IeC {\'a}ver}{14}{chapter.7}
 \contentsline {chapter}{\numberline {8}TODO}{15}{chapter.8}
-\contentsline {chapter}{Literat\IeC {\'u}ra}{18}{chapter*.2}
-\contentsline {chapter}{Pr\IeC {\'\i }lohy}{19}{section*.3}
+\contentsline {chapter}{Literat\IeC {\'u}ra}{17}{chapter*.2}
+\contentsline {chapter}{Pr\IeC {\'\i }lohy}{18}{section*.3}
 \contentsfinish 

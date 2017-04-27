@@ -22,6 +22,10 @@ Guanfeng, L.; Kaile, S.; Yanyan, X.: CacBDD: A BDD Package with Dynamic Cache
 Hazewinkel, M.: \emph{Encyclopaedia of Mathematics}. Springer, 1994, ISBN
   9781556080104.
 
+\bibitem{Koppelberg-bool}
+Koppelberg, S.: \emph{Handbook of Boolean algebras Volume 1}. North Holland,
+  1989, ISBN 044470261X.
+
 \bibitem{CUDD-manual}
 Somenzi, F.: CUDD: CU Decision Diagram Package 3.0.0. [Online; 19.01.2017].
 \newline\urlprefix\url{http://vlsi.colorado.edu/~fabio/CUDD/cudd.pdf}

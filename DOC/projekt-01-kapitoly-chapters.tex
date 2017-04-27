@@ -35,7 +35,7 @@ Celkový počet rôznych booleovskych funkcií pre $n$ premenných je $2^{2^n}$.
 \end{table}
 
 V mnohých aplikáciách sa pre predstavu hodnôt množiny $\mathcal{B}$ namiesto dvojice \{0,1\} používa iná dvojica, napríklad \{true,false\}, \{1,-1\}, \{on,off\}, \{áno,nie\}, vždy to ale označuje opačné hodnoty. 
-Množina $\mathcal{B}$ spolu so základnými booleovskymi operáciami konjunkciou $\wedge$, disjunkciou $\vee$ a negáciou $\neg$ tvorí Booleovsku algebru. Booleovskú algebru tvorí niekoľko základných pravidiel, ktoré sú popísané v Tabuľke \ref{table:boolAlgebra}.
+Množina $\mathcal{B}$ spolu so základnými booleovskymi operáciami konjunkciou $\wedge$, disjunkciou $\vee$ a negáciou $\neg$ tvorí Booleovsku algebru. Tieto operácie majú podobne ako dvojica \{0,1\} viacero používaných zápisov, napríklad \{$\cap, \cup, -$\} alebo \{$+, \cdot, -$\}\cite{Koppelberg-bool}. Booleovskú algebru tvorí niekoľko základných pravidiel, ktoré sú popísané v Tabuľke \ref{table:boolAlgebra}.
 
 \begin{table}[h]
 	\centering
@@ -64,6 +64,7 @@ Množina $\mathcal{B}$ spolu so základnými booleovskymi operáciami konjunkcio
 	\label{table:boolAlgebra}
 \end{table}
 
+Operáciou, ktorá nepatrí do trojice základných booleovskych operácií, ale v programovaní má svoje veľké využitie je XOR. Je možné ho vytvoriť kombináciou ostatných operácií. Využíva sa napríklad pri konštrukcií obvodov alebo v generátoroch pseudonáhodných čísel. 
 \section{Reprezentácia booleovskych funkcií}
 Booleovske funkcie môžu byť vyjadrené rôznymi spôsobmi. Záleží hlavne na tom, čo plánujeme s danou funkciou robiť. Niektoré zápisy sú vhodnejšie na matematické výpočty, iné zase na prehľadné prezeranie dát. 
 
@@ -248,13 +249,6 @@ boolean satisfability SAT, picosat
 
 	ODKAZY:
 				
-	Pravdivostne tabulky:
-	\begin{itemize}
-		\item Georg Henrik von Wright (1955). "Ludwig Wittgenstein, A Biographical Sketch". The Philosophical Review. 64 (4): 527–545 (p. 532, note 9). doi:10.2307/2182631. JSTOR 2182631.
-		\item Emil Post (July 1921). "Introduction to a general theory of elementary propositions". American Journal of Mathematics. 43 (3): 163–185. doi:10.2307/2370324. JSTOR 2370324.
-		\item Ludwig Wittgenstein (1922) Tractatus Logico-Philosophicus \url{http://www.gutenberg.org/ebooks/5740?msg=welcome_stranger}
-		\item Anellis, Irving H. (2012). "Peirce's Truth-functional Analysis and the Origin of the Truth Table". History and Philosophy of Logic. 33: 87–97. doi:10.1080/01445340.2011.621702.
-	\end{itemize}
 BDD:
 	\begin{itemize}
 		\item  Graph-Based Algorithms for Boolean Function Manipulation, Randal E. Bryant, 1986
