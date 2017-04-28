@@ -245,10 +245,80 @@ Existuú viaceré knižnice vytvorené za účelom manipulácie s Booleovskymi f
 \section{PPBF BDD - Parallel partial breadth-first expansion}
 	Knižnica\footnote{\url{http://www.cs.cmu.edu/~bwolen/software/} } pre multiprocesorové paralelné spracovanie BDD. Na prácu potrebuje zdieľanú pamäť. Poskytuje operácie nad kombinačnými obvodmi. 
 	
-\chapter{Návrh} \label{chapter_concept}
-\chapter{Implementácia} \label{chapter_impl}
-\chapter{Vyhodnotenie} \label{chapter_result}
+\chapter{Návrh}
+V tejto kapitole si bližšie popíšeme návrh knižnice pre manipuláciu s booleovskymi funkciami v ANF. Vysvetlíme si ako efektívne reprezentovať všetky časti booleovskej funkcie v programe. Takisto si navrhneme všetky potrebné operácie pre reprezentáciu funkcie v ANF. 
+
+Základné vlastnosti, ktoré sa od knižnice požadujú sú efektívna reprezentácia a manipulácia s booleovskymi funkciami. Knižnica by mala obsahovať nástroje použiteľné na vytváranie, úpravu, zobrazovanie a mazanie funkcií a ich jednotlivých súčastí.
+
+Ďalšou požiadavkou na knižnicu je určite čo najefektívnejšia práca s pamäťou, a takisto aj rýchlosť pri manipulácií s veľkým počtom funkcií, prípadne premenných vo funkciách.
+
+\section{Voľba technológií}
+Väčšina existujúcich knižníc pre manipuláciu s booleovskymi funkciami bola vytvorená v programovacom jazyku C, prípadne C++. Pri tvorbe knižnice je treba dbať na rýchlosť a pamäťové nároky, preto sme si zvolili jazyk C. Programovacie jazyky vyššej úrovne sme odmietli z dôvodu, že v C sa dajú dosiahnuť najlepšie výsledky práve v týchto 2 kategóriách.
+
+Ako platformu pre vývoj knižnice sme podobne ako existujúce riešenia zvolili UNIX.
+
+\section{Reprezentácia premenných}
+Každá booleovska funkcia obsahuje 0 až n premenných, ktoré je potrebné efektívne reprezentovať. Každá premenná má svoje pomenovanie a booleovskú hodnotu. Povolená dlžka názvu premennej by mala byť dostatočná, aby sme dokázali unikátne reprezentovať veľký počet premenných.
+
+\vspace*{0.5\baselineskip}
+\begin{lstlisting}[language=C, frame=tb]
+  typedef struct variable {
+    char* name;
+    bool value;
+  } tVar;
+\end{lstlisting}
+
+\vspace*{0.5\baselineskip}
+Premenné sa môžu vyskytovať v jednotlivých termoch funkcie opakovane, a takisto premenná môže byť súčasťou viacerých termov vo funkcii. Keďže má premenná vo všetkych svojich výskytoch rovnakú booleovskú hodnotu, je potrebné zaistiť, aby sa takéto duplicitné výskyty neukladali do pamäte opakovane.
+
+Obor všetkých premenných je možné reprezentovať viacerými spôsobmi. Klasické pole poskytuje výhodu, že operácia vyhľadávania je rýchla, ak vieme presný index, na ktorý chceme pristúpiť. To by bolo využiteľné, ak by premenné v booleovskej funkcií mali len číselný index, a generovali sa od najnižších indexov po najvyššie (aby sme zbytočne nealokovali pamäť o väčšej veľkosti než je potrebná). V našom prípade by premenné mali mať ľubovoľné pomenovanie, a teda tento postup sa ukázal ako nevhodný.
+
+Druhým spôsobom je použitie hashovacej tabuľky. Tá rieši vyššie spomenutý problém, pretože ak poznáme kľúč k danému záznamu, prístup k jeho hodnote je veľmi rýchly, v závislosti na hashovacej funkcii. V hashovacej tabuľke je možné zaistiť aj riešenie problému s ukladaním duplicitných záznamov, a to kontrolou, či záznam s daným kľúčom už v tabuľke existuje.
+
+\section{Hashovacia tabuľka premenných}
+Keďže v jazyku C neexistuje štruktúra ako hashovacia tabuľka, je potrebné nejakú vytvoriť. Kľúčom ku korektnému správaniu je voľba správnej hashovacej funkcie pre účely knižnice.
+
+Primárnym účelom knižnice je jej využitie v obvodovej štruktúre tvorenej spätnoväzobným registrom ... ({\color{red}TODO}). Pre tieto účely nie je potrebné šifrovať záznamy v hashmapy, keďže by sa malo jednať o čo najjednoduchšiu implementáciu. Preto sme sa rozhodli vyberať z nešifrovaných hashovacích funkcií, a podľa požadovaných parametrov zvoliť najlepšiu alternatívu.
+
+Existuje veľké množstvo voľne dostupných samostatných implementácií hashovacej tabuľky. Nástroj SMHasher\footnote{\url{https://github.com/aappleby/smhasher}} a jeho rozšírená verzia\footnote{\url{https://github.com/rurban/smhasher}} poskytujú dobré porovnanie existujúcich hashovacích algoritmov.
+
+Analýzou SMHasherom ako jedny z najlepších prešli hashovacie algoritmy Spooky32, xxHash64 a fasthash.
+
+{\color{red}
+	TODO - prečo som použil čo som použil
+}
+
+Výsledná hashovacia tabuľka by mala obsahovať okrem záznamov aj záznam o celkovej kapacite a o aktuálne využitej kapacite. Každý záznam obsahuje informáciu, či existuje premenná booleovskej funkcie, ktorej hodnota sa mapuje do daného záznamu.
+
+\vspace*{0.5\baselineskip}
+\begin{lstlisting}[language=C, frame=tb]
+  typedef struct hashMapRecord {
+    char *key;
+    bool value;
+    bool used;
+  } tHashMapRecord;
+  
+  typedef struct hashMap {
+    tHashMapRecord *records;
+    int capacity;
+    int usedCapacity;
+  } tHashMap;
+\end{lstlisting}
+
+\vspace*{0.5\baselineskip}
+
+\chapter{Implementácia}
+\chapter{Vyhodnotenie}
 \chapter{Záver}
+
+TODO
+Možné rozšírenie: 
+
+Zadanie explicitne špecifikuje, že sa knižnica bude zaoberať manipuláciou booleovskych funkcií v ANF, preto pri navrhovaní knižnice bude na to braný zreteľ. Možným rozšírením by bolo vytvorenie konvertoru, ktorý by dokázal dostať na vstup booleovsku funkciu aj v inej reprezentácií ako je ANF, skonvertovať ju na ANF a ďalej potom pracovať s knižnicou. Toto rozšírenie je však ponechané mimo tejto práce.
+
+rozšírenie pre iné platformy?
+
+rozne hash funkcie?
 	
 	
 \chapter{TODO}	
