@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\urlprefix}{URL }
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -13,6 +13,10 @@ Crama, Y.; Hammer, P.~L.: \emph{Boolean Functions: Theory, Algorithms, and
   Applications}. NY, New York: Cambridge University Press, 2011, ISBN
   9780521847513, \doi{10.1017/CBO9780511852008}.
 
+\bibitem{davio-anf}
+Davio, P.; Deschamps, J.~P.; Thayse, A.: \emph{Discrete and Switching
+  Functions}. New York: McGraw-Hill, 1978.
+
 \bibitem{CacBDD-manual}
 Guanfeng, L.; Kaile, S.; Yanyan, X.: CacBDD: A BDD Package with Dynamic Cache
   Management. [Online; 20.01.2017].
@@ -22,8 +26,30 @@ Guanfeng, L.; Kaile, S.; Yanyan, X.: CacBDD: A BDD Package with Dynamic Cache
 Hazewinkel, M.: \emph{Encyclopaedia of Mathematics}. Springer, 1994, ISBN
   9781556080104.
 
+\bibitem{Koppelberg-bool}
+Koppelberg, S.: \emph{Handbook of Boolean algebras Volume 1}. North Holland,
+  1989, ISBN 044470261X.
+
+\bibitem{Muller-anf}
+Muller, D.~E.: \emph{Applications of Boolean Algebra to Switching Circuit
+  Design and to Error Detection}. IRE Trans. Electronic Computers, vol. 3,
+  1954, pp. 6-12.
+
+\bibitem{Reed-anf}
+Reed, I.~S.: \emph{A Class of Multiple-Error-Correcting Codes and Their
+  Decoding Scheme}. IRE Trans. Information Theory, vol. 4, 1954, pp. 38-42.
+
 \bibitem{CUDD-manual}
 Somenzi, F.: CUDD: CU Decision Diagram Package 3.0.0. [Online; 19.01.2017].
 \newline\urlprefix\url{http://vlsi.colorado.edu/~fabio/CUDD/cudd.pdf}
+
+\bibitem{Feng-anf}
+Wu, C.-K.; Feng, D.: \emph{Boolean Functions and Their Applications in
+  Cryptography (Advances in Computer Science and Technology)}. Springer, 2016,
+  ISBN 978-3-662-48865-2.
+
+\bibitem{zhegalkin-anf}
+Zhegalkin, I.~I.: \emph{On the Technique of Calculation the Sentences in
+  Symbolic Logic}. Matem. Sbornik, vol. 34, 1927, pp. 9-28, v ruštine.
 
 \end{thebibliography}

@@ -1,20 +1,24 @@
 \chapter{Úvod}
-Booleovské funkcie majú v dnešnej dobe veľké využitie. V matematike sa využívajú na určenie pravdivostnej hodnoty výrokov, v elektrotechnike na vytváranie kombinačných obvodov, takisto ich môžeme vidieť na pozadí teórie hier či v legislatíve.
+Booleova algebra má značné využitie vo viacerých oblastiach vedy. Jej základným a dnes hlavným využitím je binárna reprezentácia stavov tranzistorov v počítačovej vede, a tým pádov využitie jediného bitu. Okrem toho ale svoje využitie nachádza aj pri návrhu číslicových obvodov ako efektívna reprezentácia chovania jednotlivých harvérových komponentov, v teórií grafov pre návrh orientovaných grafov, či v klasickom high-level programovaní ako vyjadrenie rôznych stavov systému.
 
-O COM PISAT:
-\begin{itemize}
-	\item popisat motivaciu k projektu
-	\item aktualne pouzivane reprezentacie
-	\item existujuce riesenie
-	\item popis vytvoreneho riesenia
-\end{itemize}
-\chapter{Booleovske funkcie}
-V tejto kapitole sa nachádza teoretický úvod do problematiky booleovskych funkcií, postupne bude definované čo vlastne sú booleovske funkcie, čo sa dá pomocou nich popísať a aký môže byť ich obsah. Ďalej budú popísané rôzne možnosti zobrazenia booleovskych funkcií napríklad pravdivostné tabuľky a ďalšie. Kapitola takisto definuje rôzne normalizované formy zápisu booleovskych funkcií, pričom dôraz bude kladený hlavne na algebraickú normálnu formu, ktorej reprezentácia je cieľom celej práce.
+Bohaté využitie má takisto aj v matematike vo výrokovej logike a kombinatorike. Uplatnenie booleovej algebry je možné vidieť aj v oblasti umelej inteligencie, teórie mechanického učenia a teórie hier. Z netechnických odborov stojí za zmienku oblasť legislatívy, kde sa využíva booleova logika napríklad pri voľbách do štátnych funkcií.
+
+Existujú viaceré reprezentácie booleovskych funkcií, ktoré sa líšia svojím využitíme. Klasické reprezentácie formou pravdivostných tabuliek nachádzajú svoje využitie v matematike, ale pre informatiku nie sú vhodné. V priebehu času boli vyvinuté rôzne metódy pre symbolizáciu týchto funkcií v počítačovom programe, z nich najpoužívanejšia je reprezentácia binárnymi rozhodovacími diagramami (skrátene BDD z anglického Binary Decision Diagram). Jednou z výhod reprezentácie pomocou BDD je, že dokážu vytvoriť kanonickú formu funkcie. BDD umožňujú veľmi dobre zisťovať ekvivalenciu a splniteľnosť booleovskych funkcií.
+
+Reprezentácia pomocou BDD v informatike je síce najrozšírenejšia, ale booleovske funkcie sa dajú reprezentovať aj inou formou. V tejto práci sa budeme zaoberať reprezentáciou boolevskych funkcií pomocou algebraickej normálnej formy (skrátene ANF). ANF poskytuje výhodu oproti BDD v tom, že obsahuje len operácie AND a XOR, a tým pádom sa jej implementácia značne zjednodušuje. Takisto je z ANF možné rýchlo vyčítať hodnotu danej funkcie, a takisto vypočítať jej splniteľnosť v rozumnom čase. 
+
+Vytvorená knižnica poskytuje prostriedky pre efektívnu manipuláciu a zobrazovanie booleovskych funkcií v ANF. Motiváciou pre vytvorenie knižnice bolo vytvoriť slušnú alternatívu pre klasické reprezentácie pomocou BDD pre špecifické problémy, ktoré nepotrebujú komplexnuú reprezentáciu BDD, ale vystačia si aj s ANF.
+
+V tejto práci si v kapitole \ref{chapter_theory} povieme najskôr niečo teoreticky o rôznych reprezentáciách booleovskych funkcií, o ich výhodách a necýhodách. V kapitole \ref{chapter_libraries} si odprezentujeme existujúce knižnice a ich využitie v praxi. V kapitole \ref{chapter_concept} sa budeme zaoberať technickým návrhom knižnice, v kapitole \ref{chapter_impl} jej konkrétnou implementáciou. Na záver si v kapitole \ref{chapter_result} porovnáme vytvorenú knižnicu s existujúcimi a vyvodíme z toho závery. 
+ 
+
+\chapter{Booleovske funkcie} \label{chapter_theory}
+V tejto kapitole sa nachádza teoretický úvod do problematiky booleovskych funkcií, postupne bude definované čo vlastne sú booleovske funkcie, čo sa dá pomocou nich popísať a aký môže byť ich obsah. Ďalej budú popísané rôzne možnosti zobrazenia booleovskych funkcií napríklad pravdivostné tabuľky a ďalšie. Kapitola takisto definuje rôzne normalizované formy zápisu booleovskych funkcií, pričom dôraz bude kladený hlavne na algebraickú normálnu formu, ktorej reprezentácia je cieľom celej práce. Podrobnejšie bude popísaná aj reprezentácia binárnymi rozhodovacími diagramami, ktoré sú momentálne najpoužívanejšou reprezentáciou v oblasti počítačovej vedy.
 
 \section{Definícia booleovskej funkcie}
-Ako uvádza Crama \cite{Crama-bool}, booleovská funkcia je každá funkcia $f: \mathcal{B}^{n} \rightarrow \mathcal{B}$, kde $\mathcal{B}$ je množina $\{0,1\}$, $n$ je kladné prirodzené číslo, a $\mathcal{B}^{n}$ označuje $n$-násobný kartézsky súčin množiny $\mathcal{B}$ samej so sebou. Každý bod funkcie $X^*$ = ($x_1,x_2, \ldots, x_n$) naberá hodnotu buď 0 alebo 1.
+Ako uvádza Crama \cite{Crama-bool}, booleovská funkcia je každá funkcia $f: \mathcal{B}^{n} \rightarrow \mathcal{B}$, kde $\mathcal{B}$ je množina $\{0,1\}$, v ktorej $n$ je kladné prirodzené číslo, a $\mathcal{B}^{n}$ označuje $n$-násobný kartézsky súčin množiny $\mathcal{B}$ samej so sebou. Každý bod funkcie $X^*$ = ($x_1,x_2, \ldots, x_n$) naberá hodnotu buď 0 alebo 1 z množiny $\mathcal{B}$.
 
-Celkový počet booleovskych funkcií pre $n$ premenných je $2^{2^n}$. Je to dané tým, že všetkých možných kombinácií vstupných parametrov je ($2^n$) a parametre môžu mať hodnotu z $\{0,1\}$. Počet možných booleovských funkcií pre niektoré hodnoty $n$ sa nachádza v Tabuľke {\ref{table:functionCountExample}}.
+Celkový počet rôznych booleovskych funkcií pre $n$ premenných je $2^{2^n}$. Je to dané tým, že všetkých možných kombinácií vstupných parametrov je ($2^n$) a parametre môžu mať hodnotu z $\{0,1\}$. Tento počet obsahuje aj kombináciu o 0 prvkoch, takže sa častejšie uvádza číslo $2^{2^n-1}$. Počet možných booleovských funkcií pre niektoré hodnoty $n$ sa nachádza v Tabuľke {\ref{table:functionCountExample}}. Je vidieť že počet možných kombinácií prudko narastá s počtom premenných, a teda efektívna reprezentácia je nutnosťou.
 
 \begin{table}[h]
 	\centering
@@ -23,14 +27,15 @@ Celkový počet booleovskych funkcií pre $n$ premenných je $2^{2^n}$. Je to da
 		1 & 4   \\
 		2 & 16  \\
 		3 & 256 \\
-		5 & 4.29497 $\times 10^9$ \\ \hline
+		5 & 4.29497 $\times 10^9$ \\ 
+		6 & 1.84467 $\times 10^{19}$ \\ \hline
 	\end{tabular}
 	\caption{Počet booleovských funkcií pre vybrané hodnoty $n$}
 	\label{table:functionCountExample}
 \end{table}
 
-V mnohých aplikáciách sa namiesto hodnôt \{0,1\} používa iná dvojica, napríklad \{true,false\}, \{on,off\}, \{áno,nie\}, vždy to ale označuje opačné hodnoty. 
-Množina $\mathcal{B}$ spolu so základnými booleovskymi operáciami konjunkciou, disjunkciou a negáciou tvorí Booleovsku algebru. Booleovskú algebru tvorí niekoľko základných pravidiel, ktoré sú popísané v Tabuľke \ref{table:boolAlgebra}.
+V mnohých aplikáciách sa pre predstavu hodnôt množiny $\mathcal{B}$ namiesto dvojice \{0,1\} používa iná dvojica, napríklad \{true,false\}, \{1,-1\}, \{on,off\}, \{áno,nie\}, vždy to ale označuje opačné hodnoty. 
+Množina $\mathcal{B}$ spolu so základnými booleovskymi operáciami konjunkciou $\wedge$, disjunkciou $\vee$ a negáciou $\neg$ tvorí Booleovsku algebru. Tieto operácie majú podobne ako dvojica \{0,1\} viacero používaných zápisov, napríklad \{$\cap, \cup, -$\} alebo \{$+, \cdot, -$\}\cite{Koppelberg-bool}. Booleovskú algebru tvorí niekoľko základných pravidiel, ktoré sú popísané v Tabuľke \ref{table:boolAlgebra}.
 
 \begin{table}[h]
 	\centering
@@ -59,12 +64,12 @@ Množina $\mathcal{B}$ spolu so základnými booleovskymi operáciami konjunkcio
 	\label{table:boolAlgebra}
 \end{table}
 
-\newpage
+Operáciou, ktorá nepatrí do trojice základných booleovskych operácií, ale v programovaní má svoje veľké využitie je XOR. Je možné ho vytvoriť kombináciou ostatných operácií. Využíva sa napríklad pri konštrukcií obvodov alebo v generátoroch pseudonáhodných čísel. 
 \section{Reprezentácia booleovskych funkcií}
 Booleovske funkcie môžu byť vyjadrené rôznymi spôsobmi. Záleží hlavne na tom, čo plánujeme s danou funkciou robiť. Niektoré zápisy sú vhodnejšie na matematické výpočty, iné zase na prehľadné prezeranie dát. 
 
 \vspace*{0.5\baselineskip}
-Prvým možným zápisom je tzv. pravdivostná tabuľka. Je to tabuľka, v ktorej na každom riadku je hodnota funkcie pri inú kombináciu vstupných hodnôt funkcie. Pravdivostné tabuľky majú dobré využitie pre funkcie do 4-5 parametrov. Pre vyšší počet parametrov sa stávajú neprehľadnými pre vysoký počet možných kombinácií. Príklad pravdivostnej tabuľky pre 2 vstupné hodnoty sa nachádza v Tabuľke \ref{table:truthTable}. 
+Prvým možným zápisom je pravdivostná tabuľka. Je to tabuľka, v ktorej na každom riadku je hodnota funkcie pri inú kombináciu vstupných hodnôt funkcie. Pravdivostné tabuľky majú dobré využitie pre funkcie do 3-4 parametrov. Pre vyšší počet parametrov sa stávajú neprehľadnými pre vysoký počet možných kombinácií. Príklad pravdivostnej tabuľky pre 2 vstupné hodnoty sa nachádza v Tabuľke \ref{table:truthTable}. 
 
 \begin{table}[h]
 	\centering
@@ -79,10 +84,10 @@ Prvým možným zápisom je tzv. pravdivostná tabuľka. Je to tabuľka, v ktore
 	\label{table:truthTable}
 \end{table}
 
-Upravenou formou pravdivostnej tabuľky je Karnaughova mapa. Je to forma zápisu ktorá prevádza n-rozmernú booleovsku funkciu do 2-rozmernej. Využíva sa hlavne pri minimalizácii funkcií. Príklad sa nachádza na Obrázku \ref{picture:KarnaughMap}
+Upravenou formou pravdivostnej tabuľky je Karnaughova mapa. Je to forma zápisu ktorá prevádza n-rozmernú booleovsku funkciu do 2-rozmernej. Jej výhdou je, že sa pomocou nej dá funkcia pekne vizualizovať, do 5 premenných poskytuje stále dobrú predstavu. Využíva sa hlavne pri minimalizácii funkcií. Je vhodná pre ľudskú predstavu funkcie, pre počítač existujú efektívnejšie alternatívy. Príklad Karnaughovej mapy sa nachádza na Obrázku \ref{picture:KarnaughMap}.
 
 
-Ďalším zo zápisov je logický obvod. Ide o schému, ktorá graficky zobrazuje booleovsku funkciu. Tento zápis je vhodnejší pre fyzikálne zamerané úlohy, alebo pre pokročilejšie úlohy, ktoré obsahujú zložitejšie funkcie, a tie sa dajú prehľadne zobraziť logickým obvodom. Príklad zobrazenia funkcie $(A \wedge B) \vee C$ vidíme na Obrázku \ref{picture:logicalCircuit}
+Ďalším zo zápisov je logický obvod. Ide o schému, ktorá graficky zobrazuje booleovsku funkciu. Tento zápis je vhodnejší pre fyzikálne zamerané úlohy, alebo pre pokročilejšie úlohy, ktoré obsahujú zložitejšie funkcie, a tie sa dajú prehľadne zobraziť logickým obvodom. Logický obvod narozdiel od predošlých reprezentácií neukazuje všetky možné kombinácie hodnôt, ale len štruktúru danej funkcie. Dá sa použiť aj pre reprezentáciu funkcie o viacerých premenných než predošlé alternatívy. Príklad zobrazenia funkcie $(A \wedge B) \vee C$ vidíme na Obrázku \ref{picture:logicalCircuit}.
 
 \begin{figure}[ht]
 	\centering
@@ -102,7 +107,7 @@ Upravenou formou pravdivostnej tabuľky je Karnaughova mapa. Je to forma zápisu
 
 V technických odvetviach sa využívajú určité štandardné výrazy, ktoré sa dajú dobre využiť pri vytváraní kombinačných obvodov. Tieto výrazy sa nazývajú normálne formy a existuje ich niekoľko. Rôznymi typmi normálnych foriem sa zaoberá sekcia \ref{normal-forms}.
 
-Pre strojovú reprezentáciu Booleovskych funkcií sa ukázali ako najvhodnejšie binárne rozhodovacie diagramy (BDD) a ich rôzne modifikácie, bude im venovaná samostatná sekcia \ref{bdds}.
+Pre strojovú reprezentáciu Booleovskych funkcií sa ukázali vhodné aj binárne rozhodovacie diagramy (BDD) a ich rôzne modifikácie, bude im venovaná samostatná sekcia \ref{bdds}.
 
 \section{Normálne formy} \label{normal-forms}
 Normálna forma je každý výraz v tvare:
@@ -114,7 +119,7 @@ Podľa typu termov a typu operácie poznáme niekoľko základných normálnych 
 
 \begin{itemize}
 	\item disjunktívna - termy sú konjunkciou premenných a operáciou je disjunkcia
-	\item konjunktívna - termy sú disnkciou premeenných a operáciou je konjunkcia  
+	\item konjunktívna - termy sú disjunkciou premenných a operáciou je konjunkcia  
 \end{itemize}
 
 Ak sa v každom terme v spomenutých normálnych formách vyskytuje premenná práve raz, tieto normálne formy nazývame úplná disjunktívna/konjunktívna normálna forma. 
@@ -122,52 +127,60 @@ Ak vynecháme redundantné členy, nazývame ich iredundantné normálne formy.
 
 \section{Algebraická normálna forma}
 
-Algebraická normálna forma (skrátene ANF) je jeden z možných spôsobov reprezentácie booleovskych funkcií. Iný názov pre zápis v ANF je aj Zhegalkinov polynóm alebo Reed-Mullerov výraz.
+Algebraická normálna forma (skrátene ANF) je jeden z možných spôsobov reprezentácie booleovskych funkcií. Ďalším používaným označením je Reed-Mullerova expanzia \cite{Muller-anf}\cite{Reed-anf}. Dnešné vedomosti o ANF pomáhali formovať aj Davio \cite{davio-anf} a Zhegalkin \cite{zhegalkin-anf}.  Je to jeden z najpoužívanejších sposobov reprezentácie v kryptografií. Podľa definície z knihy \textit{Boolean Functions and Their Applications in Cryptography} \cite{Feng-anf} je funkcia v ANF, ak je napísaná vo forme ako v \ref{eq_ANF_def}, kde $f(x)$ je daná funkcia, $c_0, c_i, c_{ij}, \dots,  c_{1,\dots,n}$ sú koeficienty o hodnote z množiny $\{0, 1\}$ a $\bigoplus$ reprezentuje operáciu XOR.
+
+\begin{equation} \label{eq_ANF_def}
+f(x) = c_0 \bigoplus_{1 \leq i \leq n} c_ix_i \bigoplus_{1 \leq i \leq j \leq n} c_{ij}x_ix_j \bigoplus \dots \bigoplus c_{1,\dots,n}x_1x_2\dots x_n
+\end{equation}
+
+Matematicky je dokázané, že pre každú booleovsku funkciu s danými konkrétnymi koeficientami sa dá vytvoriť unikátna ANF.
+
+Celá ANF má taktiež hodnotu z množiny $\{0, 1\}$. Jednotlivé výrazy medzi operátormi XOR nazývame termy. Termy v ANF vytvárame buď kombináciou premenných spojených operáciou AND  a vynásobením koeficientami, prípadne to može byť jeden samostatný koeficient, ak sa v terme premenná nevyskytuje. Príklad možeme vidieť v \ref{eq_ANF_example}. Ako vidíme, ANF sa skladá len z kombinácie operácií AND a XOR, žiadna ďalšia booleovska operácia nie je povolená. Špecificky spomeniem operáciu NOT, ktorá sa bežne vyskytuje v ostatných normálnych formách ako sú DNF a CNF, ale v ANF nie je povolená. 
+%Iný názov pre zápis v ANF je aj Zhegalkinov polynóm alebo Reed-Mullerov výraz.
 	
-Celá ANF má hodnotu z množiny $\{0,1\}$, a skladá sa z viacerých termov, ktoré majú takisto hodnotu z množiny $\{0,1\}$. Každý term vznikol kombináciou premenných spojených operáciou AND. Termy sú spojené pomocou operácie XOR. Operácia NOT nie je v ANF povolená.
-Príklad algebraickej normálnej formy: 
+\begin{equation} \label{eq_ANF_example}
+1 \quad \bigoplus \quad A \quad \bigoplus \quad B \quad \bigoplus \quad AB \quad \bigoplus \quad ABC
+\end{equation}
 
-$$A \quad \oplus \quad B \quad \oplus \quad AB \quad \oplus \quad ABC$$
+Ďalej Wu a Feng uvádzajú \cite{Feng-anf}, že počet premenných jedného termu sa nazýva algebraický stupeň termu. Celkový algebraický stupeň celej ANF je stupeň termu s najvyššou hodnotou z danej ANF, ale berú sa len termy s nenulovými koeficientami. Používaná notácia pre algebraický stupeň funkcie je $deg(f)$. Najvyšší možný stupeň booleovskej funkcie o $n$ premenných je $n$, a to len vtedy ako sa v ANF nachádza term, ktorý obsahuje všetkých $n$ premenných.
 
-Z programátorského pohľadu môžeme hodnotu každého termu reprezentovať ako integer modulo 2. Každý term je v terminológií podľa {\color{red} ODKAZ} jednoduchým polynómom, ktorý v sebe neobsahuje koeficienty ani exponenty. Koeficienty nepotrebujeme, pretože 1 je jediný nenulový koeficient. Exponenty nie sú potrebné pretože v móde modulo 2 platí: $x^2 = x$. Preto napríklad aj zložitejší polynóm ako $3^x 2^y 5^z$ môžeme prepísať na $xyz$.
+Algebraický stupeň funkcie sa používa na určenie typu funkcie. Ak je stupeň nulový, funkcia je konštantná (neobsahuje žiadne premenné). Ak je stupeň 1, funkciu nazývame afínnou, a existuje ešte prípad, ak máme afínnnu funkciu bez konštantného termu $c_0$ z definície \ref{eq_ANF_def}, vtedy funkciu nazývame lineárnou. Lineárna funkcia teda prechádza bodom [0,0], afínna nemusí. Afínna booleovska funkcia je teda buď lineárna alebo lineárna XOR konštanta 1. Takže obe varianty sa vlastne možu považovať za lineárne.
+
+Z programátorského pohľadu môžeme hodnotu každého termu reprezentovať ako integer modulo 2. Každý term je 
+%v terminológií podľa {\color{red} ODKAZ} 
+jednoduchým polynómom, ktorý v sebe neobsahuje koeficienty ani exponenty. Koeficienty nepotrebujeme, pretože 1 je jediný nenulový koeficient. Exponenty nie sú potrebné z dovodu, že každá individuálna premenná v ANF má algebraický stupeň najviac 1, keďže platí, že $x^n = x$, v nezávislosti na tom, či $x = 1$ alebo $x = 0$. Preto napríklad aj zložitejší polynóm ako $3^x 2^y 5^z$ môžeme prepísať na $xyz$ a jednoducho ho reprezentovať v programe.
 	
 \vspace*{0.5\baselineskip}
-Pomocou operácií $\wedge$ a $\neg$ dokážeme vytvoriť všetky ostatné operácie v Booleovskej algebre. Ďalšie operácie sú tvorené len kombináciou týchto dvoch operácií. Keďže v ANF je nie povolená operácia NOT, musíme si ju nejako vytvoriť. Negácia v ANF vzniká XORom premennej a logickej jedničky: x$\oplus$1.
+Pomocou operácií AND $\wedge$ a NOT $\neg$ dokážeme vytvoriť všetky ostatné operácie v Booleovskej algebre. Ďalšie operácie sú tvorené len kombináciou týchto dvoch operácií. Keďže v ANF je nie povolená operácia NOT, musíme si ju nejako vytvoriť. Negácia v ANF vzniká XORom premennej a logickej jedničky: x $\bigoplus$ 1. Týmto sposobom dokážeme previesť do ANF aj funkcie z iných normálnych foriem, prípadne aj z iných reprezentácií.
 
-%	or in standard propositional logic symbols:
-	
-%	${a\veebar b\veebar \left(a\wedge b\right)\veebar \left(a\wedge b\wedge c\right)} $ 
-
-\vspace*{0.5\baselineskip}
-
-{\color{red}
-An example application is the representation of the Boolean 2-out-of-3 threshold or {\color{blue} median operation} as the Zhegalkin polynomial xy$\oplus$yz$\oplus$zx, which is 1 when at least two of the variables are 1 and 0 otherwise.
-
+TODO:
 \begin{itemize}
-	\item	Method of Indeterminate Coefficients
-	\item 	Canonical Disjunctive Normal Form
-\end{itemize}}
-
-\section{Binárne rozhodovacie diagramy} \label{bdds}
-Binárne rozhodovacie diagramy (BDD) sú triedou grafov, ktorá je prevažne využívaná ako dátová štruktúra pre reprezentáciu Booleovskych funkcií. Používajú sa na riešenie problémov ekvivalencie výrazov. Sú veľmi dôležité v oblastiach HW designu a optimalizácie.  
-
-\vspace*{0.5\baselineskip}
-Pre BDD platia tieto pravidlá:
-\begin{itemize}
-	\item BDD obsahuje práve 1 uzol, ktorý nemá žiadnych predchodcov - nazývame ho koreň
-	\item obsahuje 1 alebo 2 uzly, ktoré nemajú ďalších nasledovníkov (označuje 0, resp. 1)
-	\item všetky ostatné uzly sú označené názvom premennej a majú práve 2 nasledovníkov: {\color{red} 0-child a 1-child}, hrany vedúce k týmto nasledovníkom sú označené 0 a 1
-	\item každý synovský uzol je označený buď ako 0,1 alebo premennou vyššou ako označenie otcovského uzlu.
+	\item porovnanie s CNF a DNF
+	\item riesenie bf
+	\item konverzie
+	\item boolean satisfiability
 \end{itemize}
 
-Označenie BDD sa často používa pre označenie iného typu binárneho rozhodovacieho diagramu, a to ROBDD (Reduced Ordered BDD). V podstate sa jedná o optimalizovaný klasický BDD. Pre ROBDD platia 2 pravidlá oproti BDD:
+\section{Binárne rozhodovacie diagramy} \label{bdds}
+Binárne rozhodovacie diagramy (BDD) sú triedou grafov, ktorá je prevažne využívaná ako dátová štruktúra pre reprezentáciu Booleovskych funkcií v dnešnej dobe. Existujú viaceré implementácie, ktoré sú postavené práve na BDD. Používajú sa na riešenie problémov ekvivalencie a splniteľnosti výrazov. Sú veľmi dôležité v oblastiach HW designu a optimalizácie.  
 
-\begin{itemize}
-	\item ordered - ak sa premenné na rôznych cestách v diagramu vyskytujú všade v rovnakom poradí
-	\item reduced - všetky izomorfné podgrafy sú spojené, a každý uzol, ktorého deti sú izomorfné je zanedbaný
-\end{itemize} 
+%\vspace*{0.5\baselineskip}
+%Pre BDD platia tieto pravidlá:
+%\begin{itemize}
+%	\item BDD obsahuje práve 1 uzol, ktorý nemá žiadnych predchodcov - nazývame ho koreň
+%	\item obsahuje 1 alebo 2 uzly, ktoré nemajú ďalších nasledovníkov (označuje 0, resp. 1)
+%	\item všetky ostatné uzly sú označené názvom premennej a majú práve 2 nasledovníkov: {\color{red} 0-child a 1-child}, hrany vedúce k týmto nasledovníkom sú označené 0 a 1
+%	\item každý synovský uzol je označený buď ako 0,1 alebo premennou vyššou ako označenie otcovského uzlu.
+%\end{itemize}
 
-\chapter{Existujúce knižnice}
+%Označenie BDD sa často používa pre označenie iného typu binárneho rozhodovacieho diagramu, a to ROBDD (Reduced Ordered BDD). V podstate sa jedná o optimalizovaný klasický BDD. Pre ROBDD platia 2 pravidlá oproti BDD:
+
+%\begin{itemize}
+%	\item ordered - ak sa premenné na rôznych cestách v diagramu vyskytujú všade v rovnakom poradí
+%	\item reduced - všetky izomorfné podgrafy sú spojené, a každý uzol, ktorého deti sú izomorfné je zanedbaný
+%\end{itemize} 
+
+\chapter{Existujúce knižnice} \label{chapter_libraries}
 Existuú viaceré knižnice vytvorené za účelom manipulácie s Booleovskymi funkciami. Nasledujúca kapitola sa zaoberá niektorými vybranými, hlavne tými, ktoré využívajú binárne rozhodovacie stromy (BDD).
 
 \section{Colorado University Decision Diagram
@@ -232,19 +245,84 @@ Existuú viaceré knižnice vytvorené za účelom manipulácie s Booleovskymi f
 \section{PPBF BDD - Parallel partial breadth-first expansion}
 	Knižnica\footnote{\url{http://www.cs.cmu.edu/~bwolen/software/} } pre multiprocesorové paralelné spracovanie BDD. Na prácu potrebuje zdieľanú pamäť. Poskytuje operácie nad kombinačnými obvodmi. 
 	
+\chapter{Návrh}
+V tejto kapitole si bližšie popíšeme návrh knižnice pre manipuláciu s booleovskymi funkciami v ANF. Vysvetlíme si ako efektívne reprezentovať všetky časti booleovskej funkcie v programe. Takisto si navrhneme všetky potrebné operácie pre reprezentáciu funkcie v ANF. 
+
+Základné vlastnosti, ktoré sa od knižnice požadujú sú efektívna reprezentácia a manipulácia s booleovskymi funkciami. Knižnica by mala obsahovať nástroje použiteľné na vytváranie, úpravu, zobrazovanie a mazanie funkcií a ich jednotlivých súčastí.
+
+Ďalšou požiadavkou na knižnicu je určite čo najefektívnejšia práca s pamäťou, a takisto aj rýchlosť pri manipulácií s veľkým počtom funkcií, prípadne premenných vo funkciách.
+
+\section{Voľba technológií}
+Väčšina existujúcich knižníc pre manipuláciu s booleovskymi funkciami bola vytvorená v programovacom jazyku C, prípadne C++. Pri tvorbe knižnice je treba dbať na rýchlosť a pamäťové nároky, preto sme si zvolili jazyk C. Programovacie jazyky vyššej úrovne sme odmietli z dôvodu, že v C sa dajú dosiahnuť najlepšie výsledky práve v týchto 2 kategóriách.
+
+Ako platformu pre vývoj knižnice sme podobne ako existujúce riešenia zvolili UNIX.
+
+\section{Reprezentácia premenných}
+Každá booleovska funkcia obsahuje 0 až n premenných, ktoré je potrebné efektívne reprezentovať. Každá premenná má svoje pomenovanie a booleovskú hodnotu. Povolená dlžka názvu premennej by mala byť dostatočná, aby sme dokázali unikátne reprezentovať veľký počet premenných.
+
+\vspace*{0.5\baselineskip}
+\begin{lstlisting}[language=C, frame=tb]
+  typedef struct variable {
+    char* name;
+    bool value;
+  } tVar;
+\end{lstlisting}
+
+\vspace*{0.5\baselineskip}
+Premenné sa môžu vyskytovať v jednotlivých termoch funkcie opakovane, a takisto premenná môže byť súčasťou viacerých termov vo funkcii. Keďže má premenná vo všetkych svojich výskytoch rovnakú booleovskú hodnotu, je potrebné zaistiť, aby sa takéto duplicitné výskyty neukladali do pamäte opakovane.
+
+Obor všetkých premenných je možné reprezentovať viacerými spôsobmi. Klasické pole poskytuje výhodu, že operácia vyhľadávania je rýchla, ak vieme presný index, na ktorý chceme pristúpiť. To by bolo využiteľné, ak by premenné v booleovskej funkcií mali len číselný index, a generovali sa od najnižších indexov po najvyššie (aby sme zbytočne nealokovali pamäť o väčšej veľkosti než je potrebná). V našom prípade by premenné mali mať ľubovoľné pomenovanie, a teda tento postup sa ukázal ako nevhodný.
+
+Druhým spôsobom je použitie hashovacej tabuľky. Tá rieši vyššie spomenutý problém, pretože ak poznáme kľúč k danému záznamu, prístup k jeho hodnote je veľmi rýchly, v závislosti na hashovacej funkcii. V hashovacej tabuľke je možné zaistiť aj riešenie problému s ukladaním duplicitných záznamov, a to kontrolou, či záznam s daným kľúčom už v tabuľke existuje.
+
+\section{Hashovacia tabuľka premenných}
+Keďže v jazyku C neexistuje štruktúra ako hashovacia tabuľka, je potrebné nejakú vytvoriť. Kľúčom ku korektnému správaniu je voľba správnej hashovacej funkcie pre účely knižnice.
+
+Primárnym účelom knižnice je jej využitie v obvodovej štruktúre tvorenej spätnoväzobným registrom ... ({\color{red}TODO}). Pre tieto účely nie je potrebné šifrovať záznamy v hashmapy, keďže by sa malo jednať o čo najjednoduchšiu implementáciu. Preto sme sa rozhodli vyberať z nešifrovaných hashovacích funkcií, a podľa požadovaných parametrov zvoliť najlepšiu alternatívu.
+
+Existuje veľké množstvo voľne dostupných samostatných implementácií hashovacej tabuľky. Nástroj SMHasher\footnote{\url{https://github.com/aappleby/smhasher}} a jeho rozšírená verzia\footnote{\url{https://github.com/rurban/smhasher}} poskytujú dobré porovnanie existujúcich hashovacích algoritmov.
+
+Analýzou SMHasherom ako jedny z najlepších prešli hashovacie algoritmy Spooky32, xxHash64 a fasthash.
+
+{\color{red}
+	TODO - prečo som použil čo som použil
+}
+
+Výsledná hashovacia tabuľka by mala obsahovať okrem záznamov aj záznam o celkovej kapacite a o aktuálne využitej kapacite. Každý záznam obsahuje informáciu, či existuje premenná booleovskej funkcie, ktorej hodnota sa mapuje do daného záznamu.
+
+\vspace*{0.5\baselineskip}
+\begin{lstlisting}[language=C, frame=tb]
+  typedef struct hashMapRecord {
+    char *key;
+    bool value;
+    bool used;
+  } tHashMapRecord;
+  
+  typedef struct hashMap {
+    tHashMapRecord *records;
+    int capacity;
+    int usedCapacity;
+  } tHashMap;
+\end{lstlisting}
+
+\vspace*{0.5\baselineskip}
+
+\chapter{Implementácia}
+\chapter{Vyhodnotenie}
+\chapter{Záver}
+
+TODO
+Možné rozšírenie: 
+
+Zadanie explicitne špecifikuje, že sa knižnica bude zaoberať manipuláciou booleovskych funkcií v ANF, preto pri navrhovaní knižnice bude na to braný zreteľ. Možným rozšírením by bolo vytvorenie konvertoru, ktorý by dokázal dostať na vstup booleovsku funkciu aj v inej reprezentácií ako je ANF, skonvertovať ju na ANF a ďalej potom pracovať s knižnicou. Toto rozšírenie je však ponechané mimo tejto práce.
+
+rozšírenie pre iné platformy?
+
+rozne hash funkcie?
+	
+	
 \chapter{TODO}	
-
-boolean satisfability SAT, picosat
-
-	ODKAZY:
 				
-	Pravdivostne tabulky:
-	\begin{itemize}
-		\item Georg Henrik von Wright (1955). "Ludwig Wittgenstein, A Biographical Sketch". The Philosophical Review. 64 (4): 527–545 (p. 532, note 9). doi:10.2307/2182631. JSTOR 2182631.
-		\item Emil Post (July 1921). "Introduction to a general theory of elementary propositions". American Journal of Mathematics. 43 (3): 163–185. doi:10.2307/2370324. JSTOR 2370324.
-		\item Ludwig Wittgenstein (1922) Tractatus Logico-Philosophicus \url{http://www.gutenberg.org/ebooks/5740?msg=welcome_stranger}
-		\item Anellis, Irving H. (2012). "Peirce's Truth-functional Analysis and the Origin of the Truth Table". History and Philosophy of Logic. 33: 87–97. doi:10.1080/01445340.2011.621702.
-	\end{itemize}
 BDD:
 	\begin{itemize}
 		\item  Graph-Based Algorithms for Boolean Function Manipulation, Randal E. Bryant, 1986
@@ -264,13 +342,7 @@ BDD:
 		\item Richard J. Lipton. "BDD's and Factoring". Gödel's Lost Letter and P=NP, 2009.
 		\item Andersen, H. R. (1999). "An Introduction to Binary Decision Diagrams" (PDF). Lecture Notes. IT University of Copenhagen.
 	\end{itemize}
-	ANF:
-	\begin{itemize}
-		\item Bell, Eric (1927). "Arithmetic of Logic". Transactions of the American Mathematical Society. Transactions of the American Mathematical Society, Vol. 29, No. 3. 29 (3): 597–611. doi:10.2307/1989098. JSTOR 1989098.
-		\item Gindikin, S.G. (1972). Algebraic Logic. Moscow: Nauka (English translation Springer-Verlag 1985). ISBN 0-387-96179-8.
-		\item Stone, Marshall (1936). "The Theory of Representations for Boolean Algebras". Transactions of the American Mathematical Society. Transactions of the American Mathematical Society, Vol. 40, No. 1. 40 (1): 37–111. doi:10.2307/1989664. ISSN 0002-9947. JSTOR 1989664.
-		\item Zhegalkin, Ivan Ivanovich (1927). "On the Technique of Calculating Propositions in Symbolic Logic". Matematicheskii Sbornik. 43: 9–28.
-	\end{itemize}
+	
 KNF:
 	\begin{itemize}
 		\item Paul Jackson, Daniel Sheridan: Clause Form Conversions for Boolean Circuits. In: Holger H. Hoos, David G. Mitchell (Eds.): Theory and Applications of Satisfiability Testing, 7th International Conference, SAT 2004, Vancouver, BC, Canada, May 10–13, 2004, Revised Selected Papers. Lecture Notes in Computer Science 3542, Springer 2005, pp. 183–198
@@ -288,4 +360,7 @@ Reed Muller:
 \begin{itemize}
 	\item Kebschull, U. and Rosenstiel, W., Efficient graph-based computation and manipulation of functional decision diagrams, Proceedings 4th European Conference on Design Automation, 1993, pp. 278–282
 \end{itemize}
-\chapter{Záver}
+other:
+\begin{itemize}
+	\item Stone, Marshall (1936). "The Theory of Representations for Boolean Algebras". Transactions of the American Mathematical Society. Transactions of the American Mathematical Society, Vol. 40, No. 1. 40 (1): 37–111. doi:10.2307/1989664. ISSN 0002-9947. JSTOR 1989664.
+\end{itemize}
