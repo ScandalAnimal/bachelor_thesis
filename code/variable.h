@@ -15,8 +15,8 @@ typedef struct variable {
     bool value;
 } tVar;
 
-extern tVar		createVar(char*, bool);
-extern tVar		createTrueVar(char*);
-extern tVar		createFalseVar(char*);
+tVar createVar(char*, bool);
+tVar createTrueVar(char*);
+tVar createFalseVar(char*);
 
 #endif //CODE_VARIABLE_H

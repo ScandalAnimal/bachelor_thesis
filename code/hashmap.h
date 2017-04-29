@@ -36,19 +36,18 @@ typedef struct hashMap {
 typedef void*  tMap;
 
 
-extern tMap        		createHashMap(unsigned int, double);
-extern int              insertToHashMap(tMap, char *, bool);
-extern tHashMapRecord*  selectFromHashMap(tMap, char*);
+tMap			createHashMap(unsigned int, double);
+int             insertToHashMap(tMap, char*, bool);
+tHashMapRecord* selectFromHashMap(tMap, char*);
+bool            isHashMapEmpty(tMap);
+void           	freeHashMap(tMap);
+unsigned int   	getHashMapCapacity(tMap);
 
-extern bool             isHashMapEmpty(tMap);
-extern void             freeHashMap(tMap);
-extern unsigned int     getHashMapCapacity(tMap);
+bool            isKeyInHashMap(tMap, char*);
+int 	        removeFromHashMap(tMap, char*);
+void            clearHashMap(tMap);
 
-extern bool             isKeyInHashMap(tMap, char*);
-extern int 	            removeFromHashMap(tMap, char*);
-extern void             clearHashMap(tMap);
-
-extern void             printHashMap(tMap);
-extern int 				generateHashMapGraph(tMap, char*);
+void            printHashMap(tMap);
+int 			generateHashMapGraph(tMap, char*);
 
 #endif //CODE_HASHMAP_H

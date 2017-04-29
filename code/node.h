@@ -11,18 +11,18 @@
 #include "variable.h"
 
 typedef struct node {
-    int length;
-    tVar* variables;
+	char** variables;
+    int varCount;
+//     tVar* variables;
     bool value;
-    // TODO pridat info v ktorom bundli je, pre kontrolu duplicit
 } tNode;
 
-extern void* 	createNode();
-extern void* 	createNodeWithVariables(tVar[], int);
-extern int	 	addVariableToNode(tVar, tNode*);
-extern int 		addVariablesToNode(tVar[], int, tNode*);
-extern int		deleteVariableFromNode(char*, tNode*);
-extern void 	printNode(tNode*);
-extern void 	freeNode(tNode*);
+void* 	newNode();
+// void* 	createNodeWithVariables(tVar[], int);
+// int	 	addVariableToNode(tVar, tNode*);
+int 	addVariablesToNode(tVar[], int, tNode*);
+// int		deleteVariableFromNode(char*, tNode*);
+void 	printNode(tNode*);
+void 	freeNode(tNode*);
 
 #endif //CODE_NODE_H

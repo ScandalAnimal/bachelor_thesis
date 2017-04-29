@@ -1,4 +1,0 @@
--ked sa vytvori node v bundli, a potom sa pouzije v nejakej anf, bude ulozeny 2x
-	- ak sa dana anf zmaze nebudeme mazat obe referencie, jedna globalna ostane, az kym sa nezmaze node z bundle
--ked sa vytvori node spolu s anf, bude patrit len pod danu anf, bude teda len 1 referencia
-	- bude ale treba upravit vypis bundle

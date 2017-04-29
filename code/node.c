@@ -7,7 +7,7 @@
 #include "node.h"
 
 void setNodeValue(tNode* node, bool value) {
-    if (node->length == 0) {
+    if (node->varCount == 0) {
         node->value = value;
     }
     else {
@@ -18,7 +18,7 @@ void setNodeValue(tNode* node, bool value) {
     }
 }
 
-void* createNode() {
+void* newNode() {
 
     tNode* node;
 
@@ -27,12 +27,12 @@ void* createNode() {
         return NULL;
     }
 
-    node->length = 0;
-    if (!(node->variables = malloc(sizeof(node->variables)))) {
+    if (!(node->variables = malloc(sizeof(char*)))) {
         fprintf(stderr, "%d\n", ERR_MALLOC);
-        free(node);
         return NULL;
     }
+
+    node->varCount = 0;
     node->value = false;
     return node;
 }
@@ -40,28 +40,22 @@ void* createNode() {
 
 int addVariableToNode(tVar variable, tNode* node) {
 
-    int length = node->length;
-
-    for (int i = 0; i < length; i++) {
-        if (strcmp(node->variables[i].name, variable.name) == 0) {
-            printf("%s %s\n", node->variables[i].name, variable.name);
+    for (int i = 0; i < node->varCount; i++) {
+        if (strcmp(node->variables[i], variable.name) == 0) {
+            printf("%s %s\n", node->variables[i], variable.name);
             return ERR_DUPLICATE;
         }
     }
 
-    if (!(node->variables = realloc(node->variables, sizeof(tVar) * (length+1)))) {
+    if (!(node->variables = realloc(node->variables, sizeof(char *) * (node->varCount + 1)))) {
         fprintf(stderr, "%d\n", ERR_MALLOC);
         return ERR_MALLOC;
     }
 
-    node->variables[length] = variable;
-
-    if ((length != 0) && node->value == false) {
-        node->length++;
-        return OK;
-    }
+    node->variables[node->varCount] = variable.name;
     setNodeValue(node, variable.value);
-    node->length++;
+
+    node->varCount++;
     return OK;
 }
 
@@ -78,53 +72,56 @@ int addVariablesToNode(tVar variables[], int size, tNode* node) {
 }
 
 
-void* createNodeWithVariables(tVar variables[], int size) {
+// void* createNodeWithVariables(tVar variables[], int size) {
 
-    tNode* node = createNode();
-    if (node == NULL) {
-        return NULL;
-    }
+//     tNode* node = createNode();
+//     if (node == NULL) {
+//         return NULL;
+//     }
 
-    if (addVariablesToNode(variables, size, node) != OK) {
-        freeNode(node);
-        return NULL;
-    }    
-    return node;
-}
+//     if (addVariablesToNode(variables, size, node) != OK) {
+//         freeNode(node);
+//         return NULL;
+//     }    
+//     return node;
+// }
 
-int deleteVariableFromNode(char* varName, tNode* node) {
+// int deleteVariableFromNode(char* varName, tNode* node) {
 
-    bool found = false;
-    for (int i = 0; i < node->length; i++) {
-        if (strcmp(node->variables[i].name, varName) == 0) {
-            found = true;
+//     bool found = false;
+//     for (int i = 0; i < node->length; i++) {
+//         if (strcmp(node->variables[i].name, varName) == 0) {
+//             found = true;
 
-            for (int p = i; p < node->length - 1; p++) {
-                node->variables[p] = node->variables[p+1];
-            }
-            node->length--;
-        }
-    }
-    if (!found) {
-        fprintf(stderr, "%d\n", ERR_DELETE);
-        return ERR_DELETE;
-    }
-    else {
-        for (int i = 0; i < node->length; i++) {
-            bool value = node->variables[i].value;
-            if (i == 0) {
-                node->value = value;
-            }
-            else {
-                if (node->value == false) {
-                    break;
-                }
-                node->value &= value;
-            }
-        }
-    }
-    return OK;
-}
+//             for (int p = i; p < node->length - 1; p++) {
+//                 node->variables[p] = node->variables[p+1];
+//             }
+//             node->length--;
+//         }
+//     }
+//     if (!found) {
+//         fprintf(stderr, "%d\n", ERR_DELETE);
+//         return ERR_DELETE;
+//     }
+//     else {
+//         if (node->value == true) {
+//             return OK;
+//         }
+//         for (int i = 0; i < node->length; i++) {
+//             bool value = node->variables[i].value;
+//             if (i == 0) {
+//                 node->value = value;
+//             }
+//             else {
+//                 if (node->value == false) {
+//                     break;
+//                 }
+//                 node->value &= value;
+//             }
+//         }
+//     }
+//     return OK;
+// }
 
 void freeNode(tNode* node) {
     free(node->variables);
@@ -133,11 +130,11 @@ void freeNode(tNode* node) {
 
 void printNode(tNode* node) {
 
-    printf("********************************\nUzol:\n | ");
-    for (int i = 0; i < node->length; i++) {
-        tVar variable = node->variables[i];
-        printf("%s:%d", variable.name, variable.value);
-        if (node->length - i > 1) {
+    printf("********************************\nNode:\n | ");
+    for (int i = 0; i < node->varCount; i++) {
+        char* variable = node->variables[i];
+        printf("%s", variable);
+        if (node->varCount - i > 1) {
             printf(" & ");
         }
     }

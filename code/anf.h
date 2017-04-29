@@ -13,51 +13,51 @@
 #include "variable.h"
 
 typedef struct anf {
-    int length;
-    tNode** nodes;
+    tNode** nodeList;
+ 	tHashMap* hashMap;
+ 	int nodeCount;
     bool value;
 } tAnf;
 
-typedef struct ANFBundle {
-	tHashMap* hashmap;
-	tNode** nodes;
-	unsigned int nodeCount;
-	tAnf** anfs;
-	unsigned int anfsCount;
-} tANFBundle;
+// typedef struct ANFBundle {
+// 	tHashMap* hashmap;
+// 	tNode** nodes;
+// 	unsigned int nodeCount;
+// 	tAnf** anfs;
+// 	unsigned int anfsCount;
+// } tANFBundle;
+
+// void* 	createANFBundle(unsigned int, double);
+// void  	freeANFBundle(tANFBundle*);
+// void  	printBundle(tANFBundle*);
+// void	printBundleMap(tANFBundle*);
 
 // initialCapacity, loadFactor
-extern void* 	createANFBundle(unsigned int, double);
-extern void  	freeANFBundle(tANFBundle*);
-extern void  	printBundle(tANFBundle*);
-extern void		printBundleMap(tANFBundle*);
+void*	newAnf(int, double);
+// void*	createEmptyAnfInBundle(tANFBundle*);
+// int  	addAnfToBundle(tANFBundle*, tAnf*);
+// int		deleteAnfFromBundle(tANFBundle*, tAnf*);
+void	freeAnf(tAnf*);
+void 	printAnf(tAnf*);
 
+// void*	createAnfWithNodesInBundle(tANFBundle*, tNode**, int);
 
-extern void*	createEmptyAnf();
-extern void*	createEmptyAnfInBundle(tANFBundle*);
-extern int  	addAnfToBundle(tANFBundle*, tAnf*);
-extern int		deleteAnfFromBundle(tANFBundle*, tAnf*);
-extern void		freeAnf(tAnf*);
-extern void 	printAnf(tAnf*);
+void* 	newNodeInAnf(tAnf*);
+int	 	deleteNodeFromAnf(tAnf*, tNode*);
+void*	newNodeWithVarsInAnf(tAnf*, tVar[], int);
 
-extern void*	createAnfWithNodesInBundle(tANFBundle*, tNode**, int);
+// int 	addNodeToAnf(tAnf*, tNode*);
+// int 	addNodesToAnf(tANFBundle*, tNode**, int, tAnf*);
 
-extern void* 	createNodeInBundle(tANFBundle*);
-extern int	 	deleteNodeFromBundle(tANFBundle*, tNode*);
-extern void*	createNodeWithVarsInBundle(tANFBundle*, tVar[], int);
+tVar	createVarInAnf(tAnf*, char*, bool);
+tVar	createTrueVarInAnf(tAnf*, char*);
+tVar	createFalseVarInAnf(tAnf*, char*);
+int		createVarsInAnf(tAnf*, tVar[], int);
 
-extern int 		addNodeToAnf(tANFBundle*, tNode*, tAnf*);
-extern int 		addNodesToAnf(tANFBundle*, tNode**, int, tAnf*);
+// int 	generateAnfGraph(tAnf*, char*);
+// int 	generateBundleGraph(tANFBundle*, char*);
 
-extern tVar		createVarInBundle(tANFBundle*, char*, bool);
-extern tVar		createTrueVarInBundle(tANFBundle*, char*);
-extern tVar		createFalseVarInBundle(tANFBundle*, char*);
-extern int		createVarsInBundle(tANFBundle*, tVar[], int);
-
-extern int 		generateAnfGraph(tAnf*, char*);
-extern int 		generateBundleGraph(tANFBundle*, char*);
-
-// extern void		iterateOverBundle(tANFBundle*);
+//void	iterateOverBundle(tANFBundle*);
 
 
 #endif //CODE_ANF_H

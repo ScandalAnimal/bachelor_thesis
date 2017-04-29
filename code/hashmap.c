@@ -356,7 +356,7 @@ void printHashMap(tMap m) {
     tHashMap* map = (tHashMap*) m;
     bool zeroRecords = true;
 
-    printf("********************************\nObsah hash mapy:\n");
+    printf("********************************\nHash Map Contents:\n");
     for (int i = 0; i < map->capacity; i++) {
         tHashMapRecord record = map->records[i];
         
@@ -367,9 +367,9 @@ void printHashMap(tMap m) {
         }
 
     }
-    printf("Pocet zaznamov: %d/%d\n", map->usedCapacity, map->capacity);
+    printf("Record Count: %d/%d\n", map->usedCapacity, map->capacity);
     if (zeroRecords) {
-        printf("Mapa neobsahuje ziadne zaznamy.\n");
+        printf("No records in map.\n");
     }
     printf("********************************\n");
 }

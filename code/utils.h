@@ -10,8 +10,8 @@
 
 #define ARRAY_SIZE(array) ( sizeof(array) / sizeof(array[0]))
 
-extern bool 	getRandomBooleanValue();
-extern int 		getDigitCount(int);
-extern FILE*	openAndClearFile(char*);
+bool 	getRandomBooleanValue();
+int 	getDigitCount(int);
+FILE*	openAndClearFile(char*);
 
 #endif //CODE_UTILS_H
