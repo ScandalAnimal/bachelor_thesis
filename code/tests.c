@@ -618,7 +618,7 @@ int singleFunctionTest(char* graphOutput) {
     tVar varArray[] = {
         createVar("var1", true),
         createVar("var2", true),
-        createVar("var3", true),
+        createVar("var3", false),
         createVar("var4", true)
     };
 
@@ -632,11 +632,43 @@ int singleFunctionTest(char* graphOutput) {
     printNode(node2);
     printAnf(anf);
 
-    if (deleteNodeFromAnf(anf, node1) != OK) {
+    // if (deleteNodeFromAnf(anf, node1) != OK) {
+    //     freeNode(node1);
+    //     freeNode(node2);
+    //     freeAnf(anf);
+    //     return ERROR;
+    // }
+
+    // printAnf(anf);
+    // printHashMap(anf->hashMap);
+
+    if (deleteVarFromAnf(anf, "var3", true) != OK) {
         freeNode(node1);
         freeNode(node2);
         freeAnf(anf);
-        return ERROR;
+        return ERROR;   
+    }
+
+    printNode(node2);
+    printAnf(anf);
+    printHashMap(anf->hashMap);
+
+    if (addVarToNodeInAnf(anf, node1, createVar("var5", true)) != OK) {
+        freeNode(node1);
+        freeNode(node2);
+        freeAnf(anf);
+        return ERROR;    
+    }
+
+    printNode(node1);
+    printAnf(anf);
+    printHashMap(anf->hashMap);
+
+    if (deleteAllNodesFromAnf(anf, true) != OK) {
+        freeNode(node1);
+        freeNode(node2);
+        freeAnf(anf);
+        return ERROR;    
     }
 
     printAnf(anf);
@@ -664,8 +696,8 @@ int main(int argc, char* argv[]) {
     
 
     freopen("/dev/tty", "w", stdout);
-    printf("TEST 01: HashMap Test         ..... Result: %s\n", (test1Result == OK) ? "SUCCESS" : "FAILURE");
-    printf("TEST 02: Single Function Test ..... Result: %s\n", (test2Result == OK) ? "SUCCESS" : "FAILURE");
+    printf("TEST 01: HashMap Test         ..... Result: %s %d\n", (test1Result == OK) ? "SUCCESS" : "FAILURE", test1Result);
+    printf("TEST 02: Single Function Test ..... Result: %s %d\n", (test2Result == OK) ? "SUCCESS" : "FAILURE", test2Result);
     
 
     // printf("TEST 01: %d\n", emptyAnfs());

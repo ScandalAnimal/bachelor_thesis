@@ -12,8 +12,9 @@
 #define ERR_DUPLICATE 	-4
 #define ERR_MAP_FULL	-5
 #define ERR_DELETE		-6
-#define ERR_INANF		-7
-#define ERR_OPEN		-8
+#define ERR_INNODE		-7
+#define ERR_INANF		-8
+#define ERR_OPEN		-9
 
 
 #define NO_PORT			-1

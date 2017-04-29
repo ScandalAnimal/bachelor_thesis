@@ -13,15 +13,13 @@
 typedef struct node {
 	char** variables;
     int varCount;
-//     tVar* variables;
     bool value;
 } tNode;
 
 void* 	newNode();
-// void* 	createNodeWithVariables(tVar[], int);
-// int	 	addVariableToNode(tVar, tNode*);
+int	 	addVariableToNode(tVar, tNode*);
 int 	addVariablesToNode(tVar[], int, tNode*);
-// int		deleteVariableFromNode(char*, tNode*);
+int		deleteVariableFromNode(char*, tNode*);
 void 	printNode(tNode*);
 void 	freeNode(tNode*);
 

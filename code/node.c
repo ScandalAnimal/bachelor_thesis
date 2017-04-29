@@ -71,57 +71,26 @@ int addVariablesToNode(tVar variables[], int size, tNode* node) {
     return OK;
 }
 
+int deleteVariableFromNode(char* varName, tNode* node) {
 
-// void* createNodeWithVariables(tVar variables[], int size) {
+    bool found = false;
+    for (int i = 0; i < node->varCount; i++) {
+        if (strcmp(node->variables[i], varName) == 0) {
+            found = true;
 
-//     tNode* node = createNode();
-//     if (node == NULL) {
-//         return NULL;
-//     }
+            for (int p = i; p < node->varCount - 1; p++) {
+                node->variables[p] = node->variables[p+1];
+            }
+            node->varCount--;
+        }
+    }
+    if (!found) {
+        fprintf(stderr, "%d\n", ERR_DELETE);
+        return ERR_DELETE;
+    }
 
-//     if (addVariablesToNode(variables, size, node) != OK) {
-//         freeNode(node);
-//         return NULL;
-//     }    
-//     return node;
-// }
-
-// int deleteVariableFromNode(char* varName, tNode* node) {
-
-//     bool found = false;
-//     for (int i = 0; i < node->length; i++) {
-//         if (strcmp(node->variables[i].name, varName) == 0) {
-//             found = true;
-
-//             for (int p = i; p < node->length - 1; p++) {
-//                 node->variables[p] = node->variables[p+1];
-//             }
-//             node->length--;
-//         }
-//     }
-//     if (!found) {
-//         fprintf(stderr, "%d\n", ERR_DELETE);
-//         return ERR_DELETE;
-//     }
-//     else {
-//         if (node->value == true) {
-//             return OK;
-//         }
-//         for (int i = 0; i < node->length; i++) {
-//             bool value = node->variables[i].value;
-//             if (i == 0) {
-//                 node->value = value;
-//             }
-//             else {
-//                 if (node->value == false) {
-//                     break;
-//                 }
-//                 node->value &= value;
-//             }
-//         }
-//     }
-//     return OK;
-// }
+    return OK;
+}
 
 void freeNode(tNode* node) {
     free(node->variables);

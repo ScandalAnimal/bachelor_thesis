@@ -310,12 +310,23 @@ bool isKeyInHashMap(tMap m, char* key) {
     tHashMap* map = (tHashMap*) m;
 
     unsigned int index = generateIndex(map,key);
-    if (strcmp(key, map->records[index].key) == 0) {
-        return (map->records[index].used);        
+
+    /* Linear probing, if necessary */
+    for (int i = 0; i < 8; i++) {
+
+        bool used = map->records[index].used;
+        if (used) {
+            if (strcmp(key, map->records[index].key) == 0) {
+              return (map->records[index].used);        
+            }
+            else {
+                return false;
+            }
+        }
+
+        index = (index + 1) % map->capacity;
     }
-    else {
-        return false;
-    }
+    return false;
 }
 
 int removeFromHashMap(tMap m, char* key) {

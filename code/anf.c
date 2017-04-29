@@ -15,41 +15,45 @@ void setAnfValue(tAnf* anf, bool value) {
     }
 }
 
-// void freeANFBundle(tANFBundle* bundle) {
-//     freeHashMap(bundle->hashmap);
-//     free(bundle->anfs);
-//     free(bundle->nodes);
-//     free(bundle);
-// }
+void fixNodeValue(tNode* node, tHashMap* hashMap) {
 
-// void* createANFBundle(unsigned int mapInitCapacity, double mapLoadFactor) {
+    if (node->value == true) {
+        return;
+    }
 
-//     tANFBundle* bundle;
-//     if (!(bundle = (tANFBundle*) malloc(sizeof(tANFBundle)))) {
-//         fprintf(stderr, "%d\n", ERR_MALLOC);
-//         return NULL;
-//     }
+    for (int i = 0; i < node->varCount; i++) {
+        bool value = selectFromHashMap(hashMap, node->variables[i])->value;
+        
+        if (i == 0) {
+            node->value = value;
+        }
+        else {
+            if (node->value == false) {
+                break;
+            }
+            node->value &= value;
+        }
+    }
+}
 
-//     bundle->hashmap = createHashMap(mapInitCapacity, mapLoadFactor);    
-//     if (bundle->hashmap == NULL) {
-//         return NULL;
-//     }
+void fixAnfValue(tAnf* anf) {
 
-//     if (!(bundle->nodes = malloc(sizeof(tNode *)))) {
-//         fprintf(stderr, "%d\n", ERR_MALLOC);
-//         return NULL;
-//     };
-
-//     if (!(bundle->anfs = malloc(sizeof(tAnf *)))) {
-//         fprintf(stderr, "%d\n", ERR_MALLOC);
-//         return NULL;
-//     };    
-
-//     bundle->nodeCount = 0;
-//     bundle->anfsCount = 0;
-
-//     return bundle;
-// }
+    bool value = false;
+    for (int i = 0; i < anf->nodeCount; i++) {
+        
+        if (i == 0) {
+            value = anf->nodeList[i]->value;
+        }
+        else {
+            if (anf->nodeList[i]->value == false) {
+                value = false;
+                break;
+            }
+            value &= anf->nodeList[i]->value;
+        }
+    }
+    anf->value = value; 
+}
 
 void freeAnf(tAnf* anf) {
     free(anf->nodeList);
@@ -221,137 +225,7 @@ void* newAnf(int mapInitCapacity, double mapLoadFactor) {
     return anf;
 }
 
-// int addAnfToBundle(tANFBundle* bundle, tAnf* anf) {
-
-//     if (!(bundle->anfs = realloc(bundle->anfs, sizeof(tAnf*) * (bundle->anfsCount + 1)))) {
-//         fprintf(stderr, "%d\n", ERR_MALLOC);
-//         return ERR_MALLOC;
-//     }
-
-//     bundle->anfs[bundle->anfsCount] = anf;
-//     bundle->anfsCount++; 
-//     return OK;   
-// }
-
-// void* createEmptyAnfInBundle(tANFBundle* bundle) {
-
-//     tAnf* anf = createEmptyAnf();
-//     if (anf == NULL) {
-//         return NULL;
-//     }
-
-//     if (addAnfToBundle(bundle, anf) == OK) {
-//         return anf;
-//     }
-//     else {
-//         freeAnf(anf);
-//         return NULL;
-//     }
-// }
-
-
-// int addNodeToAnf(tANFBundle* bundle, tNode* node, tAnf* anf) {
-
-//     int length = anf->length;    
-
-//     anf->nodes = realloc(anf->nodes, sizeof(tNode*) * (length + 1));
-//     if (anf->nodes == NULL) {
-//         return ERROR;
-//     }
-
-//     for (int i = 0; i < node->length; i++) {
-//         if (!isKeyInHashMap(bundle->hashmap, node->variables[i].name)) {
-//             if (ERROR == insertToHashMap(bundle->hashmap, node->variables[i].name, node->variables[i].value)) {
-//                 fprintf(stderr, "%d\n", ERR_INSERT);        
-//             }
-//         }
-//     }
-
-//     anf->nodes[anf->length] = node;
-//     anf->length++;
-//     setAnfValue(anf, node->value);
-//     return OK;
-// }
-
-// int addNodesToAnf(tANFBundle* bundle, tNode* nodes[], int size, tAnf* anf) {
-
-//     for (int i = 0; i < size; i++) {
-//         int addResult = addNodeToAnf(bundle, nodes[i], anf);
-//         if (addResult != OK) {
-//             return addResult;
-//         }
-//     }
-
-//     return OK;
-// }
-
-// void* createAnfWithNodesInBundle(tANFBundle* bundle, tNode* nodes[], int size) {
-
-//     tAnf* anf = createEmptyAnf();
-
-//     if (anf == NULL) {
-//         return NULL;
-//     }
-
-//     if (addNodesToAnf(bundle, nodes, size, anf) != OK) {
-//         freeAnf(anf);
-//         return NULL;
-//     }
-
-//     for (int i = 0; i < size; i++) {
-//         if (createVarsInBundle(bundle, nodes[i]->variables, nodes[i]->length) != OK) {
-//             freeAnf(anf);
-//             return NULL;
-//         }
-//     }
-
-//     if (!(bundle->anfs = realloc(bundle->anfs, sizeof(tAnf *) * (bundle->anfsCount + 1)))) {
-//         fprintf(stderr, "%d\n", ERR_MALLOC);
-//         freeAnf(anf);
-//         return NULL;
-//     }
-
-//     bundle->anfs[bundle->anfsCount] = anf;
-//     bundle->anfsCount++;    
-
-//     return anf;
-// }
-
-// int deleteAnfFromBundle(tANFBundle* bundle, tAnf* anf) {
-
-//     bool found = false;
-//     for (int i = 0; i < bundle->anfsCount; i++) {
-//         if (anf == bundle->anfs[i]) {
-//             found = true;
-
-//             for (int p = i; p < bundle->anfsCount - 1; p++) {
-//                 bundle->anfs[p] = bundle->anfs[p+1];
-//             }
-//             bundle->anfsCount--;
-//         }
-//     }
-//     if (!found) {
-//         fprintf(stderr, "%d\n", ERR_DELETE);
-//         return ERR_DELETE;
-//     }
-//     return OK;
-// }
-
 int deleteNodeFromAnf(tAnf* anf, tNode* node) {
-
-//     bool isInAnf = false;
-//     for (int i = 0; i < bundle->anfsCount; i++) {
-//         for (int j = 0; j < bundle->anfs[i]->length; j++) {
-//             if (node == bundle->anfs[i]->nodes[j]) {
-//                 isInAnf = true;
-//             }
-//         }
-//     }
-
-//     if (isInAnf) {
-//         fprintf(stderr, "%d\n", ERR_INANF);
-//         return ERR_INANF;
-//     }
 
     bool found = false;
     for (int i = 0; i < anf->nodeCount; i++) {
@@ -376,26 +250,130 @@ int deleteNodeFromAnf(tAnf* anf, tNode* node) {
         setAnfValue(anf, anf->nodeList[i]->value);
         anf->nodeCount++;
     }
+    if (!(anf->nodeList = realloc(anf->nodeList, sizeof(tNode *) * anf->nodeCount))) {
+        fprintf(stderr, "%d\n", ERR_MALLOC);
+        return ERR_MALLOC;
+    }
+
+    return OK;
+}
+
+int deleteAllNodesFromAnf(tAnf* anf, bool deleteVariables) {
+
+    if (deleteVariables) {
+        for (int i = 0; i < anf->nodeCount; i++) {
+            for (int j = 0; j < anf->nodeList[i]->varCount; j++) {
+                char* varName = anf->nodeList[i]->variables[j];
+
+                if (isKeyInHashMap(anf->hashMap, varName)) {
+                    if (removeFromHashMap(anf->hashMap, varName) != OK) {
+                        return ERR_DELETE;
+                    }
+                }
+            }
+        }
+    }
+
+    if (!(anf->nodeList = realloc(anf->nodeList, sizeof(tNode *) * 1))) {
+        fprintf(stderr, "%d\n", ERR_MALLOC);
+        return ERR_MALLOC;
+    }
+
+    anf->nodeCount = 0;
+    anf->value = false;
+
     return OK;
 }
 
 
-// // void iterateOverBundle(tANFBundle* bundle) {
+int deleteVarFromAnf(tAnf* anf, char* varName, bool deleteFromNodes) {
 
-// //     for (int i = 0; i < bundle->anfsCount; i++) {
-// //         tAnf* anf = bundle->anfs[i];
-// //         printf("********************************\nANF No: %d\n", i);
-// //         for (int j = 0; j < anf->length; j++) {
-// //             printf(" @ Node No: %d\n -- ", j);
-// //             for (int k = 0; k < anf->nodes[j]->length; k++) {
-// //                 char* varName = anf->nodes[j]->variables[k].name;
-// //                 printf("%s:%d ", varName, selectFromHashMap(bundle->hashmap, varName)->value);
-// //             }
-// //             printf("\n");
-// //         }
-// //         printf("********************************\n");
-// //     }
-// // }
+    bool isInNode = false;
+    for (int i = 0; i < anf->nodeCount; i++) {
+        if (isInNode) {
+            break;
+        }
+        for (int j = 0; j < anf->nodeList[i]->varCount; j++) {
+            if (strcmp(varName, anf->nodeList[i]->variables[j]) == 0) {
+                isInNode = true;
+                break;
+            }
+        }
+    }
+
+    if (isInNode && !deleteFromNodes) {
+        fprintf(stderr, "%d\n", ERR_INNODE);
+        return ERR_INNODE;
+    }
+
+    if (isInNode && deleteFromNodes) {
+        for (int i = 0; i < anf->nodeCount; i++) {
+            for (int j = 0; j < anf->nodeList[i]->varCount; j++) {
+                if (strcmp(varName, anf->nodeList[i]->variables[j]) == 0) {
+                    if (deleteVariableFromNode(varName, anf->nodeList[i]) != OK) {
+                        return ERR_DELETE;
+                    }
+                }
+            }
+            fixNodeValue(anf->nodeList[i], anf->hashMap);
+        }        
+        fixAnfValue(anf);
+    }
+
+    if (removeFromHashMap(anf->hashMap, varName) != OK) {
+        fprintf(stderr, "%d\n", ERR_DELETE);
+        return ERR_DELETE;
+    } 
+
+    return OK;
+}
+
+bool isNodeInAnf(tAnf* anf, tNode* node) {
+
+    for (int i = 0; i < anf->nodeCount; i++) {
+        if (anf->nodeList[i] == node) {
+            return true;
+        }
+    } 
+    return false;
+}
+
+int addVarToNodeInAnf(tAnf* anf, tNode* node, tVar var) {
+    
+    if (!isNodeInAnf(anf, node)) {
+        return ERR_INANF;
+    }
+    if (!isKeyInHashMap(anf->hashMap, var.name)) {
+        if (ERROR == insertToHashMap(anf->hashMap, var.name, var.value)) {
+            fprintf(stderr, "%d\n", ERR_INSERT);        
+            return ERR_INSERT;
+        }
+    }
+    if (addVariableToNode(var, node) != OK) {
+        return ERROR;
+    }
+    return OK;
+}
+
+int addVarsToNodeInAnf(tAnf* anf, tNode* node, tVar variables[], int length) {
+
+    if (!isNodeInAnf(anf, node)) {
+        return ERR_INANF;
+    }
+    for (int i = 0; i < length; i++) {
+        tVar var = variables[i];
+        if (!isKeyInHashMap(anf->hashMap, var.name)) {
+            if (ERROR == insertToHashMap(anf->hashMap, var.name, var.value)) {
+                fprintf(stderr, "%d\n", ERR_INSERT);        
+                return ERR_INSERT;
+            }
+        }
+    } 
+    if (addVariablesToNode(variables, length, node) != OK) {
+        return ERROR;
+    }
+    return OK;
+}
 
 void printAnf(tAnf* anf) {
 
@@ -422,52 +400,9 @@ void printAnf(tAnf* anf) {
     printf("********************************\n");
 }
 
-// int getNodeCountFromAnfs(tAnf* anfs[], int length) {
-
-//     int nodeCount = 0;
-//     for (int i = 0; i < length; i++) {
-//         nodeCount += anfs[i]->length;
-//     }
-//     return nodeCount;
-// }
-
-// int getVarCountFromAnfs(tAnf* anfs[], int length) {
-
-//     int varCount = 0;
-//     for (int i = 0; i < length; i++) {
-//         for (int j = 0; j < anfs[i]->length; j++) {
-//             varCount += anfs[i]->nodes[j]->length;
-//         }
-//     }
-//     return varCount;   
-// }
-
-// int getVarCountFromNodes(tNode* nodes[], int length) {
-
-//     int varCount = 0;
-//     for (int i = 0; i < length; i++) {
-//         for (int j = 0; j < nodes[i]->length; j++) {
-//             varCount += 1;
-//         }
-//     }
-//     return varCount;   
-// }
-// void printBundle(tANFBundle* bundle) {
-
-//     printf("*******************\n");
-//     printf("Anfs Count               : %d\n", bundle->anfsCount);
-//     printf("     with %d nodes.\n", getNodeCountFromAnfs(bundle->anfs, bundle->anfsCount));
-//     printf("     with %d vars.\n", getVarCountFromAnfs(bundle->anfs, bundle->anfsCount));
-//     printf("Nodes created without Anf: %d\n", bundle->nodeCount);
-//     printf("     with %d vars.\n", getVarCountFromNodes(bundle->nodes, bundle->nodeCount));
-//     printf("Variables                : %d\n", bundle->hashmap->usedCapacity);
-//     // printf("Max Var Length: %d\n", bundle->maxVarLength);
-//     printf("*******************\n");
-// }
-
-// void printBundleMap(tANFBundle* bundle) {
-//     printHashMap(bundle->hashmap);
-// }
+void printBundleMap(tAnf* anf) {
+    printHashMap(anf->hashMap);
+}
     
 // int generateAnfGraph(tAnf* anf, char* filename) {
 
