@@ -49,7 +49,7 @@ void fixAnfValue(tAnf* anf) {
                 value = false;
                 break;
             }
-            value &= anf->nodeList[i]->value;
+            value ^= anf->nodeList[i]->value;
         }
     }
     anf->value = value; 
@@ -225,6 +225,85 @@ void* newAnf(int mapInitCapacity, double mapLoadFactor) {
     return anf;
 }
 
+int duplicateVars(tHashMap* source, tHashMap* target) {
+    
+    for (int i = 0; i < source->capacity; i++) {
+            
+        tHashMapRecord record = source->records[i];
+        if (record.used) {
+            if (insertToHashMap(target, record.key, record.value) != OK) {
+                return ERR_INSERT;
+            }
+        }
+    }
+    return OK;
+}
+
+void* newAnfFrom2Anfs(tAnf* anf1, tAnf* anf2, bool valuesFromAnf1) {
+
+    int capacity = valuesFromAnf1 ? anf1->hashMap->capacity : anf2->hashMap->capacity;
+    int loadFactor = valuesFromAnf1 ? anf1->hashMap->loadFactor : anf2->hashMap->loadFactor;
+
+    tAnf* anf = newAnf(capacity, loadFactor);
+
+    if (valuesFromAnf1) {
+
+        if ((duplicateVars(anf2->hashMap, anf->hashMap) != OK) || 
+            (duplicateVars(anf1->hashMap, anf->hashMap) != OK)) {
+            freeAnf(anf);
+            return NULL;
+        }
+    }
+    else {
+        
+        if ((duplicateVars(anf1->hashMap, anf->hashMap) != OK) || 
+            (duplicateVars(anf2->hashMap, anf->hashMap) != OK)) {
+            freeAnf(anf);
+            return NULL;
+        }        
+    }
+
+    for (int i = 0; i < anf1->nodeCount; i++) {
+        tNode* node = newNodeInAnf(anf);
+        if (node == NULL) {
+            freeAnf(anf);
+            return NULL;
+        }
+        for (int j = 0; j < anf1->nodeList[i]->varCount; j++) {
+            char* varName = anf1->nodeList[i]->variables[j];
+            bool varValue = selectFromHashMap(anf->hashMap, varName)->value;
+            tVar var = createVar(varName, varValue);
+            if (addVarToNodeInAnf(anf, node, var) != OK) {
+                freeNode(node);
+                freeAnf(anf);
+                return NULL; 
+            }
+
+        }
+    }
+
+    for (int i = 0; i < anf2->nodeCount; i++) {
+        tNode* node = newNodeInAnf(anf);
+        if (node == NULL) {
+            freeAnf(anf);
+            return NULL;
+        }
+        for (int j = 0; j < anf2->nodeList[i]->varCount; j++) {
+            char* varName = anf2->nodeList[i]->variables[j];
+            bool varValue = selectFromHashMap(anf->hashMap, varName)->value;
+            tVar var = createVar(varName, varValue);
+            if (addVarToNodeInAnf(anf, node, var) != OK) {
+                freeNode(node);
+                freeAnf(anf);
+                return NULL; 
+            }
+
+        }
+    }
+    
+    return anf;
+}
+
 int deleteNodeFromAnf(tAnf* anf, tNode* node) {
 
     bool found = false;
@@ -352,6 +431,8 @@ int addVarToNodeInAnf(tAnf* anf, tNode* node, tVar var) {
     if (addVariableToNode(var, node) != OK) {
         return ERROR;
     }
+    fixNodeValue(node, anf->hashMap);
+    fixAnfValue(anf);
     return OK;
 }
 
@@ -374,6 +455,53 @@ int addVarsToNodeInAnf(tAnf* anf, tNode* node, tVar variables[], int length) {
     }
     return OK;
 }
+
+void recountNodeValueInAnf(tNode* node, tAnf* anf) {
+
+    for (int i = 0; i < node->varCount; i++) {
+
+        bool value = selectFromHashMap(anf->hashMap, node->variables[i])->value;
+        
+        if (i == 0) {
+            node->value = value;
+        }
+        else {
+            if (node->value == false) {
+                break;
+            }
+            node->value &= value;
+        }
+    }    
+}
+
+void recountValuesInAnf(tAnf* anf) {
+
+    for (int i = 0; i < anf->nodeCount; i++) {
+        recountNodeValueInAnf(anf->nodeList[i], anf);
+    }
+    printf("%d\n", anf->value);
+    fixAnfValue(anf);
+    printf("%d\n", anf->value);
+}
+
+int switchVarValueInAnf(char* varName, tAnf* anf) {
+    
+    tHashMapRecord* record = selectFromHashMap(anf->hashMap, varName);
+    if (record == NULL) {
+        return ERR_NOTEXIST;
+    }
+
+    bool newValue = !(record->value);
+
+    if (ERROR == insertToHashMap(anf->hashMap, varName, newValue)) {
+        return ERR_INSERT;
+    }
+
+    recountValuesInAnf(anf);
+
+    return OK;
+}
+
 
 void printAnf(tAnf* anf) {
 
@@ -404,83 +532,35 @@ void printBundleMap(tAnf* anf) {
     printHashMap(anf->hashMap);
 }
     
-// int generateAnfGraph(tAnf* anf, char* filename) {
+int generateAnfGraph(tAnf* anf, char* filename) {
 
-//     FILE *file = openAndClearFile(filename);
+    FILE *file = openAndClearFile(filename);
 
-//     if (file == NULL) {
-//         return ERR_OPEN;
-//     }
+    if (file == NULL) {
+        return ERR_OPEN;
+    }
 
-//     printInitGraphSequence(file);
-//     printSingleRootNode(file, "anf");
+    printInitGraphSequence(file);
+    printSingleRootNode(file, "anf");
 
-//     int nodeCounter = 1;
-//     nodeCounter = printAnonymousNodes(file, anf->length, nodeCounter, "node", 0);
+    int nodeCounter = 1;
+    nodeCounter = printAnonymousNodes(file, anf->nodeCount, nodeCounter, "node", 0);
 
-//     for (int i = 0; i < anf->length; i++) {
+    for (int i = 0; i < anf->nodeCount; i++) {
         
-//         for (int j = 0; j < anf->nodes[i]->length; j++) {
+        for (int j = 0; j < anf->nodeList[i]->varCount; j++) {
 
-//             tVar var = anf->nodes[i]->variables[j];
-//             printNodeWithValue(file, nodeCounter, var.name, var.value);
-//             printArrow(file, i+1, NO_PORT, nodeCounter);
-//             nodeCounter++;        
-//         }
-//     }
+            char* varName = anf->nodeList[i]->variables[j];
+            bool varValue = selectFromHashMap(anf->hashMap, varName);
+            printNodeWithValue(file, nodeCounter, varName, varValue);
+            printArrow(file, i+1, NO_PORT, nodeCounter);
+            nodeCounter++;        
+        }
+    }
 
-//     printEndGraphSequence(file);
+    printEndGraphSequence(file);
 
-//     fclose(file);
-//     return OK;
+    fclose(file);
+    return OK;
 
-// }
-
-// int generateBundleGraph(tANFBundle* bundle, char* filename) {
-
-//     FILE *file = openAndClearFile(filename);
-
-//     if (file == NULL) {
-//         return ERR_OPEN;
-//     }
-
-//     printInitGraphSequence(file);
-//     printSingleRootNode(file, "bundle");
-
-//     int nodeCounter = 1;
-//     nodeCounter = printAnonymousNodes(file, bundle->anfsCount, nodeCounter, "anf", 0);
-        
-//     int currentNodeIndex = 0;
-//     int nodeIndex = 1;
-
-//     for (int i = 0; i < bundle->anfsCount; i++) {
-        
-//         for (int j = 0; j < bundle->anfs[i]->length; j++) {
-
-//             int nodeNameSize = 6 + getDigitCount(nodeCounter); 
-//             char nodeName[nodeNameSize];
-//             snprintf(nodeName, nodeNameSize, "node %d", nodeIndex);
-//             printNodeWithoutValue(file, nodeCounter, nodeName);
-//             printArrow(file, i+1, NO_PORT, nodeCounter);
-//             currentNodeIndex = nodeCounter;
-
-//             nodeCounter++;
-//             nodeIndex++;
-        
-//             for (int k = 0; k < bundle->anfs[i]->nodes[j]->length; k++) {
-                
-//                 tVar var = bundle->anfs[i]->nodes[j]->variables[k];
-//                 printNodeWithValue(file, nodeCounter, var.name, var.value);
-//                 printArrow(file, currentNodeIndex, NO_PORT, nodeCounter);
-
-//                 nodeCounter++;        
-//             }
-    
-//         }
-//     }
-//     printEndGraphSequence(file);
-    
-//     fclose(file);
-//     return OK;
-
-// }
+}

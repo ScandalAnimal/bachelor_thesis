@@ -23,9 +23,9 @@ void printAnfMap(tAnf*);
 
 // initialCapacity, loadFactor
 void*	newAnf(int, double);
+void* 	newAnfFrom2Anfs(tAnf*, tAnf*, bool);
 void	freeAnf(tAnf*);
 void 	printAnf(tAnf*);
-
 
 void* 	newNodeInAnf(tAnf*);
 int	 	deleteNodeFromAnf(tAnf*, tNode*);
@@ -39,8 +39,8 @@ tVar	createTrueVarInAnf(tAnf*, char*);
 tVar	createFalseVarInAnf(tAnf*, char*);
 int		createVarsInAnf(tAnf*, tVar[], int);
 int 	deleteVarFromAnf(tAnf*, char*, bool);
+int 	switchVarValueInAnf(char*, tAnf*);
 
-// int 	generateAnfGraph(tAnf*, char*);
-// int 	generateBundleGraph(tANFBundle*, char*);
+int 	generateAnfGraph(tAnf*, char*);
 
 #endif //CODE_ANF_H

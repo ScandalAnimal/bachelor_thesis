@@ -15,6 +15,7 @@
 #define ERR_INNODE		-7
 #define ERR_INANF		-8
 #define ERR_OPEN		-9
+#define ERR_NOTEXIST	-10
 
 
 #define NO_PORT			-1
