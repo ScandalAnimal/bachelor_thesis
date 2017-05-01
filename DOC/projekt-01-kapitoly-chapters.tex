@@ -288,12 +288,12 @@ Analýzou SMHasherom ako jedny z najlepších prešli hashovacie algoritmy Spook
 	TODO - prečo som použil čo som použil
 }
 
-Výsledná hashovacia tabuľka by mala obsahovať okrem záznamov aj záznam o celkovej kapacite a o aktuálne využitej kapacite. Každý záznam obsahuje informáciu, či existuje premenná booleovskej funkcie, ktorej hodnota sa mapuje do daného záznamu.
+Výsledná hashovacia tabuľka by mala obsahovať okrem záznamov aj záznam o celkovej kapacite a o aktuálne využitej kapacite. Takisto v prípade, že záznamy zaplnia určité percento tabuľky, je potrebné kapacitu tabuľky zväčšiť a záznamy prehashovať. Tento bod si nazveme load factor a budeme ho reprezentovať číslom v intervale [0,1]. Každý záznam obsahuje informáciu, či existuje premenná booleovskej funkcie, ktorej hodnota sa mapuje do daného záznamu.
 
 \vspace*{0.5\baselineskip}
 \begin{lstlisting}[language=C, frame=tb]
   typedef struct hashMapRecord {
-    char *key;
+    char* key;
     bool value;
     bool used;
   } tHashMapRecord;
@@ -302,10 +302,45 @@ Výsledná hashovacia tabuľka by mala obsahovať okrem záznamov aj záznam o c
     tHashMapRecord *records;
     int capacity;
     int usedCapacity;
+    double loadFactor;
   } tHashMap;
 \end{lstlisting}
 
+\section{Reprezentácia termov}
+Každá booleovska funkcia v ANF sa skladá z 0 až n termov, ktoré obsahujú premenné. Premenné v terme sú medzi sebou prepojené operáciou AND. Každý term by mal v sebe obsahovať informácie, ktoré premenné obsahuje a koľko ich je dokopy. Keďže medzi všetkým premennými je rovnaká operácia, nie je potrebné si uchovávať informáciu o tom, na ktorej pozícií v terme sa nachádza ktorá premenná. Je teda možné premenné reprezentovať jednoduchým zoznamom. 
+
+Premenné by malo byť do termu možné dynamicky vkladať, takisto ich z neho odoberať. Term môže obsahovať jednu premennú aj viackrát.
+
+Každý term má aj svoju celkovú výslednú booleovsku hodnotu, ktorá je vypočítaná vykonaním operácie AND medzi všetkými premennými. Je dôležité myslieť na to, že ak budú do termu pridávané, alebo z neho odoberané premenné, mala by sa prepočítať aj táto výsledná hodnota. 
+
+Term už nemusí obsahovať priamo celé premenné, tie sú už uložené v hash mape celej ANF, v terme postačuje mať záznamy o názvoch premenných, ich hodnoty sa vytiahnu z hash mapy. Návrh štruktúry termu by mohol vyzerať nasledovne:  
+
 \vspace*{0.5\baselineskip}
+\begin{lstlisting}[language=C, frame=tb]
+  typedef struct node {	
+    char** variables;
+    int varCount;
+    bool value;
+  } tNode;
+\end{lstlisting}
+
+\vspace*{0.5\baselineskip}
+\section{Reprezentácia booleovskej funkcie}
+Štruktúra reprezentujúca booleovsku funkciu obsahuje všetky potrebné informácie o svojom obsahu. Obsahuje zoznam termov, ktoré sa vo funkcii nachádzajú, a takisto informáciu o tom, koľko je termov dohromady vo funkcii. Keďže všetky termy v booleovskej funkcii vo forme ANF sú spojené operáciou XOR, nie je potrebné si uchovávať informáciu o poradí termu vo funkcií.
+
+Ďalej je v štruktúre obsiahnutá aj hashovacia tabuľka, obsahujúca všetky hodnoty premenných, ktoré sa v booleovskej funkcií vyskytujú. Hashovacia tabuľka je spoločná pre celú booleovsku funkciu.
+
+Okrem spomenutých je potrebné v štruktúre zachovať informáciu o aktuálnej hodnote celej funkcie, vypočítanú vykonaním operácie XOR nad jednotlivými termami funkcie. Hodnota sa musí meniť správne podľa toho, ako sa manipuluje s termami. Či už sa termy pridávajú alebo odoberajú, alebo sa menia hodnoty premenných, hodnota celej funkcie musí byť uchovaná správne po celý čas.
+
+\vspace*{0.5\baselineskip}
+\begin{lstlisting}[language=C, frame=tb]
+typedef struct anf {
+	tNode** nodeList;
+	tHashMap* hashMap;
+	int nodeCount;
+	bool value;
+} tAnf;
+\end{lstlisting}
 
 \chapter{Implementácia}
 \chapter{Vyhodnotenie}
