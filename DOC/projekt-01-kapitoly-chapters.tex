@@ -161,8 +161,54 @@ TODO:
 	\item boolean satisfiability
 \end{itemize}
 
+%\subsection{Problém}
+
 \section{Binárne rozhodovacie diagramy} \label{bdds}
-Binárne rozhodovacie diagramy (BDD) sú triedou grafov, ktorá je prevažne využívaná ako dátová štruktúra pre reprezentáciu Booleovskych funkcií v dnešnej dobe. Existujú viaceré implementácie, ktoré sú postavené práve na BDD. Používajú sa na riešenie problémov ekvivalencie a splniteľnosti výrazov. Sú veľmi dôležité v oblastiach HW designu a optimalizácie.  
+Binárne rozhodovacie diagramy (BDD) sú triedou grafov, ktorá je prevažne využívaná ako dátová štruktúra pre reprezentáciu Booleovskych funkcií v dnešnej dobe. Existujú viaceré implementácie, ktoré sú postavené práve na BDD. Používajú sa na riešenie problémov ekvivalencie a splniteľnosti výrazov. Sú veľmi dôležité v oblastiach HW designu a optimalizácie.
+Informácie v tejto podkapitole sú prevzané z \cite{bdd-bryant-1} a \cite{bdd-bryant-2}
+
+BDD má podobu orientovaného koreňového acyklického grafu. Skladá sa z viacerých uzlov. BDD má práve 1 uzol, ktorý nazývame koreňom. Koreň je jediný uzol, korý nemá predchodcov. Každý uzol je jedného z 2 typov.
+
+Uzol môže byť neterminálny, to znamená že nemá hodnotu, a vydhádzajú z neho 2 dcérske uzly. Uzly sú označované ako \textit{low} a \textit{high}, pre odlíšenie jednotlivých podvetví stromu. Hrana smerujúca k \textit{low} uzlu reprezentuje priradenie hodnoty 0, hrana smerujúca k uzlu \textit{high} reprezentuje priradenie hodnoty 1. 
+
+Druhým typom je terminálny uzol, ktorý už nemá žiadnych potomkov, a má hodnotu z intervalu $\{0, 1\}$. Príklad BDD je na Obrázku \ref{picture:BDD}. Neterminálne uzly sú označené kruhom a vpísaný majú index premennej ktorú reprezentujú, terminálne štvorcom a vpísanú majú hodnotu. Low hrany sú prerušovanou čiarou, high hrany sú plnou čiarou. Obrázok reprezentuje funkciu vyjadrenú pravdivostnou tabuľkou \ref{table:BDD}.
+
+\begin{figure}[h]
+	\centering
+	\scalebox{0.8}
+	{\includegraphics{obrazky-figures/BDD.png}}
+	\caption{Binárny rozhodovací diagram}
+	\label{picture:BDD}
+\end{figure}
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c|c|c|c|} \hline
+		$x_1$ & $x_2$ & $x_3$ & $f(x_1,x_2,x_3)$ \\ \hline
+		0 & 0 & 0 & 1 \\
+		0 & 0 & 1 & 0 \\
+		0 & 1 & 0 & 0 \\
+		0 & 1 & 1 & 1 \\
+		1 & 0 & 0 & 0 \\
+		1 & 0 & 1 & 0 \\
+		1 & 1 & 0 & 1 \\
+		1 & 1 & 1 & 1 \\ \hline
+	\end{tabular}
+	\caption{Pravdivostná tabuľka pre funkciu na Obrázku \ref{picture:BDD}}
+	\label{table:BDD}
+\end{table}
+
+V praxi sa často namiesto klasických BDD využívajú redukované binárne rozhodovacie diagramy ROBDD (Reduced Ordered Binary Decision Diagram). Sú špecifické tým, že všetky izomrfické podgrafy sú spojené do jedného. Izomorfizmus 2 grafov znamená, že grafy sú identické, ale len inak usporiadané. Pre ROBDD takisto platí, že ak uzol má 2 izomorfické podstromy, tento uzol je z grafu v rámci minimalizácie odstránený. Príklad ROBBD, ktorý je redukovaný z grafu na Obrázku \ref{picture:BDD} je na Obrázku \ref{picture:BDD-simple}.
+
+\begin{figure}[h]
+	\centering
+	\scalebox{0.65}
+	{\includegraphics{obrazky-figures/BDD-simple.png}}
+	\caption{Redukovaný binárny rozhodovací diagram}
+	\label{picture:BDD-simple}
+\end{figure}
+
+Pre každú booleovsku funkciu existuje práve 1 ROBDD, ktorý je unikátny. ROBDD je teda kanonickou formou pre booleovske funkcie a preto je veľmi často využívaný v knižniciach reprezentujúcich booleovske funkcie.
 
 %\vspace*{0.5\baselineskip}
 %Pre BDD platia tieto pravidlá:
@@ -183,9 +229,11 @@ Binárne rozhodovacie diagramy (BDD) sú triedou grafov, ktorá je prevažne vyu
 \chapter{Existujúce knižnice} \label{chapter_libraries}
 Existuú viaceré knižnice vytvorené za účelom manipulácie s Booleovskymi funkciami. Nasledujúca kapitola sa zaoberá niektorými vybranými, hlavne tými, ktoré využívajú binárne rozhodovacie stromy (BDD).
 
+Okrem nižšie spomenutých knižníc ešte za zmienku stoja BDD knižnice TiGeR\cite{tiger-lib} alebo CAL\cite{cal-lib}; 
+
 \section{Colorado University Decision Diagram
 	Package - CUDD}
-	CUDD je verejne dostupná knižnica\footnote{ \url{http://vlsi.colorado.edu/~fabio/} }, ktorej vývoj sa začal už v 70. rokoch a naďalej pokračuje.
+	CUDD je verejne dostupná knižnica\footnote{ \url{http://vlsi.colorado.edu/~fabio/} }, ktorej vývoj sa začal už v 70. rokoch a naďalej pokračuje. Je založená na prehľaddávaní do hĺbky.
 	
 	\vspace*{0.5\baselineskip}
 	Balíček je možné využívať ako tzv. \textit{black box}, teda používať len exportované funkcie, ale aj ako tzv. \textit{clean box}, kde si programátor vie dodať vlastné doplňujúce funkcie.
@@ -197,7 +245,7 @@ Existuú viaceré knižnice vytvorené za účelom manipulácie s Booleovskymi f
 	CUDD využíva ukazovatele na uzly BDD. Udržuje si počítadlo referencií. Počet premenných ovplyvňuje počet tabuliek. Knižnica využíva heuristiku, ktorá sprístupní tabuľku výpočtov len vtedy, ak aspoň jeden argument má hodnotu počítadla referencií väčšiu než 1.
 	
 	\vspace*{0.5\baselineskip}
-	V CUDD existuje veľmi efektívny správca pamäte. Garbage Collector podľa počítadla referencií maže \textit{mrtvé uzly}, teda uzly, ktoré majú 0 v počítadle referencií.
+	V CUDD existuje veľmi efektívny správca pamäte. Volá sa len vtedy, ak využitie pamäte prekročí určitú hranicu. Garbage Collector podľa počítadla referencií maže \textit{mrtvé uzly}, teda uzly, ktoré majú 0 v počítadle referencií. 
 	
 	Ďalšie informácie o knižnici sa dajú dohľadať v manuáli \cite{CUDD-manual}.
 	

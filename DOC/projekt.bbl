@@ -8,6 +8,20 @@
 \providecommand{\selectlanguage}[1]{\relax}
 \providecommand{\eprint}[2][]{\url{#2}}
 
+\bibitem{bdd-bryant-1}
+Bryant, R.~E.: Graph-Based Algorithms for Boolean Function Manipulation.
+  \emph{IEEE Trans. Comput.}, ročník~35, č.~8, Srpen 1986: s. 677--691, ISSN
+  0018-9340.
+
+\bibitem{bdd-bryant-2}
+Bryant, R.~E.: Symbolic Boolean Manipulation with Ordered Binary-decision
+  Diagrams. \emph{ACM Comput. Surv.}, ročník~24, č.~3, Září 1992: s.
+  293--318, ISSN 0360-0300.
+
+\bibitem{tiger-lib}
+Coudert, I.; Madre, J.~C.; Touati, H.: \emph{TiGeR Version 1.0 User Guide}.
+  Digital Paris Research Lab, 1993.
+
 \bibitem{Crama-bool}
 Crama, Y.; Hammer, P.~L.: \emph{Boolean Functions: Theory, Algorithms, and
   Applications}. NY, New York: Cambridge University Press, 2011, ISBN
@@ -38,6 +52,11 @@ Muller, D.~E.: \emph{Applications of Boolean Algebra to Switching Circuit
 \bibitem{Reed-anf}
 Reed, I.~S.: \emph{A Class of Multiple-Error-Correcting Codes and Their
   Decoding Scheme}. IRE Trans. Information Theory, vol. 4, 1954, pp. 38-42.
+
+\bibitem{cal-lib}
+Sanghavi, J.~V.; Ranjan, R.~K.; Brayton, R.~K.; aj.: \emph{High Performance BDD
+  Package by Exploiting Memory Hierarchy}. DAC '96, ACM, 1996, ISBN
+  0-89791-779-0, 635--640 s.
 
 \bibitem{CUDD-manual}
 Somenzi, F.: CUDD: CU Decision Diagram Package 3.0.0. [Online; 19.01.2017].
