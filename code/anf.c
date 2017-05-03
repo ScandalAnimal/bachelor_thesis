@@ -505,10 +505,12 @@ int switchVarValueInAnf(char* varName, tAnf* anf) {
 
 void printAnf(tAnf* anf) {
 
+    int varCount = 0;
     printf("********************************\nANF:\n @ ");
     for (int i = 0; i < anf->nodeCount; i++) {
+        varCount += anf->nodeList[i]->varCount;
+            
         for (int j = 0; j < anf->nodeList[i]->varCount; j++) {
-        
             tHashMapRecord* record = selectFromHashMap(anf->hashMap, anf->nodeList[i]->variables[j]);
             printf("%s:%s", record->key, record->value ? "true" : "false");
             if (anf->nodeList[i]->varCount - j > 1) {
@@ -523,6 +525,7 @@ void printAnf(tAnf* anf) {
         }
     }
     printf("\n * Node Count: %d", anf->nodeCount);
+    printf("\n * Var Count: %d", varCount);
     printf("\n * Anf value: ");
     fputs(anf->value ? "true\n" : "false\n", stdout);
     printf("********************************\n");

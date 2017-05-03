@@ -10,7 +10,7 @@
 #include "hashmap.h"
 #include "variable.h"
 
-typedef struct node {
+typedef struct node {		
 	char** variables;
     int varCount;
     bool value;
