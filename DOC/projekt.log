@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.4.22)  28 APR 2017 22:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.4.22)  1 MAY 2017 21:39
 entering extended mode
 **./projekt.tex
 (projekt.tex
@@ -1358,7 +1358,7 @@ File: t1qhv.fd 2009/09/25 v1.2 font definition file for T1/qhv
 \@vyskaobr=\skip84
 \@sirkaobr=\skip85
 
-<template-fig/VUT_symbol_barevne_CMYK_CZ.pdf, id=104, 167.13641pt x 165.87971pt
+<template-fig/VUT_symbol_barevne_CMYK_CZ.pdf, id=112, 167.13641pt x 165.87971pt
 >
 File: template-fig/VUT_symbol_barevne_CMYK_CZ.pdf Graphic file (type pdf)
  <use template-fig/VUT_symbol_barevne_CMYK_CZ.pdf>
@@ -1444,7 +1444,7 @@ l.65 \end{table}
                  [3
 
 ] [4]
-<obrazky-figures/KarnaughMap.png, id=214, 220.57407pt x 128.73094pt>
+<obrazky-figures/KarnaughMap.png, id=224, 220.57407pt x 128.73094pt>
 File: obrazky-figures/KarnaughMap.png Graphic file (type png)
 
 <use obrazky-figures/KarnaughMap.png>
@@ -1456,7 +1456,7 @@ Overfull \hbox (4.33263pt too wide) in paragraph at lines 96--97
  [][] 
  []
 
-<obrazky-figures/logicalCircuit.png, id=216, 179.16937pt x 128.73094pt>
+<obrazky-figures/logicalCircuit.png, id=226, 179.16937pt x 128.73094pt>
 File: obrazky-figures/logicalCircuit.png Graphic file (type png)
 
 <use obrazky-figures/logicalCircuit.png>
@@ -1478,48 +1478,67 @@ File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 121.
  [5 <./obrazky-figures/KarnaughMap.png> <./obrazky-figures/logicalCircuit.png>]
- [6] [7]
+ [6]
+<obrazky-figures/BDD.png, id=265, 436.63126pt x 239.39438pt>
+File: obrazky-figures/BDD.png Graphic file (type png)
+
+<use obrazky-figures/BDD.png>
+Package pdftex.def Info: obrazky-figures/BDD.png used on input line 179.
+(pdftex.def)             Requested size: 436.63019pt x 239.39378pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<obrazky-figures/BDD-simple.png, id=269, 383.93437pt x 453.94594pt>
+File: obrazky-figures/BDD-simple.png Graphic file (type png)
+
+<use obrazky-figures/BDD-simple.png>
+Package pdftex.def Info: obrazky-figures/BDD-simple.png used on input line 206.
+
+(pdftex.def)             Requested size: 383.93343pt x 453.94482pt.
+ [7 <./obrazky-figures/BDD.png>] [8 <./obrazky-figures/BDD-simple.png>]
 Kapitola 3.
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 188.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 236.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd"
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [8
+) [9
 
-] [9] [10]
+] [10] [11]
 Kapitola 4.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstmisc.sty"
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-) [11
+) [12
 
-] [12]
+] [13]
+[14] [15]
 Kapitola 5.
-[13
+[16
 
 ]
 Kapitola 6.
-[14
+[17
 
 ]
 Kapitola 7.
-[15
+[18
 
 ]
 Kapitola 8.
 
-Overfull \hbox (1.76666pt too wide) in paragraph at lines 339--340
+Overfull \hbox (1.76666pt too wide) in paragraph at lines 422--423
 []\T1/lmr/m/n/10.95 Detlef Sie-ling. "The no-napp-ro-xi-ma-bi-lity of OBDD mi-n
 i-mi-za-tion.Ïnformation and Com-
  []
 
-[16
+[19
 
-]) (projekt.bbl [17]) [18
+]) (projekt.bbl [20] [21
 
-] [19
+]) [22] [23
 
 ]
 \c@ttl@toc@chapters=\count321
@@ -1534,20 +1553,20 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 269.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 269.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 269.
 Package rerunfilecheck Info: File `projekt.out' has not changed.
-(rerunfilecheck)             Checksum: A9FD96F7414C8435C1B94C688F0BDB41;3816.
+(rerunfilecheck)             Checksum: 79E30758D703ACF474D7848540C63E08;4208.
 
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 22916 strings out of 493333
- 371736 string characters out of 3139197
- 461918 words of memory out of 3000000
- 25993 multiletter control sequences out of 15000+200000
+ 22981 strings out of 493333
+ 372684 string characters out of 3139197
+ 463378 words of memory out of 3000000
+ 26029 multiletter control sequences out of 15000+200000
  109151 words of font info for 90 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,11n,51p,10426b,1153s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,11n,51p,10426b,1850s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files/M
 iKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX 2.9/fonts/e
 nc/dvips/opensans/opensans-03.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/
@@ -1570,9 +1589,9 @@ ram Files/MiKTeX 2.9/fonts/type1/public/lm/lmri10.pfb><C:/Program Files/MiKTeX
 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
 ublic/lm/lmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmtt9.pf
 b>
-Output written on projekt.pdf (22 pages, 665648 bytes).
+Output written on projekt.pdf (26 pages, 729835 bytes).
 PDF statistics:
- 440 PDF objects out of 1000 (max. 8388607)
- 86 named destinations out of 1000 (max. 500000)
- 242 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 506 PDF objects out of 1000 (max. 8388607)
+ 113 named destinations out of 1000 (max. 500000)
+ 268 words of extra memory for PDF output out of 10000 (max. 10000000)
 
