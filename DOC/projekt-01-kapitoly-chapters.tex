@@ -153,6 +153,10 @@ jednoduchým polynómom, ktorý v sebe neobsahuje koeficienty ani exponenty. Koe
 \vspace*{0.5\baselineskip}
 Pomocou operácií AND $\wedge$ a NOT $\neg$ dokážeme vytvoriť všetky ostatné operácie v Booleovskej algebre. Ďalšie operácie sú tvorené len kombináciou týchto dvoch operácií. Keďže v ANF je nie povolená operácia NOT, musíme si ju nejako vytvoriť. Negácia v ANF vzniká XORom premennej a logickej jedničky: x $\bigoplus$ 1. Týmto sposobom dokážeme previesť do ANF aj funkcie z iných normálnych foriem, prípadne aj z iných reprezentácií.
 
+\subsection{Porovnanie normálnych foriem}
+\subsection{Konverzie normálnych foriem}
+\subsection{Vyhodnocovanie funkcie v algebraickej normálnej forme}
+
 TODO:
 \begin{itemize}
 	\item porovnanie s CNF a DNF
@@ -160,8 +164,6 @@ TODO:
 	\item konverzie
 	\item boolean satisfiability
 \end{itemize}
-
-%\subsection{Problém}
 
 \section{Binárne rozhodovacie diagramy} \label{bdds}
 Binárne rozhodovacie diagramy (BDD) sú triedou grafov, ktorá je prevažne využívaná ako dátová štruktúra pre reprezentáciu Booleovskych funkcií v dnešnej dobe. Existujú viaceré implementácie, ktoré sú postavené práve na BDD. Používajú sa na riešenie problémov ekvivalencie a splniteľnosti výrazov. Sú veľmi dôležité v oblastiach HW designu a optimalizácie.
