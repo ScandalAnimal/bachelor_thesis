@@ -153,17 +153,20 @@ jednoduchým polynómom, ktorý v sebe neobsahuje koeficienty ani exponenty. Koe
 \vspace*{0.5\baselineskip}
 Pomocou operácií AND $\wedge$ a NOT $\neg$ dokážeme vytvoriť všetky ostatné operácie v Booleovskej algebre. Ďalšie operácie sú tvorené len kombináciou týchto dvoch operácií. Keďže v ANF je nie povolená operácia NOT, musíme si ju nejako vytvoriť. Negácia v ANF vzniká XORom premennej a logickej jedničky: x $\bigoplus$ 1. Týmto sposobom dokážeme previesť do ANF aj funkcie z iných normálnych foriem, prípadne aj z iných reprezentácií.
 
+\subsection{Splniteľnosť booleovskych funkcií}
+Problém splniteľnosti booleovskych formulí (z anglického boolean satistfiability problem, skratka SAT) sa zaoberá tým, či existuje taká kombinácia premenných v booleovskej funkcii, ktorým by sa priradili hodnoty \textit{true} a \textit{false}, a výsledná funkcia by sa vyhodnotila ako \textit{true}.
+
+Ak takáto kombinácia premenných existuje, funkciu nazývame \textit{splniteľnou}. Naopak, ak neexistuje žiadna kombinácia premenných, pre ktoré by funkcia mala hodnotu true, funkciu nazývame \textit{nesplniteľnou}. Typickým príkladom nesplniteľnej funkcie môže byť A AND $\neg A$.
+
+Dnes existujú viaceré algoritmy (tiež SAT solvery), ktoré rešia rôzne druhy SAT problémov, napríklad z oblasti umelej inteligencie či tvorbe obvodov.
+
+Ak je booleovska funckia zapísaná vo forme algebraickej normálnej formy, môžeme v nej vidieť 2 časti, na ktoré sa vzťahuje SAT problém. Pre jednotlivé termy, ktoré obsahujú len operáciu AND (sú teda v disjunktívnej normálnej forme), je zistenie riešenia SAT problému triviálne. Ak sú všetky premenné hodnoty true, je daný term splniteľný, ak aspoň jedna premenná má hodnotu false, je daný term nesplniteľný. 
+
+Druhým SAT problémom ANF sú XOR klauzule menzi jednotlivými termami. Keďže funkcia obsahujúca XOR klauzuly sa dá prepísať ako systém lineárnych rovníc modulo 2, je možné tento SAT problém vyriešiť v kubickom čase pomocou Gaussovej eliminácie \cite{gauss}.
+
 \subsection{Porovnanie normálnych foriem}
 \subsection{Konverzie normálnych foriem}
 \subsection{Vyhodnocovanie funkcie v algebraickej normálnej forme}
-
-TODO:
-\begin{itemize}
-	\item porovnanie s CNF a DNF
-	\item riesenie bf
-	\item konverzie
-	\item boolean satisfiability
-\end{itemize}
 
 \section{Binárne rozhodovacie diagramy} \label{bdds}
 Binárne rozhodovacie diagramy (BDD) sú triedou grafov, ktorá je prevažne využívaná ako dátová štruktúra pre reprezentáciu Booleovskych funkcií v dnešnej dobe. Existujú viaceré implementácie, ktoré sú postavené práve na BDD. Používajú sa na riešenie problémov ekvivalencie a splniteľnosti výrazov. Sú veľmi dôležité v oblastiach HW designu a optimalizácie.
@@ -295,7 +298,7 @@ Okrem nižšie spomenutých knižníc ešte za zmienku stoja BDD knižnice TiGeR
 \section{PPBF BDD - Parallel partial breadth-first expansion}
 	Knižnica\footnote{\url{http://www.cs.cmu.edu/~bwolen/software/} } pre multiprocesorové paralelné spracovanie BDD. Na prácu potrebuje zdieľanú pamäť. Poskytuje operácie nad kombinačnými obvodmi. 
 	
-\chapter{Návrh}
+\chapter{Návrh} \label{chapter_concept}
 V tejto kapitole si bližšie popíšeme návrh knižnice pre manipuláciu s booleovskymi funkciami v ANF. Vysvetlíme si ako efektívne reprezentovať všetky časti booleovskej funkcie v programe. Takisto si navrhneme všetky potrebné operácie pre reprezentáciu funkcie v ANF. 
 
 Základné vlastnosti, ktoré sa od knižnice požadujú sú efektívna reprezentácia a manipulácia s booleovskymi funkciami. Knižnica by mala obsahovať nástroje použiteľné na vytváranie, úpravu, zobrazovanie a mazanie funkcií a ich jednotlivých súčastí.
@@ -392,8 +395,8 @@ typedef struct anf {
 } tAnf;
 \end{lstlisting}
 
-\chapter{Implementácia}
-\chapter{Vyhodnotenie}
+\chapter{Implementácia} \label{chapter_impl}
+\chapter{Vyhodnotenie} \label{chapter_result}
 \chapter{Záver}
 
 TODO
