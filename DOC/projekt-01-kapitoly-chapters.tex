@@ -510,8 +510,66 @@ typedef struct anf {
 	Podobne aj pri mazaní premennej z termu je najprv vykonaná kontrola na rovnosť hodnoty termu s hodnotou \textit{true}. Ak term obsahuje nejaké premenné a má hodnotu \textit{true}, znamená to že všetky jeho premenné majú hodnotu \textit{true}, teda aj naša mazaná, a preto nie je potrebné hodnotu termu znova prepočítavať.
 	
 	\vspace*{0.5\baselineskip}
-	V neposlednom rade je optimalizáciou aj to, že zoznam premenných v terme (respektíve zoznam termov v anf) obsahuje len odkazy na dané štruktúrym nie ich kompletnú hodnotu.  
+	V neposlednom rade je optimalizáciou aj to, že zoznam premenných v terme (respektíve zoznam termov v anf) obsahuje len odkazy na dané štruktúrym nie ich kompletnú hodnotu.
+	
+\section{Grafické zobrazenie funkcií}
+	
+	Jednou z požiadaviek na knižnicu je aj možnosť grafického zobrazenia vytvorených funkcií. Takýto graf by mal obsahovať všetky termy pre danú funkciu a takisto správne naznačovať, ktoré premenné sa nachádzajú v ktorých termoch. 	  
 
+	\vspace*{0.5\baselineskip}
+	Existuje viacero prístupov, ako pristupovať k reprezentácií štruktúr grafom. Spomenieme si 2 hlavné formáty: textový a XML. 
+	
+	\vspace*{0.5\baselineskip}
+	Zástupcom formátov založených na XML je napríklad DGML\footnote{\url{https://msdn.microsoft.com/en-us/library/dn966108.aspx}}. Tento formát bol vyvinutý Microsoftom a je používaný pri vizualizácií štruktúr vo Visual Studiu. Poskytuje možnosť tvoriť orientované aj neorientované grafy, ako aj napríklad možnosť anotovať jednotlivé prvky grafu. 
+	
+\begin{lstlisting}[language=XML, frame=tb]
+<?xml version='1.0' encoding='utf-8'?>
+  <DirectedGraph xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+    <Nodes>
+	  <Node Id="a" Label="a" Size="10" />
+	  <Node Id="b" Label="b" />
+	</Nodes>
+	<Links>
+	  <Link Source="a" Target="b" />
+	</Links>
+	<Properties>
+	  <Property Id="Label" Label="Label" DataType="String" />
+	  <Property Id="Size" DataType="String" />
+	</Properties>
+  </DirectedGraph>
+\end{lstlisting}
+
+	\vspace*{0.5\baselineskip}
+	Z textových formátov je veľmi rozšírený formát DOT\footnote{\url{http://www.graphviz.org/pdf/dotguide.pdf}}. Poskytuje možnosť vytvárať orientované grafy. DOT je možné používať v príkazovom riadku, aj cez rôzne grafické prostredia, takisto je dostupných viacero online nástrojov. V Zrojovom kóde \ref{listing_dot} môžeme vidieť jednoduchý graf vo formáte DOT, na Obrázku \ref{image_dot} potom ako taký graf vyzerá.
+	
+\begin{lstlisting}[caption=príklad formátu DOT, label=listing_dot, frame=tb]
+1: digraph G {
+2:   main -> parse -> execute;
+3:   main -> init;
+4:   main -> cleanup;
+5:   execute -> make_string;
+6:   execute -> printf
+7:   init -> make_string;
+8:   main -> printf;
+9:   execute -> compare;
+10: }
+\end{lstlisting}
+	
+\begin{figure}[h]
+	\centering
+	\scalebox{0.65}
+	{\includegraphics{obrazky-figures/DOT.png}}
+	\caption{Príklad grafu vytvoreného cez formát DOT}
+	\label{image_dot}
+\end{figure}	
+	
+	\vspace*{0.5\baselineskip}
+	Pre jednoduchosť formátu DOT, a takisto veľkej možnosti si ho vyskúšať online v rôznych nástrojoch bol nakoniec práve tento formát zvolený ako vhodný pre reprezentáciu booleovskych funkcií v implementovanej knižnici. 
+	
+	\vspace*{0.5\baselineskip}
+	Okrem formátu pre tvorenie grafov knižnica bude obsahovať aj možnosť vypísania obsahu danej booleovskej funkcie do príkazového riadku v jednoduchom textovom symbolickom formáte. Táto možnosť bude slúžiť pre používateľov, ktorý nemajú prístup k žiadnemu nástroju pre vykreslenie obrázku vo formáte DOT.
+	
+	
 \chapter{Implementácia} \label{chapter_impl}
 \chapter{Vyhodnotenie} \label{chapter_result}
 \chapter{Záver}
