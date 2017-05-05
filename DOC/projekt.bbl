@@ -8,6 +8,12 @@
 \providecommand{\selectlanguage}[1]{\relax}
 \providecommand{\eprint}[2][]{\url{#2}}
 
+\bibitem{bard}
+Bard, G.~V.; Courtois, N.~T.; Jefferson., C.: Efficient Methods for Conversion
+  and Solution of Sparse Systems of Low-Degree Multivariate Polynomials over
+  GF(2) via SAT-Solvers. Cryptology ePrint Archive, Report 2007/024, 2007.
+\newline\urlprefix\url{http://eprint.iacr.org/2007/024}
+
 \bibitem{bdd-bryant-1}
 Bryant, R.~E.: Graph-Based Algorithms for Boolean Function Manipulation.
   \emph{IEEE Trans. Comput.}, ročník~35, č.~8, Srpen 1986: s. 677--691, ISSN
@@ -21,6 +27,11 @@ Bryant, R.~E.: Symbolic Boolean Manipulation with Ordered Binary-decision
 \bibitem{tiger-lib}
 Coudert, I.; Madre, J.~C.; Touati, H.: \emph{TiGeR Version 1.0 User Guide}.
   Digital Paris Research Lab, 1993.
+
+\bibitem{courtois}
+Courtois, N.~T.; Bard, G.~V.: Algebraic Cryptanalysis of the Data Encryption
+  Standard. \emph{Proceedings of the 11th IMA International Conference on
+  Cryptography and Coding}, 2007: s. 152--169.
 
 \bibitem{Crama-bool}
 Crama, Y.; Hammer, P.~L.: \emph{Boolean Functions: Theory, Algorithms, and
