@@ -42,11 +42,6 @@ Crama, Y.; Hammer, P.~L.: \emph{Boolean Functions: Theory, Algorithms, and
 Davio, P.; Deschamps, J.~P.; Thayse, A.: \emph{Discrete and Switching
   Functions}. New York: McGraw-Hill, 1978.
 
-\bibitem{CacBDD-manual}
-Guanfeng, L.; Kaile, S.; Yanyan, X.: CacBDD: A BDD Package with Dynamic Cache
-  Management. [Online; 20.01.2017].
-\newline\urlprefix\url{http://www.kailesu.net/CacBDD/CacBDD.pdf}
-
 \bibitem{Hazewinkel-math}
 Hazewinkel, M.: \emph{Encyclopaedia of Mathematics}. Springer, 1994, ISBN
   9781556080104.
@@ -72,10 +67,6 @@ Reed, I.~S.: \emph{A Class of Multiple-Error-Correcting Codes and Their
 Sanghavi, J.~V.; Ranjan, R.~K.; Brayton, R.~K.; aj.: \emph{High Performance BDD
   Package by Exploiting Memory Hierarchy}. DAC '96, ACM, 1996, ISBN
   0-89791-779-0, 635--640 s.
-
-\bibitem{CUDD-manual}
-Somenzi, F.: CUDD: CU Decision Diagram Package 3.0.0. [Online; 19.01.2017].
-\newline\urlprefix\url{http://vlsi.colorado.edu/~fabio/CUDD/cudd.pdf}
 
 \bibitem{Feng-anf}
 Wu, C.-K.; Feng, D.: \emph{Boolean Functions and Their Applications in
