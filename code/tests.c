@@ -736,6 +736,62 @@ int multipleFunctionsTest(char* graphOutput) {
     return OK;   
 }
 
+int variableValueChangeTest(char* graphOutput) {
+
+    tVar varArray[] = {
+        createVar("var1", true),
+        createVar("var2", true),
+        createVar("var3", true)
+    };
+
+    tVar varArray2[] = {
+        createVar("var4", true),
+        createVar("var5", true),
+        createVar("var6", true)
+    };
+
+    tAnf* anf1 = newAnf(20, 0.7);
+    if (anf1 == NULL) {
+        return ERROR;
+    }
+
+    tNode* node1 = newNodeWithVarsInAnf(anf1, varArray, ARRAY_SIZE(varArray));
+    if (node1 == NULL) {
+        freeAnf(anf1);
+        return ERROR;
+    }
+
+    tNode* node2 = newNodeWithVarsInAnf(anf1, varArray2, ARRAY_SIZE(varArray2));
+    if (node2 == NULL) {
+        freeNode(node1);
+        freeAnf(anf1);
+        return ERROR;
+    }
+
+    printAnf(anf1);
+    printNode(node1);
+    printNode(node2);
+    printHashMap(anf1->hashMap);
+
+    if (switchVarValueInAnf("var2", anf1) != OK) {
+        freeNode(node1);
+        freeNode(node2);
+        freeAnf(anf1);
+        return ERROR;    
+    }
+
+    printAnf(anf1);
+    printNode(node1);
+    printNode(node2);
+    printHashMap(anf1->hashMap);
+
+    freeNode(node1);
+    freeNode(node2);
+
+    freeAnf(anf1);
+
+    return OK;   
+}
 int main(int argc, char* argv[]) {
 
     struct stat st = {0};
@@ -750,11 +806,14 @@ int main(int argc, char* argv[]) {
     int test2Result = singleFunctionTest("./testOutput/test2-graph.gv");
     freopen ("./testOutput/test3-output", "a+", stdout);
     int test3Result = multipleFunctionsTest("./testOutput/test3-graph.gv");
+    freopen ("./testOutput/test4-output", "a+", stdout);
+    int test4Result = variableValueChangeTest("./testOutput/test4-graph.gv");
 
     freopen("/dev/tty", "w", stdout);
-    printf("TEST 01: HashMap Test            ..... Result: %s %d\n", (test1Result == OK) ? "SUCCESS" : "FAILURE", test1Result);
-    printf("TEST 02: Single Function Test    ..... Result: %s %d\n", (test2Result == OK) ? "SUCCESS" : "FAILURE", test2Result);
-    printf("TEST 03: Multiple Functions Test ..... Result: %s %d\n", (test3Result == OK) ? "SUCCESS" : "FAILURE", test3Result);
+    printf("TEST 01: HashMap Test               ..... Result: %s %d\n", (test1Result == OK) ? "SUCCESS" : "FAILURE", test1Result);
+    printf("TEST 02: Single Function Test       ..... Result: %s %d\n", (test2Result == OK) ? "SUCCESS" : "FAILURE", test2Result);
+    printf("TEST 03: Multiple Functions Test    ..... Result: %s %d\n", (test3Result == OK) ? "SUCCESS" : "FAILURE", test3Result);
+    printf("TEST 04: Variable Value Change Test ..... Result: %s %d\n", (test4Result == OK) ? "SUCCESS" : "FAILURE", test4Result);
     
 
     // printf("TEST 01: %d\n", emptyAnfs());

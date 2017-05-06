@@ -479,9 +479,7 @@ void recountValuesInAnf(tAnf* anf) {
     for (int i = 0; i < anf->nodeCount; i++) {
         recountNodeValueInAnf(anf->nodeList[i], anf);
     }
-    printf("%d\n", anf->value);
     fixAnfValue(anf);
-    printf("%d\n", anf->value);
 }
 
 int switchVarValueInAnf(char* varName, tAnf* anf) {

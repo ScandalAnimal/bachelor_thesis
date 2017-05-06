@@ -42,7 +42,6 @@ int addVariableToNode(tVar variable, tNode* node) {
 
     for (int i = 0; i < node->varCount; i++) {
         if (strcmp(node->variables[i], variable.name) == 0) {
-            printf("%s %s\n", node->variables[i], variable.name);
             return ERR_DUPLICATE;
         }
     }
@@ -64,7 +63,6 @@ int addVariablesToNode(tVar variables[], int size, tNode* node) {
     for (int i = 0; i < size; i++) {
         int addResult = addVariableToNode(variables[i], node);
         if (addResult != OK) {
-            printf("%d %d\n", i, addResult);
             return addResult;
         }
     }
