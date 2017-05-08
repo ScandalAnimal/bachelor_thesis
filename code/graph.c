@@ -48,14 +48,14 @@ void printMultipleRootNodes(FILE* file, int nodeCount) {
 
 void printArrow(FILE* file, int leftSideNodeNumber, int leftSideNodePort, int rightSideNodeNumber) {
     
-    int bufferSize = getDigitCount(leftSideNodeNumber) + 2;
+    int bufferSize = getDigitCount(leftSideNodeNumber) + 2 + 2;
     if (getDigitCount(leftSideNodePort) > bufferSize) {
-        bufferSize = getDigitCount(leftSideNodePort) + 2;
+        bufferSize = getDigitCount(leftSideNodePort) + 2 + 2;
     }
 
     int size = 20 + getDigitCount(leftSideNodeNumber) + 
                     getDigitCount(leftSideNodePort) + 
-                    getDigitCount(rightSideNodeNumber) + 2;
+                    getDigitCount(rightSideNodeNumber) + 3;
     char output[size];
     strcpy(output, "");
 

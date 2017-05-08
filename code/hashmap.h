@@ -23,13 +23,13 @@
 typedef void*  tMap;
 
 tMap	createHashMap();
-int     insertToHashMap(tMap, const char*, bool);
+int     insertToHashMap(tMap, char*, bool);
 tVar*	selectFromHashMap(tMap, const char*);
 bool    isHashMapEmpty(tMap);
 void    freeHashMap(tMap);
 
 bool    isKeyInHashMap(tMap, const char*);
-int 	removeFromHashMap(tMap, const char*);
+int 	removeFromHashMap(tMap, char*);
 void    clearHashMap(tMap);
 
 void    printHashMap(tMap);

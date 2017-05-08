@@ -10,6 +10,12 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include "anf.h"
+#include "utils.h"
+
+#define KEY_MAX_LENGTH (256)
+#define KEY_PREFIX ("key")
+#define KEY_COUNT (100)
+
 
 int hashMapTest(char* graphOutput) {
 
@@ -280,6 +286,7 @@ int multipleFunctionsTest(char* graphOutput) {
         freeNode(node4);
         freeAnf(anf1);
         freeAnf(anf2);
+        freeAnf(anf3);
         return ERROR;  
     }
 
@@ -290,6 +297,7 @@ int multipleFunctionsTest(char* graphOutput) {
 
     freeAnf(anf1);
     freeAnf(anf2);
+
     freeAnf(anf3);
 
     return OK;   
@@ -351,6 +359,61 @@ int variableValueChangeTest(char* graphOutput) {
 
     return OK;   
 }
+
+int bigDataInputTest(char* graphOutput) {
+
+    tMap map = createHashMap();
+
+    char key_string[KEY_MAX_LENGTH];
+    tVar* value;
+    
+
+    for (int i = 0; i < KEY_COUNT; i++) {
+        value = malloc(sizeof(tVar));
+        value->name = malloc(sizeof(char) * KEY_MAX_LENGTH);
+        snprintf(value->name, KEY_MAX_LENGTH, "%s%d", KEY_PREFIX, i);
+        value->value = getRandomBooleanValue();
+
+        if (insertToHashMap(&map, value->name, value->value) != OK) {
+            free(value->name);
+            free(value);
+            freeHashMap(&map);
+            return ERROR;
+        }
+        free(value->name);
+        free(value);
+    }
+
+    printHashMap(&map);
+
+    if (generateHashMapGraph(&map, graphOutput) != OK) {
+        freeHashMap(&map);
+        return ERROR;   
+    }
+    
+    for (int i = 0; i < KEY_COUNT; i++) {
+        snprintf(key_string, KEY_MAX_LENGTH, "%s%d", KEY_PREFIX, i);
+
+        if (selectFromHashMap(&map, key_string) == NULL) {
+            free(value->name);
+            free(value);
+            freeHashMap(&map);
+            return ERROR;    
+        }
+        if (removeFromHashMap(&map, key_string) != OK) {
+            free(value->name);
+            free(value);
+            freeHashMap(&map);
+            return ERROR;    
+        }
+    }
+
+    printHashMap(&map);
+    freeHashMap(&map);
+
+    return OK;
+}
+
 int main(int argc, char* argv[]) {
 
     struct stat st = {0};
@@ -359,19 +422,24 @@ int main(int argc, char* argv[]) {
         mkdir("./testOutput", 0700);
     }
 
-    freopen ("./testOutput/test1-output", "a+", stdout);
-    int test1Result = hashMapTest("./testOutput/test1-graph.gv");
-    freopen ("./testOutput/test2-output", "a+", stdout);
-    int test2Result = singleFunctionTest("./testOutput/test2-graph.gv");
-    freopen ("./testOutput/test3-output", "a+", stdout);
-    int test3Result = multipleFunctionsTest("./testOutput/test3-graph.gv");
-    freopen ("./testOutput/test4-output", "a+", stdout);
-    int test4Result = variableValueChangeTest("./testOutput/test4-graph.gv");
+    // freopen ("./testOutput/test1-output", "a+", stdout);
+    // int test1Result = hashMapTest("./testOutput/test1-graph.gv");
+    // freopen ("./testOutput/test2-output", "a+", stdout);
+    // int test2Result = singleFunctionTest("./testOutput/test2-graph.gv");
+    // freopen ("./testOutput/test3-output", "a+", stdout);
+    // int test3Result = multipleFunctionsTest("./testOutput/test3-graph.gv");
+    // freopen ("./testOutput/test4-output", "a+", stdout);
+    // int test4Result = variableValueChangeTest("./testOutput/test4-graph.gv");
+    // freopen ("./testOutput/test5-output", "a+", stdout);
+    // freopen("/dev/tty", "w", stdout);
+ 
+    int test5Result = bigDataInputTest("./testOutput/test5-graph.gv");
 
-    freopen("/dev/tty", "w", stdout);
-    printf("TEST 01: HashMap Test               ..... Result: %s %d\n", (test1Result == OK) ? "SUCCESS" : "FAILURE", test1Result);
-    printf("TEST 02: Single Function Test       ..... Result: %s %d\n", (test2Result == OK) ? "SUCCESS" : "FAILURE", test2Result);
-    printf("TEST 03: Multiple Functions Test    ..... Result: %s %d\n", (test3Result == OK) ? "SUCCESS" : "FAILURE", test3Result);
-    printf("TEST 04: Variable Value Change Test ..... Result: %s %d\n", (test4Result == OK) ? "SUCCESS" : "FAILURE", test4Result);
+    // freopen("/dev/tty", "w", stdout);
+    // printf("TEST 01: HashMap Test                ..... Result: %s %d\n", (test1Result == OK) ? "SUCCESS" : "FAILURE", test1Result);
+    // printf("TEST 02: Single Function Test        ..... Result: %s %d\n", (test2Result == OK) ? "SUCCESS" : "FAILURE", test2Result);
+    // printf("TEST 03: Multiple Functions Test     ..... Result: %s %d\n", (test3Result == OK) ? "SUCCESS" : "FAILURE", test3Result);
+    // printf("TEST 04: Variable Value Change Test  ..... Result: %s %d\n", (test4Result == OK) ? "SUCCESS" : "FAILURE", test4Result);
+    printf("TEST 05: Big Data HashMap Input Test ..... Result: %s %d\n", (test5Result == OK) ? "SUCCESS" : "FAILURE", test5Result);
 
 }

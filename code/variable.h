@@ -12,7 +12,7 @@
 
 
 typedef struct variable {
-    const char* name;
+    char* name;
     bool value;
    	UT_hash_handle hh;
 } tVar;

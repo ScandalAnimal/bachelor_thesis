@@ -25,13 +25,14 @@ void freeHashMap(tMap m) {
     }
 }
 
-int insertToHashMap(tMap m, const char *name, bool value) {
+int insertToHashMap(tMap m, char *name, bool value) {
 
     tVar** map = (tVar**) m;
 
     tVar* s = NULL;
     s = (tVar*) malloc(sizeof(tVar));
-    s->name = name;
+    s->name = malloc(sizeof(char) * (strlen(name) + 1));
+    strcpy(s->name, name);
     s->value = value;
     HASH_ADD_KEYPTR(hh, *map, s->name, strlen(s->name), s);    
 
@@ -65,7 +66,7 @@ bool isKeyInHashMap(tMap m, const char* name) {
     return (s == NULL) ? false : true;
 }
 
-int removeFromHashMap(tMap m, const char* name) {
+int removeFromHashMap(tMap m, char* name) {
 
     tVar** map = (tVar**) m;
 
@@ -76,6 +77,7 @@ int removeFromHashMap(tMap m, const char* name) {
     }
 
     HASH_DEL(*map, s);
+    free(s->name);
     free(s);
     return OK;
 }
