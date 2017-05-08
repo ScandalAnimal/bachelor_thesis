@@ -397,37 +397,16 @@ f(x) = c_0 \bigoplus_{1 \leq i \leq n} c_ix_i \bigoplus_{1 \leq i \leq j \leq n}
 	Keďže v jazyku C neexistuje štruktúra ako hashovacia tabuľka, je potrebné nejakú vytvoriť. Kľúčom ku korektnému správaniu je voľba správnej hashovacej funkcie pre účely knižnice.
 
 	\vspace*{0.5\baselineskip}
-	Primárnym účelom knižnice je jej využitie v obvodovej štruktúre tvorenej spätnoväzobným registrom ... ({\color{red}TODO}). Pre tieto účely nie je potrebné šifrovať záznamy v hashmape, keďže by sa malo jednať o čo najjednoduchšiu implementáciu. Preto sme sa rozhodli vyberať z nešifrovaných hashovacích funkcií, a podľa požadovaných parametrov zvoliť najlepšiu alternatívu.
+	Primárnym účelom knižnice je jej využitie v obvodovej štruktúre tvorenej spätnoväzobným registrom ... ({\color{red}TODO}). Pre tieto účely nie je potrebné šifrovať záznamy v hashmape, keďže by sa malo jednať o čo najjednoduchšiu implementáciu. Preto sme sa rozhodli vyberať z nešifrovaných hashovacích funkcií, a podľa požadovaných parametrov zvoliť ideálnu alternatívu.
 
 	\vspace*{0.5\baselineskip}
-	Existuje veľké množstvo voľne dostupných samostatných implementácií hashovacej tabuľky. Nástroj SMHasher\footnote{\url{https://github.com/aappleby/smhasher}} a jeho rozšírená verzia\footnote{\url{https://github.com/rurban/smhasher}} poskytujú dobré porovnanie existujúcich hashovacích algoritmov.
+	Existuje veľké množstvo voľne dostupných a takisto aj platených samostatných implementácií hashovacej tabuľky. Nástroj SMHasher\footnote{\url{https://github.com/aappleby/smhasher}} a jeho rozšírená verzia\footnote{\url{https://github.com/rurban/smhasher}} poskytujú dobré porovnanie existujúcich hashovacích algoritmov. Testuje síce veľké množstvo hashovacích algoritmov, ale len niekoľko z nich má implementáciu v C, ktorá nás zaujíma. Na porovanie hashovacích algoritmov implementovaných hlavne v C a C++ sa zameriava aj benchmark pre knižnicu TommyDS\footnote{\url{http://www.tommyds.it/doc/benchmark}}. Poskytuje podrobné porovnanie rôznych operácií nad hashovacím tabuľkami naprieč viacerými implementáciami.
 
 	\vspace*{0.5\baselineskip}
-	Analýzou SMHasherom ako jedny z najlepších prešli hashovacie algoritmy Spooky32, xxHash64 a fasthash.
-
-{\color{red}
-	TODO - prečo som použil čo som použil
-}
-
+	Na základe dvoch vyššie spomenutých porovnaní boli vyskúšané viaceré varianty hashovacej tabuľky. Niektoré knižnice, ktoré si viedli veľmi dobre v daných testoch sú optimalizované na vysokej úrovni, a chýba im prehľadnosť a príklady praktického využitia (konkrétne xxHash), a preto sme sa rozhodli pre využitie knižnice, ktorá síce nebude vo všetkych rebríčkoch na najvyšších pozíciách, ale bude si viesť nadpriemerne ale za cenu vyššej prehľadnosti kódu a dobrej dokumentácií. Podrobnejšie skúšané boli knižnice UTHash\footnote{\url{http://troydhanson.github.io/uthash/}}, Judy\footnote{\url{http://judy.sourceforge.net/}}, pričom ako finálna knižnica bola zvolená práve knižnica UTHash. Jej hlavnou výhodou je, že je to len jediný hlavičkový súbor, obsahuje množstvo testovacích scenárov, a v benchmark testoch si viedla na dobrej úrovni. Ďalším dôvodom, prečo sme si zvolili práve UTHash je možnosť výberu ľubovoľného dátového typu pre kľúč, a takisto aj hodnotu hashovacej tabuľky, čo nie je bežné pri všetkých ostatných implementáciách.
+	
 	\vspace*{0.5\baselineskip}
-	Výsledná hashovacia tabuľka by mala obsahovať okrem záznamov aj záznam o celkovej kapacite a o aktuálne využitej kapacite. Takisto v prípade, že záznamy zaplnia určité percento tabuľky, je potrebné kapacitu tabuľky zväčšiť a záznamy prehashovať. Tento bod je často v literatúre nazývaný \textit{load factor} a budeme ho reprezentovať číslom \textit{double} v intervale [0,1]. Každý záznam obsahuje informáciu, či existuje premenná booleovskej funkcie, ktorej hodnota sa mapuje do daného záznamu. Návrh štruktúry takejto hashovacej tabuľky sa nachádza v Zdrojovom kóde \ref{hashmap}.
-
-\newpage
-\vspace*{0.5\baselineskip}
-\begin{lstlisting}[caption=Štruktúry hashovacia tabuľka a záznam v hashovacej tabuľke, label=hashmap, language=C, frame=tb]
-  typedef struct hashMapRecord {
-    char* key;
-    bool value;
-    bool used;
-  } tHashMapRecord;
-  
-  typedef struct hashMap {
-    tHashMapRecord *records;
-    int capacity;
-    int usedCapacity;
-    double loadFactor;
-  } tHashMap;
-\end{lstlisting}
+	Výsledná hashovacia tabuľka teda využíva hlavičkový súbor z UTHash, obaľuje jeho potrebné funkcie vlastnými, pre jednoduchšie použitie, a takisto pridáva nejaké nové. UTHash využíva systém zreťazenia záznamov (chaining z angl.), takže na jedno pamäťové miesto sa teoreticky môže mapovať viacero záznamov. Pri takejto kolízií sa potom podľa kľúča vyhľadáva správny záznam.
 
 \section{Reprezentácia termov}
 
@@ -549,7 +528,8 @@ typedef struct anf {
 7:   init -> make_string;
 8:   main -> printf;
 9:   execute -> compare;
-10: }
+10: }
+
 \end{lstlisting}
 	
 \begin{figure}[h]
