@@ -15,14 +15,14 @@ void setAnfValue(tAnf* anf, bool value) {
     }
 }
 
-void fixNodeValue(tNode* node, tHashMap* hashMap) {
+void fixNodeValue(tNode* node, tVar** hashMap) {
 
     if (node->value == true) {
         return;
     }
 
     for (int i = 0; i < node->varCount; i++) {
-        bool value = selectFromHashMap(hashMap, node->variables[i])->value;
+        bool value = selectFromHashMap(&hashMap, node->variables[i])->value;
         
         if (i == 0) {
             node->value = value;
@@ -57,7 +57,7 @@ void fixAnfValue(tAnf* anf) {
 
 void freeAnf(tAnf* anf) {
     free(anf->nodeList);
-    freeHashMap(anf->hashMap);
+    freeHashMap(&(anf->hashMap));
     free(anf);
 }
 
@@ -97,6 +97,7 @@ void* newNodeWithVarsInAnf(tAnf* anf, tVar variables[], int varCount) {
     bool found = false;
     int insertedVars = 0;
     for (int i = 0; i < varCount; i++) {
+
         for (int j = 0; j < insertedVars; j++) {
             if (strcmp(variables[i].name, varsWithoutDuplicity[j].name) == 0) {
                 found = true;
@@ -190,8 +191,8 @@ int createVarsInAnf(tAnf* anf, tVar variables[], int length) {
 
     for (int i = 0; i < length; i++) {
         tVar var = variables[i];
-        if (!isKeyInHashMap(anf->hashMap, var.name)) {
-            if (ERROR == insertToHashMap(anf->hashMap, var.name, var.value)) {
+        if (!isKeyInHashMap(&(anf->hashMap), var.name)) {
+            if (ERROR == insertToHashMap(&(anf->hashMap), var.name, var.value)) {
                fprintf(stderr, "%d\n", ERR_INSERT);        
             }
         }
@@ -202,7 +203,7 @@ int createVarsInAnf(tAnf* anf, tVar variables[], int length) {
     return OK;
 }
 
-void* newAnf(int mapInitCapacity, double mapLoadFactor) {
+void* newAnf() {
 
     tAnf* anf;
     if (!(anf = (tAnf*) malloc(sizeof(tAnf)))) {
@@ -210,10 +211,7 @@ void* newAnf(int mapInitCapacity, double mapLoadFactor) {
         return NULL;
     }
 
-    anf->hashMap = createHashMap(mapInitCapacity, mapLoadFactor);    
-    if (anf->hashMap == NULL) {
-        return NULL;
-    }
+    anf->hashMap = createHashMap();    
 
     anf->nodeCount = 0;
     if (!(anf->nodeList = malloc(sizeof(anf->nodeList)))) {
@@ -221,43 +219,42 @@ void* newAnf(int mapInitCapacity, double mapLoadFactor) {
         free(anf);
         return NULL;        
     }
+
     anf->value = false;
     return anf;
 }
 
-int duplicateVars(tHashMap* source, tHashMap* target) {
+int duplicateVars(tMap sourceMap, tMap targetMap) {
     
-    for (int i = 0; i < source->capacity; i++) {
-            
-        tHashMapRecord record = source->records[i];
-        if (record.used) {
-            if (insertToHashMap(target, record.key, record.value) != OK) {
-                return ERR_INSERT;
-            }
+    tVar** source = (tVar**) sourceMap;
+
+    tVar* s = NULL;
+    int i = 0;
+    for (s = *source; s != NULL; s = (tVar*)(s->hh.next)) {
+        if (insertToHashMap(targetMap, s->name, s->value) != OK) {
+            return ERR_INSERT;
         }
+        i++;
     }
     return OK;
 }
 
 void* newAnfFrom2Anfs(tAnf* anf1, tAnf* anf2, bool valuesFromAnf1) {
 
-    int capacity = valuesFromAnf1 ? anf1->hashMap->capacity : anf2->hashMap->capacity;
-    int loadFactor = valuesFromAnf1 ? anf1->hashMap->loadFactor : anf2->hashMap->loadFactor;
-
-    tAnf* anf = newAnf(capacity, loadFactor);
+    tAnf* anf = newAnf();
 
     if (valuesFromAnf1) {
 
-        if ((duplicateVars(anf2->hashMap, anf->hashMap) != OK) || 
-            (duplicateVars(anf1->hashMap, anf->hashMap) != OK)) {
+        if ((duplicateVars(&(anf2->hashMap), &(anf->hashMap)) != OK) || 
+            (duplicateVars(&(anf1->hashMap), &(anf->hashMap)) != OK)) {
             freeAnf(anf);
             return NULL;
         }
     }
     else {
         
-        if ((duplicateVars(anf1->hashMap, anf->hashMap) != OK) || 
-            (duplicateVars(anf2->hashMap, anf->hashMap) != OK)) {
+        if ((duplicateVars(&(anf1->hashMap), &(anf->hashMap)) != OK) || 
+            (duplicateVars(&(anf2->hashMap), &(anf->hashMap)) != OK)) {
             freeAnf(anf);
             return NULL;
         }        
@@ -270,8 +267,8 @@ void* newAnfFrom2Anfs(tAnf* anf1, tAnf* anf2, bool valuesFromAnf1) {
             return NULL;
         }
         for (int j = 0; j < anf1->nodeList[i]->varCount; j++) {
-            char* varName = anf1->nodeList[i]->variables[j];
-            bool varValue = selectFromHashMap(anf->hashMap, varName)->value;
+            const char* varName = anf1->nodeList[i]->variables[j];
+            bool varValue = selectFromHashMap(&(anf->hashMap), varName)->value;
             tVar var = createVar(varName, varValue);
             if (addVarToNodeInAnf(anf, node, var) != OK) {
                 freeNode(node);
@@ -289,8 +286,8 @@ void* newAnfFrom2Anfs(tAnf* anf1, tAnf* anf2, bool valuesFromAnf1) {
             return NULL;
         }
         for (int j = 0; j < anf2->nodeList[i]->varCount; j++) {
-            char* varName = anf2->nodeList[i]->variables[j];
-            bool varValue = selectFromHashMap(anf->hashMap, varName)->value;
+            const char* varName = anf2->nodeList[i]->variables[j];
+            bool varValue = selectFromHashMap(&(anf->hashMap), varName)->value;
             tVar var = createVar(varName, varValue);
             if (addVarToNodeInAnf(anf, node, var) != OK) {
                 freeNode(node);
@@ -342,10 +339,10 @@ int deleteAllNodesFromAnf(tAnf* anf, bool deleteVariables) {
     if (deleteVariables) {
         for (int i = 0; i < anf->nodeCount; i++) {
             for (int j = 0; j < anf->nodeList[i]->varCount; j++) {
-                char* varName = anf->nodeList[i]->variables[j];
+                const char* varName = anf->nodeList[i]->variables[j];
 
-                if (isKeyInHashMap(anf->hashMap, varName)) {
-                    if (removeFromHashMap(anf->hashMap, varName) != OK) {
+                if (isKeyInHashMap(&(anf->hashMap), varName)) {
+                    if (removeFromHashMap(&(anf->hashMap), varName) != OK) {
                         return ERR_DELETE;
                     }
                 }
@@ -399,7 +396,7 @@ int deleteVarFromAnf(tAnf* anf, char* varName, bool deleteFromNodes) {
         fixAnfValue(anf);
     }
 
-    if (removeFromHashMap(anf->hashMap, varName) != OK) {
+    if (removeFromHashMap(&(anf->hashMap), varName) != OK) {
         fprintf(stderr, "%d\n", ERR_DELETE);
         return ERR_DELETE;
     } 
@@ -422,8 +419,8 @@ int addVarToNodeInAnf(tAnf* anf, tNode* node, tVar var) {
     if (!isNodeInAnf(anf, node)) {
         return ERR_INANF;
     }
-    if (!isKeyInHashMap(anf->hashMap, var.name)) {
-        if (ERROR == insertToHashMap(anf->hashMap, var.name, var.value)) {
+    if (!isKeyInHashMap(&(anf->hashMap), var.name)) {
+        if (ERROR == insertToHashMap(&(anf->hashMap), var.name, var.value)) {
             fprintf(stderr, "%d\n", ERR_INSERT);        
             return ERR_INSERT;
         }
@@ -443,8 +440,8 @@ int addVarsToNodeInAnf(tAnf* anf, tNode* node, tVar variables[], int length) {
     }
     for (int i = 0; i < length; i++) {
         tVar var = variables[i];
-        if (!isKeyInHashMap(anf->hashMap, var.name)) {
-            if (ERROR == insertToHashMap(anf->hashMap, var.name, var.value)) {
+        if (!isKeyInHashMap(&(anf->hashMap), var.name)) {
+            if (ERROR == insertToHashMap(&(anf->hashMap), var.name, var.value)) {
                 fprintf(stderr, "%d\n", ERR_INSERT);        
                 return ERR_INSERT;
             }
@@ -460,7 +457,7 @@ void recountNodeValueInAnf(tNode* node, tAnf* anf) {
 
     for (int i = 0; i < node->varCount; i++) {
 
-        bool value = selectFromHashMap(anf->hashMap, node->variables[i])->value;
+        bool value = selectFromHashMap(&(anf->hashMap), node->variables[i])->value;
         
         if (i == 0) {
             node->value = value;
@@ -484,14 +481,14 @@ void recountValuesInAnf(tAnf* anf) {
 
 int switchVarValueInAnf(char* varName, tAnf* anf) {
     
-    tHashMapRecord* record = selectFromHashMap(anf->hashMap, varName);
+    tVar* record = selectFromHashMap(&(anf->hashMap), varName);
     if (record == NULL) {
         return ERR_NOTEXIST;
     }
 
     bool newValue = !(record->value);
 
-    if (ERROR == insertToHashMap(anf->hashMap, varName, newValue)) {
+    if (ERROR == insertToHashMap(&(anf->hashMap), varName, newValue)) {
         return ERR_INSERT;
     }
 
@@ -509,8 +506,8 @@ void printAnf(tAnf* anf) {
         varCount += anf->nodeList[i]->varCount;
             
         for (int j = 0; j < anf->nodeList[i]->varCount; j++) {
-            tHashMapRecord* record = selectFromHashMap(anf->hashMap, anf->nodeList[i]->variables[j]);
-            printf("%s:%s", record->key, record->value ? "true" : "false");
+            tVar* record = selectFromHashMap(&(anf->hashMap), anf->nodeList[i]->variables[j]);
+            printf("%s:%s", record->name, record->value ? "true" : "false");
             if (anf->nodeList[i]->varCount - j > 1) {
                 printf(" & ");
             }
@@ -530,7 +527,7 @@ void printAnf(tAnf* anf) {
 }
 
 void printBundleMap(tAnf* anf) {
-    printHashMap(anf->hashMap);
+    printHashMap(&(anf->hashMap));
 }
     
 int generateAnfGraph(tAnf* anf, char* filename) {
@@ -551,8 +548,8 @@ int generateAnfGraph(tAnf* anf, char* filename) {
         
         for (int j = 0; j < anf->nodeList[i]->varCount; j++) {
 
-            char* varName = anf->nodeList[i]->variables[j];
-            bool varValue = selectFromHashMap(anf->hashMap, varName);
+            const char* varName = anf->nodeList[i]->variables[j];
+            bool varValue = selectFromHashMap(&(anf->hashMap), varName);
             printNodeWithValue(file, nodeCounter, varName, varValue);
             printArrow(file, i+1, NO_PORT, nodeCounter);
             nodeCounter++;        

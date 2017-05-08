@@ -14,7 +14,7 @@ void printEndGraphSequence(FILE*);
 void printSingleRootNode(FILE*, char*);
 void printMultipleRootNodes(FILE*, int);
 void printArrow(FILE*, int, int, int);
-void printNodeWithValue(FILE*, int, char*, bool);
+void printNodeWithValue(FILE*, int, const char*, bool);
 void printNodeWithoutValue(FILE*, int, char*);
 
 int  printAnonymousNodes(FILE*, int, int, char*, int);

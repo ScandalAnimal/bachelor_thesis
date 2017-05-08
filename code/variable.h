@@ -8,15 +8,17 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "hashmap.h"
+#include "lib/uthash.h"
+
 
 typedef struct variable {
-    char* name;
+    const char* name;
     bool value;
+   	UT_hash_handle hh;
 } tVar;
 
-tVar createVar(char*, bool);
-tVar createTrueVar(char*);
-tVar createFalseVar(char*);
+tVar createVar(const char*, bool);
+tVar createTrueVar(const char*);
+tVar createFalseVar(const char*);
 
 #endif //CODE_VARIABLE_H

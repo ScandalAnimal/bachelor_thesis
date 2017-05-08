@@ -69,7 +69,7 @@ int addVariablesToNode(tVar variables[], int size, tNode* node) {
     return OK;
 }
 
-int deleteVariableFromNode(char* varName, tNode* node) {
+int deleteVariableFromNode(const char* varName, tNode* node) {
 
     bool found = false;
     for (int i = 0; i < node->varCount; i++) {
@@ -99,7 +99,7 @@ void printNode(tNode* node) {
 
     printf("********************************\nNode:\n | ");
     for (int i = 0; i < node->varCount; i++) {
-        char* variable = node->variables[i];
+        const char* variable = node->variables[i];
         printf("%s", variable);
         if (node->varCount - i > 1) {
             printf(" & ");

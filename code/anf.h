@@ -14,15 +14,14 @@
 
 typedef struct anf {
     tNode** nodeList;
- 	tHashMap* hashMap;
+ 	tMap hashMap;
  	int nodeCount;
     bool value;
 } tAnf;
 
 void printAnfMap(tAnf*);
 
-// initialCapacity, loadFactor
-void*	newAnf(int, double);
+void*	newAnf();
 void* 	newAnfFrom2Anfs(tAnf*, tAnf*, bool);
 void	freeAnf(tAnf*);
 void 	printAnf(tAnf*);

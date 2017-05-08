@@ -78,7 +78,7 @@ void printArrow(FILE* file, int leftSideNodeNumber, int leftSideNodePort, int ri
     fprintf(file, "%s", output);
 }
 
-void printNodeWithValue(FILE* file, int nodeNumber, char* key, bool value) {
+void printNodeWithValue(FILE* file, int nodeNumber, const char* key, bool value) {
 
     int bufferSize = getDigitCount(nodeNumber) + 2;
 

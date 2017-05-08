@@ -9,23 +9,10 @@
 #include "error.h"
 #include "graph.h"
 #include "utils.h"
+#include "lib/uthash.h"
+#include "variable.h"
 
-#define DEFAULT_HASHMAP_CAPACITY 256
-#define MAX_KEY_LENGTH 256
-// max hashmap tested - 1300 records
-
-typedef struct hashMapRecord {
-    char key[MAX_KEY_LENGTH];
-    bool value;
-    bool used;
-} tHashMapRecord;
-
-typedef struct hashMap {
-    tHashMapRecord *records;
-    unsigned int capacity;
-    unsigned int usedCapacity;
-    double loadFactor;
-} tHashMap;
+// max hashmap tested - 15000 records
 
 
 /*
@@ -35,19 +22,17 @@ typedef struct hashMap {
  */
 typedef void*  tMap;
 
+tMap	createHashMap();
+int     insertToHashMap(tMap, const char*, bool);
+tVar*	selectFromHashMap(tMap, const char*);
+bool    isHashMapEmpty(tMap);
+void    freeHashMap(tMap);
 
-tMap			createHashMap(unsigned int, double);
-int             insertToHashMap(tMap, char*, bool);
-tHashMapRecord* selectFromHashMap(tMap, char*);
-bool            isHashMapEmpty(tMap);
-void           	freeHashMap(tMap);
-unsigned int   	getHashMapCapacity(tMap);
+bool    isKeyInHashMap(tMap, const char*);
+int 	removeFromHashMap(tMap, const char*);
+void    clearHashMap(tMap);
 
-bool            isKeyInHashMap(tMap, char*);
-int 	        removeFromHashMap(tMap, char*);
-void            clearHashMap(tMap);
-
-void            printHashMap(tMap);
-int 			generateHashMapGraph(tMap, char*);
+void    printHashMap(tMap);
+int 	generateHashMapGraph(tMap, char*);
 
 #endif //CODE_HASHMAP_H

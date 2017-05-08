@@ -11,7 +11,7 @@
 #include "variable.h"
 
 typedef struct node {		
-	char** variables;
+	const char** variables;
     int varCount;
     bool value;
 } tNode;
@@ -19,7 +19,7 @@ typedef struct node {
 void* 	newNode();
 int	 	addVariableToNode(tVar, tNode*);
 int 	addVariablesToNode(tVar[], int, tNode*);
-int		deleteVariableFromNode(char*, tNode*);
+int		deleteVariableFromNode(const char*, tNode*);
 void 	printNode(tNode*);
 void 	freeNode(tNode*);
 
