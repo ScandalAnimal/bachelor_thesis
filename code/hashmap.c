@@ -35,12 +35,12 @@ int insertToHashMap(tMap m, char *name, bool value) {
     strcpy(s->name, name);
     s->value = value;
     HASH_ADD_KEYPTR(hh, *map, s->name, strlen(s->name), s);    
-
+    // free(s->name);
     return OK;
 }
 
 tVar* selectFromHashMap(tMap m, const char* name) {
-    
+
     tVar** map = (tVar**) m;
 
     tVar* s = NULL;
@@ -90,6 +90,7 @@ void clearHashMap(tMap m) {
 
     HASH_ITER(hh, *map, current_record, tmp) {
         HASH_DEL(*map, current_record);
+        free(current_record->name);
         free(current_record);
     }
 }

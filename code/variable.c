@@ -4,7 +4,7 @@
 
 #include "variable.h"
 
-tVar createVar(const char* name, bool value) {
+tVar createVar(char* name, bool value) {
     
     tVar var;
     var.name = name;
@@ -12,7 +12,7 @@ tVar createVar(const char* name, bool value) {
     return var;    
 }
 
-tVar createTrueVar(const char* name) {
+tVar createTrueVar(char* name) {
     
     tVar var;
     var.name = name;
@@ -20,7 +20,7 @@ tVar createTrueVar(const char* name) {
     return var;    
 }
 
-tVar createFalseVar(const char* name) {
+tVar createFalseVar(char* name) {
     
     tVar var;
     var.name = name;

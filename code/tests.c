@@ -390,7 +390,7 @@ int bigDataInputTest(char* graphOutput) {
         freeHashMap(&map);
         return ERROR;   
     }
-    
+
     for (int i = 0; i < KEY_COUNT; i++) {
         snprintf(key_string, KEY_MAX_LENGTH, "%s%d", KEY_PREFIX, i);
 
@@ -422,24 +422,22 @@ int main(int argc, char* argv[]) {
         mkdir("./testOutput", 0700);
     }
 
-    // freopen ("./testOutput/test1-output", "a+", stdout);
-    // int test1Result = hashMapTest("./testOutput/test1-graph.gv");
-    // freopen ("./testOutput/test2-output", "a+", stdout);
-    // int test2Result = singleFunctionTest("./testOutput/test2-graph.gv");
-    // freopen ("./testOutput/test3-output", "a+", stdout);
-    // int test3Result = multipleFunctionsTest("./testOutput/test3-graph.gv");
-    // freopen ("./testOutput/test4-output", "a+", stdout);
-    // int test4Result = variableValueChangeTest("./testOutput/test4-graph.gv");
-    // freopen ("./testOutput/test5-output", "a+", stdout);
-    // freopen("/dev/tty", "w", stdout);
- 
+    freopen ("./testOutput/test1-output", "a+", stdout);
+    int test1Result = hashMapTest("./testOutput/test1-graph.gv");
+    freopen ("./testOutput/test2-output", "a+", stdout);
+    int test2Result = singleFunctionTest("./testOutput/test2-graph.gv");
+    freopen ("./testOutput/test3-output", "a+", stdout);    
+    int test3Result = multipleFunctionsTest("./testOutput/test3-graph.gv");
+    freopen ("./testOutput/test4-output", "a+", stdout);
+    int test4Result = variableValueChangeTest("./testOutput/test4-graph.gv");
+    freopen ("./testOutput/test5-output", "a+", stdout);
     int test5Result = bigDataInputTest("./testOutput/test5-graph.gv");
 
-    // freopen("/dev/tty", "w", stdout);
-    // printf("TEST 01: HashMap Test                ..... Result: %s %d\n", (test1Result == OK) ? "SUCCESS" : "FAILURE", test1Result);
-    // printf("TEST 02: Single Function Test        ..... Result: %s %d\n", (test2Result == OK) ? "SUCCESS" : "FAILURE", test2Result);
-    // printf("TEST 03: Multiple Functions Test     ..... Result: %s %d\n", (test3Result == OK) ? "SUCCESS" : "FAILURE", test3Result);
-    // printf("TEST 04: Variable Value Change Test  ..... Result: %s %d\n", (test4Result == OK) ? "SUCCESS" : "FAILURE", test4Result);
+    freopen("/dev/tty", "w", stdout);
+    printf("TEST 01: HashMap Test                ..... Result: %s %d\n", (test1Result == OK) ? "SUCCESS" : "FAILURE", test1Result);
+    printf("TEST 02: Single Function Test        ..... Result: %s %d\n", (test2Result == OK) ? "SUCCESS" : "FAILURE", test2Result);
+    printf("TEST 03: Multiple Functions Test     ..... Result: %s %d\n", (test3Result == OK) ? "SUCCESS" : "FAILURE", test3Result);
+    printf("TEST 04: Variable Value Change Test  ..... Result: %s %d\n", (test4Result == OK) ? "SUCCESS" : "FAILURE", test4Result);
     printf("TEST 05: Big Data HashMap Input Test ..... Result: %s %d\n", (test5Result == OK) ? "SUCCESS" : "FAILURE", test5Result);
 
 }

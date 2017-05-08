@@ -17,8 +17,8 @@ typedef struct variable {
    	UT_hash_handle hh;
 } tVar;
 
-tVar createVar(const char*, bool);
-tVar createTrueVar(const char*);
-tVar createFalseVar(const char*);
+tVar createVar(char*, bool);
+tVar createTrueVar(char*);
+tVar createFalseVar(char*);
 
 #endif //CODE_VARIABLE_H

@@ -57,6 +57,7 @@ void fixAnfValue(tAnf* anf) {
 
 void freeAnf(tAnf* anf) {
     free(anf->nodeList);
+    clearHashMap(&(anf->hashMap));
     freeHashMap(&(anf->hashMap));
     free(anf);
 }
@@ -73,6 +74,7 @@ void* newNodeInAnf(tAnf* anf) {
         return NULL;
     }
 
+    // memcpy(anf->nodeList[anf->nodeCount], node, sizeof(tNode));
     anf->nodeList[anf->nodeCount] = node;
     setAnfValue(anf, node->value); 
 
@@ -267,7 +269,7 @@ void* newAnfFrom2Anfs(tAnf* anf1, tAnf* anf2, bool valuesFromAnf1) {
             return NULL;
         }
         for (int j = 0; j < anf1->nodeList[i]->varCount; j++) {
-            const char* varName = anf1->nodeList[i]->variables[j];
+            char* varName = anf1->nodeList[i]->variables[j];
             bool varValue = selectFromHashMap(&(anf->hashMap), varName)->value;
             tVar var = createVar(varName, varValue);
             if (addVarToNodeInAnf(anf, node, var) != OK) {
@@ -275,7 +277,6 @@ void* newAnfFrom2Anfs(tAnf* anf1, tAnf* anf2, bool valuesFromAnf1) {
                 freeAnf(anf);
                 return NULL; 
             }
-
         }
     }
 
@@ -286,7 +287,7 @@ void* newAnfFrom2Anfs(tAnf* anf1, tAnf* anf2, bool valuesFromAnf1) {
             return NULL;
         }
         for (int j = 0; j < anf2->nodeList[i]->varCount; j++) {
-            const char* varName = anf2->nodeList[i]->variables[j];
+            char* varName = anf2->nodeList[i]->variables[j];
             bool varValue = selectFromHashMap(&(anf->hashMap), varName)->value;
             tVar var = createVar(varName, varValue);
             if (addVarToNodeInAnf(anf, node, var) != OK) {
@@ -339,7 +340,7 @@ int deleteAllNodesFromAnf(tAnf* anf, bool deleteVariables) {
     if (deleteVariables) {
         for (int i = 0; i < anf->nodeCount; i++) {
             for (int j = 0; j < anf->nodeList[i]->varCount; j++) {
-                const char* varName = anf->nodeList[i]->variables[j];
+                char* varName = anf->nodeList[i]->variables[j];
 
                 if (isKeyInHashMap(&(anf->hashMap), varName)) {
                     if (removeFromHashMap(&(anf->hashMap), varName) != OK) {
@@ -526,10 +527,6 @@ void printAnf(tAnf* anf) {
     printf("********************************\n");
 }
 
-void printBundleMap(tAnf* anf) {
-    printHashMap(&(anf->hashMap));
-}
-    
 int generateAnfGraph(tAnf* anf, char* filename) {
 
     FILE *file = openAndClearFile(filename);
