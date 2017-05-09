@@ -1,4 +1,6 @@
 /** 
+ * @file
+ * @brief functions for manipulating with variables
  * @author Maroš Vasilišin <mvasilisin@gmail.com>
  */
 

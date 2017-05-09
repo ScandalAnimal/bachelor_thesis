@@ -1,0 +1,246 @@
+\hypertarget{hashmap_8c}{}\section{hashmap.\+c File Reference}
+\label{hashmap_8c}\index{hashmap.\+c@{hashmap.\+c}}
+
+
+functions for manipulating with hash map  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}hashmap.\+h\char`\"{}}\\*
+Include dependency graph for hashmap.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{hashmap_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{hashmap_8h_a80c0f755eb575461b436f6b4e9fa497c}{t\+Map} \hyperlink{hashmap_8c_a8f2e026bd919e7cbdc6eca0c767f04ac}{create\+Hash\+Map} ()
+\begin{DoxyCompactList}\small\item\em creates new hash map \end{DoxyCompactList}\item 
+void \hyperlink{hashmap_8c_a1c05bafd556f533d220821c301700277}{free\+Hash\+Map} (\hyperlink{hashmap_8h_a80c0f755eb575461b436f6b4e9fa497c}{t\+Map} m)
+\begin{DoxyCompactList}\small\item\em frees map from memory \end{DoxyCompactList}\item 
+int \hyperlink{hashmap_8c_a0fec8ff579e32addbeeca0b6dce72ef8}{insert\+To\+Hash\+Map} (\hyperlink{hashmap_8h_a80c0f755eb575461b436f6b4e9fa497c}{t\+Map} m, char $\ast$name, bool value)
+\begin{DoxyCompactList}\small\item\em inserts new record to hash map \end{DoxyCompactList}\item 
+\hyperlink{variable_8h_a8497f1f67b2245e3103840fbeb91f1dc}{t\+Var} $\ast$ \hyperlink{hashmap_8c_a63840c5cfa9d725ae39b1eed41254e92}{select\+From\+Hash\+Map} (\hyperlink{hashmap_8h_a80c0f755eb575461b436f6b4e9fa497c}{t\+Map} m, const char $\ast$name)
+\begin{DoxyCompactList}\small\item\em gets variable with key from map \end{DoxyCompactList}\item 
+bool \hyperlink{hashmap_8c_a6457b34de76e54c102ccd3acf865be20}{is\+Hash\+Map\+Empty} (\hyperlink{hashmap_8h_a80c0f755eb575461b436f6b4e9fa497c}{t\+Map} m)
+\begin{DoxyCompactList}\small\item\em checks if hash map is empty or not \end{DoxyCompactList}\item 
+bool \hyperlink{hashmap_8c_a553ecfe8a8f2361f6754a1a92d1cad46}{is\+Key\+In\+Hash\+Map} (\hyperlink{hashmap_8h_a80c0f755eb575461b436f6b4e9fa497c}{t\+Map} m, const char $\ast$name)
+\begin{DoxyCompactList}\small\item\em checks if key is present in map \end{DoxyCompactList}\item 
+int \hyperlink{hashmap_8c_a1059b38d4645c802919965027df1604e}{remove\+From\+Hash\+Map} (\hyperlink{hashmap_8h_a80c0f755eb575461b436f6b4e9fa497c}{t\+Map} m, char $\ast$name)
+\begin{DoxyCompactList}\small\item\em deletes record from hash map \end{DoxyCompactList}\item 
+void \hyperlink{hashmap_8c_a0349238671bdefddbfbbcd22e0e22315}{clear\+Hash\+Map} (\hyperlink{hashmap_8h_a80c0f755eb575461b436f6b4e9fa497c}{t\+Map} m)
+\begin{DoxyCompactList}\small\item\em deletes all variables from map \end{DoxyCompactList}\item 
+void \hyperlink{hashmap_8c_a39846b946b3f8953096c4205f2e43d39}{print\+Hash\+Map} (\hyperlink{hashmap_8h_a80c0f755eb575461b436f6b4e9fa497c}{t\+Map} m)
+\begin{DoxyCompactList}\small\item\em prints contents of map to console \end{DoxyCompactList}\item 
+int \hyperlink{hashmap_8c_a24babf308b3010d37379448ab94c5788}{generate\+Hash\+Map\+Graph} (\hyperlink{hashmap_8h_a80c0f755eb575461b436f6b4e9fa497c}{t\+Map} m, char $\ast$filename)
+\begin{DoxyCompactList}\small\item\em generates graph of hash map \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+functions for manipulating with hash map 
+
+\begin{DoxyAuthor}{Author}
+Maroš Vasilišin \href{mailto:mvasilisin@gmail.com}{\tt mvasilisin@gmail.\+com} 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\index{hashmap.\+c@{hashmap.\+c}!clear\+Hash\+Map@{clear\+Hash\+Map}}
+\index{clear\+Hash\+Map@{clear\+Hash\+Map}!hashmap.\+c@{hashmap.\+c}}
+\subsubsection[{\texorpdfstring{clear\+Hash\+Map(t\+Map m)}{clearHashMap(tMap m)}}]{\setlength{\rightskip}{0pt plus 5cm}void clear\+Hash\+Map (
+\begin{DoxyParamCaption}
+\item[{{\bf t\+Map}}]{map}
+\end{DoxyParamCaption}
+)}\hypertarget{hashmap_8c_a0349238671bdefddbfbbcd22e0e22315}{}\label{hashmap_8c_a0349238671bdefddbfbbcd22e0e22315}
+
+
+deletes all variables from map 
+
+
+\begin{DoxyParams}{Parameters}
+{\em map} & map where deleting \\
+\hline
+\end{DoxyParams}
+\index{hashmap.\+c@{hashmap.\+c}!create\+Hash\+Map@{create\+Hash\+Map}}
+\index{create\+Hash\+Map@{create\+Hash\+Map}!hashmap.\+c@{hashmap.\+c}}
+\subsubsection[{\texorpdfstring{create\+Hash\+Map()}{createHashMap()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf t\+Map} create\+Hash\+Map (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{hashmap_8c_a8f2e026bd919e7cbdc6eca0c767f04ac}{}\label{hashmap_8c_a8f2e026bd919e7cbdc6eca0c767f04ac}
+
+
+creates new hash map 
+
+\begin{DoxyReturn}{Returns}
+pointer to created hash map 
+\end{DoxyReturn}
+\index{hashmap.\+c@{hashmap.\+c}!free\+Hash\+Map@{free\+Hash\+Map}}
+\index{free\+Hash\+Map@{free\+Hash\+Map}!hashmap.\+c@{hashmap.\+c}}
+\subsubsection[{\texorpdfstring{free\+Hash\+Map(t\+Map m)}{freeHashMap(tMap m)}}]{\setlength{\rightskip}{0pt plus 5cm}void free\+Hash\+Map (
+\begin{DoxyParamCaption}
+\item[{{\bf t\+Map}}]{map}
+\end{DoxyParamCaption}
+)}\hypertarget{hashmap_8c_a1c05bafd556f533d220821c301700277}{}\label{hashmap_8c_a1c05bafd556f533d220821c301700277}
+
+
+frees map from memory 
+
+
+\begin{DoxyParams}{Parameters}
+{\em map} & map to free \\
+\hline
+\end{DoxyParams}
+\index{hashmap.\+c@{hashmap.\+c}!generate\+Hash\+Map\+Graph@{generate\+Hash\+Map\+Graph}}
+\index{generate\+Hash\+Map\+Graph@{generate\+Hash\+Map\+Graph}!hashmap.\+c@{hashmap.\+c}}
+\subsubsection[{\texorpdfstring{generate\+Hash\+Map\+Graph(t\+Map m, char $\ast$filename)}{generateHashMapGraph(tMap m, char *filename)}}]{\setlength{\rightskip}{0pt plus 5cm}int generate\+Hash\+Map\+Graph (
+\begin{DoxyParamCaption}
+\item[{{\bf t\+Map}}]{map, }
+\item[{char $\ast$}]{filename}
+\end{DoxyParamCaption}
+)}\hypertarget{hashmap_8c_a24babf308b3010d37379448ab94c5788}{}\label{hashmap_8c_a24babf308b3010d37379448ab94c5788}
+
+
+generates graph of hash map 
+
+
+\begin{DoxyParams}{Parameters}
+{\em map} & map to create graph from \\
+\hline
+{\em filename} & file to write graph to \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+return code from {\ttfamily \hyperlink{error_8h}{error.\+h}} 
+\end{DoxyReturn}
+\index{hashmap.\+c@{hashmap.\+c}!insert\+To\+Hash\+Map@{insert\+To\+Hash\+Map}}
+\index{insert\+To\+Hash\+Map@{insert\+To\+Hash\+Map}!hashmap.\+c@{hashmap.\+c}}
+\subsubsection[{\texorpdfstring{insert\+To\+Hash\+Map(t\+Map m, char $\ast$name, bool value)}{insertToHashMap(tMap m, char *name, bool value)}}]{\setlength{\rightskip}{0pt plus 5cm}int insert\+To\+Hash\+Map (
+\begin{DoxyParamCaption}
+\item[{{\bf t\+Map}}]{map, }
+\item[{char $\ast$}]{key, }
+\item[{bool}]{value}
+\end{DoxyParamCaption}
+)}\hypertarget{hashmap_8c_a0fec8ff579e32addbeeca0b6dce72ef8}{}\label{hashmap_8c_a0fec8ff579e32addbeeca0b6dce72ef8}
+
+
+inserts new record to hash map 
+
+
+\begin{DoxyParams}{Parameters}
+{\em map} & map to which inserting \\
+\hline
+{\em key} & key of record \\
+\hline
+{\em value} & value of record \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+return code from {\ttfamily \hyperlink{error_8h}{error.\+h}} 
+\end{DoxyReturn}
+\index{hashmap.\+c@{hashmap.\+c}!is\+Hash\+Map\+Empty@{is\+Hash\+Map\+Empty}}
+\index{is\+Hash\+Map\+Empty@{is\+Hash\+Map\+Empty}!hashmap.\+c@{hashmap.\+c}}
+\subsubsection[{\texorpdfstring{is\+Hash\+Map\+Empty(t\+Map m)}{isHashMapEmpty(tMap m)}}]{\setlength{\rightskip}{0pt plus 5cm}bool is\+Hash\+Map\+Empty (
+\begin{DoxyParamCaption}
+\item[{{\bf t\+Map}}]{map}
+\end{DoxyParamCaption}
+)}\hypertarget{hashmap_8c_a6457b34de76e54c102ccd3acf865be20}{}\label{hashmap_8c_a6457b34de76e54c102ccd3acf865be20}
+
+
+checks if hash map is empty or not 
+
+
+\begin{DoxyParams}{Parameters}
+{\em map} & map tested \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if map is empty, false if is not 
+\end{DoxyReturn}
+\index{hashmap.\+c@{hashmap.\+c}!is\+Key\+In\+Hash\+Map@{is\+Key\+In\+Hash\+Map}}
+\index{is\+Key\+In\+Hash\+Map@{is\+Key\+In\+Hash\+Map}!hashmap.\+c@{hashmap.\+c}}
+\subsubsection[{\texorpdfstring{is\+Key\+In\+Hash\+Map(t\+Map m, const char $\ast$name)}{isKeyInHashMap(tMap m, const char *name)}}]{\setlength{\rightskip}{0pt plus 5cm}bool is\+Key\+In\+Hash\+Map (
+\begin{DoxyParamCaption}
+\item[{{\bf t\+Map}}]{map, }
+\item[{const char $\ast$}]{key}
+\end{DoxyParamCaption}
+)}\hypertarget{hashmap_8c_a553ecfe8a8f2361f6754a1a92d1cad46}{}\label{hashmap_8c_a553ecfe8a8f2361f6754a1a92d1cad46}
+
+
+checks if key is present in map 
+
+
+\begin{DoxyParams}{Parameters}
+{\em map} & map to check \\
+\hline
+{\em key} & key to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if key is in map, false if is not 
+\end{DoxyReturn}
+\index{hashmap.\+c@{hashmap.\+c}!print\+Hash\+Map@{print\+Hash\+Map}}
+\index{print\+Hash\+Map@{print\+Hash\+Map}!hashmap.\+c@{hashmap.\+c}}
+\subsubsection[{\texorpdfstring{print\+Hash\+Map(t\+Map m)}{printHashMap(tMap m)}}]{\setlength{\rightskip}{0pt plus 5cm}void print\+Hash\+Map (
+\begin{DoxyParamCaption}
+\item[{{\bf t\+Map}}]{map}
+\end{DoxyParamCaption}
+)}\hypertarget{hashmap_8c_a39846b946b3f8953096c4205f2e43d39}{}\label{hashmap_8c_a39846b946b3f8953096c4205f2e43d39}
+
+
+prints contents of map to console 
+
+
+\begin{DoxyParams}{Parameters}
+{\em map} & map to print \\
+\hline
+\end{DoxyParams}
+\index{hashmap.\+c@{hashmap.\+c}!remove\+From\+Hash\+Map@{remove\+From\+Hash\+Map}}
+\index{remove\+From\+Hash\+Map@{remove\+From\+Hash\+Map}!hashmap.\+c@{hashmap.\+c}}
+\subsubsection[{\texorpdfstring{remove\+From\+Hash\+Map(t\+Map m, char $\ast$name)}{removeFromHashMap(tMap m, char *name)}}]{\setlength{\rightskip}{0pt plus 5cm}int remove\+From\+Hash\+Map (
+\begin{DoxyParamCaption}
+\item[{{\bf t\+Map}}]{map, }
+\item[{char $\ast$}]{key}
+\end{DoxyParamCaption}
+)}\hypertarget{hashmap_8c_a1059b38d4645c802919965027df1604e}{}\label{hashmap_8c_a1059b38d4645c802919965027df1604e}
+
+
+deletes record from hash map 
+
+
+\begin{DoxyParams}{Parameters}
+{\em map} & map where to delete record \\
+\hline
+{\em key} & key of record to delete \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+return code from {\ttfamily \hyperlink{error_8h}{error.\+h}} 
+\end{DoxyReturn}
+\index{hashmap.\+c@{hashmap.\+c}!select\+From\+Hash\+Map@{select\+From\+Hash\+Map}}
+\index{select\+From\+Hash\+Map@{select\+From\+Hash\+Map}!hashmap.\+c@{hashmap.\+c}}
+\subsubsection[{\texorpdfstring{select\+From\+Hash\+Map(t\+Map m, const char $\ast$name)}{selectFromHashMap(tMap m, const char *name)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf t\+Var}$\ast$ select\+From\+Hash\+Map (
+\begin{DoxyParamCaption}
+\item[{{\bf t\+Map}}]{map, }
+\item[{const char $\ast$}]{key}
+\end{DoxyParamCaption}
+)}\hypertarget{hashmap_8c_a63840c5cfa9d725ae39b1eed41254e92}{}\label{hashmap_8c_a63840c5cfa9d725ae39b1eed41254e92}
+
+
+gets variable with key from map 
+
+
+\begin{DoxyParams}{Parameters}
+{\em map} & map from which selecting \\
+\hline
+{\em key} & key of selected record \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to selected variable 
+\end{DoxyReturn}

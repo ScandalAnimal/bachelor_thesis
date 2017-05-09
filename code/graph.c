@@ -1,4 +1,6 @@
 /** 
+ * @file
+ * @brief functions for generating DOT graphs
  * @author Maroš Vasilišin <mvasilisin@gmail.com>
  */
 

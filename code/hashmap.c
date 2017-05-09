@@ -1,4 +1,6 @@
 /** 
+ * @file
+ * @brief functions for manipulating with hash map
  * @author Maroš Vasilišin <mvasilisin@gmail.com>
  */
 

@@ -1,4 +1,6 @@
 /**
+ * @file
+ * @brief util functions
  * @author Maroš Vasilišin <mvasilisin@gmail.com>
  */
 

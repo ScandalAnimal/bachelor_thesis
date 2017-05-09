@@ -1,0 +1,88 @@
+\hypertarget{utils_8c}{}\section{utils.\+c File Reference}
+\label{utils_8c}\index{utils.\+c@{utils.\+c}}
+
+
+util functions  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}utils.\+h\char`\"{}}\\*
+Include dependency graph for utils.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utils_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{utils_8c_a0a5445236aa00b5b539f8ed3a79b8048}{get\+Random\+Boolean\+Value} ()
+\begin{DoxyCompactList}\small\item\em return pseudo randomly true or false \end{DoxyCompactList}\item 
+int \hyperlink{utils_8c_a9526b94453fa30e0d17af757023366a6}{get\+Digit\+Count} (int number)
+\begin{DoxyCompactList}\small\item\em computes digit count from number \end{DoxyCompactList}\item 
+F\+I\+LE $\ast$ \hyperlink{utils_8c_ac13aba7eb012c05cc7ac44539f6f8518}{open\+And\+Clear\+File} (char $\ast$filename)
+\begin{DoxyCompactList}\small\item\em creates or opens file and erases contents \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+util functions 
+
+\begin{DoxyAuthor}{Author}
+Maroš Vasilišin \href{mailto:mvasilisin@gmail.com}{\tt mvasilisin@gmail.\+com} 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\index{utils.\+c@{utils.\+c}!get\+Digit\+Count@{get\+Digit\+Count}}
+\index{get\+Digit\+Count@{get\+Digit\+Count}!utils.\+c@{utils.\+c}}
+\subsubsection[{\texorpdfstring{get\+Digit\+Count(int number)}{getDigitCount(int number)}}]{\setlength{\rightskip}{0pt plus 5cm}int get\+Digit\+Count (
+\begin{DoxyParamCaption}
+\item[{int}]{number}
+\end{DoxyParamCaption}
+)}\hypertarget{utils_8c_a9526b94453fa30e0d17af757023366a6}{}\label{utils_8c_a9526b94453fa30e0d17af757023366a6}
+
+
+computes digit count from number 
+
+
+\begin{DoxyParams}{Parameters}
+{\em number} & number to compute \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+digit count of number 
+\end{DoxyReturn}
+\index{utils.\+c@{utils.\+c}!get\+Random\+Boolean\+Value@{get\+Random\+Boolean\+Value}}
+\index{get\+Random\+Boolean\+Value@{get\+Random\+Boolean\+Value}!utils.\+c@{utils.\+c}}
+\subsubsection[{\texorpdfstring{get\+Random\+Boolean\+Value()}{getRandomBooleanValue()}}]{\setlength{\rightskip}{0pt plus 5cm}bool get\+Random\+Boolean\+Value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{utils_8c_a0a5445236aa00b5b539f8ed3a79b8048}{}\label{utils_8c_a0a5445236aa00b5b539f8ed3a79b8048}
+
+
+return pseudo randomly true or false 
+
+\begin{DoxyReturn}{Returns}
+random bool 
+\end{DoxyReturn}
+\index{utils.\+c@{utils.\+c}!open\+And\+Clear\+File@{open\+And\+Clear\+File}}
+\index{open\+And\+Clear\+File@{open\+And\+Clear\+File}!utils.\+c@{utils.\+c}}
+\subsubsection[{\texorpdfstring{open\+And\+Clear\+File(char $\ast$filename)}{openAndClearFile(char *filename)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+LE$\ast$ open\+And\+Clear\+File (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{filename}
+\end{DoxyParamCaption}
+)}\hypertarget{utils_8c_ac13aba7eb012c05cc7ac44539f6f8518}{}\label{utils_8c_ac13aba7eb012c05cc7ac44539f6f8518}
+
+
+creates or opens file and erases contents 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & file to open \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+cleared file 
+\end{DoxyReturn}
