@@ -672,6 +672,9 @@ typedef struct anf {
 	\vspace*{0.5\baselineskip}
 	Generovanie grafu pre booleovsku funkciu v ANF prebieha v podobnom duchu ako aj pre hashovaciu tabuľku. Rozdiel je v tom, že tu už máme 2 úrovne zanorenia, a to zobrazenie všetkých termov vo funkcií, a v nich zobrazenie všetkých premenných. Implementovaná je možnosť zobrazovania premenných spoločne s ich hodnotou, alebo bez nej. Keďže tu existujú 2 úrovne zanorenia, bolo potrebné upraviť algoritmus pre generovanie zdrojového súboru ku grafu. Namiesto jediného cyklu ako tomu bolo pri grafe hashovacej funkcie tu prebiehajú cykly 2 aby sa správne vykreslili všetky uzly a spojenia medzi nimi. Príklad zdrojového súboru k booleovskej funkcii v ANF sa nachádza v zdrojovom súbore \ref{graph_anf}. Vygenerovaný graf z daného súboru je na obrázku \ref{picture_anf}. 
 	
+	\vspace*{0.5\baselineskip}
+	Zvolený formát dobre prezentuje štruktúru danej funkcie či hashovacej tabuľky a prehľadne zobrazuje ich obsah.
+	
 	\newpage
 \begin{lstlisting}[caption=Zdrojový súbor k hashovacej tabuľke vo formáte DOT., label=graph_map, frame=tb]
 digraph G { 
