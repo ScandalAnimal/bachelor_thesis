@@ -400,7 +400,7 @@ f(x) = c_0 \bigoplus_{1 \leq i \leq n} c_ix_i \bigoplus_{1 \leq i \leq j \leq n}
 	Primárnym účelom knižnice je jej využitie v obvodovej štruktúre tvorenej spätnoväzobným registrom ... ({\color{red}TODO}). Pre tieto účely nie je potrebné šifrovať záznamy v hashmape, keďže by sa malo jednať o čo najjednoduchšiu implementáciu. Preto sme sa rozhodli vyberať z nešifrovaných hashovacích funkcií, a podľa požadovaných parametrov zvoliť ideálnu alternatívu.
 
 	\vspace*{0.5\baselineskip}
-	Existuje veľké množstvo voľne dostupných a takisto aj platených samostatných implementácií hashovacej tabuľky. Nástroj SMHasher\footnote{\url{https://github.com/aappleby/smhasher}} a jeho rozšírená verzia\footnote{\url{https://github.com/rurban/smhasher}} poskytujú dobré porovnanie existujúcich hashovacích algoritmov. Testuje síce veľké množstvo hashovacích algoritmov, ale len niekoľko z nich má implementáciu v C, ktorá nás zaujíma. Na porovanie hashovacích algoritmov implementovaných hlavne v C a C++ sa zameriava aj benchmark pre knižnicu TommyDS\footnote{\url{http://www.tommyds.it/doc/benchmark}}. Poskytuje podrobné porovnanie rôznych operácií nad hashovacím tabuľkami naprieč viacerými implementáciami.
+	Existuje veľké množstvo voľne dostupných a takisto aj platených samostatných implementácií hashovacej tabuľky. Nástroj SMHasher\footnote{\url{https://github.com/aappleby/smhasher}} a jeho rozšírená verzia\footnote{\url{https://github.com/rurban/smhasher}} poskytujú dobré porovnanie existujúcich hashovacích algoritmov. Testuje síce veľké množstvo hashovacích algoritmov, ale len niekoľko z nich má implementáciu v C, ktorá nás zaujíma. Na porovnanie hashovacích algoritmov implementovaných hlavne v C a C++ sa zameriava aj benchmark pre knižnicu TommyDS\footnote{\url{http://www.tommyds.it/doc/benchmark}}. Poskytuje podrobné porovnanie rôznych operácií nad hashovacím tabuľkami naprieč viacerými implementáciami.
 
 	\vspace*{0.5\baselineskip}
 	Na základe dvoch vyššie spomenutých porovnaní boli vyskúšané viaceré varianty hashovacej tabuľky. Niektoré knižnice, ktoré si viedli veľmi dobre v daných testoch sú optimalizované na vysokej úrovni, a chýba im prehľadnosť a príklady praktického využitia (konkrétne xxHash), a preto sme sa rozhodli pre využitie knižnice, ktorá síce nebude vo všetkych rebríčkoch na najvyšších pozíciách, ale bude si viesť nadpriemerne ale za cenu vyššej prehľadnosti kódu a dobrej dokumentácií. Podrobnejšie skúšané boli knižnice UTHash\footnote{\url{http://troydhanson.github.io/uthash/}}, Judy\footnote{\url{http://judy.sourceforge.net/}}, pričom ako finálna knižnica bola zvolená práve knižnica UTHash. Jej hlavnou výhodou je, že je to len jediný hlavičkový súbor, obsahuje množstvo testovacích scenárov, a v benchmark testoch si viedla na dobrej úrovni. Ďalším dôvodom, prečo sme si zvolili práve UTHash je možnosť výberu ľubovoľného dátového typu pre kľúč, a takisto aj hodnotu hashovacej tabuľky, čo nie je bežné pri všetkých ostatných implementáciách.
@@ -562,7 +562,7 @@ typedef struct anf {
 	
 \chapter{Implementácia} \label{chapter_impl}
 
-	Táto kapitola popisuje sposob implementácie knižnice podľa návrhu z kapitoly \ref{chapter_concept}. Popisuje súborovú štruktúru a konkrétny obsah poskytovaných funkcií. Kompletný zoznam a popis funkcií sa nachádza v Prílohe \ref{appendix:doc}, v tejto kapitole si popíšeme tie zaujímavejšie časti.
+	Táto kapitola popisuje sposob implementácie knižnice podľa návrhu z kapitoly \ref{chapter_concept}. Popisuje súborovú štruktúru a konkrétny obsah poskytovaných funkcií. Kompletný zoznam a popis funkcií sa nachádza na priloženom CD v dokumentácií, ako je popísané v Prílohe \ref{appendix:doc}, v tejto kapitole si popíšeme tie zaujímavejšie časti.
 	
 	\vspace*{0.5\baselineskip}
 	Knižnica obsahuje viacero hlavičkových súborov, ktoré obsahujú popis štruktúr, ako boli načrtnuté v kapitole \ref{chapter_concept}. Takisto hlavičkové súbory obsahujú deklarácie všetkych funkcií, ktoré majú byť dostupné pre používateľa knižnice. K vačšine hlavičkových súborov existuje aj súbor s príponou \textit{.c}, ktorý obsahuje implementácie funkcií deklarovaných v hlavičkovom súbore, a okrem toho aj pomocné funkcie, ktoré pomáhajú prehľadnejšiemu zdrojovému kódu, ale nemajú byť dostupné pre volanie používateľom.
@@ -583,57 +583,64 @@ typedef struct anf {
 	Reprezentáciu premenných a termov poskytujú súbory \texttt{node.c} a \texttt{variable.c} a ich príslušné hlavičkové súbory. Používateľ má možnosť vytvárania premenných a termov, pridania a odoberania premenných do/z termu a takisto vypísanie obsahu termu do konzole. 
 	
 	\section{Počítanie hodnoty termu}
-	Zaujímavým algoritmom je ten pre vypočítanie aktuálnej booleovskej hodnoty daného termu po vložení novej premennej či premenných, a takisto pri mazaní premennej. Algoritmus je naznačený v Algoritme \ref{alg:new_node_value}. Ak sa do termu vkladá prvá hodnota, nevykonáva sa žiadna operácia a rovno sa vkladaná hodnota priradí do hodnoty celého termu. Pri vkladaní ďalších hodnot sa kontroluje, či aktuálna hodnota termu nie je \textit{false}. Ak by hodnota termu bola \textit{false}, nie je potrebné vypočítavať novú hodnotu, pretože operácia AND s hodnotou \textit{false} a akoukoľvek inou hodnotou bude vždy \textit{false}. Iba ak je aktuálna hodnota termu \textit{true}, vtedy sa vykonáva operácia AND s aktuálnou a novou vkladanou hodnotou a výsledok sa uloží do hodnoty termu. 
+	Zaujímavým algoritmom je ten pre vypočítanie aktuálnej booleovskej hodnoty daného termu po vložení novej premennej či premenných, a takisto pri mazaní premennej. Algoritmus pre vkladanie je naznačený v Algoritme \ref{alg:new_node_value}. Ak sa do termu vkladá prvá hodnota, nevykonáva sa žiadna operácia a rovno sa vkladaná hodnota priradí do hodnoty celého termu. Pri vkladaní ďalších hodnot sa kontroluje, či aktuálna hodnota termu nie je \textit{false}. Ak by hodnota termu bola \textit{false}, nie je potrebné vypočítavať novú hodnotu, pretože operácia AND s hodnotou \textit{false} a akoukoľvek inou hodnotou bude vždy \textit{false}. Iba ak je aktuálna hodnota termu \textit{true}, vtedy sa vykonáva operácia AND s aktuálnou a novou vkladanou hodnotou a výsledok sa uloží do hodnoty termu. 
 	
 	\vspace*{0.5\baselineskip}
-	Pri mazaní premennej z termu to funguje trošku inak. Tento algoritmus sa nachádza v Algoritme \ref{alg:delete_node_value}, Ak má mazaná premenná hodnotu \textit{true} a aj celý term má hodnotu \textit{true}, za podmienky že po mazaní bude mať term aspoň jednu ďalšiu premennú, nie je potrebné znovu prepočítavať hodnotu termu. V prípade, že mazaná premenná má hodnotu \textit{false} a po zmazaní bude mať term aspoň jednu ďalšiu premennú, je potrebné znovu prepočítať hodnotu termu pre každú premennú, ktorá v terme zostal podľa Algoritmu \ref{alg:new_node_value}
+	Pri mazaní premennej z termu to funguje trošku inak. Tento algoritmus sa nachádza v Algoritme \ref{alg:delete_node_value}, Ak má mazaná premenná hodnotu \textit{true} a aj celý term má hodnotu \textit{true}, za podmienky že po mazaní bude mať term aspoň jednu ďalšiu premennú, nie je potrebné znovu prepočítavať hodnotu termu. V prípade, že mazaná premenná má hodnotu \textit{false} a po zmazaní bude mať term aspoň jednu ďalšiu premennú, je potrebné znovu prepočítať hodnotu termu pre každú premennú, ktorá v terme zostal podľa Algoritmu \ref{alg:new_node_value}. Ak mažeme poslednú premennú termu, je hodnota nastavená rovno na \textit{false}.
 	
 	\SetNlSty{}{}{:}
-	\SetNlSkip{-0.8em}
+	\SetStartEndCondition{ (}{)}{)}\SetAlgoBlockMarkers{}{\}}%
+	\SetKwProg{Fn}{}{\{}{}\SetKwFunction{FRecurs}{void FnRecursive}%
+	\SetKwFor{For}{for}{\{}{}%
+	\SetKwIF{If}{ElseIf}{Else}{if}{\{}{elif}{else\{}{}%
+	\SetKwFor{While}{while}{\{}{}%
+	\SetKwRepeat{Repeat}{repeat\{}{until}%
+	\AlgoDisplayBlockMarkers\SetAlgoNoLine%
 	\begin{algorithm}
-		\DontPrintSemicolon
-		\KwIn{$\big( X_{t-1},u_{t},z_{t} \big)$}
-		\KwOut{$X_{t}$}
+		\KwIn{$varCount$ - počet premenných v terme}
+		\KwIn{$nodeValue$ - hodnota termu}
+		\KwIn{$newValue$ - hodnota premennej, ktorú do termu vkladáme}
+		\BlankLine
 		\BlankLine
 		\Indp
-		$\overline{X_{t}}$ = $X_{t}$ = 0\;
-		\For{$k = 1\ \mathrm{to}\ M$}{
-			$x_{t}^{[k]} = sample\_motion\_model(u_{t},x_{t-1}^{[k]})$\;
-			$\omega_{t}^{[k]} = measurement\_model(z_{t},x_{t}^{[k]},m_{t-1})$\;
-			$m_{t}^{[k]} = updated\_occupancy\_grid(z_{t},x_{t}^{[k]},m_{t-1}^{[k]})$\;
-			$\overline{X_{t}} = \overline{X_{t}} + \langle x_{x}^{[k]}, \omega_{t}^{[m]}\rangle$\;
-		}
-		\For{$k = 1\ \mathrm{to}\ M$}{
-			$\mathrm{draw}\ i\ \mathrm{with\ probability}\ \approx \omega_{t}^{[i]}$\;
-			$\mathrm{add}\ \langle x_{x}^{[k]}, m_{t}^{[k]}\rangle\ \mathrm{to}\ X_{t}$\;
-		}
-		\Return $X_{t}$\;
+		\If{$varCount == 0$}{$nodeValue = newValue;$}
+		\ElseIf{$nodeValue == false$}{$return;$}
+		\Else{$nodeValue \enspace \&= newValue;$}
 		\Indm
-		\caption{FAST{\large SLAM}\label{alg:new_node_value}}
+		\caption{Počítanie hodnoty pri vkladaní premennej do termu\label{alg:new_node_value}}
 	\end{algorithm}
-\SetNlSty{}{}{:}
-\SetNlSkip{-0.8em}
+
+
+	\SetNlSty{}{}{:}
+\SetStartEndCondition{ (}{)}{)}\SetAlgoBlockMarkers{}{\}}%
+\SetKwProg{Fn}{}{\{}{}\SetKwFunction{FRecurs}{void FnRecursive}%
+\SetKwFor{For}{for}{\{}{}%
+\SetKwIF{If}{ElseIf}{Else}{if}{\{}{elif}{else\{}{}%
+\SetKwFor{While}{while}{\{}{}%
+\SetKwRepeat{Repeat}{repeat\{}{until}%
+\AlgoDisplayBlockMarkers\SetAlgoNoLine%
 \begin{algorithm}
-	\DontPrintSemicolon
-	\KwIn{$\big( X_{t-1},u_{t},z_{t} \big)$}
-	\KwOut{$X_{t}$}
+	\KwIn{$varCount$ - počet premenných v terme}
+	\KwIn{$nodeValue$ - hodnota termu}
+	\KwIn{$value$ - hodnota premennej na aktuálnom indexe pri prehľadávaní}
+	\BlankLine
 	\BlankLine
 	\Indp
-	$\overline{X_{t}}$ = $X_{t}$ = 0\;
-	\For{$k = 1\ \mathrm{to}\ M$}{
-		$x_{t}^{[k]} = sample\_motion\_model(u_{t},x_{t-1}^{[k]})$\;
-		$\omega_{t}^{[k]} = measurement\_model(z_{t},x_{t}^{[k]},m_{t-1})$\;
-		$m_{t}^{[k]} = updated\_occupancy\_grid(z_{t},x_{t}^{[k]},m_{t-1}^{[k]})$\;
-		$\overline{X_{t}} = \overline{X_{t}} + \langle x_{x}^{[k]}, \omega_{t}^{[m]}\rangle$\;
+	\If{$varCount == 0$}{
+		$nodeValue = false;$ \\
+		$return;$
 	}
-	\For{$k = 1\ \mathrm{to}\ M$}{
-		$\mathrm{draw}\ i\ \mathrm{with\ probability}\ \approx \omega_{t}^{[i]}$\;
-		$\mathrm{add}\ \langle x_{x}^{[k]}, m_{t}^{[k]}\rangle\ \mathrm{to}\ X_{t}$\;
+	\If{$nodeValue == true$}{$return;$}
+	\For{$i = 0; i < varCount; i++$}{
+		$value = getValueOfRecordOnIndex(i);$\\
+		\If{$i == 0$}{$nodeValue = value$}
+		\ElseIf{$nodeValue == false$}{$break;$}
+		\Else{$nodeValue \enspace \&= value$}
 	}
-	\Return $X_{t}$\;
 	\Indm
-	\caption{FAST{\large SLAM}\label{alg:delete_node_value}}
+	\caption{Počítanie hodnoty pri mazaní premennej z termu\label{alg:delete_node_value}}
 \end{algorithm}
+
 \chapter{Vyhodnotenie} \label{chapter_result}
 \chapter{Záver}
 

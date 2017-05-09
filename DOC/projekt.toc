@@ -30,5 +30,5 @@
 \contentsline {chapter}{\numberline {7}Z\IeC {\'a}ver}{27}{chapter.7}
 \contentsline {chapter}{Literat\IeC {\'u}ra}{28}{chapter*.2}
 \contentsline {chapter}{Pr\IeC {\'\i }lohy}{30}{section*.3}
-\contentsline {chapter}{\numberline {A}Dokument\IeC {\'a}cia zdrojov\IeC {\'y}ch k\IeC {\'o}dov}{31}{appendix.A}
+\contentsline {chapter}{\numberline {A}Obsah CD}{31}{appendix.A}
 \contentsfinish 
