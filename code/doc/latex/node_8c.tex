@@ -1,0 +1,179 @@
+\hypertarget{node_8c}{}\section{node.\+c File Reference}
+\label{node_8c}\index{node.\+c@{node.\+c}}
+
+
+functions for manipulating with node  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}node.\+h\char`\"{}}\\*
+Include dependency graph for node.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{node_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{node_8c_a06b14fb829933d75495fda162578290a}{set\+Node\+Value} (\hyperlink{node_8h_a46c9664076d0ecc1398225cf00c7cf8b}{t\+Node} $\ast$\hyperlink{structnode}{node}, bool value)
+\begin{DoxyCompactList}\small\item\em fix node value \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{node_8c_af0c71a247ffcf82b645fc1cc86da3c70}{new\+Node} ()
+\begin{DoxyCompactList}\small\item\em creates new node \end{DoxyCompactList}\item 
+int \hyperlink{node_8c_ae0ddde16af3977ae65318b9da887f05a}{add\+Variable\+To\+Node} (\hyperlink{variable_8h_a8497f1f67b2245e3103840fbeb91f1dc}{t\+Var} \hyperlink{structvariable}{variable}, \hyperlink{node_8h_a46c9664076d0ecc1398225cf00c7cf8b}{t\+Node} $\ast$\hyperlink{structnode}{node})
+\begin{DoxyCompactList}\small\item\em adds existing variable to node \end{DoxyCompactList}\item 
+int \hyperlink{node_8c_a434ffcbdbf9d16f00c48c06be33de57a}{add\+Variables\+To\+Node} (\hyperlink{variable_8h_a8497f1f67b2245e3103840fbeb91f1dc}{t\+Var} variables\mbox{[}$\,$\mbox{]}, int size, \hyperlink{node_8h_a46c9664076d0ecc1398225cf00c7cf8b}{t\+Node} $\ast$\hyperlink{structnode}{node})
+\begin{DoxyCompactList}\small\item\em adds array of variables to node \end{DoxyCompactList}\item 
+int \hyperlink{node_8c_a0003fab7a67321492a9d60a106710f34}{delete\+Variable\+From\+Node} (const char $\ast$var\+Name, \hyperlink{node_8h_a46c9664076d0ecc1398225cf00c7cf8b}{t\+Node} $\ast$\hyperlink{structnode}{node})
+\begin{DoxyCompactList}\small\item\em deletes variable specified from node \end{DoxyCompactList}\item 
+void \hyperlink{node_8c_a3ef63fb71928f421c1f670a8a9847092}{free\+Node} (\hyperlink{node_8h_a46c9664076d0ecc1398225cf00c7cf8b}{t\+Node} $\ast$\hyperlink{structnode}{node})
+\begin{DoxyCompactList}\small\item\em frees node from memory \end{DoxyCompactList}\item 
+void \hyperlink{node_8c_a0195b723edcc055f3e3470af2265ac3f}{print\+Node} (\hyperlink{node_8h_a46c9664076d0ecc1398225cf00c7cf8b}{t\+Node} $\ast$\hyperlink{structnode}{node})
+\begin{DoxyCompactList}\small\item\em prints structure of node to console \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+functions for manipulating with node 
+
+\begin{DoxyAuthor}{Author}
+Maroš Vasilišin \href{mailto:mvasilisin@gmail.com}{\tt mvasilisin@gmail.\+com} 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\index{node.\+c@{node.\+c}!add\+Variables\+To\+Node@{add\+Variables\+To\+Node}}
+\index{add\+Variables\+To\+Node@{add\+Variables\+To\+Node}!node.\+c@{node.\+c}}
+\subsubsection[{\texorpdfstring{add\+Variables\+To\+Node(t\+Var variables[], int size, t\+Node $\ast$node)}{addVariablesToNode(tVar variables[], int size, tNode *node)}}]{\setlength{\rightskip}{0pt plus 5cm}int add\+Variables\+To\+Node (
+\begin{DoxyParamCaption}
+\item[{{\bf t\+Var}}]{var\+Array\mbox{[}$\,$\mbox{]}, }
+\item[{int}]{size, }
+\item[{{\bf t\+Node} $\ast$}]{node}
+\end{DoxyParamCaption}
+)}\hypertarget{node_8c_a434ffcbdbf9d16f00c48c06be33de57a}{}\label{node_8c_a434ffcbdbf9d16f00c48c06be33de57a}
+
+
+adds array of variables to node 
+
+
+\begin{DoxyParams}{Parameters}
+{\em var\+Array} & array of variables to add \\
+\hline
+{\em size} & size of var\+Array \\
+\hline
+{\em node} & node where to add \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+return code from {\ttfamily \hyperlink{error_8h}{error.\+h}} 
+\end{DoxyReturn}
+\index{node.\+c@{node.\+c}!add\+Variable\+To\+Node@{add\+Variable\+To\+Node}}
+\index{add\+Variable\+To\+Node@{add\+Variable\+To\+Node}!node.\+c@{node.\+c}}
+\subsubsection[{\texorpdfstring{add\+Variable\+To\+Node(t\+Var variable, t\+Node $\ast$node)}{addVariableToNode(tVar variable, tNode *node)}}]{\setlength{\rightskip}{0pt plus 5cm}int add\+Variable\+To\+Node (
+\begin{DoxyParamCaption}
+\item[{{\bf t\+Var}}]{var, }
+\item[{{\bf t\+Node} $\ast$}]{node}
+\end{DoxyParamCaption}
+)}\hypertarget{node_8c_ae0ddde16af3977ae65318b9da887f05a}{}\label{node_8c_ae0ddde16af3977ae65318b9da887f05a}
+
+
+adds existing variable to node 
+
+
+\begin{DoxyParams}{Parameters}
+{\em var} & variable to add \\
+\hline
+{\em node} & node where to add variable \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+return code from {\ttfamily \hyperlink{error_8h}{error.\+h}} 
+\end{DoxyReturn}
+\index{node.\+c@{node.\+c}!delete\+Variable\+From\+Node@{delete\+Variable\+From\+Node}}
+\index{delete\+Variable\+From\+Node@{delete\+Variable\+From\+Node}!node.\+c@{node.\+c}}
+\subsubsection[{\texorpdfstring{delete\+Variable\+From\+Node(const char $\ast$var\+Name, t\+Node $\ast$node)}{deleteVariableFromNode(const char *varName, tNode *node)}}]{\setlength{\rightskip}{0pt plus 5cm}int delete\+Variable\+From\+Node (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{key, }
+\item[{{\bf t\+Node} $\ast$}]{node}
+\end{DoxyParamCaption}
+)}\hypertarget{node_8c_a0003fab7a67321492a9d60a106710f34}{}\label{node_8c_a0003fab7a67321492a9d60a106710f34}
+
+
+deletes variable specified from node 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & name of variable to delete \\
+\hline
+{\em node} & node where deleting \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+return code from {\ttfamily \hyperlink{error_8h}{error.\+h}} 
+\end{DoxyReturn}
+\index{node.\+c@{node.\+c}!free\+Node@{free\+Node}}
+\index{free\+Node@{free\+Node}!node.\+c@{node.\+c}}
+\subsubsection[{\texorpdfstring{free\+Node(t\+Node $\ast$node)}{freeNode(tNode *node)}}]{\setlength{\rightskip}{0pt plus 5cm}void free\+Node (
+\begin{DoxyParamCaption}
+\item[{{\bf t\+Node} $\ast$}]{node}
+\end{DoxyParamCaption}
+)}\hypertarget{node_8c_a3ef63fb71928f421c1f670a8a9847092}{}\label{node_8c_a3ef63fb71928f421c1f670a8a9847092}
+
+
+frees node from memory 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & node to free \\
+\hline
+\end{DoxyParams}
+\index{node.\+c@{node.\+c}!new\+Node@{new\+Node}}
+\index{new\+Node@{new\+Node}!node.\+c@{node.\+c}}
+\subsubsection[{\texorpdfstring{new\+Node()}{newNode()}}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ new\+Node (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{node_8c_af0c71a247ffcf82b645fc1cc86da3c70}{}\label{node_8c_af0c71a247ffcf82b645fc1cc86da3c70}
+
+
+creates new node 
+
+\begin{DoxyReturn}{Returns}
+pointer to created node 
+\end{DoxyReturn}
+\index{node.\+c@{node.\+c}!print\+Node@{print\+Node}}
+\index{print\+Node@{print\+Node}!node.\+c@{node.\+c}}
+\subsubsection[{\texorpdfstring{print\+Node(t\+Node $\ast$node)}{printNode(tNode *node)}}]{\setlength{\rightskip}{0pt plus 5cm}void print\+Node (
+\begin{DoxyParamCaption}
+\item[{{\bf t\+Node} $\ast$}]{node}
+\end{DoxyParamCaption}
+)}\hypertarget{node_8c_a0195b723edcc055f3e3470af2265ac3f}{}\label{node_8c_a0195b723edcc055f3e3470af2265ac3f}
+
+
+prints structure of node to console 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & node to print \\
+\hline
+\end{DoxyParams}
+\index{node.\+c@{node.\+c}!set\+Node\+Value@{set\+Node\+Value}}
+\index{set\+Node\+Value@{set\+Node\+Value}!node.\+c@{node.\+c}}
+\subsubsection[{\texorpdfstring{set\+Node\+Value(t\+Node $\ast$node, bool value)}{setNodeValue(tNode *node, bool value)}}]{\setlength{\rightskip}{0pt plus 5cm}void set\+Node\+Value (
+\begin{DoxyParamCaption}
+\item[{{\bf t\+Node} $\ast$}]{node, }
+\item[{bool}]{value}
+\end{DoxyParamCaption}
+)}\hypertarget{node_8c_a06b14fb829933d75495fda162578290a}{}\label{node_8c_a06b14fb829933d75495fda162578290a}
+
+
+fix node value 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & node to fix value \\
+\hline
+{\em value} & value to set \\
+\hline
+\end{DoxyParams}

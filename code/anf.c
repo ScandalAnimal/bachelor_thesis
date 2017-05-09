@@ -1,4 +1,6 @@
 /** 
+ * @file
+ * @brief functions for manipulating with anf
  * @author Maroš Vasilišin <mvasilisin@gmail.com>
  */
 
@@ -6,6 +8,11 @@
 #include <stdlib.h>
 #include "anf.h"
 
+/**
+ * function for changing value of anf
+ * @param anf anf where change happens
+ * @param value value to add to anf
+ */
 void setAnfValue(tAnf* anf, bool value) {
     if (anf->nodeCount == 0) {
         anf->value = value;
@@ -15,6 +22,11 @@ void setAnfValue(tAnf* anf, bool value) {
     }
 }
 
+/**
+ * function for fixing value of node
+ * @param node node where change happens
+ * @param hashMap hash map of all variables
+ */
 void fixNodeValue(tNode* node, tVar** hashMap) {
 
     if (node->value == true) {
@@ -36,6 +48,10 @@ void fixNodeValue(tNode* node, tVar** hashMap) {
     }
 }
 
+/**
+ * function for fixing value of anf
+ * @param anf anf where to fix value
+ */
 void fixAnfValue(tAnf* anf) {
 
     bool value = false;
@@ -226,6 +242,12 @@ void* newAnf() {
     return anf;
 }
 
+/**
+ * function creates new map from existing map
+ * @param sourceMap map to copy from
+ * @param targetMap map to create
+ * @return return code from <code>error.h</code>
+ */
 int duplicateVars(tMap sourceMap, tMap targetMap) {
     
     tVar** source = (tVar**) sourceMap;
@@ -405,6 +427,12 @@ int deleteVarFromAnf(tAnf* anf, char* varName, bool deleteFromNodes) {
     return OK;
 }
 
+/**
+ * function checks if node is in anf specified
+ * @param anf anf where node should be
+ * @param node node to check
+ * @return true if node is in anf, false if is not
+ */
 bool isNodeInAnf(tAnf* anf, tNode* node) {
 
     for (int i = 0; i < anf->nodeCount; i++) {
@@ -454,6 +482,11 @@ int addVarsToNodeInAnf(tAnf* anf, tNode* node, tVar variables[], int length) {
     return OK;
 }
 
+/**
+ * function recount counter in node
+ * @param node node where counting happens
+ * @param anf anf where counting happens
+ */
 void recountNodeValueInAnf(tNode* node, tAnf* anf) {
 
     for (int i = 0; i < node->varCount; i++) {
@@ -472,6 +505,10 @@ void recountNodeValueInAnf(tNode* node, tAnf* anf) {
     }    
 }
 
+/**
+ * function for recounting counters in anf after change
+ * @param anf anf where recount happens
+ */
 void recountValuesInAnf(tAnf* anf) {
 
     for (int i = 0; i < anf->nodeCount; i++) {

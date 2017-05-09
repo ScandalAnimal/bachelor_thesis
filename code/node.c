@@ -1,4 +1,6 @@
 /** 
+ * @file
+ * @brief functions for manipulating with node
  * @author Maroš Vasilišin <mvasilisin@gmail.com>
  */
 
@@ -6,6 +8,11 @@
 #include <stdlib.h>
 #include "node.h"
 
+/**
+ * fix node value
+ * @param node node to fix value
+ * @param value value to set
+ */
 void setNodeValue(tNode* node, bool value) {
     if (node->varCount == 0) {
         node->value = value;

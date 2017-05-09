@@ -1,0 +1,116 @@
+\hypertarget{variable_8h}{}\section{variable.\+h File Reference}
+\label{variable_8h}\index{variable.\+h@{variable.\+h}}
+
+
+functions for manipulating with variables  
+
+
+{\ttfamily \#include $<$stdbool.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}lib/uthash.\+h\char`\"{}}\\*
+Include dependency graph for variable.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{variable_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{variable_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structvariable}{variable}
+\begin{DoxyCompactList}\small\item\em structure for representing variable \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structvariable}{variable} \hyperlink{variable_8h_a8497f1f67b2245e3103840fbeb91f1dc}{t\+Var}\hypertarget{variable_8h_a8497f1f67b2245e3103840fbeb91f1dc}{}\label{variable_8h_a8497f1f67b2245e3103840fbeb91f1dc}
+
+\begin{DoxyCompactList}\small\item\em structure for representing variable \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{variable_8h_a8497f1f67b2245e3103840fbeb91f1dc}{t\+Var} \hyperlink{variable_8h_ab7272d7b4a725119b8715985ebd51949}{create\+Var} (char $\ast$name, bool value)
+\begin{DoxyCompactList}\small\item\em creates variable \end{DoxyCompactList}\item 
+\hyperlink{variable_8h_a8497f1f67b2245e3103840fbeb91f1dc}{t\+Var} \hyperlink{variable_8h_abaf205e08694360f88963fc1ce312cf4}{create\+True\+Var} (char $\ast$name)
+\begin{DoxyCompactList}\small\item\em creates variable with true value \end{DoxyCompactList}\item 
+\hyperlink{variable_8h_a8497f1f67b2245e3103840fbeb91f1dc}{t\+Var} \hyperlink{variable_8h_a506f56aa0d5afc247d64113f3dc6c04a}{create\+False\+Var} (char $\ast$name)
+\begin{DoxyCompactList}\small\item\em creates variable with false value \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+functions for manipulating with variables 
+
+\begin{DoxyAuthor}{Author}
+Maroš Vasilišin \href{mailto:mvasilisin@gmail.com}{\tt mvasilisin@gmail.\+com} 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\index{variable.\+h@{variable.\+h}!create\+False\+Var@{create\+False\+Var}}
+\index{create\+False\+Var@{create\+False\+Var}!variable.\+h@{variable.\+h}}
+\subsubsection[{\texorpdfstring{create\+False\+Var(char $\ast$name)}{createFalseVar(char *name)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf t\+Var} create\+False\+Var (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name}
+\end{DoxyParamCaption}
+)}\hypertarget{variable_8h_a506f56aa0d5afc247d64113f3dc6c04a}{}\label{variable_8h_a506f56aa0d5afc247d64113f3dc6c04a}
+
+
+creates variable with false value 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & name of variable \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+created variable 
+\end{DoxyReturn}
+\index{variable.\+h@{variable.\+h}!create\+True\+Var@{create\+True\+Var}}
+\index{create\+True\+Var@{create\+True\+Var}!variable.\+h@{variable.\+h}}
+\subsubsection[{\texorpdfstring{create\+True\+Var(char $\ast$name)}{createTrueVar(char *name)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf t\+Var} create\+True\+Var (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name}
+\end{DoxyParamCaption}
+)}\hypertarget{variable_8h_abaf205e08694360f88963fc1ce312cf4}{}\label{variable_8h_abaf205e08694360f88963fc1ce312cf4}
+
+
+creates variable with true value 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & name of variable \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+created variable 
+\end{DoxyReturn}
+\index{variable.\+h@{variable.\+h}!create\+Var@{create\+Var}}
+\index{create\+Var@{create\+Var}!variable.\+h@{variable.\+h}}
+\subsubsection[{\texorpdfstring{create\+Var(char $\ast$name, bool value)}{createVar(char *name, bool value)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf t\+Var} create\+Var (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name, }
+\item[{bool}]{value}
+\end{DoxyParamCaption}
+)}\hypertarget{variable_8h_ab7272d7b4a725119b8715985ebd51949}{}\label{variable_8h_ab7272d7b4a725119b8715985ebd51949}
+
+
+creates variable 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & name of variable \\
+\hline
+{\em value} & value of variable \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+created variable 
+\end{DoxyReturn}
