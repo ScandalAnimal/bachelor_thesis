@@ -406,7 +406,20 @@ f(x) = c_0 \bigoplus_{1 \leq i \leq n} c_ix_i \bigoplus_{1 \leq i \leq j \leq n}
 	Na základe dvoch vyššie spomenutých porovnaní boli vyskúšané viaceré varianty hashovacej tabuľky. Niektoré knižnice, ktoré si viedli veľmi dobre v daných testoch sú optimalizované na vysokej úrovni, a chýba im prehľadnosť a príklady praktického využitia (konkrétne xxHash), a preto sme sa rozhodli pre využitie knižnice, ktorá síce nebude vo všetkych rebríčkoch na najvyšších pozíciách, ale bude si viesť nadpriemerne ale za cenu vyššej prehľadnosti kódu a dobrej dokumentácií. Podrobnejšie skúšané boli knižnice UTHash\footnote{\url{http://troydhanson.github.io/uthash/}}, Judy\footnote{\url{http://judy.sourceforge.net/}}, pričom ako finálna knižnica bola zvolená práve knižnica UTHash. Jej hlavnou výhodou je, že je to len jediný hlavičkový súbor, obsahuje množstvo testovacích scenárov, a v benchmark testoch si viedla na dobrej úrovni. Ďalším dôvodom, prečo sme si zvolili práve UTHash je možnosť výberu ľubovoľného dátového typu pre kľúč, a takisto aj hodnotu hashovacej tabuľky, čo nie je bežné pri všetkých ostatných implementáciách.
 	
 	\vspace*{0.5\baselineskip}
+	Keď chceme využívať možnosti knižnice UTHash, je potrebné niečím naznačiť, ktorá štruktúra v programe má byť hashovateľná do hashovacej tabuľky. v UTHash sa to dosahuje pridaním jedného riadku do definície štruktúry. V tomto duchu teda bude pozmenený návrh štruktúry premennej zo Zdrojového kódu \ref{var} tak, ako je naznačené v Zdrojovom kóde \ref{var_uthash}.
+	
+\vspace*{0.5\baselineskip}
+\begin{lstlisting}[caption=Štruktúra premenná hashovateľná cez UTHash, label=var_uthash, language=C, frame=tb]
+  typedef struct variable {
+    char* name;
+    bool value;
+    UT_hash_handle hh;
+  } tVar;
+\end{lstlisting}
+	
+	\vspace*{0.5\baselineskip}
 	Výsledná hashovacia tabuľka teda využíva hlavičkový súbor z UTHash, obaľuje jeho potrebné funkcie vlastnými, pre jednoduchšie použitie, a takisto pridáva nejaké nové. UTHash využíva systém zreťazenia záznamov (chaining z angl.), takže na jedno pamäťové miesto sa teoreticky môže mapovať viacero záznamov. Pri takejto kolízií sa potom podľa kľúča vyhľadáva správny záznam.
+	
 
 \section{Reprezentácia termov}
 
@@ -548,6 +561,79 @@ typedef struct anf {
 	
 	
 \chapter{Implementácia} \label{chapter_impl}
+
+	Táto kapitola popisuje sposob implementácie knižnice podľa návrhu z kapitoly \ref{chapter_concept}. Popisuje súborovú štruktúru a konkrétny obsah poskytovaných funkcií. Kompletný zoznam a popis funkcií sa nachádza v Prílohe \ref{appendix:doc}, v tejto kapitole si popíšeme tie zaujímavejšie časti.
+	
+	\vspace*{0.5\baselineskip}
+	Knižnica obsahuje viacero hlavičkových súborov, ktoré obsahujú popis štruktúr, ako boli načrtnuté v kapitole \ref{chapter_concept}. Takisto hlavičkové súbory obsahujú deklarácie všetkych funkcií, ktoré majú byť dostupné pre používateľa knižnice. K vačšine hlavičkových súborov existuje aj súbor s príponou \textit{.c}, ktorý obsahuje implementácie funkcií deklarovaných v hlavičkovom súbore, a okrem toho aj pomocné funkcie, ktoré pomáhajú prehľadnejšiemu zdrojovému kódu, ale nemajú byť dostupné pre volanie používateľom.
+	
+	\vspace*{0.5\baselineskip}
+	Okrem zdrojových súborov sa v balíčku nachádza aj testovací súbor \texttt{tests.c}, ktorý obsahuje niekoľko testov pre overenie funkčnosti vačšiny funkcií poskytovaných knižnicou. Tento testovací súbor takisto ukazuje možné použitie knižnice a tiež ukážku vykreslenia grafu booleovskej funkcie v ANF do súboru vo formáte DOT.
+	
+	\vspace*{0.5\baselineskip}
+	V knižnici sa okrem autorských súborov nachádza aj hlavičkový súbor \texttt{uthash.h}, v súborovej štruktúre knižnice sa nachádza na ceste \texttt{./lib/uthash.h}. Tento súbor je vytiahnutý z balíčka UTHash\footnote{\url{https://troydhanson.github.io/uthash/}} a bezo zmeny používaný. Tento súbor bol vybraný, namiesto využitia kompletného balíčka UTHash preto, že v našej knižnici nepotrebujeme ostatné štruktúry a funkcie dostupné z ostatných súborov z UTHash, vystačíme si len s týmto jedným súborom. 	
+	
+	\vspace*{0.5\baselineskip}
+	Knižnica je implementovaná a testovaná na systéme UNIX, konkrétne Ubuntu verzie 16.04, takže obsahuje prekladový súbor \texttt{makefile} len pre túto platformu. V Aktuálnom stave sa knižnica vytvára ako zdieľaná, je teda pri preklade zdrojových súborov mať administrátorské práva, aby bolo možné nakopírovať príslušné súbory na patričné miesta v systéme. Používateľovi ale nič nebráni v tomu nevyužiť poskytnutý \texttt{makefile} a používať súbory knižnice lokálne.
+	
+	\vspace*{0.5\baselineskip}
+	Hlavná logika čo sa týka práce s hashovacou tabuľkou sa nachádza v súbore \texttt{hashmap.c}. Nachádzajú sa tu obaľovače, ktoré sprístupňujú vysoko optimalizované funkcie z knižnice UTHash pre použitie v programe. Dostupné sú funkcie pre vytvorenie a rušenie hashovacej tabuľky, pre vkladanie, výber a odoberanie záznamov. Okrem toho obsahuje funkcie pre výpis obsahu hashovacej tabuľky do konzoly a takisto pre vykreslenie do grafu vo formáte DOT. 	
+
+	\vspace*{0.5\baselineskip}
+	Reprezentáciu premenných a termov poskytujú súbory \texttt{node.c} a \texttt{variable.c} a ich príslušné hlavičkové súbory. Používateľ má možnosť vytvárania premenných a termov, pridania a odoberania premenných do/z termu a takisto vypísanie obsahu termu do konzole. 
+	
+	\section{Počítanie hodnoty termu}
+	Zaujímavým algoritmom je ten pre vypočítanie aktuálnej booleovskej hodnoty daného termu po vložení novej premennej či premenných, a takisto pri mazaní premennej. Algoritmus je naznačený v Algoritme \ref{alg:new_node_value}. Ak sa do termu vkladá prvá hodnota, nevykonáva sa žiadna operácia a rovno sa vkladaná hodnota priradí do hodnoty celého termu. Pri vkladaní ďalších hodnot sa kontroluje, či aktuálna hodnota termu nie je \textit{false}. Ak by hodnota termu bola \textit{false}, nie je potrebné vypočítavať novú hodnotu, pretože operácia AND s hodnotou \textit{false} a akoukoľvek inou hodnotou bude vždy \textit{false}. Iba ak je aktuálna hodnota termu \textit{true}, vtedy sa vykonáva operácia AND s aktuálnou a novou vkladanou hodnotou a výsledok sa uloží do hodnoty termu. 
+	
+	\vspace*{0.5\baselineskip}
+	Pri mazaní premennej z termu to funguje trošku inak. Tento algoritmus sa nachádza v Algoritme \ref{alg:delete_node_value}, Ak má mazaná premenná hodnotu \textit{true} a aj celý term má hodnotu \textit{true}, za podmienky že po mazaní bude mať term aspoň jednu ďalšiu premennú, nie je potrebné znovu prepočítavať hodnotu termu. V prípade, že mazaná premenná má hodnotu \textit{false} a po zmazaní bude mať term aspoň jednu ďalšiu premennú, je potrebné znovu prepočítať hodnotu termu pre každú premennú, ktorá v terme zostal podľa Algoritmu \ref{alg:new_node_value}
+	
+	\SetNlSty{}{}{:}
+	\SetNlSkip{-0.8em}
+	\begin{algorithm}
+		\DontPrintSemicolon
+		\KwIn{$\big( X_{t-1},u_{t},z_{t} \big)$}
+		\KwOut{$X_{t}$}
+		\BlankLine
+		\Indp
+		$\overline{X_{t}}$ = $X_{t}$ = 0\;
+		\For{$k = 1\ \mathrm{to}\ M$}{
+			$x_{t}^{[k]} = sample\_motion\_model(u_{t},x_{t-1}^{[k]})$\;
+			$\omega_{t}^{[k]} = measurement\_model(z_{t},x_{t}^{[k]},m_{t-1})$\;
+			$m_{t}^{[k]} = updated\_occupancy\_grid(z_{t},x_{t}^{[k]},m_{t-1}^{[k]})$\;
+			$\overline{X_{t}} = \overline{X_{t}} + \langle x_{x}^{[k]}, \omega_{t}^{[m]}\rangle$\;
+		}
+		\For{$k = 1\ \mathrm{to}\ M$}{
+			$\mathrm{draw}\ i\ \mathrm{with\ probability}\ \approx \omega_{t}^{[i]}$\;
+			$\mathrm{add}\ \langle x_{x}^{[k]}, m_{t}^{[k]}\rangle\ \mathrm{to}\ X_{t}$\;
+		}
+		\Return $X_{t}$\;
+		\Indm
+		\caption{FAST{\large SLAM}\label{alg:new_node_value}}
+	\end{algorithm}
+\SetNlSty{}{}{:}
+\SetNlSkip{-0.8em}
+\begin{algorithm}
+	\DontPrintSemicolon
+	\KwIn{$\big( X_{t-1},u_{t},z_{t} \big)$}
+	\KwOut{$X_{t}$}
+	\BlankLine
+	\Indp
+	$\overline{X_{t}}$ = $X_{t}$ = 0\;
+	\For{$k = 1\ \mathrm{to}\ M$}{
+		$x_{t}^{[k]} = sample\_motion\_model(u_{t},x_{t-1}^{[k]})$\;
+		$\omega_{t}^{[k]} = measurement\_model(z_{t},x_{t}^{[k]},m_{t-1})$\;
+		$m_{t}^{[k]} = updated\_occupancy\_grid(z_{t},x_{t}^{[k]},m_{t-1}^{[k]})$\;
+		$\overline{X_{t}} = \overline{X_{t}} + \langle x_{x}^{[k]}, \omega_{t}^{[m]}\rangle$\;
+	}
+	\For{$k = 1\ \mathrm{to}\ M$}{
+		$\mathrm{draw}\ i\ \mathrm{with\ probability}\ \approx \omega_{t}^{[i]}$\;
+		$\mathrm{add}\ \langle x_{x}^{[k]}, m_{t}^{[k]}\rangle\ \mathrm{to}\ X_{t}$\;
+	}
+	\Return $X_{t}$\;
+	\Indm
+	\caption{FAST{\large SLAM}\label{alg:delete_node_value}}
+\end{algorithm}
 \chapter{Vyhodnotenie} \label{chapter_result}
 \chapter{Záver}
 
