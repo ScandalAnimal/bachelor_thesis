@@ -502,7 +502,7 @@ typedef struct anf {
 	\vspace*{0.5\baselineskip}
 	V neposlednom rade je optimalizáciou aj to, že zoznam premenných v terme (respektíve zoznam termov v anf) obsahuje len odkazy na dané štruktúry, nie ich kompletnú hodnotu.
 	
-\section{Grafické zobrazenie funkcií}
+\section{Grafické zobrazenie funkcií} \label{concept_graphs}
 	
 	Jednou z požiadaviek na knižnicu je aj možnosť grafického zobrazenia vytvorených funkcií. Takýto graf by mal obsahovať všetky termy pre danú funkciu a takisto správne naznačovať, ktoré premenné sa nachádzajú v ktorých termoch. 	  
 
@@ -551,7 +551,7 @@ typedef struct anf {
 	\centering
 	\scalebox{0.55}
 	{\includegraphics{obrazky-figures/DOT.png}}
-	\caption{Príklad grafu vytvoreného cez formát DOT zo Zdrojového kódu \ref{listing_dot}}
+	\caption{Príklad grafu vytvoreného cez formát DOT zo zdrojového kódu \ref{listing_dot}.}
 	\label{image_dot}
 \end{figure}	
 	
@@ -600,7 +600,8 @@ typedef struct anf {
 	\vspace*{0.5\baselineskip}
 	Pri vkladaní termov do funkcie, či ich mazaní sa využívajú podobné algoritmy pre výpočet výslednej hodnoty funkcie, ako algoritmy \ref{alg:new_node_value} a \ref{alg:delete_node_value} pre vkladanie premennej do termu. Prvý rozdiel v algoritme pre vkladanie je, že sa nevykonáva operácia AND, ale namiesto nej XOR. Druhý rozdiel je, že hodnota, nad ktorou sa vykonáva XOR s aktuálnou hodnotou funkcie, je hodnota daného vkladaného termu, ktorá je vypočítaná ako výsledok operácie AND medzi všetkými jeho premennými podľa algoritmu \ref{alg:new_node_value}.
 	
-	
+	\vspace*{0.5\baselineskip}
+	Všetky tieto operácie je možné nájsť v súbore \texttt{anf.c}.
 	
 	\SetNlSty{}{}{:}
 	\SetStartEndCondition{ (}{)}{)}\SetAlgoBlockMarkers{}{\}}%
@@ -655,6 +656,84 @@ typedef struct anf {
 	\caption{Počítanie hodnoty pri mazaní premennej z termu.\label{alg:delete_node_value}}
 \end{algorithm}
 
+	\section{Grafická reprezentácia štruktúr}
+	
+	Podľa výsledkov analýzy dostupných formátov v sekcii \ref{concept_graphs} bol ako vhodný formát pre reprezentáciu booleovskych funkcií v ANF zvolený formát DOT. V tejto sekcii si bližšie popíšeme ako je to vlastne implementované a čo všetko sa dá zobraziť.
+
+	\vspace*{0.5\baselineskip}
+	Knižnica poskytuje možnosť zobrazenia dvoch dátových štruktúr, a to hashovacej tabuľky a kompletnej booleovskej funkcie v ANF.
+	
+	\vspace*{0.5\baselineskip}
+	DOT poskytuje možnosť tvorenia grafov rôznych veľkostí a tvarov, pre účely knižnice bol vybraný formát \texttt{record}, ktorý najpríjemnejšie reprezentuje požadovanú štruktúru. Graf je tvorený hierarchickou štruktúrov uzlov smeujúcich zľava doprava, aby sa dala ľahko rozoznať úroveň zanorenia. Takisto sú v ňom jasne dané väzby medzi uzlami. 
+	
+	\vspace*{0.5\baselineskip}
+	Pre graf hashovacej tabuľky bola zvolená reprezentácia s jednou úrovňou zanorenia. Konkrétny spôsob implementácie sa nachádza v zdrojovom kóde \ref{graph_map}. Na začiatku sa nastavujú veľkosti jednotlivých uzlov, a v druhej časti kódu už ich obsah a prepojenia. Generovanie daného kódu prebieha v dvoch častiach. Najprv sa vygeneruje úvodná sekvencia konfiguračných príkazov, ktorá je rovnaká pre každý generovaný graf. V druhej časti sa generuje už samotný obsah buniek, a to cyklom, ktorý prechádza hashovaciu tabuľky a vyberá z nej záznamy. Výsledný vygenerovaný graf sa nachádza na obrázku \ref{picture_map}.
+	
+	\vspace*{0.5\baselineskip}
+	Generovanie grafu pre booleovsku funkciu v ANF prebieha v podobnom duchu ako aj pre hashovaciu tabuľku. Rozdiel je v tom, že tu už máme 2 úrovne zanorenia, a to zobrazenie všetkých termov vo funkcií, a v nich zobrazenie všetkých premenných. Implementovaná je možnosť zobrazovania premenných spoločne s ich hodnotou, alebo bez nej. Keďže tu existujú 2 úrovne zanorenia, bolo potrebné upraviť algoritmus pre generovanie zdrojového súboru ku grafu. Namiesto jediného cyklu ako tomu bolo pri grafe hashovacej funkcie tu prebiehajú cykly 2 aby sa správne vykreslili všetky uzly a spojenia medzi nimi. Príklad zdrojového súboru k booleovskej funkcii v ANF sa nachádza v zdrojovom súbore \ref{graph_anf}. Vygenerovaný graf z daného súboru je na obrázku \ref{picture_anf}. 
+	
+	\newpage
+\begin{lstlisting}[caption=Zdrojový súbor k hashovacej tabuľke vo formáte DOT., label=graph_map, frame=tb]
+digraph G { 
+  nodesep=.05; 
+  rankdir=LR; 
+  node [shape=record,width=.1,height=.1]; 
+  node [width = 1.5]; 
+  node0[label = "<n0> 0 | <n1> 1 | <n2> 2 | <n3> 3",height=2.5]; 
+  node1[label = "{ <n> Praha | false}"]; 
+  node0:n0 -> node1:n; 
+  node2[label = "{ <n> Bratislava | true}"]; 
+  node0:n1 -> node2:n; 
+  node3[label = "{ <n> Stockholm | false}"];
+  node0:n2 -> node3:n; 
+  node4[label = "{ <n> Madrid | false}"]; 
+  node0:n3 -> node4:n;
+}
+	
+\end{lstlisting}
+	
+	
+	\begin{figure}[h]
+		\centering
+		\scalebox{0.55}
+		{\includegraphics{obrazky-figures/hashmap.png}}
+		\caption{Vygenerovaný graf zo zdrojového kódu \ref{graph_map}.}
+		\label{picture_map}
+	\end{figure}
+
+\newpage
+\begin{lstlisting}[caption=Zdrojový súbor k booleovskej funkcii v ANF vo formáte DOT., label=graph_anf, frame=tb]
+digraph G { 
+  nodesep=.05; 
+  rankdir=LR; 
+  node [shape=record,width=.1,height=.1];
+  node [width = 1.5];
+  node0[label = "<n0> ANF",height=2.5]; 
+  node1[label = "{ <n> node 1}"]; 
+  node0:n0 -> node1:n; 
+  node2[label = "{ <n> node 2}"]; 
+  node0:n0 -> node2:n; 
+  node3[label = "{ <n> Praha | false}"]; 
+  node1:n -> node3:n; 
+  node4[label = "{ <n> Bratislava| true}"]; 
+  node2:n -> node4:n; 
+  node5[label = "{ <n> Stockholm | false}"]; 
+  node2:n -> node5:n; 
+  node6[label = "{ <n> Madrid | false}"]; 
+  node2:n -> node6:n; 
+}
+
+\end{lstlisting}
+
+\begin{figure}[h]
+	\centering
+	\scalebox{0.55}
+	{\includegraphics{obrazky-figures/anf.png}}
+	\caption{Vygenerovaný graf zo zdrojového kódu \ref{graph_anf}.}
+	\label{picture_anf}
+\end{figure}
+
+	
 \chapter{Vyhodnotenie} \label{chapter_result}
 \chapter{Záver}
 
