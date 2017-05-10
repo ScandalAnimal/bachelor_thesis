@@ -29,6 +29,11 @@ void setAnfValue(tAnf* anf, bool value) {
  */
 void fixNodeValue(tNode* node, tVar** hashMap) {
 
+    if (node->varCount == 0) {
+        node->value = false;
+        return;
+    }
+
     if (node->value == true) {
         return;
     }
@@ -573,7 +578,7 @@ int generateAnfGraph(tAnf* anf, char* filename) {
     }
 
     printInitGraphSequence(file);
-    printSingleRootNode(file, "anf");
+    printSingleRootNode(file, "anf", false, anf->value);
 
     int nodeCounter = 1;
     nodeCounter = printAnonymousNodes(file, anf->nodeCount, nodeCounter, "node", 0);

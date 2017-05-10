@@ -27,8 +27,10 @@ void printEndGraphSequence(FILE* file);
  * prints root node of graph
  * @param file file to write
  * @param rootName root label
+ * @param printValue if true printing also value of node
+ * @param value value of node to print
  */
-void printSingleRootNode(FILE* file , char* rootName);
+void printSingleRootNode(FILE* file , char* rootName, bool printValue, bool value);
 
 /**
  * prints multiple roots of graph

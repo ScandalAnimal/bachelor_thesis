@@ -17,9 +17,14 @@ void printEndGraphSequence(FILE* file) {
     fprintf(file, "}\n");
 }
 
-void printSingleRootNode(FILE* file, char* rootName) {
+void printSingleRootNode(FILE* file, char* rootName, bool printValue, bool value) {
 
-    fprintf(file, "node0 [label = \"<n0> %s\",height=2.5];\n", rootName);
+    if (printValue) {
+        fprintf(file, "node0 [label = \"<n0> %s | %s\",height=2.5];\n", rootName, (value) ? "true" : "false");
+    }
+    else {
+        fprintf(file, "node0 [label = \"<n0> %s\",height=2.5];\n", rootName);        
+    }
 }
 
 void printMultipleRootNodes(FILE* file, int nodeCount) {
