@@ -369,8 +369,8 @@ int bigDataInputTest(char* graphOutput) {
     
 
     for (int i = 0; i < KEY_COUNT; i++) {
-        value = malloc(sizeof(tVar));
-        value->name = malloc(sizeof(char) * KEY_MAX_LENGTH);
+        value = GC_MALLOC(sizeof(tVar));
+        value->name = GC_MALLOC(sizeof(char) * KEY_MAX_LENGTH);
         snprintf(value->name, KEY_MAX_LENGTH, "%s%d", KEY_PREFIX, i);
         value->value = getRandomBooleanValue();
 

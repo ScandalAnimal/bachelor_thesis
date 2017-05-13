@@ -16,7 +16,7 @@ TEST_FILES=$(SRC) $(TESTS)
 
 all: $(LIB_FILES)
 	$(CC) $(CFLAGS) -o $(EXEC) $(LIB_FILES)
-
+	
 clean:
 	$(RM) *.o $(EXEC) $(TEST) $(TEST_OUTPUT)/*
 	$(RMDIR) $(TEST_OUTPUT)
@@ -26,5 +26,9 @@ run:
 
 test: $(TEST_FILES)
 	$(RM) $(TEST_OUTPUT)/*
+	make -C ./lib/gc-7.2 -f Makefile.direct test
 	$(CC) $(CFLAGS) -o $(TEST) $(TEST_FILES)
 	./$(TEST)
+
+install:
+	make -C ./lib/gc-7.2 -f Makefile.direct test

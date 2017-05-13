@@ -289,9 +289,11 @@ void* newAnfFrom2Anfs(tAnf* anf1, tAnf* anf2, bool valuesFromAnf1) {
         }        
     }
 
+    tNode* nodes[anf2->nodeCount+anf1->nodeCount];
+
     for (int i = 0; i < anf1->nodeCount; i++) {
-        tNode* node = newNodeInAnf(anf);
-        if (node == NULL) {
+        nodes[i] = newNodeInAnf(anf);
+        if (nodes[i] == NULL) {
             freeAnf(anf);
             return NULL;
         }
@@ -299,8 +301,8 @@ void* newAnfFrom2Anfs(tAnf* anf1, tAnf* anf2, bool valuesFromAnf1) {
             char* varName = anf1->nodeList[i]->variables[j];
             bool varValue = selectFromHashMap(&(anf->hashMap), varName)->value;
             tVar var = createVar(varName, varValue);
-            if (addVarToNodeInAnf(anf, node, var) != OK) {
-                freeNode(node);
+            if (addVarToNodeInAnf(anf, nodes[i], var) != OK) {
+                freeNode(nodes[i]);
                 freeAnf(anf);
                 return NULL; 
             }
@@ -308,8 +310,8 @@ void* newAnfFrom2Anfs(tAnf* anf1, tAnf* anf2, bool valuesFromAnf1) {
     }
 
     for (int i = 0; i < anf2->nodeCount; i++) {
-        tNode* node = newNodeInAnf(anf);
-        if (node == NULL) {
+        nodes[anf1->nodeCount + i] = newNodeInAnf(anf);
+        if (nodes[anf1->nodeCount + i] == NULL) {
             freeAnf(anf);
             return NULL;
         }
@@ -317,15 +319,18 @@ void* newAnfFrom2Anfs(tAnf* anf1, tAnf* anf2, bool valuesFromAnf1) {
             char* varName = anf2->nodeList[i]->variables[j];
             bool varValue = selectFromHashMap(&(anf->hashMap), varName)->value;
             tVar var = createVar(varName, varValue);
-            if (addVarToNodeInAnf(anf, node, var) != OK) {
-                freeNode(node);
+            if (addVarToNodeInAnf(anf, nodes[anf1->nodeCount + i], var) != OK) {
+                freeNode(nodes[anf1->nodeCount + i]);
                 freeAnf(anf);
                 return NULL; 
             }
 
         }
     }
-    
+    for (int i = 0; i < (anf1->nodeCount + anf2->nodeCount); i++) {
+        // freeNode(nodes[i]);
+    }
+
     return anf;
 }
 

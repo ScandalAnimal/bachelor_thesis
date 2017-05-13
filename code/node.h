@@ -11,6 +11,7 @@
 #include <string.h>
 #include "hashmap.h"
 #include "variable.h"
+#include "lib/gc-7.2/include/gc.h"
 
 /** structure for representing node*/
 typedef struct node {	

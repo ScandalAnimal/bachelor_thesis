@@ -13,6 +13,7 @@
 #include "utils.h"
 #include "lib/uthash.h"
 #include "variable.h"
+#include "lib/gc-7.2/include/gc.h"
 
 /**
  * tMap is a pointer to an internally maintained data structure.
