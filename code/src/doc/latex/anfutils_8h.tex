@@ -1,0 +1,103 @@
+\hypertarget{anfutils_8h}{}\section{anfutils.\+h File Reference}
+\label{anfutils_8h}\index{anfutils.\+h@{anfutils.\+h}}
+
+
+util functions  
+
+
+{\ttfamily \#include $<$stdbool.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}anfvariable.\+h\char`\"{}}\\*
+Include dependency graph for anfutils.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{anfutils_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{anfutils_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{anfutils_8h_a70c57aae3eb654e205459b4362c8089a}{A\+R\+R\+A\+Y\+\_\+\+S\+I\+ZE}(array)~( sizeof(array) / sizeof(array\mbox{[}0\mbox{]}))\hypertarget{anfutils_8h_a70c57aae3eb654e205459b4362c8089a}{}\label{anfutils_8h_a70c57aae3eb654e205459b4362c8089a}
+
+\begin{DoxyCompactList}\small\item\em computes array size \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{anfutils_8h_a0a5445236aa00b5b539f8ed3a79b8048}{get\+Random\+Boolean\+Value} ()
+\begin{DoxyCompactList}\small\item\em return pseudo randomly true or false \end{DoxyCompactList}\item 
+int \hyperlink{anfutils_8h_a9526b94453fa30e0d17af757023366a6}{get\+Digit\+Count} (int number)
+\begin{DoxyCompactList}\small\item\em computes digit count from number \end{DoxyCompactList}\item 
+F\+I\+LE $\ast$ \hyperlink{anfutils_8h_ac13aba7eb012c05cc7ac44539f6f8518}{open\+And\+Clear\+File} (char $\ast$filename)
+\begin{DoxyCompactList}\small\item\em creates or opens file and erases contents \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+util functions 
+
+\begin{DoxyAuthor}{Author}
+Maroš Vasilišin \href{mailto:mvasilisin@gmail.com}{\tt mvasilisin@gmail.\+com} 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\index{anfutils.\+h@{anfutils.\+h}!get\+Digit\+Count@{get\+Digit\+Count}}
+\index{get\+Digit\+Count@{get\+Digit\+Count}!anfutils.\+h@{anfutils.\+h}}
+\subsubsection[{\texorpdfstring{get\+Digit\+Count(int number)}{getDigitCount(int number)}}]{\setlength{\rightskip}{0pt plus 5cm}int get\+Digit\+Count (
+\begin{DoxyParamCaption}
+\item[{int}]{number}
+\end{DoxyParamCaption}
+)}\hypertarget{anfutils_8h_a9526b94453fa30e0d17af757023366a6}{}\label{anfutils_8h_a9526b94453fa30e0d17af757023366a6}
+
+
+computes digit count from number 
+
+
+\begin{DoxyParams}{Parameters}
+{\em number} & number to compute \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+digit count of number 
+\end{DoxyReturn}
+\index{anfutils.\+h@{anfutils.\+h}!get\+Random\+Boolean\+Value@{get\+Random\+Boolean\+Value}}
+\index{get\+Random\+Boolean\+Value@{get\+Random\+Boolean\+Value}!anfutils.\+h@{anfutils.\+h}}
+\subsubsection[{\texorpdfstring{get\+Random\+Boolean\+Value()}{getRandomBooleanValue()}}]{\setlength{\rightskip}{0pt plus 5cm}bool get\+Random\+Boolean\+Value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{anfutils_8h_a0a5445236aa00b5b539f8ed3a79b8048}{}\label{anfutils_8h_a0a5445236aa00b5b539f8ed3a79b8048}
+
+
+return pseudo randomly true or false 
+
+\begin{DoxyReturn}{Returns}
+random bool 
+\end{DoxyReturn}
+\index{anfutils.\+h@{anfutils.\+h}!open\+And\+Clear\+File@{open\+And\+Clear\+File}}
+\index{open\+And\+Clear\+File@{open\+And\+Clear\+File}!anfutils.\+h@{anfutils.\+h}}
+\subsubsection[{\texorpdfstring{open\+And\+Clear\+File(char $\ast$filename)}{openAndClearFile(char *filename)}}]{\setlength{\rightskip}{0pt plus 5cm}F\+I\+LE$\ast$ open\+And\+Clear\+File (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{filename}
+\end{DoxyParamCaption}
+)}\hypertarget{anfutils_8h_ac13aba7eb012c05cc7ac44539f6f8518}{}\label{anfutils_8h_ac13aba7eb012c05cc7ac44539f6f8518}
+
+
+creates or opens file and erases contents 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & file to open \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+cleared file 
+\end{DoxyReturn}

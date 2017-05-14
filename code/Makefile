@@ -1,34 +1,22 @@
-CFLAGS=-std=c11 -Wall -pedantic -g
-EXEC=project
-TEST=test
+CFLAGS=-std=c11 -Wall -Werror -pedantic -g
+EXEC=test
 CC=gcc
 RM=rm -f
 RMDIR=rm -rf
-MKDIR=mkdir
 
-SRC=anf.o graph.o hashmap.o node.o utils.o variable.o
-MAIN=main.o
-TESTS=tests.o
+TESTS=tests.c
+SO=libanf.so
 TEST_OUTPUT=./testOutput
 
-LIB_FILES=$(SRC) $(MAIN)
-TEST_FILES=$(SRC) $(TESTS)
+all: test
 
-all: $(LIB_FILES)
-	$(CC) $(CFLAGS) -o $(EXEC) $(LIB_FILES)
-	
 clean:
-	$(RM) *.o $(EXEC) $(TEST) $(TEST_OUTPUT)/*
+	$(RM) *.o $(EXEC)
 	$(RMDIR) $(TEST_OUTPUT)
 
 run:
 	./$(EXEC)
 
-test: $(TEST_FILES)
+test: $(TESTS)
 	$(RM) $(TEST_OUTPUT)/*
-	make -C ./lib/gc-7.2 -f Makefile.direct test
-	$(CC) $(CFLAGS) -o $(TEST) $(TEST_FILES)
-	./$(TEST)
-
-install:
-	make -C ./lib/gc-7.2 -f Makefile.direct test
+	$(CC) $(CFLAGS) -o $(EXEC) $(TESTS) -lanf

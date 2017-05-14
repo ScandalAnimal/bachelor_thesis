@@ -1,0 +1,179 @@
+\hypertarget{anfnode_8h}{}\section{anfnode.\+h File Reference}
+\label{anfnode_8h}\index{anfnode.\+h@{anfnode.\+h}}
+
+
+functions for manipulating with node  
+
+
+{\ttfamily \#include $<$stdbool.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}anfhashmap.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}anfvariable.\+h\char`\"{}}\\*
+Include dependency graph for anfnode.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{anfnode_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=195pt]{anfnode_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structnode}{node}
+\begin{DoxyCompactList}\small\item\em structure for representing node \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structnode}{node} \hyperlink{anfnode_8h_a46c9664076d0ecc1398225cf00c7cf8b}{t\+Node}\hypertarget{anfnode_8h_a46c9664076d0ecc1398225cf00c7cf8b}{}\label{anfnode_8h_a46c9664076d0ecc1398225cf00c7cf8b}
+
+\begin{DoxyCompactList}\small\item\em structure for representing node \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \hyperlink{anfnode_8h_af0c71a247ffcf82b645fc1cc86da3c70}{new\+Node} ()
+\begin{DoxyCompactList}\small\item\em creates new node \end{DoxyCompactList}\item 
+int \hyperlink{anfnode_8h_a07254d72b6b8b9f0c784e69b4cf64bc4}{add\+Variable\+To\+Node} (\hyperlink{anfvariable_8h_a8497f1f67b2245e3103840fbeb91f1dc}{t\+Var} var, \hyperlink{anfnode_8h_a46c9664076d0ecc1398225cf00c7cf8b}{t\+Node} $\ast$\hyperlink{structnode}{node})
+\begin{DoxyCompactList}\small\item\em adds existing variable to node \end{DoxyCompactList}\item 
+int \hyperlink{anfnode_8h_a75373461475c98f8b77e79a9124084db}{add\+Variables\+To\+Node} (\hyperlink{anfvariable_8h_a8497f1f67b2245e3103840fbeb91f1dc}{t\+Var} var\+Array\mbox{[}$\,$\mbox{]}, int size, \hyperlink{anfnode_8h_a46c9664076d0ecc1398225cf00c7cf8b}{t\+Node} $\ast$\hyperlink{structnode}{node})
+\begin{DoxyCompactList}\small\item\em adds array of variables to node \end{DoxyCompactList}\item 
+int \hyperlink{anfnode_8h_a0fdbc5d801e0f01b9f36fc4e4ae1da0f}{delete\+Variable\+From\+Node} (const char $\ast$key, \hyperlink{anfnode_8h_a46c9664076d0ecc1398225cf00c7cf8b}{t\+Node} $\ast$\hyperlink{structnode}{node})
+\begin{DoxyCompactList}\small\item\em deletes variable specified from node \end{DoxyCompactList}\item 
+void \hyperlink{anfnode_8h_a0195b723edcc055f3e3470af2265ac3f}{print\+Node} (\hyperlink{anfnode_8h_a46c9664076d0ecc1398225cf00c7cf8b}{t\+Node} $\ast$\hyperlink{structnode}{node})
+\begin{DoxyCompactList}\small\item\em prints structure of node to console \end{DoxyCompactList}\item 
+void \hyperlink{anfnode_8h_a3ef63fb71928f421c1f670a8a9847092}{free\+Node} (\hyperlink{anfnode_8h_a46c9664076d0ecc1398225cf00c7cf8b}{t\+Node} $\ast$\hyperlink{structnode}{node})
+\begin{DoxyCompactList}\small\item\em frees node from memory \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+functions for manipulating with node 
+
+\begin{DoxyAuthor}{Author}
+Maroš Vasilišin \href{mailto:mvasilisin@gmail.com}{\tt mvasilisin@gmail.\+com} 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\index{anfnode.\+h@{anfnode.\+h}!add\+Variables\+To\+Node@{add\+Variables\+To\+Node}}
+\index{add\+Variables\+To\+Node@{add\+Variables\+To\+Node}!anfnode.\+h@{anfnode.\+h}}
+\subsubsection[{\texorpdfstring{add\+Variables\+To\+Node(t\+Var var\+Array[], int size, t\+Node $\ast$node)}{addVariablesToNode(tVar varArray[], int size, tNode *node)}}]{\setlength{\rightskip}{0pt plus 5cm}int add\+Variables\+To\+Node (
+\begin{DoxyParamCaption}
+\item[{{\bf t\+Var}}]{var\+Array\mbox{[}$\,$\mbox{]}, }
+\item[{int}]{size, }
+\item[{{\bf t\+Node} $\ast$}]{node}
+\end{DoxyParamCaption}
+)}\hypertarget{anfnode_8h_a75373461475c98f8b77e79a9124084db}{}\label{anfnode_8h_a75373461475c98f8b77e79a9124084db}
+
+
+adds array of variables to node 
+
+
+\begin{DoxyParams}{Parameters}
+{\em var\+Array} & array of variables to add \\
+\hline
+{\em size} & size of var\+Array \\
+\hline
+{\em node} & node where to add \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+return code from {\ttfamily error.\+h} 
+\end{DoxyReturn}
+\index{anfnode.\+h@{anfnode.\+h}!add\+Variable\+To\+Node@{add\+Variable\+To\+Node}}
+\index{add\+Variable\+To\+Node@{add\+Variable\+To\+Node}!anfnode.\+h@{anfnode.\+h}}
+\subsubsection[{\texorpdfstring{add\+Variable\+To\+Node(t\+Var var, t\+Node $\ast$node)}{addVariableToNode(tVar var, tNode *node)}}]{\setlength{\rightskip}{0pt plus 5cm}int add\+Variable\+To\+Node (
+\begin{DoxyParamCaption}
+\item[{{\bf t\+Var}}]{var, }
+\item[{{\bf t\+Node} $\ast$}]{node}
+\end{DoxyParamCaption}
+)}\hypertarget{anfnode_8h_a07254d72b6b8b9f0c784e69b4cf64bc4}{}\label{anfnode_8h_a07254d72b6b8b9f0c784e69b4cf64bc4}
+
+
+adds existing variable to node 
+
+
+\begin{DoxyParams}{Parameters}
+{\em var} & variable to add \\
+\hline
+{\em node} & node where to add variable \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+return code from {\ttfamily error.\+h} 
+\end{DoxyReturn}
+\index{anfnode.\+h@{anfnode.\+h}!delete\+Variable\+From\+Node@{delete\+Variable\+From\+Node}}
+\index{delete\+Variable\+From\+Node@{delete\+Variable\+From\+Node}!anfnode.\+h@{anfnode.\+h}}
+\subsubsection[{\texorpdfstring{delete\+Variable\+From\+Node(const char $\ast$key, t\+Node $\ast$node)}{deleteVariableFromNode(const char *key, tNode *node)}}]{\setlength{\rightskip}{0pt plus 5cm}int delete\+Variable\+From\+Node (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{key, }
+\item[{{\bf t\+Node} $\ast$}]{node}
+\end{DoxyParamCaption}
+)}\hypertarget{anfnode_8h_a0fdbc5d801e0f01b9f36fc4e4ae1da0f}{}\label{anfnode_8h_a0fdbc5d801e0f01b9f36fc4e4ae1da0f}
+
+
+deletes variable specified from node 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & name of variable to delete \\
+\hline
+{\em node} & node where deleting \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+return code from {\ttfamily error.\+h} 
+\end{DoxyReturn}
+\index{anfnode.\+h@{anfnode.\+h}!free\+Node@{free\+Node}}
+\index{free\+Node@{free\+Node}!anfnode.\+h@{anfnode.\+h}}
+\subsubsection[{\texorpdfstring{free\+Node(t\+Node $\ast$node)}{freeNode(tNode *node)}}]{\setlength{\rightskip}{0pt plus 5cm}void free\+Node (
+\begin{DoxyParamCaption}
+\item[{{\bf t\+Node} $\ast$}]{node}
+\end{DoxyParamCaption}
+)}\hypertarget{anfnode_8h_a3ef63fb71928f421c1f670a8a9847092}{}\label{anfnode_8h_a3ef63fb71928f421c1f670a8a9847092}
+
+
+frees node from memory 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & node to free \\
+\hline
+\end{DoxyParams}
+\index{anfnode.\+h@{anfnode.\+h}!new\+Node@{new\+Node}}
+\index{new\+Node@{new\+Node}!anfnode.\+h@{anfnode.\+h}}
+\subsubsection[{\texorpdfstring{new\+Node()}{newNode()}}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ new\+Node (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{anfnode_8h_af0c71a247ffcf82b645fc1cc86da3c70}{}\label{anfnode_8h_af0c71a247ffcf82b645fc1cc86da3c70}
+
+
+creates new node 
+
+\begin{DoxyReturn}{Returns}
+pointer to created node 
+\end{DoxyReturn}
+\index{anfnode.\+h@{anfnode.\+h}!print\+Node@{print\+Node}}
+\index{print\+Node@{print\+Node}!anfnode.\+h@{anfnode.\+h}}
+\subsubsection[{\texorpdfstring{print\+Node(t\+Node $\ast$node)}{printNode(tNode *node)}}]{\setlength{\rightskip}{0pt plus 5cm}void print\+Node (
+\begin{DoxyParamCaption}
+\item[{{\bf t\+Node} $\ast$}]{node}
+\end{DoxyParamCaption}
+)}\hypertarget{anfnode_8h_a0195b723edcc055f3e3470af2265ac3f}{}\label{anfnode_8h_a0195b723edcc055f3e3470af2265ac3f}
+
+
+prints structure of node to console 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & node to print \\
+\hline
+\end{DoxyParams}

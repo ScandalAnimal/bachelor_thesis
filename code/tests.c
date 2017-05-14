@@ -9,8 +9,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
-#include "anf.h"
-#include "utils.h"
+#include <anf.h>
 
 #define KEY_MAX_LENGTH (256)
 #define KEY_PREFIX ("key")
@@ -227,7 +226,6 @@ int multipleFunctionsTest(char* graphOutput) {
 
     tNode* node2 = newNodeWithVarsInAnf(anf1, varArray2, ARRAY_SIZE(varArray2));
     if (node2 == NULL) {
-        freeNode(node1);
         freeAnf(anf1);
         return ERROR;
     }
@@ -237,16 +235,12 @@ int multipleFunctionsTest(char* graphOutput) {
 
     tAnf* anf2 = newAnf();
     if (anf2 == NULL) {
-        freeNode(node1);
-        freeNode(node2);
         freeAnf(anf1);
         return ERROR;
     }
 
     tNode* node3 = newNodeWithVarsInAnf(anf2, varArray3, ARRAY_SIZE(varArray3));
     if (node3 == NULL) {
-        freeNode(node1);
-        freeNode(node2);
         freeAnf(anf1);
         freeAnf(anf2);
         return ERROR;
@@ -254,9 +248,6 @@ int multipleFunctionsTest(char* graphOutput) {
 
     tNode* node4 = newNodeWithVarsInAnf(anf2, varArray4, ARRAY_SIZE(varArray4));
     if (node4 == NULL) {
-        freeNode(node1);
-        freeNode(node2);
-        freeNode(node3);
         freeAnf(anf1);
         freeAnf(anf2);
         return ERROR;
@@ -267,10 +258,6 @@ int multipleFunctionsTest(char* graphOutput) {
 
     tAnf* anf3 = newAnfFrom2Anfs(anf1, anf2, true);
     if (anf3 == NULL) {
-        freeNode(node1);
-        freeNode(node2);
-        freeNode(node3);
-        freeNode(node4);
         freeAnf(anf1);
         freeAnf(anf2);
         return ERROR;
@@ -280,24 +267,14 @@ int multipleFunctionsTest(char* graphOutput) {
     printHashMap(&(anf3->hashMap));
 
     if (generateAnfGraph(anf3, graphOutput) != OK) {
-        freeNode(node1);
-        freeNode(node2);
-        freeNode(node3);
-        freeNode(node4);
         freeAnf(anf1);
         freeAnf(anf2);
         freeAnf(anf3);
         return ERROR;  
     }
 
-    freeNode(node1);
-    freeNode(node2);
-    freeNode(node3);
-    freeNode(node4);
-
     freeAnf(anf1);
     freeAnf(anf2);
-
     freeAnf(anf3);
 
     return OK;   
@@ -330,7 +307,6 @@ int variableValueChangeTest(char* graphOutput) {
 
     tNode* node2 = newNodeWithVarsInAnf(anf1, varArray2, ARRAY_SIZE(varArray2));
     if (node2 == NULL) {
-        freeNode(node1);
         freeAnf(anf1);
         return ERROR;
     }
@@ -341,8 +317,6 @@ int variableValueChangeTest(char* graphOutput) {
     printHashMap(&(anf1->hashMap));
 
     if (switchVarValueInAnf("var2", anf1) != OK) {
-        freeNode(node1);
-        freeNode(node2);
         freeAnf(anf1);
         return ERROR;    
     }
@@ -352,8 +326,6 @@ int variableValueChangeTest(char* graphOutput) {
     printNode(node2);
     printHashMap(&(anf1->hashMap));
 
-    freeNode(node1);
-    freeNode(node2);
 
     freeAnf(anf1);
 
@@ -369,8 +341,8 @@ int bigDataInputTest(char* graphOutput) {
     
 
     for (int i = 0; i < KEY_COUNT; i++) {
-        value = GC_MALLOC(sizeof(tVar));
-        value->name = GC_MALLOC(sizeof(char) * KEY_MAX_LENGTH);
+        value = malloc(sizeof(tVar));
+        value->name = malloc(sizeof(char) * KEY_MAX_LENGTH);
         snprintf(value->name, KEY_MAX_LENGTH, "%s%d", KEY_PREFIX, i);
         value->value = getRandomBooleanValue();
 
@@ -414,6 +386,84 @@ int bigDataInputTest(char* graphOutput) {
     return OK;
 }
 
+tAnf* evaluateBooleanFunction(tAnf* indexes[]) {
+
+    // A0 = A1 xor A2 xor A3;
+
+    tAnf* newA0temp = newAnfFrom2Anfs(indexes[1], indexes[2], true);
+    if (newA0temp == NULL) {
+        return NULL;
+    }
+    tAnf* newA0 = newAnfFrom2Anfs(newA0temp, indexes[3], true);
+    if (newA0 == NULL) {
+        freeAnf(newA0temp);
+        return NULL;
+    }
+    freeAnf(newA0temp);
+    return newA0;
+}
+
+int shiftRegisterTest(char* graphOutput) {
+    
+    int registerLength = 4;
+    tVar originalValues[] = {
+        createVar("A0", true),
+        createVar("A1", false),
+        createVar("A2", false),
+        createVar("A3", false)
+    };
+    tAnf* reg[registerLength];
+    tAnf* newA0;
+
+    for (int i = 0; i < registerLength; i++) {
+        reg[i] = newAnf();
+        if (reg[i] == NULL) {
+            return ERROR;
+        }
+        tVar array[1];
+        array[0] = originalValues[i];
+        newNodeWithVarsInAnf(reg[i], array, 1);
+    }
+
+    // printAnf(reg[0]);
+    // printAnf(reg[1]);
+    // printAnf(reg[2]);
+    // printAnf(reg[3]);
+
+    for (int count = 0; count < 20; count++) {
+
+        newA0 = evaluateBooleanFunction(reg);
+
+        freeAnf(reg[3]);
+        for (int i = (registerLength - 1); i > 0; i--) {
+            reg[i] = reg[i-1];
+        }
+
+        reg[0] = newA0;
+        printAnf(reg[0]);
+
+        if ((reg[0]->value == false) && 
+            (reg[1]->value == false) && 
+            (reg[2]->value == false) && 
+            (reg[3]->value == false)) {
+            printf("ALL FALSE STATE, END OF TEST.\n");
+            break;
+        } 
+
+    }
+
+    // printAnf(reg[1]);
+    // printAnf(reg[2]);
+    // printAnf(reg[3]);    
+    printHashMap(&(reg[0]->hashMap));
+
+    for (int i = 0; i < registerLength; i++) {
+        freeAnf(reg[i]);
+    }
+
+    return OK;
+}
+
 int main(int argc, char* argv[]) {
 
     struct stat st = {0};
@@ -432,6 +482,8 @@ int main(int argc, char* argv[]) {
     int test4Result = variableValueChangeTest("./testOutput/test4-graph.gv");
     freopen ("./testOutput/test5-output", "a+", stdout);
     int test5Result = bigDataInputTest("./testOutput/test5-graph.gv");
+    freopen ("./testOutput/test6-output", "a+", stdout);
+    int test6Result = shiftRegisterTest("./testOutput/test6-graph.gv");
 
     freopen("/dev/tty", "w", stdout);
     printf("TEST 01: HashMap Test                ..... Result: %s %d\n", (test1Result == OK) ? "SUCCESS" : "FAILURE", test1Result);
@@ -439,6 +491,7 @@ int main(int argc, char* argv[]) {
     printf("TEST 03: Multiple Functions Test     ..... Result: %s %d\n", (test3Result == OK) ? "SUCCESS" : "FAILURE", test3Result);
     printf("TEST 04: Variable Value Change Test  ..... Result: %s %d\n", (test4Result == OK) ? "SUCCESS" : "FAILURE", test4Result);
     printf("TEST 05: Big Data HashMap Input Test ..... Result: %s %d\n", (test5Result == OK) ? "SUCCESS" : "FAILURE", test5Result);
+    printf("TEST 06: Shift Register Test         ..... Result: %s %d\n", (test6Result == OK) ? "SUCCESS" : "FAILURE", test5Result);
 
 
 }
