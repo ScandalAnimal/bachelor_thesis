@@ -3,7 +3,7 @@
 	
 	Bohaté využitie má aj v~matematike, konkrétne vo~výrokovej logike či kombinatorike. Uplatnenie Boolovej algebry je možné vidieť aj v~oblastiach umelej inteligencie, teórie mechanického učenia a~teórie hier. Z~netechnických odborov stojí za~zmienku oblasť legislatívy, kde sa využíva Boolova logika napríklad pri voľbách do~štátnych funkcií (výber z~dvoch možných kandidátov).
 	
-	Existujú viaceré reprezentácie Boolovych funkcií, ktoré sa líšia svojim použitím. Klasické reprezentácie formou pravdivostných tabuliek nachádzajú svoje využitie v~matematike, ale v~informatike sa ukázali ako nevhodné. V~priebehu času boli vytvorené rôzne metódy pre ich symbolizáciu v~počítačovom programe. Najrozšírenejšia z~nich je reprezentácia binárnymi rozhodovacími diagramami (skrátene BDD z~anglického Binary Decision Diagram). Jednou z~výhod reprezentácie pomocou BDD je fakt, že pomocou BDD je možné vytvoriť kanonickú formu funkcie. BDD umožňujú veľmi dobre zisťovať ekvivalenciu a~splniteľnosť Boolovych funkcií.
+	Existujú~\cite{citation:bryant1} viaceré reprezentácie Boolovych funkcií, ktoré sa líšia svojim použitím. Klasické reprezentácie formou pravdivostných tabuliek nachádzajú svoje využitie v~matematike, ale v~informatike sa ukázali ako nevhodné. V~priebehu času boli vytvorené rôzne metódy pre ich symbolizáciu v~počítačovom programe. Najrozšírenejšia z~nich je reprezentácia binárnymi rozhodovacími diagramami (skrátene BDD z~anglického Binary Decision Diagram). Jednou z~výhod reprezentácie pomocou BDD je fakt, že pomocou BDD je možné vytvoriť kanonickú formu funkcie, teda formu, ktorá je jedinečná pre každú Boolovu funkciu. BDD umožňujú veľmi dobre zisťovať ekvivalenciu a~splniteľnosť Boolovych funkcií.
 	
 	Reprezentácia pomocou BDD je v~informatike síce najrozšírenejšia, ale nie je jediná. Táto práca sa zaoberá podrobnejšie reprezentáciou Boolovych funkcií pomocou Algebraickej Normálnej Formy (skrátene ANF). ANF poskytuje výhodu oproti BDD v~tom, že obsahuje len dve logické operácie, logický súčin a~exkluzívny súčet, a~tým pádom sa jej implementácia značne zjednodušuje. Takisto je z~ANF veľmi rýchlo možné zistiť Boolovu hodnotu danej funkcie a~takisto vypočítať jej splniteľnosť.
 	
@@ -15,7 +15,7 @@
 	
 \chapter{Boolove funkcie a ich reprezentácia} \label{chapter:theory}
 
-	V tejto kapitole sa nachádza teoretický úvod do problematiky Boolovych funkcií, postupne bude definované, čo vlastne sú Boolove funkcie, čo sa dá pomocou nich popísať a aký môže byť ich obsah. Ďalej budú popísané rôzne možnosti zobrazenia Boolovych funkcií, napríklad pravdivostné tabuľky a ďalšie. Kapitola takisto definuje rôzne normalizované formy zápisu Boolovych funkcií, pričom dôraz bude kladený hlavne na Algebraickú Normálnu Formu, ktorej reprezentácia je cieľom celej práce. Podrobnejšie bude popísaná aj reprezentácia binárnymi rozhodovacími diagramami, ktoré sú momentálne najpoužívanejšou reprezentáciou Boolovych funkcií v oblasti počítačovej vedy.
+	Boolove funkcie sú také funkcie, ktorých výsledkom je logická nula alebo logická jednotka. Využívajú sa na mnohých miestach v~počítačovej vede, napríklad pri vyhodnocovaní podmienok v~programe alebo ako návratový typ nejakej funkcie alebo testu, ktorý určuje či funkcia alebo test prebieha ako sa očakáva. Ich primárnym účelom je popísať stav alebo jav len dvomi hodnotami, ktoré sú si navzájom opačné, čím programátor získava ďalšiu možnosť práce s~informáciami. Existuje viacero možných reprezentácií Boolovych funkcií, napríklad pravdivostné tabuľky alebo Karnaughove mapy. Okrem toho existuje aj viacero komplexnejších reprezentácií, ako je napríklad Algebraická Normálna Forma či binárne rozhodovacie diagramy.
 	
 \section{Definícia Boolovej funkcie}
 
@@ -71,12 +71,12 @@
 		\end{tabular}
 	\end{table}
 
-	Tieto pravidlá sa využívajú pri zjednodušovaní Boolovych funkcií a~pri zisťovaní ekvivalencie.
+	Tieto pravidlá sa využívajú pri zjednodušovaní Boolovych funkcií a~pri zisťovaní ekvivalencie. Ako píše Comerford~\cite{citation:Comerford}, Boolove funkcie sú ekvivalentné ak existuje súbor afínnych a linárnych transformácií, po ktorých vykonaní budú funkcie zhodné.
 	
-	Operáciou, ktorá nepatrí do trojice základných Boolovych operácií, ale v~programovaní má svoje veľké využitie je operácia exkluzívneho súčtu, ktorý sa v~literatúre označuje aj ako XOR. Je možné ho vytvoriť kombináciou ostatných operácií, napríklad tak, ako ukazuje Rovnica~\ref{eq_XOR}. V~tejto rovnici je operácia exkluzívny súčet označená symbolom $\oplus$. Využíva sa napríklad pri konštrukcií obvodov alebo v~generátoroch pseudonáhodných čísel. Exkluzívny súčet je zároveň jednou z~dvoch operácií, ktorá je obsiahnutá v~Algebraickej Normálnej Forme, spolu s~logickým súčinom.
+	Operáciou, ktorá nepatrí do trojice základných Boolovych operácií, ale v~programovaní má svoje veľké využitie je operácia exkluzívneho súčtu, ktorý sa v~literatúre označuje aj ako XOR. Je možné ho vytvoriť kombináciou ostatných operácií, napríklad tak, ako ukazuje Rovnica~\ref{eq_XOR}. V~tejto rovnici je operácia exkluzívny súčet označená symbolom $\oplus$. Využíva sa napríklad pri konštrukcií obvodov alebo v~generátoroch pseudonáhodných čísel.
 	
 	\begin{equation} \label{eq_XOR}
-	A \oplus B = (A \wedge \neg B) \vee (B \wedge \neg A)
+	x_1 \oplus x_2 = (x_1 \wedge \neg x_2) \vee (x_2 \wedge \neg x_1)
 	\end{equation} 
 	
 
@@ -115,9 +115,9 @@
 	\label{picture:logicalCircuit}
 \end{figure}
 
-	V~technických odvetviach sa využívajú určité štandardné výrazy, ktoré sa dajú dobre využiť pri vytváraní kombinačných obvodov. Tieto výrazy sa nazývajú normálne formy a~existuje ich niekoľko. Rôznymi typmi normálnych foriem sa zaoberá sekcia~\ref{section:normalForms}.
+	V~technických odvetviach sa využívajú určité štandardné výrazy, ktoré sa dajú dobre využiť pri vytváraní kombinačných obvodov. Tieto výrazy sa nazývajú normálne formy a~existuje ich niekoľko. Rôznymi typmi normálnych foriem sa zaoberá podkapitola~\ref{section:normalForms}.
 
-	Pre strojovú reprezentáciu Boolovych funkcií sa ukázali vhodné aj binárne rozhodovacie diagramy (BDD) a~ich rôzne modifikácie, bude im venovaná samostatná sekcia~\ref{section:bdds}.
+	Pre strojovú reprezentáciu Boolovych funkcií sa ukázali vhodné aj binárne rozhodovacie diagramy (BDD) a~ich rôzne modifikácie, bude im venovaná samostatná podkapitola~\ref{section:bdds}.
 	
 \section{Normálne formy Boolovych funkcií} \label{section:normalForms}
 
@@ -128,8 +128,8 @@ $$T_1 \quad op \quad T_2 \quad op \quad T_3 \quad op \quad \ldots \quad op \quad
 	kde množina $\{T_1,T_2,T_3 \ldots T_n\}$ sú navzájom rôzne termy rovnakého typu a~$op$ je operácia v~Boolovej algebre. Podľa typu termov a~typu operácie poznáme niekoľko základných normálnych foriem~\cite{citation:Hazewinkel}.
 
 	\begin{itemize}
-		\item Disjunktívna - termy sú konjunkciou premenných a~operáciou je disjunkcia.
-		\item Konjunktívna - termy sú disjunkciou premenných a~operáciou je konjunkcia.  
+		\item Disjunktívna (DNF) - termy sú konjunkciou premenných a~operáciou je disjunkcia.
+		\item Konjunktívna (CNF) - termy sú disjunkciou premenných a~operáciou je konjunkcia.  
 	\end{itemize}
 
 	Ak sa v~každom terme v~spomenutých normálnych formách vyskytuje premenná práve raz, tieto normálne formy nazývame úplná disjunktívna/konjunktívna normálna forma. Ak vynecháme redundantné členy, nazývame ich iredundantné normálne formy.
@@ -150,7 +150,7 @@ f(x) = c_0 \bigoplus_{1 \leq i \leq n} c_ix_i \bigoplus_{1 \leq i \leq j \leq n}
 1 \quad \bigoplus \quad A \quad \bigoplus \quad B \quad \bigoplus \quad AB \quad \bigoplus \quad ABC
 \end{equation}
 
-	Ďalej Wu a~Feng uvádzajú~\cite{citation:Feng}, že počet premenných jedného termu sa nazýva algebraický stupeň termu. Celkový algebraický stupeň celej ANF je stupeň termu s~najvyššou hodnotou z~danej ANF, ale berú sa len termy s~nenulovými koeficientami. Používaná notácia pre algebraický stupeň funkcie je $deg(f)$. Najvyšší možný stupeň Boolovej funkcie o~$n$ premenných je $n$, a~to len vtedy, ak sa v~ANF nachádza term, ktorý obsahuje všetkých $n$ premenných.
+	Počet premenných jedného termu sa nazýva algebraický stupeň termu~\cite{citation:Feng}. Celkový algebraický stupeň celej ANF je stupeň termu s~najvyššou hodnotou z~danej ANF, ale berú sa len termy s~nenulovými koeficientami. Používaná notácia pre algebraický stupeň funkcie je $deg(f)$. Najvyšší možný stupeň Boolovej funkcie o~$n$ premenných je $n$, a~to len vtedy, ak sa v~ANF nachádza term, ktorý obsahuje všetkých $n$ premenných.
 
 	Algebraický stupeň funkcie sa používa na určenie typu funkcie. Ak je stupeň nulový, funkcia je konštantná (neobsahuje žiadne premenné). Ak je stupeň 1, funkciu nazývame afínnou, a~existuje ešte prípad, ak máme afínnu funkciu bez konštantného termu $c_0$ z~definície~\ref{eq:ANFdef}, vtedy funkciu nazývame lineárnou. Lineárna funkcia teda prechádza bodom~[0,0], afínna týmto bodom prechádzať nemusí. Afínna Boolova funkcia môže byť lineárna funkcia, alebo vo~forme exkluzívneho súčtu lineárnej funkcie a~konštanty logická~1, čo je vlastne znova len daná lineárna funkcia, ak dodržujeme pravidlá Boolovej algebry. Takže obe varianty sa vlastne môžu považovať za lineárne funkcie.
 
@@ -174,16 +174,16 @@ f = A \wedge \neg A
 
 	Druhým SAT problémom ANF sú klauzuly exkluzívneho súčtu XOR medzi jednotlivými termami. Keďže funkcia obsahujúca tieto klauzuly sa dá prepísať ako systém lineárnych rovníc modulo 2, je možné tento SAT problém vyriešiť v~kubickom čase pomocou Gaussovej eliminácie~\cite{citation:gauss}.
 
-	Vstupom pre SAT solver je ale konjunktívna normálna forma (CNF), takže dôležitou vecou, na ktorú sa treba zamerať je konverzia ANF na CNF, prípadne ďalšie konverzie.
-
+	Ako vstup pre SAT solver sa bežne používa konjunktívna normálna forma (CNF), ale existujú aj výnimky, ktoré využívajú napríklad DNF. CNF sa primárne využíva z dôvodu, že každá Boolova funkcia sa dá prepísať do formy CNF v lineárnom čase. Výsledná funkcia v CNF si zachováva splniteľnosť z pôvodnej formy. Je preto dôležité zamerať sa na konverziu ANF na CNF, prípadne ďalšie konverzie.
+	
 \subsection{Konverzie medzi normálnymi formami}
 
-	Konverzia z~ANF na CNF, ako je popísaná v článku od Courtoisa~\cite{citation:courtois}, v~ktorom sa odkazuje aj na~\cite{citation:bard}, sa skladá z~dvoch krokov:
+	Konverzia z~ANF na CNF sa skladá z~dvoch krokov~\cite{citation:bard, citation:courtois}:
 
-	\begin{itemize}		
+	\begin{enumerate}		
 		\item Každý term rovnice, ktorý má váhu väčšiu ako 1, sa premení na systém CNF klauzúl, ktoré vzniknú ako ekvivalent daného termu a~budú reprezentované pomocnou premennou vo väčšom lineárnom systéme.
 		\item Tento lineárny systém sa nakoniec prevedie do ekvivalentného systému v~CNF forme.
-	\end{itemize}
+	\end{enumerate}
 
 	Menším obmedzením je, že CNF neobsahuje žiadne konštanty, na rozdiel od ANF. Ak chceme teda pridať klauzulu, ktorá obsahuje konštantu, bude musieť byť premenná reprezentujúca túto konštantu pravdivá (prípadne nepravdivá, ak chceme konštantu logická 0) pre všetky splniteľné varianty funkcie. Ak je táto podmienka splnená, bude môcť táto premenná vystupovať ako konštanta. Ďalšou vecou, ktorá je pri konverzii zachovaná, je, že ak máme dva identické termy, bude pre ne použitá spoločná premenná.
 
@@ -193,13 +193,13 @@ f = A \wedge \neg A
 	
 \section{Binárne rozhodovacie diagramy} \label{section:bdds}
 
-	Binárne rozhodovacie diagramy (BDD) sú triedou grafov, ktorá je prevažne využívaná ako dátová štruktúra pre reprezentáciu Boolovych funkcií v~dnešnej dobe. Existujú viaceré implementácie, ktoré sú postavené práve na BDD. Používajú sa na riešenie problémov ekvivalencie a~splniteľnosti výrazov. Sú veľmi dôležité v~oblastiach designu hardvéru a~optimalizácie. Informácie v~tejto podkapitole sú prevzaté prevažne z~\cite{citation:bryant1,citation:bryant2}.
+	Binárne rozhodovacie diagramy (BDD) sú druhom grafov, ktorá je prevažne využívaná ako dátová štruktúra pre reprezentáciu Boolovych funkcií v~dnešnej dobe. Existujú viaceré implementácie, ktoré sú postavené práve na BDD. Používajú sa na riešenie problémov ekvivalencie a~splniteľnosti výrazov. Sú veľmi dôležité v~oblastiach designu hardvéru a~optimalizácie. Informácie v~tejto podkapitole sú prevzaté prevažne z~\cite{citation:bryant1,citation:bryant2}.
 
 	BDD má podobu orientovaného koreňového acyklického grafu. Skladá sa z~viacerých uzlov. BDD má práve jeden uzol, ktorý nazývame koreňom. Koreň je jediný uzol, ktorý nemá predchodcov. Každý uzol je jeden z~dvoch typov.
 
 	Uzol môže byť \textit{neterminálny}, to znamená že nemá hodnotu, a~vychádzajú z~neho dva dcérske uzly. Uzly sú označované ako \textit{low} a~\textit{high}, pre odlíšenie jednotlivých podvetví stromu. Hrana smerujúca k~\textit{low} uzlu reprezentuje priradenie hodnoty logickej 0, hrana smerujúca k~uzlu \textit{high} reprezentuje priradenie hodnoty logickej 1. 
 
-	Druhým typom je \textit{terminálny} uzol, ktorý už nemá žiadnych potomkov, a~má hodnotu z~množiny $\{0, 1\}$. Príklad BDD je na obrázku \ref{picture:BDD}. Neterminálne uzly sú označené kruhom a~vpísaný majú index premennej ktorú reprezentujú, terminálne uzly sú označené štvorcom a~vpísanú majú svoju hodnotu. Low hrany sú označené prerušovanou čiarou, high hrany sú označené plnou čiarou. Obrázok reprezentuje funkciu vyjadrenú pravdivostnou tabuľkou z~Tabuľky~\ref{table:BDD}.
+	Druhým typom je \textit{terminálny} uzol, ktorý už nemá žiadnych potomkov, a~má hodnotu z~množiny $\{0, 1\}$. Príklad BDD je na obrázku \ref{picture:BDD}. Neterminálne uzly sú označené kruhom a~vpísaný majú index premennej ktorú reprezentujú, terminálne uzly sú označené štvorcom a~vpísanú majú svoju hodnotu. Hrany low sú označené prerušovanou čiarou, hrany high sú označené plnou čiarou. Obrázok reprezentuje funkciu vyjadrenú pravdivostnou tabuľkou z~Tabuľky~\ref{table:BDD}.
 
 \begin{figure}[htb]
 	\centering
@@ -239,11 +239,11 @@ f = A \wedge \neg A
 	Pre každú Boolovu funkciu existuje práve jeden ROBDD, ktorý je unikátny. ROBDD je teda kanonickou formou pre Boolove funkcie a~preto je veľmi často využívaný v~knižniciach reprezentujúcich Boolove funkcie.
 	
 
-\chapter{Existujúce knižnice} \label{chapter:libraries}
+\chapter{Knižnice pre reprezentáciu Boolovych funkcií} \label{chapter:libraries}
 
 	Existujú viaceré knižnice vytvorené za účelom manipulácie s~Boolovymi funkciami. Nasledujúca kapitola sa zaoberá niektorými vybranými, hlavne tými, ktoré využívajú binárne rozhodovacie stromy (BDD).
 
-	Okrem nižšie spomenutých knižníc ešte za zmienku stoja BDD knižnice TiGeR~\cite{citation:tiger} alebo CAL~\cite{citation:cal}; 
+	Okrem nižšie spomenutých knižníc ešte za zmienku stoja BDD knižnice TiGeR~\cite{citation:tiger} alebo CAL~\cite{citation:cal}.
 
 \section{Colorado University Decision Diagram Package - CUDD}
 
@@ -263,7 +263,7 @@ f = A \wedge \neg A
 
 	Knižnica CacBDD je verejne dostupná\footnote{\url{http://www.kailesu.net/CacBDD/}} podobne ako knižnica CUDD, na rozdiel od nej je ale implementovaná v jazyku C++. Je založená na prehľadávaní do hĺbky.
 
-	Poskytuje základné operácie pre manipuláciu s~BDD. BDD uzly sú uložené v~jednom poli a~využíva indexy uzlov v~tomto poli namiesto ukazateľov na uzly, ako tomu je v~CUDD. Nevyužíva počítadlo referencií na uzly. Garbage collector je volaný len ak dôjde pamäť. Funguje trošku inak ako v~prípade CUDD, prechádza všetky uzly v~poli, a~tie na ktoré sa nikto neodkazuje a~ani nie sú koreňmi, označí ako voľné uzly, nemaže ich a~tým šetrí výpočtový čas. Knižnica využíva dynamické zväčšovanie tabuľky výpočtov podľa potreby, ak dôjde počet voľných miest. V~knižnici je veľmi dobre implementované ukladanie medzivýsledkov, čo takisto pridáva na rýchlosti.
+	Poskytuje základné operácie pre manipuláciu s~BDD. BDD uzly sú uložené v~jednom poli a~využíva indexy uzlov v~tomto poli namiesto ukazateľov na uzly, ako tomu je v~CUDD. Nevyužíva počítadlo referencií na uzly. Garbage collector je volaný len ak je vyčerpaná dostupná pamäť. Funguje trošku inak ako v~prípade CUDD, prechádza všetky uzly v~poli, a~tie na ktoré sa nikto neodkazuje a~ani nie sú koreňmi, označí ako voľné uzly, nemaže ich a~tým šetrí výpočtový čas. Knižnica využíva dynamické zväčšovanie tabuľky výpočtov podľa potreby, ak dôjde počet voľných miest. V~knižnici je veľmi dobre implementované ukladanie medzivýsledkov, čo takisto pridáva na rýchlosti.
 
 	Ďalšie informácie sú popísané v~manuáli\footnote{\url{http://www.kailesu.net/CacBDD/CacBDD.pdf}}, kde aj ukázané, že knižnica pracuje rýchlejšie než knižnica CUDD.
 
@@ -495,7 +495,7 @@ A \wedge A \wedge A \wedge A = A
 
 	Zaujímavým algoritmom je ten pre vypočítanie aktuálnej Boolovej hodnoty daného termu po vložení novej premennej či premenných, a~takisto pri mazaní premennej. Algoritmus pre vkladanie je naznačený v~Algoritme~\ref{alg:new_node_value}. Ak sa do termu vkladá prvá hodnota, nevykonáva sa žiadna operácia a~rovno sa vkladaná hodnota priradí do hodnoty celého termu. Pri vkladaní ďalších hodnot sa kontroluje, či aktuálna hodnota termu nie je logická 0. Ak by hodnota termu bola logická 0, nie je potrebné vypočítavať novú hodnotu, pretože výsledok operácie logický súčin AND s~hodnotou logická 0 a~akoukoľvek inou hodnotou bude vždy logická 0. Iba ak je aktuálna hodnota termu logická 1, vtedy sa vykonáva operácia AND s~aktuálnou a~novou vkladanou hodnotou a~výsledok sa uloží do hodnoty termu. 
 
-	Pri mazaní premennej z~termu to funguje trošku inak. Tento algoritmus sa nachádza v~Algoritme~\ref{alg:delete_node_value}. Ak má mazaná premenná hodnotu logická 1 a~aj celý term má hodnotu logická 1, za podmienky že po mazaní bude mať term aspoň jednu ďalšiu premennú, nie je potrebné znovu prepočítavať hodnotu termu. V prípade, že mazaná premenná má hodnotu logická 0 a~po zmazaní bude mať term aspoň jednu ďalšiu premennú, je potrebné znovu prepočítať hodnotu termu pre každú premennú, ktorá v~terme zostala podľa Algoritmu~\ref{alg:new_node_value}. Ak mažeme poslednú premennú termu, je hodnota nastavená rovno na logickú 0.
+	Mazanie premennej z~termu je založené na inom princípe. Tento algoritmus sa nachádza v~Algoritme~\ref{alg:delete_node_value}. Ak má mazaná premenná hodnotu logická 1 a~aj celý term má hodnotu logická 1, za podmienky že po mazaní bude mať term aspoň jednu ďalšiu premennú, nie je potrebné znovu prepočítavať hodnotu termu. V prípade, že mazaná premenná má hodnotu logická 0 a~po zmazaní bude mať term aspoň jednu ďalšiu premennú, je potrebné znovu prepočítať hodnotu termu pre každú premennú, ktorá v~terme zostala podľa Algoritmu~\ref{alg:new_node_value}. Ak mažeme poslednú premennú termu, je hodnota nastavená rovno na logickú 0.
 
 \section{Možnosti práce s Boolovymi funkciami}
 
@@ -554,7 +554,7 @@ A \wedge A \wedge A \wedge A = A
 
 \section{Grafická reprezentácia štruktúr}
 
-	Podľa výsledkov analýzy dostupných formátov v~sekcii \ref{section:conceptGraphs} bol ako vhodný formát pre reprezentáciu Boolovych funkcií v~ANF zvolený formát DOT. V~tejto sekcii si bližšie popíšeme ako je to vlastne implementované a~čo všetko sa dá zobraziť.
+	Podľa výsledkov analýzy dostupných formátov v~podkapitola \ref{section:conceptGraphs} bol ako vhodný formát pre reprezentáciu Boolovych funkcií v~ANF zvolený formát DOT. V~tejto podkapitole si bližšie popíšeme ako je to vlastne implementované a~čo všetko sa dá zobraziť.
 
 	Knižnica poskytuje možnosť zobrazenia dvoch dátových štruktúr, a~to hashovacej tabuľky a~kompletnej Boolovej funkcie v~ANF.
 	
@@ -627,7 +627,7 @@ A \wedge A \wedge A \wedge A = A
 \end{figure}
 
 
-\chapter{TODO result} \label{chapter:result}
+\chapter{Porovnanie knižnice s existujúcimi riešeniami} \label{chapter:result}
 \chapter{Záver} \label{chapter:ending}
 %TODO
 %Možné rozšírenie: 
