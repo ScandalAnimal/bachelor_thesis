@@ -5,6 +5,7 @@
 functions for manipulating with variables  
 
 
+{\ttfamily \#include $<$string.\+h$>$}\\*
 {\ttfamily \#include \char`\"{}anfvariable.\+h\char`\"{}}\\*
 Include dependency graph for anfvariable.\+c\+:
 \nopagebreak
@@ -19,6 +20,8 @@ Include dependency graph for anfvariable.\+c\+:
 \item 
 \hyperlink{anfvariable_8h_a8497f1f67b2245e3103840fbeb91f1dc}{t\+Var} \hyperlink{anfvariable_8c_ab7272d7b4a725119b8715985ebd51949}{create\+Var} (char $\ast$name, bool value)
 \begin{DoxyCompactList}\small\item\em creates variable \end{DoxyCompactList}\item 
+\hyperlink{anfvariable_8h_a8497f1f67b2245e3103840fbeb91f1dc}{t\+Var} \hyperlink{anfvariable_8c_ad02747c41573b5e260d5aa6215b56a2a}{create\+Var\+With\+Origin} (char $\ast$name, bool value, char $\ast$origin)
+\begin{DoxyCompactList}\small\item\em creates variable with origin \end{DoxyCompactList}\item 
 \hyperlink{anfvariable_8h_a8497f1f67b2245e3103840fbeb91f1dc}{t\+Var} \hyperlink{anfvariable_8c_abaf205e08694360f88963fc1ce312cf4}{create\+True\+Var} (char $\ast$name)
 \begin{DoxyCompactList}\small\item\em creates variable with true value \end{DoxyCompactList}\item 
 \hyperlink{anfvariable_8h_a8497f1f67b2245e3103840fbeb91f1dc}{t\+Var} \hyperlink{anfvariable_8c_a506f56aa0d5afc247d64113f3dc6c04a}{create\+False\+Var} (char $\ast$name)
@@ -89,6 +92,31 @@ creates variable
 {\em name} & name of variable \\
 \hline
 {\em value} & value of variable \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+created variable 
+\end{DoxyReturn}
+\index{anfvariable.\+c@{anfvariable.\+c}!create\+Var\+With\+Origin@{create\+Var\+With\+Origin}}
+\index{create\+Var\+With\+Origin@{create\+Var\+With\+Origin}!anfvariable.\+c@{anfvariable.\+c}}
+\subsubsection[{\texorpdfstring{create\+Var\+With\+Origin(char $\ast$name, bool value, char $\ast$origin)}{createVarWithOrigin(char *name, bool value, char *origin)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf t\+Var} create\+Var\+With\+Origin (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name, }
+\item[{bool}]{value, }
+\item[{char $\ast$}]{origin}
+\end{DoxyParamCaption}
+)}\hypertarget{anfvariable_8c_ad02747c41573b5e260d5aa6215b56a2a}{}\label{anfvariable_8c_ad02747c41573b5e260d5aa6215b56a2a}
+
+
+creates variable with origin 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & name of variable \\
+\hline
+{\em value} & value of variable \\
+\hline
+{\em origin} & origin of variable \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

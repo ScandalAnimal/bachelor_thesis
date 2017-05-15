@@ -18,6 +18,8 @@ typedef struct variable {
     char* name;
     /** boolean value of variable*/
     bool value;
+    /** if variable was created from other variables, here is pseudo representation of its origin*/
+    char* origin;
     /** handler for UTHash*/
    	UT_hash_handle hh;
 } tVar;
@@ -29,6 +31,15 @@ typedef struct variable {
  * @return created variable
  */
 tVar createVar(char* name, bool value);
+
+/**
+ * creates variable with origin
+ * @param name name of variable
+ * @param value value of variable
+ * @param origin origin of variable 
+ * @return created variable
+ */
+tVar createVarWithOrigin(char* name, bool value, char* origin);
 
 /**
  * creates variable with true value

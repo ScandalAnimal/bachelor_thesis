@@ -1,4 +1,4 @@
-CFLAGS=-std=c11 -Wall -Werror -pedantic -g
+CFLAGS=-std=c11 -Wall -pedantic -g
 EXEC=test
 CC=gcc
 RM=rm -f

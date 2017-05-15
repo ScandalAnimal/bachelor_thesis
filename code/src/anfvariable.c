@@ -4,6 +4,7 @@
  * @author Maroš Vasilišin <mvasilisin@gmail.com>
  */
 
+#include <string.h>
 #include "anfvariable.h"
 
 tVar createVar(char* name, bool value) {
@@ -12,6 +13,15 @@ tVar createVar(char* name, bool value) {
     var.name = name;
     var.value = value;
     return var;    
+}
+
+tVar createVarWithOrigin(char* name, bool value, char* origin) {
+    
+    tVar var;
+    var.name = name;
+    var.value = value;
+    var.origin = origin;
+    return var;
 }
 
 tVar createTrueVar(char* name) {

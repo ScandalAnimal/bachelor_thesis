@@ -89,14 +89,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>functions for manipulating with variables  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="anfvariable_8h_source.html">anfvariable.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &lt;string.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="anfvariable_8h_source.html">anfvariable.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for anfvariable.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="anfvariable_8c__incl.png" border="0" usemap="#anfvariable_8c" alt=""/></div>
 <map name="anfvariable_8c" id="anfvariable_8c">
-<area shape="rect" id="node2" href="anfvariable_8h.html" title="functions for manipulating with variables " alt="" coords="103,80,199,107"/>
-<area shape="rect" id="node6" href="uthash_8h_source.html" title="uthash.h" alt="" coords="240,155,312,181"/>
+<area shape="rect" id="node3" href="anfvariable_8h.html" title="functions for manipulating with variables " alt="" coords="154,80,250,107"/>
+<area shape="rect" id="node7" href="uthash_8h_source.html" title="uthash.h" alt="" coords="75,155,147,181"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -105,6 +106,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ab7272d7b4a725119b8715985ebd51949"><td class="memItemLeft" align="right" valign="top"><a class="el" href="anfvariable_8h.html#a8497f1f67b2245e3103840fbeb91f1dc">tVar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="anfvariable_8c.html#ab7272d7b4a725119b8715985ebd51949">createVar</a> (char *name, bool value)</td></tr>
 <tr class="memdesc:ab7272d7b4a725119b8715985ebd51949"><td class="mdescLeft">&#160;</td><td class="mdescRight">creates variable  <a href="#ab7272d7b4a725119b8715985ebd51949">More...</a><br /></td></tr>
 <tr class="separator:ab7272d7b4a725119b8715985ebd51949"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad02747c41573b5e260d5aa6215b56a2a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="anfvariable_8h.html#a8497f1f67b2245e3103840fbeb91f1dc">tVar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="anfvariable_8c.html#ad02747c41573b5e260d5aa6215b56a2a">createVarWithOrigin</a> (char *name, bool value, char *origin)</td></tr>
+<tr class="memdesc:ad02747c41573b5e260d5aa6215b56a2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">creates variable with origin  <a href="#ad02747c41573b5e260d5aa6215b56a2a">More...</a><br /></td></tr>
+<tr class="separator:ad02747c41573b5e260d5aa6215b56a2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abaf205e08694360f88963fc1ce312cf4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="anfvariable_8h.html#a8497f1f67b2245e3103840fbeb91f1dc">tVar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="anfvariable_8c.html#abaf205e08694360f88963fc1ce312cf4">createTrueVar</a> (char *name)</td></tr>
 <tr class="memdesc:abaf205e08694360f88963fc1ce312cf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">creates variable with true value  <a href="#abaf205e08694360f88963fc1ce312cf4">More...</a><br /></td></tr>
 <tr class="separator:abaf205e08694360f88963fc1ce312cf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -195,6 +199,49 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">name</td><td>name of variable </td></tr>
     <tr><td class="paramname">value</td><td>value of variable </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>created variable </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad02747c41573b5e260d5aa6215b56a2a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="anfvariable_8h.html#a8497f1f67b2245e3103840fbeb91f1dc">tVar</a> createVarWithOrigin </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>origin</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>creates variable with origin </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>name of variable </td></tr>
+    <tr><td class="paramname">value</td><td>value of variable </td></tr>
+    <tr><td class="paramname">origin</td><td>origin of variable </td></tr>
   </table>
   </dd>
 </dl>

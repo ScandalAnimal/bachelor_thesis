@@ -61,6 +61,13 @@ void freeAnf(tAnf* anf);
 void printAnf(tAnf* anf);
 
 /**
+ * creates string representation of anf to create variable origin
+ * @param anf anf to create origin from
+ */
+char* createOriginFromAnf(tAnf* anf);
+
+
+/**
  * creates new node in anf
  * @param anf anf in which to create node
  * @return pointer to created node
@@ -91,6 +98,14 @@ int deleteAllNodesFromAnf(tAnf* anf, bool deleteVariables);
  * @return pointer to created node
  */
 void* newNodeWithVarsInAnf(tAnf* anf, tVar varArray[], int size);
+
+/**
+ * creates new node with single variable
+ * @param anf anf in which to create node
+ * @param variable to insert to node
+ * @return pointer to created node
+ */
+void* newNodeWithOneVarInAnf(tAnf* anf, tVar variable);
 
 /**
  * adds existing variables to node in anf

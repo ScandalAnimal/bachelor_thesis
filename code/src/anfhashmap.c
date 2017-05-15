@@ -27,7 +27,7 @@ void freeHashMap(tMap m) {
     }
 }
 
-int insertToHashMap(tMap m, char *name, bool value) {
+int insertToHashMap(tMap m, char *name, bool value, char* origin) {
 
     tVar** map = (tVar**) m;
 
@@ -35,6 +35,8 @@ int insertToHashMap(tMap m, char *name, bool value) {
     s = (tVar*) malloc(sizeof(tVar));
     s->name = malloc(sizeof(char) * (strlen(name) + 1));
     strcpy(s->name, name);
+    s->origin = malloc(sizeof(char) * (strlen(origin) + 1));
+    strcpy(s->origin, origin);
     s->value = value;
     HASH_ADD_KEYPTR(hh, *map, s->name, strlen(s->name), s);    
     // free(s->name);
@@ -80,6 +82,7 @@ int removeFromHashMap(tMap m, char* name) {
 
     HASH_DEL(*map, s);
     free(s->name);
+    free(s->origin);
     free(s);
     return OK;
 }
@@ -92,6 +95,7 @@ void clearHashMap(tMap m) {
 
     HASH_ITER(hh, *map, current_record, tmp) {
         HASH_DEL(*map, current_record);
+        free(current_record->origin);
         free(current_record->name);
         free(current_record);
     }
@@ -108,7 +112,9 @@ void printHashMap(tMap m) {
     for(s = *map; s != NULL; s = (tVar*)(s->hh.next)) {
         
         printf("%4u |  %15s ----- ",i,s->name);
-        fputs(s->value ? "true #\n" : "false #\n", stdout);
+        fputs(s->value ? "true # " : "false # ", stdout);
+        fputs(s->origin, stdout);
+        fputs("\n", stdout);
 
         i++;
     }

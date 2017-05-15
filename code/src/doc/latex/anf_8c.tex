@@ -8,8 +8,7 @@ functions for manipulating with anf
 {\ttfamily \#include $<$stdio.\+h$>$}\\*
 {\ttfamily \#include $<$stdlib.\+h$>$}\\*
 {\ttfamily \#include \char`\"{}anf.\+h\char`\"{}}\\*
-Include dependency graph for anf.\+c\+:
-\nopagebreak
+Include dependency graph for anf.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -29,6 +28,8 @@ void \hyperlink{anf_8c_a4eb1ea2a7bb8667b3f86e259c6f1ac0b}{free\+Anf} (\hyperlink
 \begin{DoxyCompactList}\small\item\em frees anf from memory \end{DoxyCompactList}\item 
 void $\ast$ \hyperlink{anf_8c_a68f18a6daf3fc5b97947a9e6af06e452}{new\+Node\+In\+Anf} (\hyperlink{anf_8h_a1dc399b8c1361284c5d2b204d605938f}{t\+Anf} $\ast$\hyperlink{structanf}{anf})
 \begin{DoxyCompactList}\small\item\em creates new node in anf \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{anf_8c_a7d1f8be0f60bbf97054fa26b44db033c}{new\+Node\+With\+One\+Var\+In\+Anf} (\hyperlink{anf_8h_a1dc399b8c1361284c5d2b204d605938f}{t\+Anf} $\ast$\hyperlink{structanf}{anf}, \hyperlink{anfvariable_8h_a8497f1f67b2245e3103840fbeb91f1dc}{t\+Var} \hyperlink{structvariable}{variable})
+\begin{DoxyCompactList}\small\item\em creates new node with single variable \end{DoxyCompactList}\item 
 void $\ast$ \hyperlink{anf_8c_a470dd641b65e4c4a609df20a0b23fded}{new\+Node\+With\+Vars\+In\+Anf} (\hyperlink{anf_8h_a1dc399b8c1361284c5d2b204d605938f}{t\+Anf} $\ast$\hyperlink{structanf}{anf}, \hyperlink{anfvariable_8h_a8497f1f67b2245e3103840fbeb91f1dc}{t\+Var} variables\mbox{[}$\,$\mbox{]}, int var\+Count)
 \begin{DoxyCompactList}\small\item\em creates new node with variables specified in anf specified \end{DoxyCompactList}\item 
 \hyperlink{anfvariable_8h_a8497f1f67b2245e3103840fbeb91f1dc}{t\+Var} \hyperlink{anf_8c_a49f049460bdac608b009becb40335d38}{create\+Var\+In\+Anf} (\hyperlink{anf_8h_a1dc399b8c1361284c5d2b204d605938f}{t\+Anf} $\ast$\hyperlink{structanf}{anf}, char $\ast$name, bool value)
@@ -65,6 +66,8 @@ int \hyperlink{anf_8c_a44798e6b9e07cfa5a6b3d46375aaa7cb}{switch\+Var\+Value\+In\
 \begin{DoxyCompactList}\small\item\em triggers variable value switch between true/false \end{DoxyCompactList}\item 
 void \hyperlink{anf_8c_adc21053e1735ec0874c6ae7d5a5e03d6}{print\+Anf} (\hyperlink{anf_8h_a1dc399b8c1361284c5d2b204d605938f}{t\+Anf} $\ast$\hyperlink{structanf}{anf})
 \begin{DoxyCompactList}\small\item\em prints structure of anf to console \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{anf_8c_a2174b78daaa6686bab9485ba9d8d6731}{create\+Origin\+From\+Anf} (\hyperlink{anf_8h_a1dc399b8c1361284c5d2b204d605938f}{t\+Anf} $\ast$\hyperlink{structanf}{anf})
+\begin{DoxyCompactList}\small\item\em creates string representation of anf to create variable origin \end{DoxyCompactList}\item 
 int \hyperlink{anf_8c_aaa82461eb4b808bde10801f9c576ccd0}{generate\+Anf\+Graph} (\hyperlink{anf_8h_a1dc399b8c1361284c5d2b204d605938f}{t\+Anf} $\ast$\hyperlink{structanf}{anf}, char $\ast$filename)
 \begin{DoxyCompactList}\small\item\em creates graph in D\+OT from anf \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -153,6 +156,22 @@ creates variable in anf with value false
 \begin{DoxyReturn}{Returns}
 created variable 
 \end{DoxyReturn}
+\index{anf.\+c@{anf.\+c}!create\+Origin\+From\+Anf@{create\+Origin\+From\+Anf}}
+\index{create\+Origin\+From\+Anf@{create\+Origin\+From\+Anf}!anf.\+c@{anf.\+c}}
+\subsubsection[{\texorpdfstring{create\+Origin\+From\+Anf(t\+Anf $\ast$anf)}{createOriginFromAnf(tAnf *anf)}}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ create\+Origin\+From\+Anf (
+\begin{DoxyParamCaption}
+\item[{{\bf t\+Anf} $\ast$}]{anf}
+\end{DoxyParamCaption}
+)}\hypertarget{anf_8c_a2174b78daaa6686bab9485ba9d8d6731}{}\label{anf_8c_a2174b78daaa6686bab9485ba9d8d6731}
+
+
+creates string representation of anf to create variable origin 
+
+
+\begin{DoxyParams}{Parameters}
+{\em anf} & anf to create origin from \\
+\hline
+\end{DoxyParams}
 \index{anf.\+c@{anf.\+c}!create\+True\+Var\+In\+Anf@{create\+True\+Var\+In\+Anf}}
 \index{create\+True\+Var\+In\+Anf@{create\+True\+Var\+In\+Anf}!anf.\+c@{anf.\+c}}
 \subsubsection[{\texorpdfstring{create\+True\+Var\+In\+Anf(t\+Anf $\ast$anf, char $\ast$name)}{createTrueVarInAnf(tAnf *anf, char *name)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf t\+Var} create\+True\+Var\+In\+Anf (
@@ -464,6 +483,28 @@ creates new node in anf
 
 \begin{DoxyParams}{Parameters}
 {\em anf} & anf in which to create node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to created node 
+\end{DoxyReturn}
+\index{anf.\+c@{anf.\+c}!new\+Node\+With\+One\+Var\+In\+Anf@{new\+Node\+With\+One\+Var\+In\+Anf}}
+\index{new\+Node\+With\+One\+Var\+In\+Anf@{new\+Node\+With\+One\+Var\+In\+Anf}!anf.\+c@{anf.\+c}}
+\subsubsection[{\texorpdfstring{new\+Node\+With\+One\+Var\+In\+Anf(t\+Anf $\ast$anf, t\+Var variable)}{newNodeWithOneVarInAnf(tAnf *anf, tVar variable)}}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ new\+Node\+With\+One\+Var\+In\+Anf (
+\begin{DoxyParamCaption}
+\item[{{\bf t\+Anf} $\ast$}]{anf, }
+\item[{{\bf t\+Var}}]{variable}
+\end{DoxyParamCaption}
+)}\hypertarget{anf_8c_a7d1f8be0f60bbf97054fa26b44db033c}{}\label{anf_8c_a7d1f8be0f60bbf97054fa26b44db033c}
+
+
+creates new node with single variable 
+
+
+\begin{DoxyParams}{Parameters}
+{\em anf} & anf in which to create node \\
+\hline
+{\em variable} & to insert to node \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

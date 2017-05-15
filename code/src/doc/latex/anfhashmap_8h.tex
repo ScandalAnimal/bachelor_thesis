@@ -11,16 +11,14 @@ functions for manipulating with hash map
 {\ttfamily \#include \char`\"{}anfutils.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}uthash.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}anfvariable.\+h\char`\"{}}\\*
-Include dependency graph for anfhashmap.\+h\+:
-\nopagebreak
+Include dependency graph for anfhashmap.\+h\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{anfhashmap_8h__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:
-\nopagebreak
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -37,7 +35,7 @@ typedef void $\ast$ \hyperlink{anfhashmap_8h_a80c0f755eb575461b436f6b4e9fa497c}{
 \item 
 \hyperlink{anfhashmap_8h_a80c0f755eb575461b436f6b4e9fa497c}{t\+Map} \hyperlink{anfhashmap_8h_a8f2e026bd919e7cbdc6eca0c767f04ac}{create\+Hash\+Map} ()
 \begin{DoxyCompactList}\small\item\em creates new hash map \end{DoxyCompactList}\item 
-int \hyperlink{anfhashmap_8h_a82e76abdf431012f96ad089a1ff6357a}{insert\+To\+Hash\+Map} (\hyperlink{anfhashmap_8h_a80c0f755eb575461b436f6b4e9fa497c}{t\+Map} map, char $\ast$key, bool value)
+int \hyperlink{anfhashmap_8h_a0bc438035a8b332d6e81ff23c2c7a30c}{insert\+To\+Hash\+Map} (\hyperlink{anfhashmap_8h_a80c0f755eb575461b436f6b4e9fa497c}{t\+Map} map, char $\ast$key, bool value, char $\ast$origin)
 \begin{DoxyCompactList}\small\item\em inserts new record to hash map \end{DoxyCompactList}\item 
 \hyperlink{anfvariable_8h_a8497f1f67b2245e3103840fbeb91f1dc}{t\+Var} $\ast$ \hyperlink{anfhashmap_8h_a3afd4b139e74479eb80dc20c9b183279}{select\+From\+Hash\+Map} (\hyperlink{anfhashmap_8h_a80c0f755eb575461b436f6b4e9fa497c}{t\+Map} map, const char $\ast$key)
 \begin{DoxyCompactList}\small\item\em gets variable with key from map \end{DoxyCompactList}\item 
@@ -146,13 +144,14 @@ return code from {\ttfamily error.\+h}
 \end{DoxyReturn}
 \index{anfhashmap.\+h@{anfhashmap.\+h}!insert\+To\+Hash\+Map@{insert\+To\+Hash\+Map}}
 \index{insert\+To\+Hash\+Map@{insert\+To\+Hash\+Map}!anfhashmap.\+h@{anfhashmap.\+h}}
-\subsubsection[{\texorpdfstring{insert\+To\+Hash\+Map(t\+Map map, char $\ast$key, bool value)}{insertToHashMap(tMap map, char *key, bool value)}}]{\setlength{\rightskip}{0pt plus 5cm}int insert\+To\+Hash\+Map (
+\subsubsection[{\texorpdfstring{insert\+To\+Hash\+Map(t\+Map map, char $\ast$key, bool value, char $\ast$origin)}{insertToHashMap(tMap map, char *key, bool value, char *origin)}}]{\setlength{\rightskip}{0pt plus 5cm}int insert\+To\+Hash\+Map (
 \begin{DoxyParamCaption}
 \item[{{\bf t\+Map}}]{map, }
 \item[{char $\ast$}]{key, }
-\item[{bool}]{value}
+\item[{bool}]{value, }
+\item[{char $\ast$}]{origin}
 \end{DoxyParamCaption}
-)}\hypertarget{anfhashmap_8h_a82e76abdf431012f96ad089a1ff6357a}{}\label{anfhashmap_8h_a82e76abdf431012f96ad089a1ff6357a}
+)}\hypertarget{anfhashmap_8h_a0bc438035a8b332d6e81ff23c2c7a30c}{}\label{anfhashmap_8h_a0bc438035a8b332d6e81ff23c2c7a30c}
 
 
 inserts new record to hash map 
@@ -164,6 +163,8 @@ inserts new record to hash map
 {\em key} & key of record \\
 \hline
 {\em value} & value of record \\
+\hline
+{\em origin} & origin of record \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
