@@ -101,13 +101,8 @@
 	Upravenou formou pravdivostnej tabuľky je Karnaughova mapa. Je to forma zápisu, ktorá prevádza n-rozmernú Boolovu funkciu do dvojrozmernej. Jej výhodou je, že sa pomocou nej dá funkcia pekne vizualizovať, do 5 premenných poskytuje stále dobrú predstavu. Využíva sa hlavne pri minimalizácii funkcií. Je vhodná pre ľudskú predstavu funkcie, pre počítač existujú efektívnejšie alternatívy. Príklad Karnaughovej mapy sa nachádza na Obr.~\ref{picture:KarnaughMap},
 \begin{figure}[htb]
 	\centering
-<<<<<<< HEAD
 	{\includegraphics{obrazky-figures/KarnaughMap.png}}
 	\caption{Príklad Karnaughovej mapy pre funkciu $f = x_2 \vee (x_1 \wedge \neg x_3)$.}
-=======
-	{\includegraphics{obrazky-figures/KarnaughMap}}
-	\caption{Príklad Karnaughovej mapy pre funkciu $f = B \vee (A \wedge \neg C)$.}
->>>>>>> 4047b29d657e89d2457e50f634fba7d8f50cd86f
 	\label{picture:KarnaughMap}
 \end{figure}
 	zobrazuje Karnaughovu mapu pre funkciu $f = x_2 \vee (x_1 \wedge \neg x_3)$.
@@ -115,13 +110,8 @@
 	Ďalším zo zápisov je logický obvod. Ide o~schému, ktorá graficky zobrazuje Boolovu funkciu. Tento zápis je vhodnejší pre fyzikálne zamerané úlohy, alebo pre pokročilejšie úlohy, ktoré obsahujú zložitejšie funkcie, a~tie sa dajú prehľadne zobraziť logickým obvodom. Logický obvod na rozdiel od predošlých reprezentácií neukazuje všetky možné kombinácie hodnôt, ale len štruktúru danej funkcie. Dá sa prehľadne použiť aj pre reprezentáciu funkcie o~väčšom množstve premenných, čo ostatné reprezentácie nedokážu. Príklad zobrazenia funkcie $(x_1 \wedge x_2) \vee x_3$ vidíme na Obr.~\ref{picture:logicalCircuit}.
 \begin{figure}[htb]
 	\centering
-<<<<<<< HEAD
 	{\includegraphics{obrazky-figures/logicalCircuit.png}}
 	\caption{Príklad logického obvodu funkcie $(x_1 \wedge x_2) \vee x_3$.}
-=======
-	{\includegraphics{obrazky-figures/logicalCircuit}}
-	\caption{Príklad logického obvodu funkcie $(A \wedge B) \vee C$.}
->>>>>>> 4047b29d657e89d2457e50f634fba7d8f50cd86f
 	\label{picture:logicalCircuit}
 \end{figure}
 
@@ -360,11 +350,7 @@ f = x_1 \wedge \neg x_1
 
 \section{Reprezentácia termov vo funkcii}
 
-<<<<<<< HEAD
 	Každá Boolova funkcia v~ANF sa skladá z~0 až m termov, ktoré obsahujú premenné. Premenné v~terme sú medzi sebou prepojené operáciou logický súčin AND. Každý term by mal v~sebe obsahovať informácie, ktoré premenné obsahuje a~aký je ich celkový počet. Keďže medzi všetkým premennými je rovnaká operácia, nie je potrebné si uchovávať informáciu o~tom, na ktorej pozícií v terme sa nachádza ktorá premenná. Je teda možné premenné reprezentovať jednoduchým zoznamom alebo poľom. 
-=======
-	Každá Boolova funkcia v~ANF sa skladá z~0 až n termov, ktoré obsahujú premenné. Premenné v~terme sú medzi sebou prepojené operáciou logický súčin AND. Každý term by mal v~sebe obsahovať informácie, ktoré premenné obsahuje a~koľko ich je dokopy. Keďže medzi všetkým premennými je rovnaká operácia, nie je potrebné si uchovávať informáciu o~tom, na ktorej pozícií v~terme sa nachádza ktorá premenná. Je teda možné premenné reprezentovať jednoduchým zoznamom alebo poľom. 
->>>>>>> 4047b29d657e89d2457e50f634fba7d8f50cd86f
 
 	Premenné by malo byť do termu možné dynamicky vkladať, takisto ich z~neho odoberať. Term môže obsahovať jednu premennú aj viackrát, prípadne žiadne premenné.
 
@@ -495,11 +481,7 @@ A \wedge A \wedge A \wedge A = A
 
 	Okrem zdrojových súborov sa v~balíčku nachádza aj testovací súbor \texttt{tests.c}, ktorý obsahuje niekoľko testov pre overenie funkčnosti vačšiny funkcií poskytovaných knižnicou. Tento testovací súbor takisto ukazuje možné použitie knižnice a~tiež ukážku vykreslenia grafu Boolovej funkcie v~ANF do súboru vo formáte DOT.
 
-<<<<<<< HEAD
 	V knižnici sa okrem autorských súborov nachádza aj hlavičkový súbor \texttt{uthash.h}. Tento súbor je vytiahnutý z~balíčka UTHash\footnote{\url{https://troydhanson.github.io/uthash/}} a~je bezo zmeny používaný. Súbor bol vybraný, namiesto využitia kompletného balíčka UTHash preto, že v~našej knižnici nepotrebujeme ostatné štruktúry a~funkcie dostupné z~ostatných súborov z~UTHash, vystačíme si len s~týmto jedným súborom. 	
-=======
-	V~knižnici sa okrem autorských súborov nachádza aj hlavičkový súbor \texttt{uthash.h}, v~súborovej štruktúre knižnice sa nachádza v~umiestnení \texttt{./lib/uthash.h}. Tento súbor je vytiahnutý z~balíčka UTHash\footnote{\url{https://troydhanson.github.io/uthash/}} a~je bezo zmeny používaný. Súbor bol vybraný, namiesto využitia kompletného balíčka UTHash preto, že v~našej knižnici nepotrebujeme ostatné štruktúry a~funkcie dostupné z~ostatných súborov z~UTHash, vystačíme si len s~týmto jedným súborom. 	
->>>>>>> 4047b29d657e89d2457e50f634fba7d8f50cd86f
 
 	Knižnica je implementovaná a~testovaná na systéme UNIX, konkrétne Ubuntu verzie 16.04, takže obsahuje prekladový súbor \texttt{makefile} len pre túto platformu. V~aktuálnom stave sa knižnica vytvára ako zdieľaná, je teda pri preklade zdrojových súborov mať administrátorské práva, aby bolo možné nakopírovať príslušné súbory na patričné miesta v~systéme. Používateľovi ale nič nebráni v~tom nevyužiť poskytnutý \texttt{makefile} a~používať súbory knižnice lokálne ako nezdieľanú knižnicu.
 
