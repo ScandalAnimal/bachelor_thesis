@@ -121,7 +121,7 @@
 },
 @inbook{citation:guanfeng,
 	author="Lv, Guanfeng and Su, Kaile and Xu, Yanyan",
-	title="CacBDD: A~BDD Package with Dynamic Cache Management",
+	title="CacBDD: A BDD Package with Dynamic Cache Management",
 	bookTitle="Computer Aided Verification: 25th International Conference, CAV 2013, Saint Petersburg, Russia, July 13-19, 2013. Proceedings",
 	year="2013",
 	publisher="Springer Berlin Heidelberg",
@@ -136,7 +136,7 @@
 	url="http://vlsi.colorado.edu/~fabio/CUDD/cudd.pdf"
 },
 @misc{citation:buddy,
-	title="BuDDy: A~BDD package",
+	title="BuDDy: A BDD package",
 	url="http://buddy.sourceforge.net/manual/main.html",
 	note="Online 16.05.2017"
 },

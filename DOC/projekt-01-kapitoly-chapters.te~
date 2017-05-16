@@ -8,7 +8,7 @@
 	
 	Reprezentácia pomocou BDD je v~informatike síce najrozšírenejšia, ale nie je jediná. Táto práca sa zaoberá podrobnejšie reprezentáciou Boolovych funkcií pomocou Algebraickej Normálnej Formy (skrátene ANF). ANF poskytuje výhodu oproti BDD v~tom, že obsahuje len dve logické operácie, logický súčin a~exkluzívny súčet, a~tým pádom sa jej implementácia značne zjednodušuje. Takisto je z~ANF veľmi rýchlo možné zistiť Boolovu hodnotu danej funkcie a~takisto vypočítať jej splniteľnosť~\cite{citation:janson}.
 	
-	Cieľom bakalárskej práce bolo navrhnúť a implementovať knižnicu pre efektívnu manipuláciu s~Boolovymi funkciami v~Algebraickej Normálnej Forme. Druhotným cieľom je zistenie a analýza vytvorenej knižnice, a jej porovnanie s~existujúcimi riešeniami. Implementovaná knižnica poskytuje prostriedky pre vytváranie a manipuláciu s~Boolovymi funkciami. Využíva výhody, ktoré poskytuje ANF a poskytuje alternatívu voči klasickým reprezentáciám založeným na BDD.
+	Cieľom bakalárskej práce bolo navrhnúť a implementovať knižnicu pre efektívnu manipuláciu s Boolovymi funkciami v Algebraickej Normálnej Forme. Druhotným cieľom je zistenie a analýza vytvorenej knižnice, a jej porovnanie s existujúcimi riešeniami. Implementovaná knižnica poskytuje prostriedky pre vytváranie a manipuláciu s Boolovymi funkciami. Využíva výhody, ktoré poskytuje ANF a poskytuje alternatívu voči klasickým reprezentáciám založeným na BDD.
 	
 	%Súčasťou zadania je aj jeho 4. bod, vytvorenie paralelnej obvodovej štruktúry zo sekvenčného spätnoväzobného posuvného registru. Tento bod bol v priebehu riešenia po dohode s vedúcim zo zadania odstránený a práca sa ďalej sústreďuje len na programovaciu časť zadania.
 	
@@ -171,7 +171,7 @@ f = x_1 \wedge \neg x_1
 
 	Dnes existujú viaceré algoritmy (tiež nazývané v~literatúre SAT solvery), ktoré riešia rôzne druhy SAT problémov, napríklad z~oblasti umelej inteligencie či tvorby logických obvodov.
 	
-	Ako vstup pre SAT solver sa bežne používa konjunktívna normálna forma (CNF), ale existujú aj výnimky, ktoré využívajú napríklad DNF. CNF sa primárne využíva z~dôvodu, že každá Boolova funkcia sa dá prepísať do formy CNF v~lineárnom čase. Výsledná funkcia v~CNF si zachováva splniteľnosť z~pôvodnej formy. Je preto dôležité zamerať sa na konverziu ANF na CNF, prípadne ďalšie konverzie. Využitie SAT solverov pre prácu s~ANF je možné len vtedy, ak je možné konvertovať danú ANF na CNF, ktorá by bola vstupom pre SAT solver pri zachovaní splniteľnosti.
+	Ako vstup pre SAT solver sa bežne používa konjunktívna normálna forma (CNF), ale existujú aj výnimky, ktoré využívajú napríklad DNF. CNF sa primárne využíva z~dôvodu, že každá Boolova funkcia sa dá prepísať do formy CNF v~lineárnom čase. Výsledná funkcia v~CNF si zachováva splniteľnosť z~pôvodnej formy. Je preto dôležité zamerať sa na konverziu ANF na CNF, prípadne ďalšie konverzie. Využitie SAT solverov pre prácu s ANF je možné len vtedy, ak je možné konvertovať danú ANF na CNF, ktorá by bola vstupom pre SAT solver pri zachovaní splniteľnosti.
 	
 	Ak je Boolova funkcia zapísaná vo forme Algebraickej Normálnej Formy, môžeme v~nej vidieť dve časti, na ktoré sa vzťahuje SAT problém. Pre jednotlivé termy, ktoré obsahujú len operáciu logický súčin (sú teda v~disjunktívnej normálnej forme), je zistenie riešenia SAT problému triviálne. Ak majú všetky premenné hodnotu logická 1, je daný term splniteľný, ak aspoň jedna premenná má hodnotu logickej 0, je daný term nesplniteľný. 
 
@@ -242,7 +242,7 @@ f = x_1 \wedge \neg x_1
 
 \chapter{Knižnice pre reprezentáciu Boolovych funkcií} \label{chapter:libraries}
 
-	Existujú viaceré knižnice vytvorené za účelom manipulácie s~Boolovymi funkciami. Nasledujúca kapitola sa zaoberá niektorými vybranými, hlavne tými, ktoré využívajú binárne rozhodovacie stromy (BDD). Okrem toho existujú aj ďalšie implementácie, ktoré nevyužívajú BDD, ale sú založené napríklad na SAT. Tie sa využívajú v~oblastiach overovania modelov, a vo väčšine prípadov majú vyššie pamäťové a časové nároky.
+	Existujú viaceré knižnice vytvorené za účelom manipulácie s~Boolovymi funkciami. Nasledujúca kapitola sa zaoberá niektorými vybranými, hlavne tými, ktoré využívajú binárne rozhodovacie stromy (BDD). Okrem toho existujú aj ďalšie implementácie, ktoré nevyužívajú BDD, ale sú založené napríklad na SAT. Tie sa využívajú v oblastiach overovania modelov, a vo väčšine prípadov majú vyššie pamäťové a časové nároky.
 
 \section{Colorado University Decision Diagram Package - CUDD}
 
@@ -262,7 +262,7 @@ f = x_1 \wedge \neg x_1
 
 	Poskytuje základné operácie pre manipuláciu s~BDD. BDD uzly sú uložené v~jednom poli a~využíva indexy uzlov v~tomto poli namiesto ukazateľov na uzly, ako tomu je v~CUDD. Nevyužíva počítadlo referencií na uzly. Garbage collector je volaný len ak je vyčerpaná dostupná pamäť. Funguje inak ako v~prípade CUDD, prechádza všetky uzly v~poli, a~tie na ktoré sa nikto neodkazuje a~ani nie sú koreňmi, označí ako voľné uzly, nemaže ich a~tým šetrí výpočtový čas. Knižnica využíva dynamické zväčšovanie tabuľky výpočtov podľa potreby, ak dôjde počet voľných miest. V~knižnici je veľmi dobre implementované ukladanie medzivýsledkov, čo takisto pridáva na rýchlosti.
 
-	Experimentálne bolo dokázané, že knižnica v~určitých príapdoch pracuje rýchlejšie a efektívnejšie~\cite{citation:guanfeng} ako najrozšírenejšia knižnica CUDD. Testovaním porovnávacích štandardov ISCAS85 a smv-bdd-traces98 bolo zistené, že knižnica CacBDD je efektívnejšia a rýchlejšia, pričom v~porovnávacom teste smv-bdd-traces98 sa pamäťové nároky takmer nelíšili. Hlavne v~testoch \textit{dpd75}, \textit{furnace17} a \textit{mmgt20} dosahuje knižnica niekoľkonásobné zrýchlenie.
+	Experimentálne bolo dokázané, že knižnica v určitých príapdoch pracuje rýchlejšie a efektívnejšie~\cite{citation:guanfeng} ako najrozšírenejšia knižnica CUDD. Testovaním porovnávacích štandardov ISCAS85 a smv-bdd-traces98 bolo zistené, že knižnica CacBDD je efektívnejšia a rýchlejšia, pričom v porovnávacom teste smv-bdd-traces98 sa pamäťové nároky takmer nelíšili. Hlavne v testoch \textit{dpd75}, \textit{furnace17} a \textit{mmgt20} dosahuje knižnica niekoľkonásobné zrýchlenie.
 
 \section{BuDDy}
 
@@ -294,11 +294,11 @@ f = x_1 \wedge \neg x_1
 
 \chapter{Konceptuálny návrh knižnice} \label{chapter:concept}
 
-	V~tejto kapitole si bližšie popíšeme návrh knižnice pre manipuláciu s~Boolovymi funkciami v~ANF. Požiadavkami na knižnicu sú možnosti presne a efektívne reprezentovať Boolove funkcie v~ANF. Každá takáto funkcia sa skladá z~viacerých častí, takže je potrebné vytvoriť štruktúry, ktoré ich budú verne reprezentovať. To všetko je potrebné dosiahnuť s~čo najmenšími pamäťovými nárokmi. Každá Boolova funkcia obsahuje určitý obor premenných, ktoré sa môžu vo funkcii aj opakovať. Je potrebné navrhnuť efektívny spôsob práce s~týmito premennými, aby sa dalo rýchlo pristupovať k~ich hodnotám, ale pritom sme sa zbavili duplicít. Musí prebehnúť analýza dostupných možností a výber vhodného riešenia. Nad Boolovou funkciou sú definované rôzne operácie ako pridávanie či odoberanie premenných a termov. Od knižnice je požadované aby tieto operácie obsahovala.
+	V tejto kapitole si bližšie popíšeme návrh knižnice pre manipuláciu s Boolovymi funkciami v ANF. Požiadavkami na knižnicu sú možnosti presne a efektívne reprezentovať Boolove funkcie v ANF. Každá takáto funkcia sa skladá z viacerých častí, takže je potrebné vytvoriť štruktúry, ktoré ich budú verne reprezentovať. To všetko je potrebné dosiahnuť s čo najmenšími pamäťovými nárokmi. Každá Boolova funkcia obsahuje určitý obor premenných, ktoré sa môžu vo funkcii aj opakovať. Je potrebné navrhnuť efektívny spôsob práce s týmito premennými, aby sa dalo rýchlo pristupovať k ich hodnotám, ale pritom sme sa zbavili duplicít. Musí prebehnúť analýza dostupných možností a výber vhodného riešenia. Nad Boolovou funkciou sú definované rôzne operácie ako pridávanie či odoberanie premenných a termov. Od knižnice je požadované aby tieto operácie obsahovala.
 
 	Ďalšou požiadavkou na knižnicu je čo najefektívnejšia práca s~pamäťou, a~takisto aj rýchlosť pri manipulácií s~veľkým počtom funkcií, prípadne premenných vo funkciách.
 	
-	V~neposlednom rade by knižnica mala obsahovať prostriedky pre grafickú reprezentáciu Boolovej funkcie, je teda potrebné sa zamerať na výber vhodného nástroja. Z~vytvorenej grafickej reprezentácie by mala byť jasne odvoditeľná štruktúra danej Boolovej funkcie, ako aj hodnoty jej jednotlivých častí.
+	V neposlednom rade by knižnica mala obsahovať prostriedky pre grafickú reprezentáciu Boolovej funkcie, je teda potrebné sa zamerať na výber vhodného nástroja. Z vytvorenej grafickej reprezentácie by mala byť jasne odvoditeľná štruktúra danej Boolovej funkcie, ako aj hodnoty jej jednotlivých častí.
 
 \section{Voľba technológií pre vývoj knižnice}
 
@@ -321,7 +321,7 @@ f = x_1 \wedge \neg x_1
 
 	Obor všetkých premenných je možné reprezentovať viacerými spôsobmi. Klasické pole poskytuje výhodu, že operácia vyhľadávania je rýchla, ak vieme presný index, na ktorý chceme pristúpiť. To by bolo využiteľné, ak by premenné v~Boolovej funkcií mali len číselný index a~generovali sa od najnižších indexov po najvyššie (aby sme zbytočne nealokovali pamäť o~väčšej veľkosti než je potrebná). V~našom prípade by premenné mali mať ľubovoľné pomenovanie, a~tento postup sa teda ukázal ako nevhodný.
 
-	Druhým spôsobom je použitie hashovacej tabuľky. Tá rieši vyššie spomenutý problém, pretože ak poznáme kľúč k~danému záznamu, prístup k~jeho hodnote je veľmi rýchly, v~závislosti na hashovacej funkcii. Hashovacia tabuľka využíva na pozadí pole, pričom index daného záznamu nám poskytuje hashovacia funkcia, ktorá konvertuje kľúč záznamu na index v~poli a naopak. V~hashovacej tabuľke je možné zaistiť aj riešenie problému s~ukladaním duplicitných záznamov, a~to kontrolou, či záznam s~daným kľúčom už v~tabuľke existuje.
+	Druhým spôsobom je použitie hashovacej tabuľky. Tá rieši vyššie spomenutý problém, pretože ak poznáme kľúč k~danému záznamu, prístup k~jeho hodnote je veľmi rýchly, v~závislosti na hashovacej funkcii. Hashovacia tabuľka využíva na pozadí pole, pričom index daného záznamu nám poskytuje hashovacia funkcia, ktorá konvertuje kľúč záznamu na index v poli a naopak. V~hashovacej tabuľke je možné zaistiť aj riešenie problému s~ukladaním duplicitných záznamov, a~to kontrolou, či záznam s~daným kľúčom už v~tabuľke existuje.
 
 \section{Hashovacia tabuľka premenných funkcie}
 
@@ -349,7 +349,7 @@ f = x_1 \wedge \neg x_1
 
 \section{Reprezentácia termov vo funkcii}
 
-	Každá Boolova funkcia v~ANF sa skladá z~0 až m termov, ktoré obsahujú premenné. Premenné v~terme sú medzi sebou prepojené operáciou logický súčin AND. Každý term by mal v~sebe obsahovať informácie, ktoré premenné obsahuje a~aký je ich celkový počet. Keďže medzi všetkým premennými je rovnaká operácia, nie je potrebné si uchovávať informáciu o~tom, na ktorej pozícií v~terme sa nachádza ktorá premenná. Je teda možné premenné reprezentovať jednoduchým zoznamom alebo poľom. 
+	Každá Boolova funkcia v~ANF sa skladá z~0 až m termov, ktoré obsahujú premenné. Premenné v~terme sú medzi sebou prepojené operáciou logický súčin AND. Každý term by mal v~sebe obsahovať informácie, ktoré premenné obsahuje a~aký je ich celkový počet. Keďže medzi všetkým premennými je rovnaká operácia, nie je potrebné si uchovávať informáciu o~tom, na ktorej pozícií v terme sa nachádza ktorá premenná. Je teda možné premenné reprezentovať jednoduchým zoznamom alebo poľom. 
 
 	Premenné by malo byť do termu možné dynamicky vkladať, takisto ich z~neho odoberať. Term môže obsahovať jednu premennú aj viackrát, prípadne žiadne premenné.
 
@@ -367,7 +367,7 @@ f = x_1 \wedge \neg x_1
 
 \section{Reprezentácia Boolovej funkcie}
 
-	Štruktúra reprezentujúca Boolovu funkciu obsahuje všetky potrebné informácie o~svojom obsahu. Návrh tejto štruktúry ukazuje Zdrojový kód~\ref{listing:anf}. Štruktúra obsahuje zoznam termov, ktoré sa vo funkcii nachádzajú, a~takisto informáciu o~tom, koľko je termov dohromady vo funkcii. Keďže všetky termy v~Boolovej funkcii vo forme ANF sú spojené operáciou exkluzívneho súčtu XOR, nie je potrebné si uchovávať informáciu o~poradí termu vo funkcií. Operácia XOR je asociatívna, teda nezáleží na tom, v~akom poradí budeme výraz s~viacerými operandami počítať, a takisto nezáleží, kam dáme zátvorky. Túto vlastnosť operácie XOR môžeme vidieť v~tabuľkách~\ref{table:xor1}~a~\ref{table:xor2}, ktoré obsahujú pravdivostnú tabuľku pre Boolovu funkciu v~dvoch variantách, ktoré sa od seba líšia zátvorkami. 
+	Štruktúra reprezentujúca Boolovu funkciu obsahuje všetky potrebné informácie o~svojom obsahu. Návrh tejto štruktúry ukazuje Zdrojový kód~\ref{listing:anf}. Štruktúra obsahuje zoznam termov, ktoré sa vo funkcii nachádzajú, a~takisto informáciu o~tom, koľko je termov dohromady vo funkcii. Keďže všetky termy v~Boolovej funkcii vo forme ANF sú spojené operáciou exkluzívneho súčtu XOR, nie je potrebné si uchovávať informáciu o~poradí termu vo funkcií. Operácia XOR je asociatívna, teda nezáleží na tom, v akom poradí budeme výraz s viacerými operandami počítať, a takisto nezáleží, kam dáme zátvorky. Túto vlastnosť operácie XOR môžeme vidieť v tabuľkách~\ref{table:xor1}~a~\ref{table:xor2}, ktoré obsahujú pravdivostnú tabuľku pre Boolovu funkciu v dvoch variantách, ktoré sa od seba líšia zátvorkami. 
 	
 	\begin{table}[htb]
 		\centering
@@ -517,11 +517,11 @@ x_1 \wedge x_1 \wedge x_1 \wedge x_1 = x_1
 
 	Okrem zdrojových súborov sa v~balíčku nachádza aj testovací súbor \texttt{tests.c}, ktorý obsahuje niekoľko testov pre overenie funkčnosti vačšiny funkcií poskytovaných knižnicou. Tento testovací súbor takisto ukazuje možné použitie knižnice a~tiež ukážku vykreslenia grafu Boolovej funkcie v~ANF do súboru vo formáte DOT.
 
-	V~knižnici sa okrem autorských súborov nachádza aj hlavičkový súbor \texttt{uthash.h}. Tento súbor je vytiahnutý z~balíčka UTHash\footnote{\url{https://troydhanson.github.io/uthash/}} a~je bezo zmeny používaný. Súbor bol vybraný, namiesto využitia kompletného balíčka UTHash preto, že v~našej knižnici nepotrebujeme ostatné štruktúry a~funkcie dostupné z~ostatných súborov z~UTHash, vystačíme si len s~týmto jedným súborom. 	
+	V knižnici sa okrem autorských súborov nachádza aj hlavičkový súbor \texttt{uthash.h}. Tento súbor je vytiahnutý z~balíčka UTHash\footnote{\url{https://troydhanson.github.io/uthash/}} a~je bezo zmeny používaný. Súbor bol vybraný, namiesto využitia kompletného balíčka UTHash preto, že v~našej knižnici nepotrebujeme ostatné štruktúry a~funkcie dostupné z~ostatných súborov z~UTHash, vystačíme si len s~týmto jedným súborom. 	
 
 	Knižnica je implementovaná a~testovaná na systéme UNIX, konkrétne Ubuntu verzie 16.04, takže obsahuje prekladový súbor \texttt{makefile} len pre túto platformu. V~aktuálnom stave sa knižnica vytvára ako zdieľaná, je teda pri preklade zdrojových súborov mať administrátorské práva, aby bolo možné nakopírovať príslušné súbory na patričné miesta v~systéme. Používateľovi ale nič nebráni v~tom nevyužiť poskytnutý \texttt{makefile} a~používať súbory knižnice lokálne ako nezdieľanú knižnicu.
 
-	Hlavná logika čo sa týka práce s~hashovacou tabuľkou sa nachádza v~súbore \texttt{anfhashmap.c}. Nachádzajú sa tu funkcie, ktoré sprístupňujú funkcie z~knižnice UTHash pre použitie v~programe, ktoré sú vysoko optimalizované, napríklad preto, že sú implementované ako makrá. Knižnica UTHash pracuje veľmi dobre s~pamäťou, za predpokladu, že si používateľ zvolí správny typ kľúča pre vybranú hashovaciu funkciu. Dostupné sú funkcie pre vytvorenie a~rušenie hashovacej tabuľky, pre vkladanie, výber a~odoberanie záznamov. Okrem toho obsahuje funkcie pre výpis obsahu hashovacej tabuľky do konzoly a~takisto pre vykreslenie do grafu vo formáte DOT. 	
+	Hlavná logika čo sa týka práce s~hashovacou tabuľkou sa nachádza v~súbore \texttt{anfhashmap.c}. Nachádzajú sa tu funkcie, ktoré sprístupňujú funkcie z~knižnice UTHash pre použitie v~programe, ktoré sú vysoko optimalizované, napríklad preto, že sú implementované ako makrá. Knižnica UTHash pracuje veľmi dobre s pamäťou, za predpokladu, že si používateľ zvolí správny typ kľúča pre vybranú hashovaciu funkciu. Dostupné sú funkcie pre vytvorenie a~rušenie hashovacej tabuľky, pre vkladanie, výber a~odoberanie záznamov. Okrem toho obsahuje funkcie pre výpis obsahu hashovacej tabuľky do konzoly a~takisto pre vykreslenie do grafu vo formáte DOT. 	
 
 	Reprezentáciu premenných a~termov poskytujú súbory \texttt{anfnode.c} a~\texttt{anfvariable.c} a~ich príslušné hlavičkové súbory. Používateľ má možnosť vytvárania premenných a~termov, pridania a~odoberania premenných do/z~termu a~takisto vypísanie obsahu termu do konzoly. 
 
