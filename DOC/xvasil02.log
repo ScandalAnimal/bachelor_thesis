@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.4.22)  16 MAY 2017 12:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.4.22)  16 MAY 2017 13:10
 entering extended mode
 **./xvasil02.tex
 (xvasil02.tex
@@ -1493,26 +1493,26 @@ Overfull \hbox (34.12628pt too wide) in paragraph at lines 173--173
 
 LaTeX Font Info:    Font shape `T1/fos/bx/n' in size <10> not available
 (Font)              Font shape `T1/fos/b/n' tried instead on input line 173.
-<zadani.pdf, id=134, 1964.33875pt x 2777.37625pt>
+<zadani.pdf, id=134, 597.6729pt x 845.55902pt>
 File: zadani.pdf Graphic file (type pdf)
  <use zadani.pdf>
 Package pdftex.def Info: zadani.pdf used on input line 173.
-(pdftex.def)             Requested size: 1964.33398pt x 2777.3695pt.
+(pdftex.def)             Requested size: 597.67143pt x 845.55696pt.
 File: zadani.pdf Graphic file (type pdf)
 
 <use zadani.pdf>
 Package pdftex.def Info: zadani.pdf used on input line 173.
-(pdftex.def)             Requested size: 1964.33398pt x 2777.3695pt.
- <zadani.pdf, id=137, page=1, 1964.33875pt x 2777.37625pt>
+(pdftex.def)             Requested size: 597.67143pt x 845.55696pt.
+ <zadani.pdf, id=137, page=1, 597.6729pt x 845.55902pt>
 File: zadani.pdf Graphic file (type pdf)
 
 <use zadani.pdf, page 1>
 Package pdftex.def Info: zadani.pdf, page1 used on input line 173.
-(pdftex.def)             Requested size: 1964.33398pt x 2777.3695pt.
+(pdftex.def)             Requested size: 597.67143pt x 845.55696pt.
 File: zadani.pdf Graphic file (type pdf)
  <use zadani.pdf, page 1>
 Package pdftex.def Info: zadani.pdf, page1 used on input line 173.
-(pdftex.def)             Requested size: 597.6088pt x 844.95839pt.
+(pdftex.def)             Requested size: 597.69879pt x 845.59566pt.
  [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map} <./template-fig/VUT_symbol
@@ -1521,20 +1521,21 @@ File: zadani.pdf Graphic file (type pdf)
 
 <use zadani.pdf, page 1>
 Package pdftex.def Info: zadani.pdf, page1 used on input line 173.
-(pdftex.def)             Requested size: 597.6088pt x 844.95839pt.
+(pdftex.def)             Requested size: 597.69879pt x 845.59566pt.
 File: zadani.pdf Graphic file (type pdf)
  <use zadani.pdf, page 1>
 Package pdftex.def Info: zadani.pdf, page1 used on input line 173.
-(pdftex.def)             Requested size: 597.6088pt x 844.95839pt.
+(pdftex.def)             Requested size: 597.69879pt x 845.59566pt.
 File: zadani.pdf Graphic file (type pdf)
  <use zadani.pdf, page 1>
 Package pdftex.def Info: zadani.pdf, page1 used on input line 173.
-(pdftex.def)             Requested size: 597.6088pt x 844.95839pt.
+(pdftex.def)             Requested size: 597.69879pt x 845.59566pt.
 
-[2 <./zadani.pdf>] [3] [4] (xvasil02.toc<<ot1.cmap>><<oml.cmap>><<oms.cmap>><<o
-mx.cmap>>
+[2 <./zadani.pdf, page is rotated 270 degrees>] [3] [4] (xvasil02.toc<<ot1.cmap
+>><<oml.cmap>><<oms.cmap>><<omx.cmap>>
 LaTeX Font Info:    Try loading font information for U+msa on input line 4.
- ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Try loading font information for U+msb on input line 4.
@@ -1579,7 +1580,7 @@ l.16 \chapter
 Kapitola 2.
 [5
 
-] [6] <obrazky-figures/KarnaughMap.png, id=282, 322.95656pt x 134.75343pt>
+] [6] <obrazky-figures/KarnaughMap.png, id=273, 322.95656pt x 134.75343pt>
 File: obrazky-figures/KarnaughMap.png Graphic file (type png)
 
 <use obrazky-figures/KarnaughMap.png>
@@ -1587,7 +1588,7 @@ Package pdftex.def Info: obrazky-figures/KarnaughMap.png used on input line 104
 .
 (pdftex.def)             Requested size: 322.95576pt x 134.7531pt.
 
-<obrazky-figures/logicalCircuit.png, id=284, 264.99pt x 128.73094pt>
+<obrazky-figures/logicalCircuit.png, id=275, 264.99pt x 128.73094pt>
 File: obrazky-figures/logicalCircuit.png Graphic file (type png)
 
 <use obrazky-figures/logicalCircuit.png>
@@ -1620,14 +1621,14 @@ Overfull \hbox (1.50412pt too wide) in paragraph at lines 163--164
  Bo-olean sa-tis-fia-bi-lity prob-lem, skratka
  []
 
-[9] [10] <obrazky-figures/BDD.png, id=344, 436.63126pt x 239.39438pt>
+[9] [10] <obrazky-figures/BDD.png, id=335, 436.63126pt x 239.39438pt>
 File: obrazky-figures/BDD.png Graphic file (type png)
 
 <use obrazky-figures/BDD.png>
 Package pdftex.def Info: obrazky-figures/BDD.png used on input line 207.
 (pdftex.def)             Requested size: 436.63019pt x 239.39378pt.
 
-<obrazky-figures/BDD-simple.png, id=351, 383.93437pt x 453.94594pt>
+<obrazky-figures/BDD-simple.png, id=342, 383.93437pt x 453.94594pt>
 File: obrazky-figures/BDD-simple.png Graphic file (type png)
 
 <use obrazky-figures/BDD-simple.png>
@@ -1662,7 +1663,7 @@ Overfull \hbox (20.85187pt too wide) in paragraph at lines 432--433
 [][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-<obrazky-figures/DOT.png, id=484, 454.69875pt x 387.69844pt>
+<obrazky-figures/DOT.png, id=475, 454.69875pt x 387.69844pt>
 File: obrazky-figures/DOT.png Graphic file (type png)
 
 <use obrazky-figures/DOT.png>
@@ -1688,14 +1689,14 @@ Overfull \hbox (1.14171pt too wide) in paragraph at lines 574--575
 ][] 
  []
 
-<obrazky-figures/hashmap.png, id=594, 542.025pt x 381.67593pt>
+<obrazky-figures/hashmap.png, id=585, 542.025pt x 381.67593pt>
 File: obrazky-figures/hashmap.png Graphic file (type png)
 
 <use obrazky-figures/hashmap.png>
 Package pdftex.def Info: obrazky-figures/hashmap.png used on input line 590.
 (pdftex.def)             Requested size: 542.02367pt x 381.675pt.
  [27 <./obrazky-figures/hashmap.png>]
-<obrazky-figures/anf.png, id=618, 837.1275pt x 386.19281pt>
+<obrazky-figures/anf.png, id=609, 837.1275pt x 386.19281pt>
 File: obrazky-figures/anf.png Graphic file (type png)
 
 <use obrazky-figures/anf.png>
@@ -1742,7 +1743,7 @@ Package rerunfilecheck Info: File `xvasil02.out' has not changed.
 Here is how much of TeX's memory you used:
  25871 strings out of 493333
  421246 string characters out of 3139197
- 539976 words of memory out of 3000000
+ 539970 words of memory out of 3000000
  28743 multiletter control sequences out of 15000+200000
  115790 words of font info for 94 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1769,9 +1770,9 @@ type1/public/lm/lmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr
  Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9
 /fonts/type1/public/lm/lmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
 ic/lm/lmtt9.pfb>
-Output written on xvasil02.pdf (37 pages, 1248001 bytes).
+Output written on xvasil02.pdf (37 pages, 1245962 bytes).
 PDF statistics:
- 788 PDF objects out of 1000 (max. 8388607)
+ 779 PDF objects out of 1000 (max. 8388607)
  234 named destinations out of 1000 (max. 500000)
  343 words of extra memory for PDF output out of 10000 (max. 10000000)
 

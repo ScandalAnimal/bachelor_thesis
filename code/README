@@ -1,0 +1,21 @@
+Library for manipulation of Boolean functions in Algebraic Normal Form.
+
+For build:
+	- go to folder src and run make under root
+	- it will create shared library - then it can be imported as <anf.h> anywhere on system
+
+File tests.c gives some demo samples of library functions in use. 
+Samples show how to use functions. 
+Last 2 samples show how to use library for representation of feedback shift register.
+
+Tests can be run by typing following:
+	- make
+	- make run
+
+Output of tests is in folder testOutput. Executable is called test.
+
+Directory can be cleaned by typing:
+	- make clean	
+
+
+Library was tested in Ubuntu 64bit with gcc as shown in src/Makefile.
