@@ -29,10 +29,6 @@ Comerford, J.~D.: Affine and general linear equivalences of boolean functions.
   \emph{Information and Control}, ročník~45, č.~2, 1980: s. 156 -- 169, ISSN
   0019-9958.
 
-\bibitem{citation:tiger}
-Coudert, I.; Madre, J.~C.; Touati, H.: \emph{TiGeR Version 1.0 User Guide}.
-  Digital Paris Research Lab, 1993.
-
 \bibitem{citation:courtois}
 Courtois, N.~T.; Bard, G.~V.: Algebraic Cryptanalysis of the Data Encryption
   Standard. \emph{Proceedings of the 11th IMA International Conference on
@@ -55,6 +51,11 @@ Hazewinkel, M.: \emph{Encyclopaedia of Mathematics}. Springer, 1994, ISBN
 Koppelberg, S.: \emph{Handbook of Boolean algebras Volume 1}. North Holland,
   1989, ISBN 044470261X.
 
+\bibitem{citation:guanfeng}
+Lv, G.; Su, K.; Xu, Y.: \emph{CacBDD: A BDD Package with Dynamic Cache
+  Management}. Berlin, Heidelberg: Springer Berlin Heidelberg, 2013, ISBN
+  978-3-642-39799-8, s. 229--234.
+
 \bibitem{citation:gauss}
 Moore, C.; Mertens, S.: \emph{The Nature of Computation}. Oxford University
   Press, 2011, ISBN 0199233217.
@@ -67,11 +68,6 @@ Muller, D.~E.: \emph{Applications of Boolean Algebra to Switching Circuit
 \bibitem{citation:Reed}
 Reed, I.~S.: \emph{A Class of Multiple-Error-Correcting Codes and Their
   Decoding Scheme}. IRE Trans. Information Theory, vol. 4, 1954, pp. 38-42.
-
-\bibitem{citation:cal}
-Sanghavi, J.~V.; Ranjan, R.~K.; Brayton, R.~K.; aj.: \emph{High Performance BDD
-  Package by Exploiting Memory Hierarchy}. DAC '96, ACM, 1996, ISBN
-  0-89791-779-0, 635--640 s.
 
 \bibitem{citation:Feng}
 Wu, C.-K.; Feng, D.: \emph{Boolean Functions and Their Applications in
