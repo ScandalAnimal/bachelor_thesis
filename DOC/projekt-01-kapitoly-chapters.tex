@@ -6,7 +6,7 @@
 	
 	Existujú~\cite{citation:bryant1} viaceré reprezentácie Boolovych funkcií, ktoré sa líšia svojim použitím. Klasické reprezentácie formou pravdivostných tabuliek nachádzajú svoje využitie v~matematike, ale v~informatike sa ukázali ako nevhodné. V~priebehu času boli vytvorené rôzne metódy pre ich symbolizáciu v~počítačovom programe. Najrozšírenejšia z~nich je reprezentácia binárnymi rozhodovacími diagramami (skrátene BDD z~anglického Binary Decision Diagram). Jednou z~výhod reprezentácie pomocou BDD je fakt, že pomocou BDD je možné vytvoriť kanonickú formu funkcie, teda formu, ktorá je jedinečná pre každú Boolovu funkciu. BDD umožňujú veľmi dobre zisťovať ekvivalenciu a~splniteľnosť Boolovych funkcií.
 	
-	Reprezentácia pomocou BDD je v~informatike síce najrozšírenejšia, ale nie je jediná. Táto práca sa zaoberá podrobnejšie reprezentáciou Boolovych funkcií pomocou Algebraickej Normálnej Formy (skrátene ANF). ANF poskytuje výhodu oproti BDD v~tom, že obsahuje len dve logické operácie, logický súčin a~exkluzívny súčet, a~tým pádom sa jej implementácia značne zjednodušuje. Takisto je z~ANF veľmi rýchlo možné zistiť Boolovu hodnotu danej funkcie a~takisto vypočítať jej splniteľnosť.
+	Reprezentácia pomocou BDD je v~informatike síce najrozšírenejšia, ale nie je jediná. Táto práca sa zaoberá podrobnejšie reprezentáciou Boolovych funkcií pomocou Algebraickej Normálnej Formy (skrátene ANF). ANF poskytuje výhodu oproti BDD v~tom, že obsahuje len dve logické operácie, logický súčin a~exkluzívny súčet, a~tým pádom sa jej implementácia značne zjednodušuje. Takisto je z~ANF veľmi rýchlo možné zistiť Boolovu hodnotu danej funkcie a~takisto vypočítať jej splniteľnosť~\cite{citation:janson}.
 	
 	Cieľom bakalárskej práce bolo navrhnúť a implementovať knižnicu pre efektívnu manipuláciu s Boolovymi funkciami v Algebraickej Normálnej Forme. Druhotným cieľom je zistenie a analýza vytvorenej knižnice, a jej porovnanie s existujúcimi riešeniami. Implementovaná knižnica poskytuje prostriedky pre vytváranie a manipuláciu s Boolovymi funkciami. Využíva výhody, ktoré poskytuje ANF a poskytuje alternatívu voči klasickým reprezentáciám založeným na BDD.
 	
@@ -170,12 +170,12 @@ f = x_1 \wedge \neg x_1
 \end{equation}
 
 	Dnes existujú viaceré algoritmy (tiež nazývané v~literatúre SAT solvery), ktoré riešia rôzne druhy SAT problémov, napríklad z~oblasti umelej inteligencie či tvorby logických obvodov.
-
+	
+	Ako vstup pre SAT solver sa bežne používa konjunktívna normálna forma (CNF), ale existujú aj výnimky, ktoré využívajú napríklad DNF. CNF sa primárne využíva z~dôvodu, že každá Boolova funkcia sa dá prepísať do formy CNF v~lineárnom čase. Výsledná funkcia v~CNF si zachováva splniteľnosť z~pôvodnej formy. Je preto dôležité zamerať sa na konverziu ANF na CNF, prípadne ďalšie konverzie. Využitie SAT solverov pre prácu s ANF je možné len vtedy, ak je možné konvertovať danú ANF na CNF, ktorá by bola vstupom pre SAT solver pri zachovaní splniteľnosti.
+	
 	Ak je Boolova funkcia zapísaná vo forme Algebraickej Normálnej Formy, môžeme v~nej vidieť dve časti, na ktoré sa vzťahuje SAT problém. Pre jednotlivé termy, ktoré obsahujú len operáciu logický súčin (sú teda v~disjunktívnej normálnej forme), je zistenie riešenia SAT problému triviálne. Ak majú všetky premenné hodnotu logická 1, je daný term splniteľný, ak aspoň jedna premenná má hodnotu logickej 0, je daný term nesplniteľný. 
 
 	Druhým SAT problémom ANF sú klauzuly exkluzívneho súčtu XOR medzi jednotlivými termami. Keďže funkcia obsahujúca tieto klauzuly sa dá prepísať ako systém lineárnych rovníc modulo 2, je možné tento SAT problém vyriešiť v~kubickom čase pomocou Gaussovej eliminácie~\cite{citation:gauss}.
-
-	Ako vstup pre SAT solver sa bežne používa konjunktívna normálna forma (CNF), ale existujú aj výnimky, ktoré využívajú napríklad DNF. CNF sa primárne využíva z~dôvodu, že každá Boolova funkcia sa dá prepísať do formy CNF v~lineárnom čase. Výsledná funkcia v~CNF si zachováva splniteľnosť z~pôvodnej formy. Je preto dôležité zamerať sa na konverziu ANF na CNF, prípadne ďalšie konverzie.
 	
 \subsection{Konverzie medzi normálnymi formami}
 
@@ -194,9 +194,9 @@ f = x_1 \wedge \neg x_1
 	
 \section{Binárne rozhodovacie diagramy} \label{section:bdds}
 
-	Binárne rozhodovacie diagramy (BDD) sú druhom grafov, ktorá je prevažne využívaná ako dátová štruktúra pre reprezentáciu Boolovych funkcií v~dnešnej dobe. Existujú viaceré implementácie, ktoré sú postavené práve na BDD. Používajú sa na riešenie problémov ekvivalencie a~splniteľnosti výrazov. Sú veľmi dôležité v~oblastiach designu hardvéru a~optimalizácie. Informácie v~tejto podkapitole sú prevzaté prevažne z~\cite{citation:bryant1,citation:bryant2}.
+	Binárne rozhodovacie diagramy (BDD) sú druhom grafov, ktorá je prevažne využívaná ako dátová štruktúra pre reprezentáciu Boolovych funkcií v~dnešnej dobe. Existujú viaceré implementácie, ktoré sú postavené práve na BDD. Používajú sa na riešenie problémov ekvivalencie a~splniteľnosti výrazov. Sú veľmi dôležité v~oblastiach designu hardvéru a~optimalizácie. 
 
-	BDD má podobu orientovaného koreňového acyklického grafu. Skladá sa z~viacerých uzlov. BDD má práve jeden uzol, ktorý nazývame koreňom. Koreň je jediný uzol, ktorý nemá predchodcov. Každý uzol je jeden z~dvoch typov.
+	BDD má podobu orientovaného koreňového acyklického grafu~\cite{citation:bryant2}. Skladá sa z~viacerých uzlov. BDD má práve jeden uzol, ktorý nazývame koreňom. Koreň je jediný uzol, ktorý nemá predchodcov. Každý uzol je jeden z~dvoch typov.
 
 	Uzol môže byť \textit{neterminálny}, to znamená že nemá hodnotu, a~vychádzajú z~neho dva dcérske uzly. Uzly sú označované ako \textit{low} a~\textit{high}, pre odlíšenie jednotlivých podvetví stromu. Hrana smerujúca k~\textit{low} uzlu reprezentuje priradenie hodnoty logickej 0, hrana smerujúca k~uzlu \textit{high} reprezentuje priradenie hodnoty logickej 1. 
 
@@ -227,7 +227,7 @@ f = x_1 \wedge \neg x_1
 	\end{tabular}
 \end{table}
 
-	V~praxi sa často namiesto klasických BDD využívajú redukované binárne rozhodovacie diagramy ROBDD (Reduced Ordered Binary Decision Diagram). Sú špecifické tým, že všetky izomorfické podgrafy sú spojené do jedného. Izomorfizmus dvoch grafov znamená, že grafy sú identické, ale len inak usporiadané. Pre ROBDD takisto platí, že ak uzol má dva izomorfické podstromy, tento uzol je z~grafu v~rámci minimalizácie odstránený. Príklad ROBBD, ktorý je redukovaný z~grafu na Obr.~\ref{picture:BDD} je na Obr.~\ref{picture:BDD-simple}.
+	V~praxi sa často namiesto klasických BDD využívajú redukované binárne rozhodovacie diagramy ROBDD (Reduced Ordered Binary Decision Diagram). Sú špecifické tým, že všetky izomorfické podgrafy sú spojené do jedného~\cite{citation:bryant1}. Izomorfizmus dvoch grafov znamená, že grafy sú identické, ale len inak usporiadané. Pre ROBDD takisto platí, že ak uzol má dva izomorfické podstromy, tento uzol je z~grafu v~rámci minimalizácie odstránený. Príklad ROBBD, ktorý je redukovaný z~grafu na Obr.~\ref{picture:BDD} je na Obr.~\ref{picture:BDD-simple}.
 
 \begin{figure}[htb]
 	\centering
@@ -242,7 +242,7 @@ f = x_1 \wedge \neg x_1
 
 \chapter{Knižnice pre reprezentáciu Boolovych funkcií} \label{chapter:libraries}
 
-	Existujú viaceré knižnice vytvorené za účelom manipulácie s~Boolovymi funkciami. Nasledujúca kapitola sa zaoberá niektorými vybranými, hlavne tými, ktoré využívajú binárne rozhodovacie stromy (BDD).
+	Existujú viaceré knižnice vytvorené za účelom manipulácie s~Boolovymi funkciami. Nasledujúca kapitola sa zaoberá niektorými vybranými, hlavne tými, ktoré využívajú binárne rozhodovacie stromy (BDD). Okrem toho existujú aj ďalšie implementácie, ktoré nevyužívajú BDD, ale sú založené napríklad na SAT. Tie sa využívajú v oblastiach overovania modelov, a vo väčšine prípadov majú vyššie pamäťové a časové nároky.
 
 \section{Colorado University Decision Diagram Package - CUDD}
 
@@ -521,7 +521,7 @@ x_1 \wedge x_1 \wedge x_1 \wedge x_1 = x_1
 
 	Knižnica je implementovaná a~testovaná na systéme UNIX, konkrétne Ubuntu verzie 16.04, takže obsahuje prekladový súbor \texttt{makefile} len pre túto platformu. V~aktuálnom stave sa knižnica vytvára ako zdieľaná, je teda pri preklade zdrojových súborov mať administrátorské práva, aby bolo možné nakopírovať príslušné súbory na patričné miesta v~systéme. Používateľovi ale nič nebráni v~tom nevyužiť poskytnutý \texttt{makefile} a~používať súbory knižnice lokálne ako nezdieľanú knižnicu.
 
-	Hlavná logika čo sa týka práce s~hashovacou tabuľkou sa nachádza v~súbore \texttt{anfhashmap.c}. Nachádzajú sa tu funkcie, ktoré sprístupňujú vysoko optimalizované funkcie z~knižnice UTHash pre použitie v~programe. Dostupné sú funkcie pre vytvorenie a~rušenie hashovacej tabuľky, pre vkladanie, výber a~odoberanie záznamov. Okrem toho obsahuje funkcie pre výpis obsahu hashovacej tabuľky do konzoly a~takisto pre vykreslenie do grafu vo formáte DOT. 	
+	Hlavná logika čo sa týka práce s~hashovacou tabuľkou sa nachádza v~súbore \texttt{anfhashmap.c}. Nachádzajú sa tu funkcie, ktoré sprístupňujú funkcie z~knižnice UTHash pre použitie v~programe, ktoré sú vysoko optimalizované, napríklad preto, že sú implementované ako makrá. Knižnica UTHash pracuje veľmi dobre s pamäťou, za predpokladu, že si používateľ zvolí správny typ kľúča pre vybranú hashovaciu funkciu. Dostupné sú funkcie pre vytvorenie a~rušenie hashovacej tabuľky, pre vkladanie, výber a~odoberanie záznamov. Okrem toho obsahuje funkcie pre výpis obsahu hashovacej tabuľky do konzoly a~takisto pre vykreslenie do grafu vo formáte DOT. 	
 
 	Reprezentáciu premenných a~termov poskytujú súbory \texttt{anfnode.c} a~\texttt{anfvariable.c} a~ich príslušné hlavičkové súbory. Používateľ má možnosť vytvárania premenných a~termov, pridania a~odoberania premenných do/z~termu a~takisto vypísanie obsahu termu do konzoly. 
 
