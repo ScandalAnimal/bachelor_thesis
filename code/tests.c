@@ -411,7 +411,7 @@ tAnf* evaluateBooleanFunction(tAnf* indexes[], int testNumber, int *helperFuncti
         char *x;
         x = malloc(sizeof(char) * KEY_MAX_LENGTH);
         snprintf(x, KEY_MAX_LENGTH, "%s%d", HELPER_PREFIX, 5);
-        printf("X: %s\n", x);
+        // printf("X: %s\n", x);
 
         tVar test;
         test.name = "test";
@@ -421,7 +421,7 @@ tAnf* evaluateBooleanFunction(tAnf* indexes[], int testNumber, int *helperFuncti
 
         free(x);
 
-        printf("Var: %s, %d, %s\n", test.name, test.value, test.origin);
+        // printf("Var: %s, %d, %s\n", test.name, test.value, test.origin);
 
         free(test.origin);
 
@@ -447,9 +447,9 @@ tAnf* evaluateBooleanFunction(tAnf* indexes[], int testNumber, int *helperFuncti
             createVarWithOrigin(help2, indexes[2]->value, origin2)
         };
 
-        // free(help1);
-        // free(help2);
-        printf("Var: %s, %d, %s\n", varArray[0].name, varArray[0].value, varArray[0].origin);
+        free(help1);
+        free(help2);
+        // printf("Var: %s, %d, %s\n", varArray[0].name, varArray[0].value, varArray[0].origin);
      
         newNodeWithVarsInAnf(newA0temp, varArray, ARRAY_SIZE(varArray));
 
@@ -498,11 +498,6 @@ int shiftRegisterTest(char* graphOutput) {
         newNodeWithOneVarInAnf(reg[i], originalValues[i]);
     }
 
-    // printAnf(reg[0]);
-    // printAnf(reg[1]);
-    // printAnf(reg[2]);
-    // printAnf(reg[3]);
-
     for (int count = 0; count < 20; count++) {
 
         int x = 0;
@@ -514,7 +509,6 @@ int shiftRegisterTest(char* graphOutput) {
         }
 
         reg[0] = newA0;
-        printAnf(reg[0]);
 
         if ((reg[0]->value == false) && 
             (reg[1]->value == false) && 
@@ -526,10 +520,11 @@ int shiftRegisterTest(char* graphOutput) {
 
     }
 
+    // printAnf(reg[0]);
     // printAnf(reg[1]);
     // printAnf(reg[2]);
     // printAnf(reg[3]);    
-    printHashMap(&(reg[0]->hashMap));
+    // printHashMap(&(reg[0]->hashMap));
 
     for (int i = 0; i < registerLength; i++) {
         freeAnf(reg[i]);

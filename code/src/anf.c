@@ -178,10 +178,11 @@ void* newNodeWithVarsInAnf(tAnf* anf, tVar variables[], int varCount) {
         return NULL;
     }
 
+    free(varsWithoutDuplicity);
+
     if (!(anf->nodeList = realloc(anf->nodeList, sizeof(tNode *) * (anf->nodeCount + 1)))) {
         fprintf(stderr, "%d\n", ERR_MALLOC);
         freeNode(node);
-        free(varsWithoutDuplicity);
         return NULL;
     }
 
@@ -189,7 +190,7 @@ void* newNodeWithVarsInAnf(tAnf* anf, tVar variables[], int varCount) {
     setAnfValue(anf, node->value);
 
     anf->nodeCount++;    
-    free(varsWithoutDuplicity);
+
     return node;
 }
 

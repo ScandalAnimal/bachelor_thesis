@@ -38,7 +38,7 @@
 
 	Je vidieť že počet možných kombinácií prudko narastá s~počtom premenných, a~teda efektívna reprezentácia je nutnosťou.	
 	
-	V mnohých aplikáciách sa pre predstavu hodnôt množiny $\mathcal{B}$ namiesto dvojice \{0,1\} používa iná dvojica, napríklad \{true,false\}, \{1,-1\}, \{on,off\}, \{áno,nie\}, vždy to ale označuje navzájom opačné hodnoty. 
+	V~mnohých aplikáciách sa pre predstavu hodnôt množiny $\mathcal{B}$ namiesto dvojice \{0,1\} používa iná dvojica, napríklad \{true,false\}, \{1,-1\}, \{on,off\}, \{áno,nie\}, vždy to ale označuje navzájom opačné hodnoty. 
 	
 	Množina $\mathcal{B}$ spolu so základnými Boolovymi operáciami konjunkciou $\wedge$, disjunkciou $\vee$ a~negáciou $\neg$ tvorí Boolovu algebru. Tieto tri operácie majú podobne ako dvojica \{0,1\} viacero používaných zápisov, napríklad \{$\cap, \cup, -$\} alebo \{$+, \cdot, -$\}~\cite{citation:Koppelberg}. 
 	
@@ -101,8 +101,13 @@
 	Upravenou formou pravdivostnej tabuľky je Karnaughova mapa. Je to forma zápisu, ktorá prevádza n-rozmernú Boolovu funkciu do dvojrozmernej. Jej výhodou je, že sa pomocou nej dá funkcia pekne vizualizovať, do 5 premenných poskytuje stále dobrú predstavu. Využíva sa hlavne pri minimalizácii funkcií. Je vhodná pre ľudskú predstavu funkcie, pre počítač existujú efektívnejšie alternatívy. Príklad Karnaughovej mapy sa nachádza na Obr.~\ref{picture:KarnaughMap},
 \begin{figure}[htb]
 	\centering
+<<<<<<< HEAD
 	{\includegraphics{obrazky-figures/KarnaughMap.png}}
 	\caption{Príklad Karnaughovej mapy pre funkciu $f = x_2 \vee (x_1 \wedge \neg x_3)$.}
+=======
+	{\includegraphics{obrazky-figures/KarnaughMap}}
+	\caption{Príklad Karnaughovej mapy pre funkciu $f = B \vee (A \wedge \neg C)$.}
+>>>>>>> 4047b29d657e89d2457e50f634fba7d8f50cd86f
 	\label{picture:KarnaughMap}
 \end{figure}
 	zobrazuje Karnaughovu mapu pre funkciu $f = x_2 \vee (x_1 \wedge \neg x_3)$.
@@ -110,8 +115,13 @@
 	Ďalším zo zápisov je logický obvod. Ide o~schému, ktorá graficky zobrazuje Boolovu funkciu. Tento zápis je vhodnejší pre fyzikálne zamerané úlohy, alebo pre pokročilejšie úlohy, ktoré obsahujú zložitejšie funkcie, a~tie sa dajú prehľadne zobraziť logickým obvodom. Logický obvod na rozdiel od predošlých reprezentácií neukazuje všetky možné kombinácie hodnôt, ale len štruktúru danej funkcie. Dá sa prehľadne použiť aj pre reprezentáciu funkcie o~väčšom množstve premenných, čo ostatné reprezentácie nedokážu. Príklad zobrazenia funkcie $(x_1 \wedge x_2) \vee x_3$ vidíme na Obr.~\ref{picture:logicalCircuit}.
 \begin{figure}[htb]
 	\centering
+<<<<<<< HEAD
 	{\includegraphics{obrazky-figures/logicalCircuit.png}}
 	\caption{Príklad logického obvodu funkcie $(x_1 \wedge x_2) \vee x_3$.}
+=======
+	{\includegraphics{obrazky-figures/logicalCircuit}}
+	\caption{Príklad logického obvodu funkcie $(A \wedge B) \vee C$.}
+>>>>>>> 4047b29d657e89d2457e50f634fba7d8f50cd86f
 	\label{picture:logicalCircuit}
 \end{figure}
 
@@ -174,7 +184,7 @@ f = x_1 \wedge \neg x_1
 
 	Druhým SAT problémom ANF sú klauzuly exkluzívneho súčtu XOR medzi jednotlivými termami. Keďže funkcia obsahujúca tieto klauzuly sa dá prepísať ako systém lineárnych rovníc modulo 2, je možné tento SAT problém vyriešiť v~kubickom čase pomocou Gaussovej eliminácie~\cite{citation:gauss}.
 
-	Ako vstup pre SAT solver sa bežne používa konjunktívna normálna forma (CNF), ale existujú aj výnimky, ktoré využívajú napríklad DNF. CNF sa primárne využíva z dôvodu, že každá Boolova funkcia sa dá prepísať do formy CNF v lineárnom čase. Výsledná funkcia v CNF si zachováva splniteľnosť z pôvodnej formy. Je preto dôležité zamerať sa na konverziu ANF na CNF, prípadne ďalšie konverzie.
+	Ako vstup pre SAT solver sa bežne používa konjunktívna normálna forma (CNF), ale existujú aj výnimky, ktoré využívajú napríklad DNF. CNF sa primárne využíva z~dôvodu, že každá Boolova funkcia sa dá prepísať do formy CNF v~lineárnom čase. Výsledná funkcia v~CNF si zachováva splniteľnosť z~pôvodnej formy. Je preto dôležité zamerať sa na konverziu ANF na CNF, prípadne ďalšie konverzie.
 	
 \subsection{Konverzie medzi normálnymi formami}
 
@@ -204,7 +214,7 @@ f = x_1 \wedge \neg x_1
 \begin{figure}[htb]
 	\centering
 	\scalebox{0.8}
-	{\includegraphics{obrazky-figures/BDD.png}}
+	{\includegraphics{obrazky-figures/BDD}}
 	\caption{Príklad binárneho rozhodovacieho diagramu. Hodnoty uzlov pochádzajú z~pravdivostnej tabuľky v~Tabuľke~\ref{table:BDD}.}
 	\label{picture:BDD}
 \end{figure}
@@ -231,7 +241,7 @@ f = x_1 \wedge \neg x_1
 \begin{figure}[htb]
 	\centering
 	\scalebox{0.50}
-	{\includegraphics{obrazky-figures/BDD-simple.png}}
+	{\includegraphics{obrazky-figures/BDD-simple}}
 	\caption{Redukovaný binárny rozhodovací diagram z~BDD na Obr.~\ref{picture:BDD}.}
 	\label{picture:BDD-simple}
 \end{figure}
@@ -245,21 +255,21 @@ f = x_1 \wedge \neg x_1
 
 \section{Colorado University Decision Diagram Package - CUDD}
 
-	CUDD je verejne dostupná knižnica\footnote{\url{http://vlsi.colorado.edu/~fabio/}}, ktorej vývoj sa začal už v 70. rokoch a~naďalej pokračuje. Je založená na prehľadávaní do hĺbky.
+	CUDD je verejne dostupná knižnica\footnote{\url{http://vlsi.colorado.edu/~fabio/}}, ktorej vývoj sa začal už v~70. rokoch a~naďalej pokračuje. Je založená na prehľadávaní do hĺbky.
 
 	Balíček je možné využívať ako tzv. \textit{black box}, teda používať len exportované funkcie, ale aj ako tzv. \textit{clean box}, kde si programátor vie dodať vlastné doplňujúce funkcie.
 
-	Je napísaná v jazyku C a~poskytuje funkcie pre manipuláciu s~BDD, s~algebraickými rozhodovacími diagramami (ADD, MTBDD) a~s~diagramami s~potlačenou nulou (ZDD). Takisto poskytuje možnosť prevádzať medzi jednotlivými typmi diagramov.
+	Je napísaná v~jazyku C a~poskytuje funkcie pre manipuláciu s~BDD, s~algebraickými rozhodovacími diagramami (ADD, MTBDD) a~s~diagramami s~potlačenou nulou (ZDD). Takisto poskytuje možnosť prevádzať medzi jednotlivými typmi diagramov.
 
 	CUDD využíva ukazovatele na uzly BDD. Udržuje si počítadlo referencií. Počet premenných ovplyvňuje počet tabuliek. Knižnica využíva heuristiku, ktorá sprístupní tabuľku výpočtov len vtedy, ak aspoň jeden argument má hodnotu počítadla referencií väčšiu než jedna.
 
-	V CUDD existuje veľmi efektívny správca pamäte. Volá sa len vtedy, ak využitie pamäte prekročí určitú hranicu. Garbage Collector podľa počítadla referencií maže \textit{mŕtve uzly}, teda uzly, ktoré majú hodnotu 0 v~počítadle referencií. 
+	V~CUDD existuje veľmi efektívny správca pamäte. Volá sa len vtedy, ak využitie pamäte prekročí určitú hranicu. Garbage Collector podľa počítadla referencií maže \textit{mŕtve uzly}, teda uzly, ktoré majú hodnotu 0 v~počítadle referencií. 
 
 	Ďalšie informácie o~knižnici sa dajú dohľadať v~manuáli\footnote{\url{http://vlsi.colorado.edu/~fabio/CUDD/cudd.pdf}}.
 
 \section{CacBDD}
 
-	Knižnica CacBDD je verejne dostupná\footnote{\url{http://www.kailesu.net/CacBDD/}} podobne ako knižnica CUDD, na rozdiel od nej je ale implementovaná v jazyku C++. Je založená na prehľadávaní do hĺbky.
+	Knižnica CacBDD je verejne dostupná\footnote{\url{http://www.kailesu.net/CacBDD/}} podobne ako knižnica CUDD, na rozdiel od nej je ale implementovaná v~jazyku C++. Je založená na prehľadávaní do hĺbky.
 
 	Poskytuje základné operácie pre manipuláciu s~BDD. BDD uzly sú uložené v~jednom poli a~využíva indexy uzlov v~tomto poli namiesto ukazateľov na uzly, ako tomu je v~CUDD. Nevyužíva počítadlo referencií na uzly. Garbage collector je volaný len ak je vyčerpaná dostupná pamäť. Funguje inak ako v~prípade CUDD, prechádza všetky uzly v~poli, a~tie na ktoré sa nikto neodkazuje a~ani nie sú koreňmi, označí ako voľné uzly, nemaže ich a~tým šetrí výpočtový čas. Knižnica využíva dynamické zväčšovanie tabuľky výpočtov podľa potreby, ak dôjde počet voľných miest. V~knižnici je veľmi dobre implementované ukladanie medzivýsledkov, čo takisto pridáva na rýchlosti.
 
@@ -271,11 +281,11 @@ f = x_1 \wedge \neg x_1
 
 	Obsahuje vlastný Garbage Collector, cache pamäť na uchovanie medzivýsledkov. Takmer každé nastavenie činnosti sa dá ručne nastaviť, ale obsahuje aj základné nastavenia pre užívateľov, ktorí nastavenia nechcú modifikovať.
 
-	Knižnica obsahuje veľké množstvo funkcií a~operácií, ktoré sa dajú použiť na prácu s~Boolovymi funkciami. Všetky výsledky v~BuDDy sú reprezentované vektormi, a~tým pádom sa s~nimi v C++ ľahšie manipuluje.
+	Knižnica obsahuje veľké množstvo funkcií a~operácií, ktoré sa dajú použiť na prácu s~Boolovymi funkciami. Všetky výsledky v~BuDDy sú reprezentované vektormi, a~tým pádom sa s~nimi v~C++ ľahšie manipuluje.
 
 \section{BCL - Class Library for Boolean Function Manipulation}
 
-	Knižnica\footnote{\url{http://dispatcher.swu.bg/BCL/}} pre manipuláciu s~Boolovymi funkciami vytvorená v~jazyku C\#, je vhodná pre využitie v jazykoch z~rodiny .NET Framework. 
+	Knižnica\footnote{\url{http://dispatcher.swu.bg/BCL/}} pre manipuláciu s~Boolovymi funkciami vytvorená v~jazyku C\#, je vhodná pre využitie v~jazykoch z~rodiny .NET Framework. 
 
 	Obsahuje viaceré interné reprezentácie Boolovych funkcií, ako sú pravdivostné tabuľky, Boolove výrazy a~BDD. Každá z~reprezentácií obsahuje metódy na zjednodušenie funkcie, vytvorenie novej funkcie aplikovaním operátoru na dve funkcie, na nahradenie premennej konštantou a~pre nahradenie premennej inou funkciou.
 
@@ -334,9 +344,9 @@ f = x_1 \wedge \neg x_1
 
 	Na základe dvoch vyššie spomenutých porovnaní boli vyskúšané viaceré varianty hashovacej tabuľky. Niektoré knižnice, ktoré si viedli veľmi dobre v~daných testoch, sú optimalizované na vysokej úrovni, ale chýba im prehľadnosť a~príklady praktického využitia (konkrétne xxHash, ktorý si viedol výborne v~teste SMHasher). Preto sme sa rozhodli pre využitie knižnice, ktorá síce nebude vo všetkych rebríčkoch na najvyšších pozíciách, ale bude si viesť nadpriemerne, pričom bude poskytovať vyššiu prehľadnosť kódu a~dobrú dokumentáciu. Podrobnejšie skúšané boli knižnice UTHash\footnote{\url{http://troydhanson.github.io/uthash/}} a~Judy\footnote{\url{http://judy.sourceforge.net/}}, pričom ako finálna knižnica bola zvolená práve knižnica UTHash. Jej hlavnou výhodou je, že je to len jediný hlavičkový súbor, obsahuje množstvo testovacích scenárov a~v~testoch si viedla na dobrej úrovni. Ďalším dôvodom, prečo sme si zvolili práve UTHash, je možnosť výberu ľubovoľného dátového typu pre kľúč, a~takisto aj hodnoty hashovacej tabuľky, čo nie je bežné pri všetkých ostatných implementáciách hashovacej tabuľky.
 
-	Keď chceme využívať možnosti knižnice UTHash, je potrebné niečím naznačiť, ktorá štruktúra v~programe má byť hashovateľná do hashovacej tabuľky. V~UTHash sa to dosahuje pridaním jedného riadku do definície štruktúry. V tomto duchu teda bude pozmenený návrh štruktúry premennej zo~Zdrojového kódu~\ref{listing:var} tak, ako je naznačené v~Zdrojovom kóde~\ref{listing:varUThash}.
+	Keď chceme využívať možnosti knižnice UTHash, je potrebné niečím naznačiť, ktorá štruktúra v~programe má byť hashovateľná do hashovacej tabuľky. V~UTHash sa to dosahuje pridaním jedného riadku do definície štruktúry. V~tomto duchu teda bude pozmenený návrh štruktúry premennej zo~Zdrojového kódu~\ref{listing:var} tak, ako je naznačené v~Zdrojovom kóde~\ref{listing:varUThash}.
 
-\begin{lstlisting}[caption={Návrh štruktúry reprezentujúcej premennú obohatený o pole, ktoré povolí hashovanie pomocou knižnice UTHash.}, label=listing:varUThash, language=C, frame=tb]
+\begin{lstlisting}[caption={Návrh štruktúry reprezentujúcej premennú obohatený o~pole, ktoré povolí hashovanie pomocou knižnice UTHash.}, label=listing:varUThash, language=C, frame=tb]
   typedef struct variable {
     char* name;
     bool value;
@@ -350,7 +360,11 @@ f = x_1 \wedge \neg x_1
 
 \section{Reprezentácia termov vo funkcii}
 
+<<<<<<< HEAD
 	Každá Boolova funkcia v~ANF sa skladá z~0 až m termov, ktoré obsahujú premenné. Premenné v~terme sú medzi sebou prepojené operáciou logický súčin AND. Každý term by mal v~sebe obsahovať informácie, ktoré premenné obsahuje a~aký je ich celkový počet. Keďže medzi všetkým premennými je rovnaká operácia, nie je potrebné si uchovávať informáciu o~tom, na ktorej pozícií v terme sa nachádza ktorá premenná. Je teda možné premenné reprezentovať jednoduchým zoznamom alebo poľom. 
+=======
+	Každá Boolova funkcia v~ANF sa skladá z~0 až n termov, ktoré obsahujú premenné. Premenné v~terme sú medzi sebou prepojené operáciou logický súčin AND. Každý term by mal v~sebe obsahovať informácie, ktoré premenné obsahuje a~koľko ich je dokopy. Keďže medzi všetkým premennými je rovnaká operácia, nie je potrebné si uchovávať informáciu o~tom, na ktorej pozícií v~terme sa nachádza ktorá premenná. Je teda možné premenné reprezentovať jednoduchým zoznamom alebo poľom. 
+>>>>>>> 4047b29d657e89d2457e50f634fba7d8f50cd86f
 
 	Premenné by malo byť do termu možné dynamicky vkladať, takisto ich z~neho odoberať. Term môže obsahovať jednu premennú aj viackrát, prípadne žiadne premenné.
 
@@ -375,7 +389,7 @@ f = x_1 \wedge \neg x_1
 	Okrem spomenutých je potrebné v~štruktúre zachovať informáciu o~aktuálnej hodnote celej funkcie, vypočítanú vykonaním operácie XOR nad jednotlivými termami funkcie. Hodnota sa musí meniť správne podľa toho, ako sa manipuluje s~termami. Či už sa termy pridávajú alebo odoberajú, alebo sa menia hodnoty premenných, hodnota celej funkcie musí byť uchovaná správne po celý čas. 
 
 \vspace*{0.5\baselineskip}
-\begin{lstlisting}[caption={Návrh štruktúry Boolovej funkcie v ANF, obsahuje zoznam termov, ich celkový počet, hashovaciu tabuľky, v ktorej sú uchované hodnoty premenných a celkovú hodnotu funkcie.}, label=listing:anf, language=C, frame=tb]
+\begin{lstlisting}[caption={Návrh štruktúry Boolovej funkcie v~ANF, obsahuje zoznam termov, ich celkový počet, hashovaciu tabuľky, v~ktorej sú uchované hodnoty premenných a celkovú hodnotu funkcie.}, label=listing:anf, language=C, frame=tb]
   typedef struct anf {
     tNode** nodeList;
     tHashMap* hashMap;
@@ -416,18 +430,18 @@ A \wedge A \wedge A \wedge A = A
 
 	Podobne aj pri mazaní premennej z~termu je najprv vykonaná kontrola na rovnosť hodnoty termu s~hodnotou logická 1. Ak term obsahuje nejaké premenné a~má hodnotu logická 1, znamená to že všetky jeho premenné majú hodnotu logická 1, teda aj naša mazaná, a~preto nie je potrebné hodnotu termu znova prepočítavať.
 
-	V neposlednom rade je optimalizáciou aj to, že zoznam premenných v~terme (respektíve zoznam termov v~štruktúre reprezentujúcej celú funkciu v ANF) obsahuje len odkazy na dané štruktúry, nie ich kompletný obsah.
+	V~neposlednom rade je optimalizáciou aj to, že zoznam premenných v~terme (respektíve zoznam termov v~štruktúre reprezentujúcej celú funkciu v~ANF) obsahuje len odkazy na dané štruktúry, nie ich kompletný obsah.
 
 \section{Grafické zobrazenie funkcií} \label{section:conceptGraphs}
 
-	Jednou z~požiadaviek na knižnicu je aj možnosť grafického zobrazenia vytvorených funkcií. Takýto graf by mal obsahovať všetky termy pre danú funkciu a~takisto správne naznačovať, ktoré premenné sa nachádzajú v ktorých termoch. 	  
+	Jednou z~požiadaviek na knižnicu je aj možnosť grafického zobrazenia vytvorených funkcií. Takýto graf by mal obsahovať všetky termy pre danú funkciu a~takisto správne naznačovať, ktoré premenné sa nachádzajú v~ktorých termoch. 	  
 
 	Existuje viacero prístupov, ako pristupovať k~reprezentácii štruktúr grafom. Spomenieme si dva hlavné formáty: textový formát a~XML. 
 
 	Zástupcom formátov založených na XML je napríklad DGML\footnote{\url{https://msdn.microsoft.com/en-us/library/dn966108.aspx}}. Tento formát bol vyvinutý Microsoftom a~je používaný pri vizualizácií štruktúr vo Visual Studiu. Poskytuje možnosť tvoriť orientované aj neorientované grafy, ako aj napríklad možnosť anotovať jednotlivé prvky grafu. Príklad DGML môžeme vidieť v~Zdrojovom kóde~\ref{listing:dgml}.
 	
 \newpage	
-\begin{lstlisting}[caption={Ukážka jednoduchého kódu vo formáte DGML, ktorý sa používa na vizualizáciu štruktúr. Obsahuje elementy pre jednotlivé uzly a prepojenia v grafe, takisto aj pre vlastnosti jednotlivých uzlov.}, label=listing:dgml, language=XML, frame=tb]
+\begin{lstlisting}[caption={Ukážka jednoduchého kódu vo formáte DGML, ktorý sa používa na vizualizáciu štruktúr. Obsahuje elementy pre jednotlivé uzly a prepojenia v~grafe, takisto aj pre vlastnosti jednotlivých uzlov.}, label=listing:dgml, language=XML, frame=tb]
   <?xml version='1.0' encoding='utf-8'?>
     <DirectedGraph xmlns="http://schemas.microsoft.com/vs/2009/dgml">
       <Nodes>
@@ -463,25 +477,29 @@ A \wedge A \wedge A \wedge A = A
 \begin{figure}[h]
 	\centering
 	\scalebox{0.55}
-	{\includegraphics{obrazky-figures/DOT.png}}
+	{\includegraphics{obrazky-figures/DOT}}
 	\caption{Príklad grafu vytvoreného cez formát DOT zo Zdrojového kódu~\ref{listing:dot}.}
 	\label{image:dot}
 \end{figure}	
 
-	Pre jednoduchosť formátu DOT, a~takisto veľkej možnosti si ho vyskúšať online v rôznych nástrojoch, bol nakoniec práve tento formát zvolený ako vhodný pre reprezentáciu Boolovych funkcií v~implementovanej knižnici. 
+	Pre jednoduchosť formátu DOT, a~takisto veľkej možnosti si ho vyskúšať online v~rôznych nástrojoch, bol nakoniec práve tento formát zvolený ako vhodný pre reprezentáciu Boolovych funkcií v~implementovanej knižnici. 
 
 	Okrem formátu pre tvorenie grafov knižnica bude obsahovať aj možnosť vypísania obsahu danej Boolovej funkcie do príkazového riadku v~jednoduchom textovom symbolickom formáte. Táto možnosť bude slúžiť pre používateľov, ktorý nemajú prístup k~žiadnemu nástroju pre vykreslenie obrázku vo formáte DOT.
 
 
 \chapter{Implementácia navrhovaného riešenia a použité algoritmy} \label{chapter:impl}
 
-	Táto kapitola popisuje spôsob implementácie knižnice podľa návrhu z kapitoly~\ref{chapter:concept}. Popisuje súborovú štruktúru a~konkrétny obsah poskytovaných funkcií. Kompletný zoznam a~popis funkcií sa nachádza na priloženom CD v~dokumentácií, ako je popísané v~prílohe~\ref{appendix:doc}, v~tejto kapitole si popíšeme tie zaujímavejšie časti implementácie.
+	Táto kapitola popisuje spôsob implementácie knižnice podľa návrhu z~kapitoly~\ref{chapter:concept}. Popisuje súborovú štruktúru a~konkrétny obsah poskytovaných funkcií. Kompletný zoznam a~popis funkcií sa nachádza na priloženom CD v~dokumentácií, ako je popísané v~prílohe~\ref{appendix:doc}, v~tejto kapitole si popíšeme tie zaujímavejšie časti implementácie.
 
 	Knižnica obsahuje viacero hlavičkových súborov, ktoré obsahujú popis štruktúr, ako boli načrtnuté v~kapitole~\ref{chapter:concept}. Takisto hlavičkové súbory obsahujú deklarácie všetkých funkcií, ktoré majú byť dostupné pre používateľa knižnice. K~väčšine hlavičkových súborov existuje aj súbor s~príponou \textit{.c}, ktorý obsahuje implementácie funkcií deklarovaných v~hlavičkovom súbore, a~okrem toho aj pomocné funkcie, ktoré pomáhajú prehľadnejšiemu zdrojovému kódu, ale nemajú byť dostupné pre volanie programátorom.
 
 	Okrem zdrojových súborov sa v~balíčku nachádza aj testovací súbor \texttt{tests.c}, ktorý obsahuje niekoľko testov pre overenie funkčnosti vačšiny funkcií poskytovaných knižnicou. Tento testovací súbor takisto ukazuje možné použitie knižnice a~tiež ukážku vykreslenia grafu Boolovej funkcie v~ANF do súboru vo formáte DOT.
 
+<<<<<<< HEAD
 	V knižnici sa okrem autorských súborov nachádza aj hlavičkový súbor \texttt{uthash.h}. Tento súbor je vytiahnutý z~balíčka UTHash\footnote{\url{https://troydhanson.github.io/uthash/}} a~je bezo zmeny používaný. Súbor bol vybraný, namiesto využitia kompletného balíčka UTHash preto, že v~našej knižnici nepotrebujeme ostatné štruktúry a~funkcie dostupné z~ostatných súborov z~UTHash, vystačíme si len s~týmto jedným súborom. 	
+=======
+	V~knižnici sa okrem autorských súborov nachádza aj hlavičkový súbor \texttt{uthash.h}, v~súborovej štruktúre knižnice sa nachádza v~umiestnení \texttt{./lib/uthash.h}. Tento súbor je vytiahnutý z~balíčka UTHash\footnote{\url{https://troydhanson.github.io/uthash/}} a~je bezo zmeny používaný. Súbor bol vybraný, namiesto využitia kompletného balíčka UTHash preto, že v~našej knižnici nepotrebujeme ostatné štruktúry a~funkcie dostupné z~ostatných súborov z~UTHash, vystačíme si len s~týmto jedným súborom. 	
+>>>>>>> 4047b29d657e89d2457e50f634fba7d8f50cd86f
 
 	Knižnica je implementovaná a~testovaná na systéme UNIX, konkrétne Ubuntu verzie 16.04, takže obsahuje prekladový súbor \texttt{makefile} len pre túto platformu. V~aktuálnom stave sa knižnica vytvára ako zdieľaná, je teda pri preklade zdrojových súborov mať administrátorské práva, aby bolo možné nakopírovať príslušné súbory na patričné miesta v~systéme. Používateľovi ale nič nebráni v~tom nevyužiť poskytnutý \texttt{makefile} a~používať súbory knižnice lokálne ako nezdieľanú knižnicu.
 
@@ -493,9 +511,9 @@ A \wedge A \wedge A \wedge A = A
 
 	Aktuálna Boolova hodnota daného termu sa vypočíta po vložení novej premennej či premenných, a~takisto pri mazaní premennej. Algoritmus pre vkladanie je naznačený v~Algoritme~\ref{alg:new_node_value}. Ak sa do termu vkladá prvá hodnota, nevykonáva sa žiadna operácia a~rovno sa vkladaná hodnota priradí do hodnoty celého termu. Pri vkladaní ďalších hodnot sa kontroluje, či aktuálna hodnota termu nie je logická 0. Ak by hodnota termu bola logická 0, nie je potrebné vypočítavať novú hodnotu, pretože výsledok operácie logický súčin AND s~hodnotou logická 0 a~akoukoľvek inou hodnotou bude vždy logická 0. Iba ak je aktuálna hodnota termu logická 1, vtedy sa vykonáva operácia AND s~aktuálnou a~novou vkladanou hodnotou a~výsledok sa uloží do hodnoty termu. 
 
-	Mazanie premennej z~termu je založené na inom princípe. Tento algoritmus sa nachádza v~Algoritme~\ref{alg:delete_node_value}. Ak má mazaná premenná hodnotu logická 1 a~aj celý term má hodnotu logická 1, za podmienky že po mazaní bude mať term aspoň jednu ďalšiu premennú, nie je potrebné znovu prepočítavať hodnotu termu. V prípade, že mazaná premenná má hodnotu logická 0 a~po zmazaní bude mať term aspoň jednu ďalšiu premennú, je potrebné znovu prepočítať hodnotu termu pre každú premennú, ktorá v~terme zostala podľa Algoritmu~\ref{alg:new_node_value}. Ak mažeme poslednú premennú termu, je hodnota nastavená rovno na logickú 0.
+	Mazanie premennej z~termu je založené na inom princípe. Tento algoritmus sa nachádza v~Algoritme~\ref{alg:delete_node_value}. Ak má mazaná premenná hodnotu logická 1 a~aj celý term má hodnotu logická 1, za podmienky že po mazaní bude mať term aspoň jednu ďalšiu premennú, nie je potrebné znovu prepočítavať hodnotu termu. V~prípade, že mazaná premenná má hodnotu logická 0 a~po zmazaní bude mať term aspoň jednu ďalšiu premennú, je potrebné znovu prepočítať hodnotu termu pre každú premennú, ktorá v~terme zostala podľa Algoritmu~\ref{alg:new_node_value}. Ak mažeme poslednú premennú termu, je hodnota nastavená rovno na logickú 0.
 
-\section{Možnosti práce s Boolovymi funkciami}
+\section{Možnosti práce s~Boolovymi funkciami}
 
 	Navrhnutá a implementovaná knižnica poskytuje veľké množstvo operácií nad Boolovymi funkciami v~ANF. Obsahuje možnosti ako vytvárať a~mazať tieto funkcie. Takisto dovoľuje vo funkciách vytvárať či mazať termy s~premennými alebo bez nich. Tiež je možné meniť hodnoty premenných, a~podľa toho sa prepočítavajú hodnoty všetkých termov, v~ktorých sa premenná vyskytuje, a~tým pádom aj hodnota celej funkcie. 
 
@@ -520,7 +538,7 @@ A \wedge A \wedge A \wedge A = A
 	\ElseIf{$nodeValue == false$}{$return;$}
 	\Else{$nodeValue \enspace \&= newValue;$}
 	\Indm
-	\caption{Počítanie hodnoty pri vkladaní premennej do termu. $varCount$ označuje počet premenných v terme, $nodeValue$ označuje Boolovu hodnotu daného termu a $newValue$ je hodnota premennej, ktorú do termu vkladáme.\label{alg:new_node_value}}
+	\caption{Počítanie hodnoty pri vkladaní premennej do termu. $varCount$ označuje počet premenných v~terme, $nodeValue$ označuje Boolovu hodnotu daného termu a $newValue$ je hodnota premennej, ktorú do termu vkladáme.\label{alg:new_node_value}}
 \end{algorithm}
 
 
@@ -547,7 +565,7 @@ A \wedge A \wedge A \wedge A = A
 		\Else{$nodeValue \enspace \&= value$}
 	}
 	\Indm
-	\caption{Počítanie hodnoty pri mazaní premennej z termu. $varCount$ označuje počet premenných v terme, $nodeValue$ označuje Boolovu hodnotu daného termu a $value$ hodnotu premennej na aktuálnom indexe pri prehľadávaní termu.\label{alg:delete_node_value}}
+	\caption{Počítanie hodnoty pri mazaní premennej z~termu. $varCount$ označuje počet premenných v~terme, $nodeValue$ označuje Boolovu hodnotu daného termu a $value$ hodnotu premennej na aktuálnom indexe pri prehľadávaní termu.\label{alg:delete_node_value}}
 \end{algorithm}
 
 \section{Grafická reprezentácia štruktúr}
@@ -565,7 +583,7 @@ A \wedge A \wedge A \wedge A = A
 	Zvolený formát dobre prezentuje štruktúru danej funkcie či hashovacej tabuľky a~prehľadne zobrazuje ich obsah.
 
 \newpage
-\begin{lstlisting}[caption=Zdrojový súbor k hashovacej tabuľke vo formáte DOT. Obsahuje identifikátory jednotlivých uzlov a prepojenia medzi nimi., label=listing:graphMap, frame=tb]
+\begin{lstlisting}[caption=Zdrojový súbor k~hashovacej tabuľke vo formáte DOT. Obsahuje identifikátory jednotlivých uzlov a prepojenia medzi nimi., label=listing:graphMap, frame=tb]
   digraph G { 
     nodesep=.05; 
     rankdir=LR; 
@@ -587,13 +605,13 @@ A \wedge A \wedge A \wedge A = A
 \begin{figure}[h]
 	\centering
 	\scalebox{0.55}
-	{\includegraphics{obrazky-figures/hashmap.png}}
+	{\includegraphics{obrazky-figures/hashmap}}
 	\caption{Vygenerovaný graf zo Zdrojového kódu \ref{listing:graphMap}.}
 	\label{picture:map}
 \end{figure}
 
 \newpage
-\begin{lstlisting}[caption=Zdrojový súbor k Boolovej funkcii v ANF vo formáte DOT. Obsahuje identifikátory pre uzly a prepojenia medzi nimi., label=listing:graphAnf, frame=tb]
+\begin{lstlisting}[caption=Zdrojový súbor k~Boolovej funkcii v~ANF vo formáte DOT. Obsahuje identifikátory pre uzly a prepojenia medzi nimi., label=listing:graphAnf, frame=tb]
   digraph G { 
     nodesep=.05; 
     rankdir=LR; 
@@ -619,13 +637,13 @@ A \wedge A \wedge A \wedge A = A
 \begin{figure}[h]
 	\centering
 	\scalebox{0.55}
-	{\includegraphics{obrazky-figures/anf.png}}
+	{\includegraphics{obrazky-figures/anf}}
 	\caption{Vygenerovaný graf zo Zdrojového kódu \ref{listing:graphAnf}.}
 	\label{picture:anf}
 \end{figure}
 
 
-\chapter{Porovnanie knižnice s existujúcimi riešeniami} \label{chapter:result}
+\chapter{Porovnanie knižnice s~existujúcimi riešeniami} \label{chapter:result}
 \chapter{Záver} \label{chapter:ending}
 %TODO
 %Možné rozšírenie: 
