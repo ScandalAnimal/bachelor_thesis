@@ -294,11 +294,11 @@ f = x_1 \wedge \neg x_1
 
 \chapter{Konceptuálny návrh knižnice} \label{chapter:concept}
 
-	V~tejto kapitole si bližšie popíšeme návrh knižnice pre manipuláciu s~Boolovymi funkciami v~ANF. Vysvetlíme si, ako efektívne reprezentovať všetky časti Boolovej funkcie v~programe. Takisto si navrhneme všetky potrebné operácie pre reprezentáciu funkcie v~ANF. 
-
-	Základné vlastnosti, ktoré sa od knižnice požadujú, sú efektívna reprezentácia a~manipulácia s~Boolovymi funkciami. Knižnica by mala obsahovať nástroje použiteľné na vytváranie, úpravu, zobrazovanie a~mazanie funkcií a~ich jednotlivých súčastí.
+	V tejto kapitole si bližšie popíšeme návrh knižnice pre manipuláciu s Boolovymi funkciami v ANF. Požiadavkami na knižnicu sú možnosti presne a efektívne reprezentovať Boolove funkcie v ANF. Každá takáto funkcia sa skladá z viacerých častí, takže je potrebné vytvoriť štruktúry, ktoré ich budú verne reprezentovať. To všetko je potrebné dosiahnuť s čo najmenšími pamäťovými nárokmi. Každá Boolova funkcia obsahuje určitý obor premenných, ktoré sa môžu vo funkcii aj opakovať. Je potrebné navrhnuť efektívny spôsob práce s týmito premennými, aby sa dalo rýchlo pristupovať k ich hodnotám, ale pritom sme sa zbavili duplicít. Musí prebehnúť analýza dostupných možností a výber vhodného riešenia. Nad Boolovou funkciou sú definované rôzne operácie ako pridávanie či odoberanie premenných a termov. Od knižnice je požadované aby tieto operácie obsahovala.
 
 	Ďalšou požiadavkou na knižnicu je čo najefektívnejšia práca s~pamäťou, a~takisto aj rýchlosť pri manipulácií s~veľkým počtom funkcií, prípadne premenných vo funkciách.
+	
+	V neposlednom rade by knižnica mala obsahovať prostriedky pre grafickú reprezentáciu Boolovej funkcie, je teda potrebné sa zamerať na výber vhodného nástroja. Z vytvorenej grafickej reprezentácie by mala byť jasne odvoditeľná štruktúra danej Boolovej funkcie, ako aj hodnoty jej jednotlivých častí.
 
 \section{Voľba technológií pre vývoj knižnice}
 
