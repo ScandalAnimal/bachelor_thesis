@@ -8,11 +8,20 @@
 \providecommand{\selectlanguage}[1]{\relax}
 \providecommand{\eprint}[2][]{\url{#2}}
 
+\bibitem{citation:buddy}
+BuDDy: A BDD package. Online 16.05.2017.
+\newline\urlprefix\url{http://buddy.sourceforge.net/manual/main.html}
+
 \bibitem{citation:bard}
 Bard, G.~V.; Courtois, N.~T.; Jefferson., C.: Efficient Methods for Conversion
   and Solution of Sparse Systems of Low-Degree Multivariate Polynomials over
   GF(2) via SAT-Solvers. Cryptology ePrint Archive, Report 2007/024, 2007.
 \newline\urlprefix\url{http://eprint.iacr.org/2007/024}
+
+\bibitem{citation:coral}
+Bossi, F.: CORAL: a modern C++ library for the manipulation of Boolean
+  functions. Online 16.05.2017.
+\newline\urlprefix\url{http://www.cs.unipr.it/Informatica/Tesi/Fabio_Bossi_20090225.pdf}
 
 \bibitem{citation:bryant1}
 Bryant, R.~E.: Graph-Based Algorithms for Boolean Function Manipulation.
@@ -68,6 +77,10 @@ Muller, D.~E.: \emph{Applications of Boolean Algebra to Switching Circuit
 \bibitem{citation:Reed}
 Reed, I.~S.: \emph{A Class of Multiple-Error-Correcting Codes and Their
   Decoding Scheme}. IRE Trans. Information Theory, vol. 4, 1954, pp. 38-42.
+
+\bibitem{citation:somenzi}
+Somenzi, F.: CUDD: CU Decision Diagram Package. 2015.
+\newline\urlprefix\url{http://vlsi.colorado.edu/~fabio/CUDD/cudd.pdf}
 
 \bibitem{citation:Feng}
 Wu, C.-K.; Feng, D.: \emph{Boolean Functions and Their Applications in

@@ -252,11 +252,9 @@ f = x_1 \wedge \neg x_1
 
 	Je napísaná v~jazyku C a~poskytuje funkcie pre manipuláciu s~BDD, s~algebraickými rozhodovacími diagramami (ADD, MTBDD) a~s~diagramami s~potlačenou nulou (ZDD). Takisto poskytuje možnosť prevádzať medzi jednotlivými typmi diagramov.
 
-	CUDD využíva ukazovatele na uzly BDD. Udržuje si počítadlo referencií. Počet premenných ovplyvňuje počet tabuliek. Knižnica využíva heuristiku, ktorá sprístupní tabuľku výpočtov len vtedy, ak aspoň jeden argument má hodnotu počítadla referencií väčšiu než jedna.
+	CUDD využíva ukazovatele na uzly BDD~\cite{citation:somenzi}. Udržuje si počítadlo referencií. Počet premenných ovplyvňuje počet tabuliek. Knižnica využíva heuristiku, ktorá sprístupní tabuľku výpočtov len vtedy, ak aspoň jeden argument má hodnotu počítadla referencií väčšiu než jedna.
 
 	V~CUDD existuje veľmi efektívny správca pamäte. Volá sa len vtedy, ak využitie pamäte prekročí určitú hranicu. Garbage Collector podľa počítadla referencií maže \textit{mŕtve uzly}, teda uzly, ktoré majú hodnotu 0 v~počítadle referencií. 
-
-	Ďalšie informácie o~knižnici sa dajú dohľadať v~manuáli\footnote{\url{http://vlsi.colorado.edu/~fabio/CUDD/cudd.pdf}}.
 
 \section{CacBDD}
 
@@ -268,11 +266,11 @@ f = x_1 \wedge \neg x_1
 
 \section{BuDDy}
 
-	Knižnica BuDDy\footnote{\url{http://buddy.sourceforge.net/manual/main.html}} je ďalšou knižnicou na prácu s~Boolovymi funkciami. Je naprogramovaná v~jazyku C, ale obsahuje aj C++ rozhranie pre jednoduchšiu prácu. 
+	Knižnica BuDDy je ďalšou knižnicou na prácu s~Boolovymi funkciami. Je naprogramovaná v~jazyku C, ale obsahuje aj C++ rozhranie pre jednoduchšiu prácu. 
 
 	Obsahuje vlastný Garbage Collector, cache pamäť na uchovanie medzivýsledkov. Takmer každé nastavenie činnosti sa dá ručne nastaviť, ale obsahuje aj základné nastavenia pre užívateľov, ktorí nastavenia nechcú modifikovať.
 
-	Knižnica obsahuje veľké množstvo funkcií a~operácií, ktoré sa dajú použiť na prácu s~Boolovymi funkciami. Všetky výsledky v~BuDDy sú reprezentované vektormi, a~tým pádom sa s~nimi v~C++ ľahšie manipuluje.
+	Knižnica obsahuje veľké množstvo funkcií a~operácií~\cite{citation:buddy}, ktoré sa dajú použiť na prácu s~Boolovymi funkciami. Všetky výsledky v~BuDDy sú reprezentované vektormi, a~tým pádom sa s~nimi v~C++ ľahšie manipuluje.
 
 \section{BCL - Class Library for Boolean Function Manipulation}
 
@@ -284,7 +282,7 @@ f = x_1 \wedge \neg x_1
 
 \section{CORAL}
 
-	Knižnica\footnote{\url{http://www.cs.unipr.it/Informatica/Tesi/Fabio_Bossi_20090225.pdf}} napísaná v~jazyku C++, ktorá bola zamýšľaná na použitie v~logických programovacích jazykoch, ale aj v~iných. Podobne ako ostatné knižnice využíva ROBDD - Reduced Ordered BDD. Knižnica je zameraná hlavne na pamäťovú efektivitu a~na optimalizáciu.
+	Knižnica napísaná v~jazyku C++, ktorá bola zamýšľaná na použitie v~logických programovacích jazykoch~\cite{citation:coral}, ale aj v~iných. Podobne ako ostatné knižnice využíva ROBDD - Reduced Ordered BDD. Knižnica je zameraná hlavne na pamäťovú efektivitu a~na optimalizáciu.
 
 \section{BDD}
 
@@ -369,8 +367,42 @@ f = x_1 \wedge \neg x_1
 
 \section{Reprezentácia Boolovej funkcie}
 
-	Štruktúra reprezentujúca Boolovu funkciu obsahuje všetky potrebné informácie o~svojom obsahu. Návrh tejto štruktúry ukazuje Zdrojový kód~\ref{listing:anf}. Štruktúra obsahuje zoznam termov, ktoré sa vo funkcii nachádzajú, a~takisto informáciu o~tom, koľko je termov dohromady vo funkcii. Keďže všetky termy v~Boolovej funkcii vo forme ANF sú spojené operáciou exkluzívneho súčtu XOR, nie je potrebné si uchovávať informáciu o~poradí termu vo funkcií.
-
+	Štruktúra reprezentujúca Boolovu funkciu obsahuje všetky potrebné informácie o~svojom obsahu. Návrh tejto štruktúry ukazuje Zdrojový kód~\ref{listing:anf}. Štruktúra obsahuje zoznam termov, ktoré sa vo funkcii nachádzajú, a~takisto informáciu o~tom, koľko je termov dohromady vo funkcii. Keďže všetky termy v~Boolovej funkcii vo forme ANF sú spojené operáciou exkluzívneho súčtu XOR, nie je potrebné si uchovávať informáciu o~poradí termu vo funkcií. Operácia XOR je asociatívna, teda nezáleží na tom, v akom poradí budeme výraz s viacerými operandami počítať, a takisto nezáleží, kam dáme zátvorky. Túto vlastnosť operácie XOR môžeme vidieť v tabuľkách~\ref{table:xor1}~a~\ref{table:xor2}, ktoré obsahujú pravdivostnú tabuľku pre Boolovu funkciu v dvoch variantách, ktoré sa od seba líšia zátvorkami. 
+	
+	\begin{table}[htb]
+		\centering
+		\caption{Pravdivostná tabuľka pre funkciu $x_1 \oplus (x_2 \oplus x_3)$}
+		\label{table:xor1}
+		\begin{tabular}{|c|c|c|c|} \hline
+			$x_1$ & $x_2$ & $x_3$ & $x_1 \oplus (x_2 \oplus x_3)$ \\ \hline
+			0 & 0 & 0 & 0 \\
+			0 & 0 & 1 & 1 \\
+			0 & 1 & 0 & 1 \\
+			0 & 1 & 1 & 0 \\
+			1 & 0 & 0 & 1 \\
+			1 & 0 & 1 & 0 \\
+			1 & 1 & 0 & 0 \\
+			1 & 1 & 1 & 1 \\ \hline
+		\end{tabular}
+	\end{table}
+	
+	\begin{table}[htb]
+		\centering
+		\caption{Pravdivostná tabuľka pre funkciu $(x_1 \oplus x_2) \oplus x_3$}
+		\label{table:xor2}
+		\begin{tabular}{|c|c|c|c|} \hline
+			$x_1$ & $x_2$ & $x_3$ & $(x_1 \oplus x_2) \oplus x_3$ \\ \hline
+			0 & 0 & 0 & 0 \\
+			0 & 0 & 1 & 1 \\
+			0 & 1 & 0 & 1 \\
+			0 & 1 & 1 & 0 \\
+			1 & 0 & 0 & 1 \\
+			1 & 0 & 1 & 0 \\
+			1 & 1 & 0 & 0 \\
+			1 & 1 & 1 & 1 \\ \hline
+		\end{tabular}
+	\end{table}
+	
 	Ďalej je v~štruktúre obsiahnutá aj hashovacia tabuľka, obsahujúca všetky hodnoty premenných, ktoré sa v~Boolovej funkcií vyskytujú. Hashovacia tabuľka je spoločná pre celú Boolovu funkciu.
 
 	Okrem spomenutých je potrebné v~štruktúre zachovať informáciu o~aktuálnej hodnote celej funkcie, vypočítanú vykonaním operácie XOR nad jednotlivými termami funkcie. Hodnota sa musí meniť správne podľa toho, ako sa manipuluje s~termami. Či už sa termy pridávajú alebo odoberajú, alebo sa menia hodnoty premenných, hodnota celej funkcie musí byť uchovaná správne po celý čas. 
@@ -392,7 +424,7 @@ f = x_1 \wedge \neg x_1
 	Keďže každý term v~sebe obsahuje odkazy na premenné, ktoré v~sebe obsahuje, je potrebné optimalizovať aj tento zoznam. Keďže premenné majú medzi sebou vždy operáciu logický súčin AND, a~platí Rovnica \ref{eq:AND}, nie je potrebné v~zozname premenných pre daný term uchovávať túto informáciu dvakrát. Z~toho dôvodu pred vložením premennej do termu prebieha kontrola, či sa tam už záznam nenachádza.
 
 \begin{equation}
-A \wedge A \wedge A \wedge A = A
+x_1 \wedge x_1 \wedge x_1 \wedge x_1 = x_1
 \label{eq:AND}
 \end{equation}
 
@@ -432,11 +464,17 @@ A \wedge A \wedge A \wedge A = A
   <?xml version='1.0' encoding='utf-8'?>
     <DirectedGraph xmlns="http://schemas.microsoft.com/vs/2009/dgml">
       <Nodes>
-        <Node Id="a" Label="a" Size="10" />
-        <Node Id="b" Label="b" />
+        <Node Id="x1" Label="x1" Size="10" />
+        <Node Id="x2" Label="x2" />
+        <Node Id="x3" Label="x3" />
+        <Node Id="x4" Label="x4" />
+        <Node Id="x5" Label="x5" />
       </Nodes>
       <Links>
-        <Link Source="a" Target="b" />
+        <Link Source="x1" Target="x2" Label="AND" />
+        <Link Source="x2" Target="x3" Label="OR" />
+        <Link Source="x3" Target="x4" Label="AND" />
+        <Link Source="x4" Target="x5" Label="OR" />
       </Links>
       <Properties>
         <Property Id="Label" Label="Label" DataType="String" />
@@ -448,16 +486,13 @@ A \wedge A \wedge A \wedge A = A
 	Z~textových formátov je veľmi rozšírený formát DOT\footnote{\url{http://www.graphviz.org/pdf/dotguide.pdf}}. Poskytuje možnosť vytvárať orientované grafy. DOT je možné používať v~príkazovom riadku, aj cez rôzne grafické prostredia, takisto je dostupných viacero online nástrojov. V~Zdrojovom kóde~\ref{listing:dot} môžeme vidieť jednoduchý graf vo formáte DOT, na Obr.~\ref{image:dot} potom, ako taký graf vyzerá.
 
 \begin{lstlisting}[caption={Ukážka formátu DOT. Obsahuje niekoľko uzlov a prepojení medzi nimi.}, label=listing:dot, frame=tb]
-1: digraph G {
-2:   main -> parse -> execute;
-3:   main -> init;
-4:   main -> cleanup;
-5:   execute -> make_string;
-6:   execute -> printf
-7:   init -> make_string;
-8:   main -> printf;
-9:   execute -> compare;
-10: }
+1: graph G{
+2:   rankdir=LR;
+3:   x1 -- x2 [label="AND"];
+4:   x2 -- x3 [label="OR"];
+5:   x3 -- x4 [label="AND"];
+6:   x4 -- x5 [label="OR"];
+7: }
 
 \end{lstlisting}
 
