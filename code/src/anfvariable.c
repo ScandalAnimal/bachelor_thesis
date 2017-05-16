@@ -18,7 +18,9 @@ tVar createVar(char* name, bool value) {
 tVar createVarWithOrigin(char* name, bool value, char* origin) {
     
     tVar var;
-    var.name = name;
+    // var.name = name;
+    var.name = malloc(sizeof(name) * (strlen(name) + 1));
+    strcpy(var.name, name);
     var.value = value;
     var.origin = origin;
     return var;
