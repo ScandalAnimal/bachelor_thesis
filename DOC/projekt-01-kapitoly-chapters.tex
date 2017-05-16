@@ -99,7 +99,7 @@
 	\end{tabular}
 \end{table}
 
-	Upravenou formou pravdivostnej tabuľky je Karnaughova mapa. Je to forma zápisu, ktorá prevádza n-rozmernú Boolovu funkciu do dvojrozmernej. Jej výhodou je, že sa pomocou nej dá funkcia pekne vizualizovať, do 5 premenných poskytuje stále dobrú predstavu. Využíva sa hlavne pri minimalizácii funkcií. Je vhodná pre ľudskú predstavu funkcie, pre počítač existujú efektívnejšie alternatívy. Príklad Karnaughovej mapy sa nachádza na Obr.~\ref{picture:KarnaughMap},
+	Upravenou formou pravdivostnej tabuľky je Karnaughova mapa. Je to forma zápisu, ktorá prevádza n-rozmernú Boolovu funkciu do dvojrozmernej. Jej výhodou je, že sa pomocou nej dá funkcia pekne vizualizovať, do 5 premenných poskytuje stále dobrú predstavu. Využíva sa hlavne pri minimalizácii funkcií. Je vhodná pre ľudskú predstavu funkcie, pre počítač existujú efektívnejšie alternatívy. Príklad Karnaughovej mapy sa nachádza na~Obr.~\ref{picture:KarnaughMap},
 \begin{figure}[htb]
 	\centering
 	{\includegraphics{obrazky-figures/KarnaughMap.png}}
@@ -262,7 +262,7 @@ f = x_1 \wedge \neg x_1
 
 	Poskytuje základné operácie pre manipuláciu s~BDD. BDD uzly sú uložené v~jednom poli a~využíva indexy uzlov v~tomto poli namiesto ukazateľov na uzly, ako tomu je v~CUDD. Nevyužíva počítadlo referencií na uzly. Garbage collector je volaný len ak je vyčerpaná dostupná pamäť. Funguje inak ako v~prípade CUDD, prechádza všetky uzly v~poli, a~tie na ktoré sa nikto neodkazuje a~ani nie sú koreňmi, označí ako voľné uzly, nemaže ich a~tým šetrí výpočtový čas. Knižnica využíva dynamické zväčšovanie tabuľky výpočtov podľa potreby, ak dôjde počet voľných miest. V~knižnici je veľmi dobre implementované ukladanie medzivýsledkov, čo takisto pridáva na rýchlosti.
 
-	Experimentálne bolo dokázané, že knižnica v~určitých príapdoch pracuje rýchlejšie a efektívnejšie~\cite{citation:guanfeng} ako najrozšírenejšia knižnica CUDD. Testovaním porovnávacích štandardov ISCAS85 a smv-bdd-traces98 bolo zistené, že knižnica CacBDD je efektívnejšia a rýchlejšia, pričom v~porovnávacom teste smv-bdd-traces98 sa pamäťové nároky takmer nelíšili. Hlavne v~testoch \textit{dpd75}, \textit{furnace17} a \textit{mmgt20} dosahuje knižnica niekoľkonásobné zrýchlenie.
+	Experimentálne bolo dokázané, že knižnica v~určitých príapdoch pracuje rýchlejšie a~efektívnejšie~\cite{citation:guanfeng} ako najrozšírenejšia knižnica CUDD. Testovaním porovnávacích štandardov ISCAS85 a smv-bdd-traces98 bolo zistené, že knižnica CacBDD je efektívnejšia a rýchlejšia, pričom v~porovnávacom teste smv-bdd-traces98 sa pamäťové nároky takmer nelíšili. Hlavne v~testoch \textit{dpd75}, \textit{furnace17} a \textit{mmgt20} dosahuje knižnica niekoľkonásobné zrýchlenie.
 
 \section{BuDDy}
 
@@ -278,7 +278,7 @@ f = x_1 \wedge \neg x_1
 
 	Obsahuje viaceré interné reprezentácie Boolovych funkcií, ako sú pravdivostné tabuľky, Boolove výrazy a~BDD. Každá z~reprezentácií obsahuje metódy na zjednodušenie funkcie, vytvorenie novej funkcie aplikovaním operátoru na dve funkcie, na nahradenie premennej konštantou a~pre nahradenie premennej inou funkciou.
 
-	Knižnica sa využíva hlavne na výskumné účely, pretože obsahuje užitočné funkcie na určenie Shannonovho rozvoja, zistenie linearity a~monotónnosti funkcie a~mnohé ďalšie. Takisto obsahuje metódy konverzie medzi reprezentáciami, okrem iných aj konvertor z~pravdivostnej tabuľky na ANF, DNF, CNF a BDD.
+	Knižnica sa využíva hlavne na výskumné účely, pretože obsahuje užitočné funkcie na~určenie Shannonovho rozvoja, zistenie linearity a~monotónnosti funkcie a~mnohé ďalšie. Takisto obsahuje metódy konverzie medzi reprezentáciami, okrem iných aj konvertor z~pravdivostnej tabuľky na ANF, DNF, CNF a BDD.
 
 \section{CORAL}
 
@@ -310,6 +310,7 @@ f = x_1 \wedge \neg x_1
 
 	Každá Boolova funkcia obsahuje 0 až n premenných, ktoré je potrebné efektívne reprezentovať. Každá premenná má svoje pomenovanie a~Boolovu hodnotu. Povolená dĺžka názvu premennej by mala byť dostatočná, aby sme dokázali unikátne reprezentovať veľký počet premenných. Príklad takejto premennej môžeme vidieť v~Zdrojovom kóde~\ref{listing:var}.
 
+\newpage
 \begin{lstlisting}[caption=Návrh štruktúry reprezentujúcej premennú. Obsahuje pole pre svoje pomenovanie a pole pre hodnotu typu Boolean., label=listing:var, language=C, frame=tb]
   typedef struct variable {
     char* name;
@@ -449,7 +450,7 @@ x_1 \wedge x_1 \wedge x_1 \wedge x_1 = x_1
 
 	Podobne aj pri mazaní premennej z~termu je najprv vykonaná kontrola na rovnosť hodnoty termu s~hodnotou logická 1. Ak term obsahuje nejaké premenné a~má hodnotu logická 1, znamená to že všetky jeho premenné majú hodnotu logická 1, teda aj naša mazaná, a~preto nie je potrebné hodnotu termu znova prepočítavať.
 
-	V~neposlednom rade je optimalizáciou aj to, že zoznam premenných v~terme (respektíve zoznam termov v~štruktúre reprezentujúcej celú funkciu v~ANF) obsahuje len odkazy na dané štruktúry, nie ich kompletný obsah.
+	V~neposlednom rade je optimalizáciou aj to, že zoznam premenných v~terme (respektíve zoznam termov v~štruktúre reprezentujúcej celú funkciu v~ANF) obsahuje len odkazy na~dané štruktúry, nie ich kompletný obsah.
 
 \section{Grafické zobrazenie funkcií} \label{section:conceptGraphs}
 
@@ -458,6 +459,12 @@ x_1 \wedge x_1 \wedge x_1 \wedge x_1 = x_1
 	Existuje viacero prístupov, ako pristupovať k~reprezentácii štruktúr grafom. Spomenieme si dva hlavné formáty: textový formát a~XML. 
 
 	Zástupcom formátov založených na XML je napríklad DGML\footnote{\url{https://msdn.microsoft.com/en-us/library/dn966108.aspx}}. Tento formát bol vyvinutý Microsoftom a~je používaný pri vizualizácií štruktúr vo Visual Studiu. Poskytuje možnosť tvoriť orientované aj neorientované grafy, ako aj napríklad možnosť anotovať jednotlivé prvky grafu. Príklad DGML môžeme vidieť v~Zdrojovom kóde~\ref{listing:dgml}.
+	
+	Z~textových formátov je veľmi rozšírený formát DOT\footnote{\url{http://www.graphviz.org/pdf/dotguide.pdf}}. Poskytuje možnosť vytvárať orientované grafy. DOT je možné používať v~príkazovom riadku, aj cez rôzne grafické prostredia, takisto je dostupných viacero online nástrojov. V~Zdrojovom kóde~\ref{listing:dot} môžeme vidieť jednoduchý graf vo formáte DOT, na Obr.~\ref{image:dot} potom, ako taký graf vyzerá.
+	
+	Pre jednoduchosť formátu DOT, a~takisto veľkej možnosti si ho vyskúšať online v~rôznych nástrojoch, bol nakoniec práve tento formát zvolený ako vhodný pre reprezentáciu Boolovych funkcií v~implementovanej knižnici. 
+	
+	Okrem formátu pre tvorenie grafov knižnica bude obsahovať aj možnosť vypísania obsahu danej Boolovej funkcie do príkazového riadku v~jednoduchom textovom symbolickom formáte. Táto možnosť bude slúžiť pre používateľov, ktorý nemajú prístup k~žiadnemu nástroju pre vykreslenie obrázku vo formáte DOT.
 	
 \newpage	
 \begin{lstlisting}[caption={Ukážka jednoduchého kódu vo formáte DGML, ktorý sa používa na vizualizáciu štruktúr. Obsahuje elementy pre jednotlivé uzly a prepojenia v~grafe, takisto aj pre vlastnosti jednotlivých uzlov.}, label=listing:dgml, language=XML, frame=tb]
@@ -483,8 +490,6 @@ x_1 \wedge x_1 \wedge x_1 \wedge x_1 = x_1
     </DirectedGraph>
 \end{lstlisting}
 
-	Z~textových formátov je veľmi rozšírený formát DOT\footnote{\url{http://www.graphviz.org/pdf/dotguide.pdf}}. Poskytuje možnosť vytvárať orientované grafy. DOT je možné používať v~príkazovom riadku, aj cez rôzne grafické prostredia, takisto je dostupných viacero online nástrojov. V~Zdrojovom kóde~\ref{listing:dot} môžeme vidieť jednoduchý graf vo formáte DOT, na Obr.~\ref{image:dot} potom, ako taký graf vyzerá.
-
 \begin{lstlisting}[caption={Ukážka formátu DOT. Obsahuje niekoľko uzlov a prepojení medzi nimi.}, label=listing:dot, frame=tb]
 1: graph G{
 2:   rankdir=LR;
@@ -503,11 +508,6 @@ x_1 \wedge x_1 \wedge x_1 \wedge x_1 = x_1
 	\caption{Príklad grafu vytvoreného cez formát DOT zo Zdrojového kódu~\ref{listing:dot}.}
 	\label{image:dot}
 \end{figure}	
-
-	Pre jednoduchosť formátu DOT, a~takisto veľkej možnosti si ho vyskúšať online v~rôznych nástrojoch, bol nakoniec práve tento formát zvolený ako vhodný pre reprezentáciu Boolovych funkcií v~implementovanej knižnici. 
-
-	Okrem formátu pre tvorenie grafov knižnica bude obsahovať aj možnosť vypísania obsahu danej Boolovej funkcie do príkazového riadku v~jednoduchom textovom symbolickom formáte. Táto možnosť bude slúžiť pre používateľov, ktorý nemajú prístup k~žiadnemu nástroju pre vykreslenie obrázku vo formáte DOT.
-
 
 \chapter{Implementácia navrhovaného riešenia a použité algoritmy} \label{chapter:impl}
 

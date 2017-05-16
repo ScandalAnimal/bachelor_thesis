@@ -14,7 +14,7 @@
 \contentsline {section}{\numberline {3.3}BuDDy}{13}{section.3.3}
 \contentsline {section}{\numberline {3.4}BCL - Class Library for Boolean Function Manipulation}{13}{section.3.4}
 \contentsline {section}{\numberline {3.5}CORAL}{13}{section.3.5}
-\contentsline {section}{\numberline {3.6}BDD}{13}{section.3.6}
+\contentsline {section}{\numberline {3.6}BDD}{14}{section.3.6}
 \contentsline {chapter}{\numberline {4}Konceptu\IeC {\'a}lny n\IeC {\'a}vrh kni\IeC {\v z}nice}{15}{chapter.4}
 \contentsline {section}{\numberline {4.1}Vo\IeC {\v l}ba technol\IeC {\'o}gi\IeC {\'\i } pre v\IeC {\'y}voj kni\IeC {\v z}nice}{15}{section.4.1}
 \contentsline {section}{\numberline {4.2}Reprezent\IeC {\'a}cia premenn\IeC {\'y}ch}{15}{section.4.2}
@@ -23,13 +23,13 @@
 \contentsline {section}{\numberline {4.5}Reprezent\IeC {\'a}cia Boolovej funkcie}{18}{section.4.5}
 \contentsline {section}{\numberline {4.6}Optimaliz\IeC {\'a}cia a minimaliz\IeC {\'a}cia}{19}{section.4.6}
 \contentsline {section}{\numberline {4.7}Grafick\IeC {\'e} zobrazenie funkci\IeC {\'\i }}{20}{section.4.7}
-\contentsline {chapter}{\numberline {5}Implement\IeC {\'a}cia navrhovan\IeC {\'e}ho rie\IeC {\v s}enia a pou\IeC {\v z}it\IeC {\'e} algoritmy}{23}{chapter.5}
-\contentsline {section}{\numberline {5.1}Po\IeC {\v c}\IeC {\'\i }tanie hodnoty termu}{24}{section.5.1}
-\contentsline {section}{\numberline {5.2}Mo\IeC {\v z}nosti pr\IeC {\'a}ce s~Boolovymi funkciami}{24}{section.5.2}
-\contentsline {section}{\numberline {5.3}Grafick\IeC {\'a} reprezent\IeC {\'a}cia \IeC {\v s}trukt\IeC {\'u}r}{26}{section.5.3}
-\contentsline {chapter}{\numberline {6}Porovnanie kni\IeC {\v z}nice s~existuj\IeC {\'u}cimi rie\IeC {\v s}eniami}{29}{chapter.6}
-\contentsline {chapter}{\numberline {7}Z\IeC {\'a}ver}{30}{chapter.7}
-\contentsline {chapter}{Literat\IeC {\'u}ra}{31}{chapter*.16}
+\contentsline {chapter}{\numberline {5}Implement\IeC {\'a}cia navrhovan\IeC {\'e}ho rie\IeC {\v s}enia a pou\IeC {\v z}it\IeC {\'e} algoritmy}{22}{chapter.5}
+\contentsline {section}{\numberline {5.1}Po\IeC {\v c}\IeC {\'\i }tanie hodnoty termu}{23}{section.5.1}
+\contentsline {section}{\numberline {5.2}Mo\IeC {\v z}nosti pr\IeC {\'a}ce s~Boolovymi funkciami}{23}{section.5.2}
+\contentsline {section}{\numberline {5.3}Grafick\IeC {\'a} reprezent\IeC {\'a}cia \IeC {\v s}trukt\IeC {\'u}r}{25}{section.5.3}
+\contentsline {chapter}{\numberline {6}Porovnanie kni\IeC {\v z}nice s~existuj\IeC {\'u}cimi rie\IeC {\v s}eniami}{28}{chapter.6}
+\contentsline {chapter}{\numberline {7}Z\IeC {\'a}ver}{29}{chapter.7}
+\contentsline {chapter}{Literat\IeC {\'u}ra}{30}{chapter*.16}
 \ttl@starttoc {chapters@1}
-\contentsline {chapter}{\numberline {A}Obsah CD}{33}{appendix.A}
+\contentsline {chapter}{\numberline {A}Obsah CD}{32}{appendix.A}
 \contentsfinish 
