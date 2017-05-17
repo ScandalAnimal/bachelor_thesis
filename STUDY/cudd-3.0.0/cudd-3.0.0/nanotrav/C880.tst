@@ -1,10 +1,10 @@
 # Nanotrav Version #0.13, Release date 2015/7/15
 # /home/norman/CLionProjects/bachelor_thesis/STUDY/cudd-3.0.0/cudd-3.0.0/nanotrav/.libs/lt-nanotrav -p 1 -ordering dfs -autodyn -automethod sifting -reordering sifting -drop ./nanotrav/C880.blif
 # CUDD Version 3.0.0
-BDD reordering with sifting: from 3974 to ... 2432 nodes in 0.03 sec
-BDD reordering with sifting: from 4893 to ... 3549 nodes in 0.04 sec
-BDD reordering with sifting: from 7133 to ... 6246 nodes in 0.05 sec
-BDD reordering with sifting: from 12522 to ... 6465 nodes in 0.08 sec
+BDD reordering with sifting: from 3974 to ... 2432 nodes in 0.02 sec
+BDD reordering with sifting: from 4893 to ... 3549 nodes in 0.02 sec
+BDD reordering with sifting: from 7133 to ... 6246 nodes in 0.04 sec
+BDD reordering with sifting: from 12522 to ... 6465 nodes in 0.06 sec
 Order before final reordering
 86GAT(18) 85GAT(17) 90GAT(22) 89GAT(21) 88GAT(20) 87GAT(19) 1GAT(0) 51GAT(8) 
 75GAT(15) 26GAT(4) 268GAT(59) 36GAT(6) 29GAT(5) 80GAT(16) 59GAT(10) 42GAT(7) 
@@ -15,7 +15,7 @@ Order before final reordering
 159GAT(40) 228GAT(51) 237GAT(52) 246GAT(53) 73GAT(13) 72GAT(12) 68GAT(11) 13GAT(2) 
 260GAT(56) 267GAT(58) 259GAT(55) 255GAT(54) 
 Number of inputs = 60
-BDD reordering with sifting: from 6204 to ... 4623 nodes in 0.05 sec
+BDD reordering with sifting: from 6204 to ... 4623 nodes in 0.03 sec
 New order
 135GAT(32) 207GAT(48) 130GAT(31) 86GAT(18) 85GAT(17) 89GAT(21) 90GAT(22) 88GAT(20) 
 87GAT(19) 1GAT(0) 51GAT(8) 26GAT(4) 268GAT(59) 29GAT(5) 80GAT(16) 59GAT(10) 
@@ -54,15 +54,15 @@ Peak number of live nodes: 12568
 Number of BDD variables: 60
 Number of ZDD variables: 0
 Number of cache entries: 65536
-Number of cache look-ups: 59171
-Number of cache hits: 28645
+Number of cache look-ups: 59173
+Number of cache hits: 28647
 Number of cache insertions: 30605
-Number of cache collisions: 2472
-Number of cache deletions: 28133
-Cache used slots = 18.15% (expected 0.00%)
+Number of cache collisions: 2583
+Number of cache deletions: 28022
+Cache used slots = 18.10% (expected 0.00%)
 Soft limit for cache size: 62464
 Number of buckets in unique table: 15616
-Used buckets in unique table: 21.02% (expected 20.96%)
+Used buckets in unique table: 21.06% (expected 20.96%)
 Number of BDD and ADD nodes: 4671
 Number of ZDD nodes: 0
 Number of dead BDD and ADD nodes: 0
@@ -72,24 +72,24 @@ Total number of nodes reclaimed: 1974
 Garbage collections so far: 5
 Time for garbage collection: 0.00 sec
 Reorderings so far: 5
-Time for reordering: 0.25 sec
+Time for reordering: 0.17 sec
 Final size: 4623
-total time = 0.26 sec
+total time = 0.18 sec
 Runtime Statistics
 ------------------
 Machine name: norman
-User time      0.3 seconds
+User time      0.2 seconds
 System time    0.0 seconds
 
 Average resident text size       =     0K
 Average resident data+stack size =     0K
-Maximum resident size            =  4808K
+Maximum resident size            =  4624K
 
 Virtual memory limit             = unlimited (unlimited)
 Major page faults = 0
-Minor page faults = 1407
+Minor page faults = 1387
 Swaps = 0
 Input blocks = 40
 Output blocks = 8
 Context switch (voluntary) = 38
-Context switch (involuntary) = 83
+Context switch (involuntary) = 39

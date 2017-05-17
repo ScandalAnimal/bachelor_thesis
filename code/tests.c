@@ -404,6 +404,21 @@ tAnf* evaluateBooleanFunction(tAnf* indexes[], int testNumber, int *helperFuncti
         freeAnf(newA0temp);
         return newA0;
     }
+    else if (testNumber == 8) {
+        // result = A0 xor A1 xor A2;
+
+        tAnf* resultTemp = newAnfFrom2Anfs(indexes[0], indexes[1], true);
+        if (resultTemp == NULL) {
+            return NULL;
+        }
+        tAnf* result = newAnfFrom2Anfs(resultTemp, indexes[2], true);
+        if (result == NULL) {
+            freeAnf(resultTemp);
+            return NULL;
+        }
+        freeAnf(resultTemp);
+        return result;
+    }
     else if (testNumber == 7) {
         
         // A0 = (A0 xor A1 and A2) xor A3;
@@ -596,6 +611,55 @@ int andInBooleanFunctionTest(char* graphOutput) {
     // freeAnf(newA0);
     return OK;
 }
+
+int threeXoredVariablesTest() {
+    
+    bool x1[] = {true, true, true, true, false, false, false, false};
+    bool x2[] = {true, true, false, false, true, true, false, false};
+    bool x3[] = {true, false, true, false, true, false, true, false};
+    char* outputs[] = {"./testOutput/test8-0.gv", "./testOutput/test8-1.gv", "./testOutput/test8-2.gv",
+     "./testOutput/test8-3.gv", "./testOutput/test8-4.gv", "./testOutput/test8-5.gv",
+      "./testOutput/test8-6.gv", "./testOutput/test8-7.gv"};
+
+    for (int i = 0; i < 8; i++) {
+
+        tVar variables[] = {
+            createVar("X1", x1[i]),
+            createVar("X2", x2[i]),
+            createVar("X3", x3[i])
+        };
+        int arrayLength = ARRAY_SIZE(variables);
+
+        tAnf* function[arrayLength];
+        tAnf* result;
+
+        for (int j = 0; j < arrayLength; j++) {
+            function[j] = newAnf();
+            if (function[j] == NULL) {
+                return ERROR;
+            }
+            newNodeWithOneVarInAnf(function[j], variables[j]);
+        }
+
+        int x = 0;
+        result = evaluateBooleanFunction(function, 8, &x);
+
+        printAnf(result);
+
+        freopen (outputs[i], "a+", stdout);
+        generateAnfGraph(result, outputs[i]);
+        freopen("/dev/tty", "w", stdout);
+
+        for (int i = 0; i < arrayLength; i++) {
+            freeAnf(function[i]);
+        }
+        freeAnf(result);
+
+    }
+
+    return OK;
+}
+
 int main(int argc, char* argv[]) {
 
     struct stat st = {0};
@@ -620,7 +684,8 @@ int main(int argc, char* argv[]) {
     // freopen("/dev/tty", "w", stdout);
 
     // freopen ("./testOutput/test7-output", "a+", stdout);
-    int test7Result = andInBooleanFunctionTest("./testOutput/test7-graph.gv");
+    // int test7Result = andInBooleanFunctionTest("./testOutput/test7-graph.gv");
+    int test8Result = threeXoredVariablesTest();
 
     // freopen("/dev/tty", "w", stdout);
     // printf("TEST 01: HashMap Test                 ..... Result: %s %d\n", (test1Result == OK) ? "SUCCESS" : "FAILURE", test1Result);
@@ -629,7 +694,8 @@ int main(int argc, char* argv[]) {
     // printf("TEST 04: Variable Value Change Test   ..... Result: %s %d\n", (test4Result == OK) ? "SUCCESS" : "FAILURE", test4Result);
     // printf("TEST 05: Big Data HashMap Input Test  ..... Result: %s %d\n", (test5Result == OK) ? "SUCCESS" : "FAILURE", test5Result);
     // printf("TEST 06: Shift Register Test          ..... Result: %s %d\n", (test6Result == OK) ? "SUCCESS" : "FAILURE", test6Result);
-    printf("TEST 07: And In Boolean Function Test ..... Result: %s %d\n", (test7Result == OK) ? "SUCCESS" : "FAILURE", test7Result);
+    // printf("TEST 07: And In Boolean Function Test ..... Result: %s %d\n", (test7Result == OK) ? "SUCCESS" : "FAILURE", test7Result);
+    printf("TEST 08: Three XORed Variables Test ..... Result: %s %d\n", (test8Result == OK) ? "SUCCESS" : "FAILURE", test8Result);
 
 
 }

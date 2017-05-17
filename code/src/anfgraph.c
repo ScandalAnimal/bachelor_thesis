@@ -30,10 +30,10 @@ void printEndGraphSequence(FILE* file) {
 void printSingleRootNode(FILE* file, char* rootName, bool printValue, bool value) {
 
     if (printValue) {
-        fprintf(file, "node0 [label = \"<n0> %s | %s\",height=2.5];\n", rootName, (value) ? "true" : "false");
+        fprintf(file, "node0 [label = \"<n0> %s | %s\",height=.5];\n", rootName, (value) ? "true" : "false");
     }
     else {
-        fprintf(file, "node0 [label = \"<n0> %s\",height=2.5];\n", rootName);        
+        fprintf(file, "node0 [label = \"<n0> %s\",height=.5];\n", rootName);        
     }
 }
 

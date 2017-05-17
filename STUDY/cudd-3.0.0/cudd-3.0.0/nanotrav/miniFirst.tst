@@ -77,7 +77,7 @@ Time for garbage collection: 0.00 sec
 Reorderings so far: 0
 Time for reordering: 0.00 sec
 Final size: 9
-total time = 0.01 sec
+total time = 0.00 sec
 Runtime Statistics
 ------------------
 Machine name: norman
@@ -86,13 +86,13 @@ System time    0.0 seconds
 
 Average resident text size       =     0K
 Average resident data+stack size =     0K
-Maximum resident size            =  4984K
+Maximum resident size            =  5132K
 
 Virtual memory limit             = unlimited (unlimited)
 Major page faults = 0
-Minor page faults = 1027
+Minor page faults = 1025
 Swaps = 0
 Input blocks = 16
 Output blocks = 8
 Context switch (voluntary) = 39
-Context switch (involuntary) = 3
+Context switch (involuntary) = 1

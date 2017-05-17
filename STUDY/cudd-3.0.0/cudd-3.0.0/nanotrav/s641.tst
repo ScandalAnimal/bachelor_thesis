@@ -10,14 +10,14 @@ G34 G35 G36 G64 G65 G66 G67 G68
 G69 G70 G71 G72 G73 G74 G75 G76 
 G77 G78 G79 G80 G81 G82 
 Building transition relation. Time = 0.00 sec
-@@@@@BDD reordering with group sifting: from 3979 to ... 1316 nodes in 0.05 sec
-@@BDD reordering with group sifting: from 2656 to ... 1332 nodes in 0.03 sec
-@@BDD reordering with group sifting: from 2687 to ... 1855 nodes in 0.04 sec
-@@@BDD reordering with group sifting: from 3708 to ... 2468 nodes in 0.04 sec
-@@@@BDD reordering with group sifting: from 4224 to ... 2505 nodes in 0.06 sec
+@@@@@BDD reordering with group sifting: from 3979 to ... 1316 nodes in 0.03 sec
+@@BDD reordering with group sifting: from 2656 to ... 1332 nodes in 0.02 sec
+@@BDD reordering with group sifting: from 2687 to ... 1855 nodes in 0.02 sec
+@@@BDD reordering with group sifting: from 3708 to ... 2468 nodes in 0.02 sec
+@@@@BDD reordering with group sifting: from 4224 to ... 2505 nodes in 0.04 sec
 @@@
 Transition relation: 1 parts 19 latches 721 nodes
-Traversing. Time = 0.22 sec
+Traversing. Time = 0.14 sec
 S0: 20 nodes 1 leaves 1 minterms
 From[1]: 20 nodes 1 leaves 1 minterms
 Reached[1]: 25 nodes 1 leaves 2 minterms
@@ -1358,42 +1358,42 @@ Peak number of live nodes: 4984
 Number of BDD variables: 73
 Number of ZDD variables: 146
 Number of cache entries: 65536
-Number of cache look-ups: 101687
-Number of cache hits: 38981
-Number of cache insertions: 64677
-Number of cache collisions: 10678
-Number of cache deletions: 40068
-Cache used slots = 21.26% (expected 21.37%)
+Number of cache look-ups: 101685
+Number of cache hits: 38942
+Number of cache insertions: 64712
+Number of cache collisions: 10815
+Number of cache deletions: 39969
+Cache used slots = 21.25% (expected 21.36%)
 Soft limit for cache size: 225280
 Number of buckets in unique table: 56320
-Used buckets in unique table: 6.73% (expected 6.75%)
+Used buckets in unique table: 6.68% (expected 6.75%)
 Number of BDD and ADD nodes: 4289
 Number of ZDD nodes: 1185
 Number of dead BDD and ADD nodes: 3545
 Number of dead ZDD nodes: 1039
 Total number of nodes allocated: 38977
-Total number of nodes reclaimed: 10543
+Total number of nodes reclaimed: 10523
 Garbage collections so far: 6
 Time for garbage collection: 0.00 sec
 Reorderings so far: 5
-Time for reordering: 0.22 sec
+Time for reordering: 0.13 sec
 Final size: 688
-total time = 0.28 sec
+total time = 0.19 sec
 Runtime Statistics
 ------------------
 Machine name: norman
-User time      0.3 seconds
+User time      0.2 seconds
 System time    0.0 seconds
 
 Average resident text size       =     0K
 Average resident data+stack size =     0K
-Maximum resident size            =  4800K
+Maximum resident size            =  4768K
 
 Virtual memory limit             = unlimited (unlimited)
 Major page faults = 0
-Minor page faults = 1439
+Minor page faults = 1416
 Swaps = 0
 Input blocks = 24
 Output blocks = 88
-Context switch (voluntary) = 39
-Context switch (involuntary) = 70
+Context switch (voluntary) = 38
+Context switch (involuntary) = 38

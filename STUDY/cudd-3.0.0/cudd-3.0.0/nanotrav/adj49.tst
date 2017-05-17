@@ -10,7 +10,7 @@ VA NC GA FL PA MD DC SC
 NY NJ DE VT NH MA CT ME 
 RI 
 Number of inputs = 49
-BDD reordering with converging group sifting: from 431 to ... 338 nodes in 0.04 sec
+BDD reordering with converging group sifting: from 431 to ... 338 nodes in 0.02 sec
 New order
 ID OR WA NV AZ CA UT NM 
 WY MT CO SD MN ND NE IA 
@@ -106,42 +106,42 @@ Peak number of live nodes: 3444
 Number of BDD variables: 49
 Number of ZDD variables: 0
 Number of cache entries: 32768
-Number of cache look-ups: 51786
-Number of cache hits: 17183
-Number of cache insertions: 25276
-Number of cache collisions: 7655
-Number of cache deletions: 1731
-Cache used slots = 51.47% (expected 51.18%)
+Number of cache look-ups: 51841
+Number of cache hits: 17229
+Number of cache insertions: 25285
+Number of cache collisions: 7719
+Number of cache deletions: 1727
+Cache used slots = 51.38% (expected 51.20%)
 Soft limit for cache size: 51200
 Number of buckets in unique table: 12800
-Used buckets in unique table: 55.32% (expected 55.54%)
+Used buckets in unique table: 55.34% (expected 55.54%)
 Number of BDD and ADD nodes: 16471
 Number of ZDD nodes: 0
 Number of dead BDD and ADD nodes: 16082
 Number of dead ZDD nodes: 0
 Total number of nodes allocated: 18850
-Total number of nodes reclaimed: 1730
+Total number of nodes reclaimed: 1744
 Garbage collections so far: 1
 Time for garbage collection: 0.00 sec
 Reorderings so far: 1
-Time for reordering: 0.04 sec
+Time for reordering: 0.02 sec
 Final size: 338
-total time = 0.05 sec
+total time = 0.03 sec
 Runtime Statistics
 ------------------
 Machine name: norman
-User time      0.1 seconds
+User time      0.0 seconds
 System time    0.0 seconds
 
 Average resident text size       =     0K
 Average resident data+stack size =     0K
-Maximum resident size            =  5568K
+Maximum resident size            =  5472K
 
 Virtual memory limit             = unlimited (unlimited)
 Major page faults = 0
-Minor page faults = 1124
+Minor page faults = 1105
 Swaps = 0
 Input blocks = 8
 Output blocks = 8
 Context switch (voluntary) = 38
-Context switch (involuntary) = 11
+Context switch (involuntary) = 13

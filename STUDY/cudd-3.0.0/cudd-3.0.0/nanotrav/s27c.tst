@@ -89,13 +89,13 @@ System time    0.0 seconds
 
 Average resident text size       =     0K
 Average resident data+stack size =     0K
-Maximum resident size            =  5156K
+Maximum resident size            =  5140K
 
 Virtual memory limit             = unlimited (unlimited)
 Major page faults = 0
-Minor page faults = 1040
+Minor page faults = 1020
 Swaps = 0
 Input blocks = 8
 Output blocks = 8
 Context switch (voluntary) = 38
-Context switch (involuntary) = 5
+Context switch (involuntary) = 3

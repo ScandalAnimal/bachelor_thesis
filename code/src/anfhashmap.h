@@ -52,7 +52,7 @@ int insertToHashMap(tMap map, char* key, bool value, char* origin);
  * @param key key of selected record
  * @return pointer to selected variable
  */
-tVar* selectFromHashMap(tMap map, const char* key);
+tVar* selectFromHashMap(tMap map, char* key);
 
 /**
  * checks if hash map is empty or not

@@ -647,7 +647,7 @@ int generateAnfGraph(tAnf* anf, char* filename) {
     }
 
     printInitGraphSequence(file);
-    printSingleRootNode(file, "anf", false, anf->value);
+    printSingleRootNode(file, "anf", true, anf->value);
 
     int nodeCounter = 1;
     nodeCounter = printAnonymousNodes(file, anf->nodeCount, nodeCounter, "node", 0);
@@ -656,11 +656,12 @@ int generateAnfGraph(tAnf* anf, char* filename) {
         
         for (int j = 0; j < anf->nodeList[i]->varCount; j++) {
 
-            const char* varName = anf->nodeList[i]->variables[j];
-            bool varValue = selectFromHashMap(&(anf->hashMap), varName);
+            char* varName = anf->nodeList[i]->variables[j];
+            bool varValue = selectFromHashMap(&(anf->hashMap), varName)->value;
+
             printNodeWithValue(file, nodeCounter, varName, varValue);
             printArrow(file, i+1, NO_PORT, nodeCounter);
-            nodeCounter++;        
+            nodeCounter++;       
         }
     }
 

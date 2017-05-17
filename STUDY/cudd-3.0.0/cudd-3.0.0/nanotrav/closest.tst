@@ -92,15 +92,15 @@ Peak number of live nodes: 18
 Number of BDD variables: 3
 Number of ZDD variables: 0
 Number of cache entries: 32768
-Number of cache look-ups: 91
+Number of cache look-ups: 92
 Number of cache hits: 32
-Number of cache insertions: 60
-Number of cache collisions: 1
+Number of cache insertions: 61
+Number of cache collisions: 2
 Number of cache deletions: 9
 Cache used slots = 0.17% (expected 0.16%)
 Soft limit for cache size: 4096
 Number of buckets in unique table: 1024
-Used buckets in unique table: 5.08% (expected 5.11%)
+Used buckets in unique table: 5.18% (expected 5.11%)
 Number of BDD and ADD nodes: 54
 Number of ZDD nodes: 0
 Number of dead BDD and ADD nodes: 42
@@ -121,13 +121,13 @@ System time    0.0 seconds
 
 Average resident text size       =     0K
 Average resident data+stack size =     0K
-Maximum resident size            =  5148K
+Maximum resident size            =  5200K
 
 Virtual memory limit             = unlimited (unlimited)
 Major page faults = 0
-Minor page faults = 1032
+Minor page faults = 1021
 Swaps = 0
 Input blocks = 8
 Output blocks = 8
 Context switch (voluntary) = 38
-Context switch (involuntary) = 6
+Context switch (involuntary) = 3

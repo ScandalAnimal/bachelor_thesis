@@ -53,7 +53,7 @@ int insertToHashMap(tMap m, char *name, bool value, char* origin) {
     return OK;
 }
 
-tVar* selectFromHashMap(tMap m, const char* name) {
+tVar* selectFromHashMap(tMap m, char* name) {
 
     tVar** map = (tVar**) m;
 

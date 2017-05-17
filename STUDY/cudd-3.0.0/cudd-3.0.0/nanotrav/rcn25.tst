@@ -474,11 +474,11 @@ Peak number of live nodes: 3282827
 Number of BDD variables: 50
 Number of ZDD variables: 0
 Number of cache entries: 4194304
-Number of cache look-ups: 52720865
-Number of cache hits: 30546074
-Number of cache insertions: 22174742
-Number of cache collisions: 14902250
-Number of cache deletions: 6997427
+Number of cache look-ups: 52717876
+Number of cache hits: 30545636
+Number of cache insertions: 22172197
+Number of cache collisions: 14900265
+Number of cache deletions: 6997162
 Cache used slots = 97.93% (expected 98.50%)
 Soft limit for cache size: 5592405
 Number of buckets in unique table: 3243520
@@ -490,26 +490,26 @@ Number of dead ZDD nodes: 0
 Total number of nodes allocated: 15247002
 Total number of nodes reclaimed: 7852631
 Garbage collections so far: 3
-Time for garbage collection: 1.89 sec
+Time for garbage collection: 1.28 sec
 Reorderings so far: 0
 Time for reordering: 0.00 sec
 Final size: 869
-total time = 44.28 sec
+total time = 31.72 sec
 Runtime Statistics
 ------------------
 Machine name: norman
-User time     43.8 seconds
-System time    0.5 seconds
+User time     31.4 seconds
+System time    0.3 seconds
 
 Average resident text size       =     0K
 Average resident data+stack size =     0K
-Maximum resident size            = 239016K
+Maximum resident size            = 239120K
 
 Virtual memory limit             = unlimited (unlimited)
 Major page faults = 0
-Minor page faults = 49775
+Minor page faults = 49754
 Swaps = 0
 Input blocks = 8
-Output blocks = 56
-Context switch (voluntary) = 44
-Context switch (involuntary) = 10885
+Output blocks = 48
+Context switch (voluntary) = 43
+Context switch (involuntary) = 4923

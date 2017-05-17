@@ -4,13 +4,13 @@
 Order before final reordering
 G0 G1 G2 G3 G5 G6 G7 
 Number of inputs = 7
-BDD reordering with annealing: from 16 to ... 10 nodes in 0.02 sec
+BDD reordering with annealing: from 16 to ... 10 nodes in 0 sec
 New order
 G0 G5 G6 G3 G2 G7 G1 
-Building transition relation. Time = 0.02 sec
+Building transition relation. Time = 0.00 sec
 @@@
 Transition relation: 1 parts 3 latches 9 nodes
-Traversing. Time = 0.02 sec
+Traversing. Time = 0.00 sec
 S0: 4 nodes 1 leaves 1 minterms
 From[1]: 5 nodes 1 leaves 4 minterms
 Reached[1]: 5 nodes 1 leaves 5 minterms
@@ -54,12 +54,12 @@ Number of cache entries: 32768
 Number of cache look-ups: 151
 Number of cache hits: 30
 Number of cache insertions: 115
-Number of cache collisions: 0
+Number of cache collisions: 1
 Number of cache deletions: 24
 Cache used slots = 0.35% (expected 0.28%)
 Soft limit for cache size: 11264
 Number of buckets in unique table: 2816
-Used buckets in unique table: 3.37% (expected 3.33%)
+Used buckets in unique table: 3.41% (expected 3.33%)
 Number of BDD and ADD nodes: 96
 Number of ZDD nodes: 0
 Number of dead BDD and ADD nodes: 67
@@ -69,9 +69,9 @@ Total number of nodes reclaimed: 21
 Garbage collections so far: 1
 Time for garbage collection: 0.00 sec
 Reorderings so far: 1
-Time for reordering: 0.02 sec
+Time for reordering: 0.00 sec
 Final size: 10
-total time = 0.02 sec
+total time = 0.00 sec
 Runtime Statistics
 ------------------
 Machine name: norman
@@ -80,13 +80,13 @@ System time    0.0 seconds
 
 Average resident text size       =     0K
 Average resident data+stack size =     0K
-Maximum resident size            =  4952K
+Maximum resident size            =  5216K
 
 Virtual memory limit             = unlimited (unlimited)
 Major page faults = 0
-Minor page faults = 1026
+Minor page faults = 1028
 Swaps = 0
 Input blocks = 8
 Output blocks = 8
 Context switch (voluntary) = 38
-Context switch (involuntary) = 11
+Context switch (involuntary) = 6

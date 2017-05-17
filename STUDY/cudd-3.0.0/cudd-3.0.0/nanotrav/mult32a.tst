@@ -1,11 +1,11 @@
 # Nanotrav Version #0.13, Release date 2015/7/15
 # /home/norman/CLionProjects/bachelor_thesis/STUDY/cudd-3.0.0/cudd-3.0.0/nanotrav/.libs/lt-nanotrav -p 1 -autodyn -reordering sifting -trav ./nanotrav/mult32a.blif
 # CUDD Version 3.0.0
-BDD reordering with sifting: from 4001 to ... 268 nodes in 0.01 sec
+BDD reordering with sifting: from 4001 to ... 268 nodes in 0 sec
 BDD reordering with sifting: from 537 to ... 246 nodes in 0 sec
 BDD reordering with sifting: from 493 to ... 250 nodes in 0.01 sec
-BDD reordering with sifting: from 501 to ... 280 nodes in 0 sec
-BDD reordering with sifting: from 561 to ... 296 nodes in 0.02 sec
+BDD reordering with sifting: from 501 to ... 280 nodes in 0.01 sec
+BDD reordering with sifting: from 561 to ... 296 nodes in 0 sec
 Order before final reordering
 2 34 33 66 32 65 31 64 
 63 30 62 29 28 61 27 60 
@@ -17,7 +17,7 @@ Order before final reordering
 41 8 42 9 43 10 44 11 
 1 
 Number of inputs = 65
-BDD reordering with sifting: from 380 to ... 317 nodes in 0 sec
+BDD reordering with sifting: from 380 to ... 317 nodes in 0.01 sec
 New order
 1 2 34 66 33 65 32 64 
 31 63 30 62 29 61 28 60 
@@ -28,19 +28,19 @@ New order
 3 4 37 5 38 6 39 7 
 40 8 41 9 42 10 43 44 
 11 
-Building transition relation. Time = 0.04 sec
-BDD reordering with sifting: from 669 to ... 452 nodes in 0.02 sec
-@@BDD reordering with sifting: from 939 to ... 705 nodes in 0.02 sec
-@@BDD reordering with sifting: from 1443 to ... 847 nodes in 0.03 sec
-@@BDD reordering with sifting: from 1727 to ... 1076 nodes in 0.04 sec
+Building transition relation. Time = 0.03 sec
+BDD reordering with sifting: from 669 to ... 452 nodes in 0.01 sec
+@@BDD reordering with sifting: from 939 to ... 705 nodes in 0.01 sec
+@@BDD reordering with sifting: from 1443 to ... 847 nodes in 0.02 sec
+@@BDD reordering with sifting: from 1727 to ... 1076 nodes in 0.03 sec
 @@@BDD reordering with sifting: from 2185 to ... 770 nodes in 0.03 sec
-@@@@BDD reordering with sifting: from 1573 to ... 922 nodes in 0.03 sec
-@@@@BDD reordering with sifting: from 1877 to ... 1013 nodes in 0.04 sec
-@@@@@BDD reordering with sifting: from 2059 to ... 873 nodes in 0.04 sec
+@@@@BDD reordering with sifting: from 1573 to ... 922 nodes in 0.02 sec
+@@@@BDD reordering with sifting: from 1877 to ... 1013 nodes in 0.03 sec
+@@@@@BDD reordering with sifting: from 2059 to ... 873 nodes in 0.02 sec
 @@@@@BDD reordering with sifting: from 1779 to ... 975 nodes in 0.04 sec
 @@@@@
 Transition relation: 1 parts 32 latches 196 nodes
-Traversing. Time = 0.34 sec
+Traversing. Time = 0.25 sec
 S0: 33 nodes 1 leaves 1 minterms
 From[1]: 33 nodes 1 leaves 2.14748e+09 minterms
 Reached[1]: 2 nodes 1 leaves 2.14748e+09 minterms
@@ -211,42 +211,42 @@ Peak number of live nodes: 4004
 Number of BDD variables: 97
 Number of ZDD variables: 0
 Number of cache entries: 65536
-Number of cache look-ups: 49879
-Number of cache hits: 20820
-Number of cache insertions: 29320
-Number of cache collisions: 1236
-Number of cache deletions: 21171
-Cache used slots = 17.75% (expected 10.53%)
+Number of cache look-ups: 49874
+Number of cache hits: 20807
+Number of cache insertions: 29328
+Number of cache collisions: 1312
+Number of cache deletions: 21145
+Cache used slots = 17.72% (expected 10.54%)
 Soft limit for cache size: 100352
 Number of buckets in unique table: 25088
-Used buckets in unique table: 12.32% (expected 12.44%)
+Used buckets in unique table: 12.34% (expected 12.44%)
 Number of BDD and ADD nodes: 3614
 Number of ZDD nodes: 0
 Number of dead BDD and ADD nodes: 3267
 Number of dead ZDD nodes: 0
 Total number of nodes allocated: 26902
-Total number of nodes reclaimed: 16738
+Total number of nodes reclaimed: 16737
 Garbage collections so far: 15
 Time for garbage collection: 0.00 sec
 Reorderings so far: 15
-Time for reordering: 0.33 sec
+Time for reordering: 0.24 sec
 Final size: 275
-total time = 0.34 sec
+total time = 0.25 sec
 Runtime Statistics
 ------------------
 Machine name: norman
-User time      0.3 seconds
+User time      0.2 seconds
 System time    0.0 seconds
 
 Average resident text size       =     0K
 Average resident data+stack size =     0K
-Maximum resident size            =  4748K
+Maximum resident size            =  4764K
 
 Virtual memory limit             = unlimited (unlimited)
 Major page faults = 0
-Minor page faults = 1357
+Minor page faults = 1346
 Swaps = 0
 Input blocks = 16
 Output blocks = 16
 Context switch (voluntary) = 38
-Context switch (involuntary) = 67
+Context switch (involuntary) = 60
