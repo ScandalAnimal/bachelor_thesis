@@ -98,7 +98,7 @@
   year=2017,             %rok odevzdání / year of submission
   date=\today,           %datum odevzdani / submission date
   %Nazev prace / thesis title
-  title.cs={Knihovna pro Boolovské funkce v algebraické normální formě},  %nazev prace v cestine ci slovenstine (dle zadani) / thesis title in czech language (according to assignment)
+  title.cs={Knihovna pro Boolovské funkce v~algebraické normální formě},  %nazev prace v cestine ci slovenstine (dle zadani) / thesis title in czech language (according to assignment)
   title.en={Library for Boolean Functions in Algebraic Normal Form}, %nazev prace v anglictine / thesis title in english
   %Autor / Author
   author={Maroš Vasilišin},   %cele jmeno a prijmeni autora / full name and surname of the author
@@ -136,7 +136,7 @@
 }
 
 %Abstrakt (cesky, slovensky ci anglicky) / Abstract (in czech, slovak or english)
-\abstract[cs]{Táto bakalárska práca sa zaoberá návrhom a implementáciou knižnice v jazyku C pre manipuláciu Boolovych funkcií v Algebraickej Normálnej Forme. Väčšina existujúcich reprezentácií Boolovych funkcií je založená na binárnych rozhodovacích diagramoch. Algebraická Normálna Forma poskytuje oproti binárnym rozhodovacím diagramom určité výhody, napríklad tú, že sa dá z nej v lineárnom čase určiť Boolova hodnota funkcie. Implementovaná knižnica za pomoci jednoduchých štruktúr poskytuje efektívnu reprezentáciu Boolovej funkcie v programe. Výskumom sme zistili, že reprezentácia pomocou Algebraickej Normálnej Formy má svoj využitie, a v určitých prípadoch dosahuje lepšie výsledky ako reprezentácia pomocou binárnych rozhodovacích diagramov.}
+\abstract[cs]{Táto bakalárska práca sa zaoberá návrhom a implementáciou knižnice v~jazyku C pre manipuláciu Boolovych funkcií v~Algebraickej Normálnej Forme. Väčšina existujúcich reprezentácií Boolovych funkcií je založená na binárnych rozhodovacích diagramoch. Algebraická Normálna Forma poskytuje oproti binárnym rozhodovacím diagramom určité výhody, napríklad tú, že sa dá z~nej v~lineárnom čase určiť Boolova hodnota funkcie. Implementovaná knižnica za pomoci jednoduchých štruktúr poskytuje efektívnu reprezentáciu Boolovej funkcie v~programe. Výskumom sme zistili, že reprezentácia pomocou Algebraickej Normálnej Formy má svoj využitie, a v~určitých prípadoch dosahuje lepšie výsledky ako reprezentácia pomocou binárnych rozhodovacích diagramov.}
 \abstract[en]{This bachelor thesis focuses on design and implementation of library in C language for manipulation od Boolean functions in Algebraic Normal Form. Majority of existing libraries for representation of Boolean functions is based on binary decision diagrams. Algebraic Normal Form presents several advantages over binary decision diagrams, for example Boolean value of function can be determined in linear time. Implemented library uses simple structures to effectively represent Boolean function in program. After experiments we determined that representation in Algebraic Normal Form has its applications, and in some cases it provides better results than representation in binary decision diagrams.}
 
 %Klicova slova (cesky, slovensky ci anglicky) / Keywords (in czech, slovak or english)
@@ -146,7 +146,7 @@
 %Prohlaseni (u anglicky psane prace anglicky, u slovensky psane prace slovensky)
 %Declaration (for thesis in english should be in english)
 \declaration{Prehlasujem, že som túto bakalársku prácu vypracoval samostatne pod vedením pána Ing. Rolanda Dobaia, Ph.D.
-Uviedol som všetky literárne pramene a publikácie, z ktorých som čerpal.}
+Uviedol som všetky literárne pramene a publikácie, z~ktorých som čerpal.}
 
 % \declaration{Hereby I declare that this bachelor's thesis was prepared as an original author’s work under the supervision of Mr. X
 % The supplementary information was provided by Mr. Y

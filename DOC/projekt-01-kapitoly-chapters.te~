@@ -8,7 +8,7 @@
 	
 	Reprezentácia pomocou BDD je v~informatike síce najrozšírenejšia, ale nie je jediná. Táto práca sa zaoberá podrobnejšie reprezentáciou Boolovych funkcií pomocou Algebraickej Normálnej Formy (skrátene ANF). ANF poskytuje výhodu oproti BDD v~tom, že obsahuje len dve logické operácie, logický súčin a~exkluzívny súčet, a~tým pádom sa jej implementácia značne zjednodušuje. Takisto je z~ANF veľmi rýchlo možné zistiť Boolovu hodnotu danej funkcie a~takisto vypočítať jej splniteľnosť~\cite{citation:janson}.
 	
-	Cieľom bakalárskej práce bolo navrhnúť a implementovať knižnicu pre efektívnu manipuláciu s Boolovymi funkciami v Algebraickej Normálnej Forme. Druhotným cieľom je zistenie a analýza vytvorenej knižnice, a jej porovnanie s existujúcimi riešeniami. Implementovaná knižnica poskytuje prostriedky pre vytváranie a manipuláciu s Boolovymi funkciami. Využíva výhody, ktoré poskytuje ANF a poskytuje alternatívu voči klasickým reprezentáciám založeným na BDD.
+	Cieľom bakalárskej práce bolo navrhnúť a implementovať knižnicu pre efektívnu manipuláciu s~Boolovymi funkciami v~Algebraickej Normálnej Forme. Druhotným cieľom je zistenie a analýza vytvorenej knižnice, a jej porovnanie s~existujúcimi riešeniami. Implementovaná knižnica poskytuje prostriedky pre vytváranie a manipuláciu s~Boolovymi funkciami. Využíva výhody, ktoré poskytuje ANF a poskytuje alternatívu voči klasickým reprezentáciám založeným na BDD.
 	
 	%Súčasťou zadania je aj jeho 4. bod, vytvorenie paralelnej obvodovej štruktúry zo sekvenčného spätnoväzobného posuvného registru. Tento bod bol v priebehu riešenia po dohode s vedúcim zo zadania odstránený a práca sa ďalej sústreďuje len na programovaciu časť zadania.
 	
@@ -18,7 +18,7 @@
 
 	Boolove funkcie sú také funkcie, ktorých výsledkom je logická nula alebo logická jednotka. Využívajú sa na mnohých miestach v~počítačovej vede, napríklad pri vyhodnocovaní podmienok v~programe alebo ako návratový typ nejakej funkcie alebo testu, ktorý určuje či funkcia alebo test prebieha ako sa očakáva. Ich primárnym účelom je popísať stav alebo jav len dvomi hodnotami, ktoré sú si navzájom opačné, čím programátor získava ďalšiu možnosť práce s~informáciami. Existuje viacero možných reprezentácií Boolovych funkcií, napríklad pravdivostné tabuľky alebo Karnaughove mapy. Okrem toho existuje aj viacero komplexnejších reprezentácií, ako je napríklad Algebraická Normálna Forma či binárne rozhodovacie diagramy.
 	
-\section{Definícia Boolovej funkcie}
+\section{Definícia Boolovej funkcie} \label{section:def}
 
 	Ako uvádza Crama~\cite{citation:Crama}, Boolova funkcia je každá funkcia $f: \mathcal{B}^{n} \rightarrow \mathcal{B}$, kde $\mathcal{B}$ je množina $\{0,1\}$, v~ktorej $n$ je kladné prirodzené číslo, a~$\mathcal{B}^{n}$ označuje $n$-násobný kartézsky súčin množiny $\mathcal{B}$ samej so sebou. Každý bod funkcie $X^*$ = ($x_1,x_2, \ldots, x_n$) naberá hodnotu buď logická 0 alebo logická 1 z~množiny $\mathcal{B}$.
 	
@@ -99,7 +99,7 @@
 	\end{tabular}
 \end{table}
 
-	Upravenou formou pravdivostnej tabuľky je Karnaughova mapa. Je to forma zápisu, ktorá prevádza n-rozmernú Boolovu funkciu do dvojrozmernej. Jej výhodou je, že sa pomocou nej dá funkcia pekne vizualizovať, do 5 premenných poskytuje stále dobrú predstavu. Využíva sa hlavne pri minimalizácii funkcií. Je vhodná pre ľudskú predstavu funkcie, pre počítač existujú efektívnejšie alternatívy. Príklad Karnaughovej mapy sa nachádza na Obr.~\ref{picture:KarnaughMap},
+	Upravenou formou pravdivostnej tabuľky je Karnaughova mapa. Je to forma zápisu, ktorá prevádza n-rozmernú Boolovu funkciu do dvojrozmernej. Jej výhodou je, že sa pomocou nej dá funkcia pekne vizualizovať, do 5 premenných poskytuje stále dobrú predstavu. Využíva sa hlavne pri minimalizácii funkcií. Je vhodná pre ľudskú predstavu funkcie, pre počítač existujú efektívnejšie alternatívy. Príklad Karnaughovej mapy sa nachádza na~Obr.~\ref{picture:KarnaughMap},
 \begin{figure}[htb]
 	\centering
 	{\includegraphics{obrazky-figures/KarnaughMap.png}}
@@ -171,7 +171,7 @@ f = x_1 \wedge \neg x_1
 
 	Dnes existujú viaceré algoritmy (tiež nazývané v~literatúre SAT solvery), ktoré riešia rôzne druhy SAT problémov, napríklad z~oblasti umelej inteligencie či tvorby logických obvodov.
 	
-	Ako vstup pre SAT solver sa bežne používa konjunktívna normálna forma (CNF), ale existujú aj výnimky, ktoré využívajú napríklad DNF. CNF sa primárne využíva z~dôvodu, že každá Boolova funkcia sa dá prepísať do formy CNF v~lineárnom čase. Výsledná funkcia v~CNF si zachováva splniteľnosť z~pôvodnej formy. Je preto dôležité zamerať sa na konverziu ANF na CNF, prípadne ďalšie konverzie. Využitie SAT solverov pre prácu s ANF je možné len vtedy, ak je možné konvertovať danú ANF na CNF, ktorá by bola vstupom pre SAT solver pri zachovaní splniteľnosti.
+	Ako vstup pre SAT solver sa bežne používa konjunktívna normálna forma (CNF), ale existujú aj výnimky, ktoré využívajú napríklad DNF. CNF sa primárne využíva z~dôvodu, že každá Boolova funkcia sa dá prepísať do formy CNF v~lineárnom čase. Výsledná funkcia v~CNF si zachováva splniteľnosť z~pôvodnej formy. Je preto dôležité zamerať sa na konverziu ANF na CNF, prípadne ďalšie konverzie. Využitie SAT solverov pre prácu s~ANF je možné len vtedy, ak je možné konvertovať danú ANF na CNF, ktorá by bola vstupom pre SAT solver pri zachovaní splniteľnosti.
 	
 	Ak je Boolova funkcia zapísaná vo forme Algebraickej Normálnej Formy, môžeme v~nej vidieť dve časti, na ktoré sa vzťahuje SAT problém. Pre jednotlivé termy, ktoré obsahujú len operáciu logický súčin (sú teda v~disjunktívnej normálnej forme), je zistenie riešenia SAT problému triviálne. Ak majú všetky premenné hodnotu logická 1, je daný term splniteľný, ak aspoň jedna premenná má hodnotu logickej 0, je daný term nesplniteľný. 
 
@@ -242,9 +242,9 @@ f = x_1 \wedge \neg x_1
 
 \chapter{Knižnice pre reprezentáciu Boolovych funkcií} \label{chapter:libraries}
 
-	Existujú viaceré knižnice vytvorené za účelom manipulácie s~Boolovymi funkciami. Nasledujúca kapitola sa zaoberá niektorými vybranými, hlavne tými, ktoré využívajú binárne rozhodovacie stromy (BDD). Okrem toho existujú aj ďalšie implementácie, ktoré nevyužívajú BDD, ale sú založené napríklad na SAT. Tie sa využívajú v oblastiach overovania modelov, a vo väčšine prípadov majú vyššie pamäťové a časové nároky.
+	Existujú viaceré knižnice vytvorené za účelom manipulácie s~Boolovymi funkciami. Nasledujúca kapitola sa zaoberá niektorými vybranými, hlavne tými, ktoré využívajú binárne rozhodovacie stromy (BDD). Okrem toho existujú aj ďalšie implementácie, ktoré nevyužívajú BDD, ale sú založené napríklad na SAT. Tie sa využívajú v~oblastiach overovania modelov, a vo väčšine prípadov majú vyššie pamäťové a časové nároky.
 
-\section{Colorado University Decision Diagram Package - CUDD}
+\section{Colorado University Decision Diagram Package - CUDD} \label{section:cudd}
 
 	CUDD je verejne dostupná knižnica\footnote{\url{http://vlsi.colorado.edu/~fabio/}}, ktorej vývoj sa začal už v~70. rokoch a~naďalej pokračuje. Je založená na prehľadávaní do hĺbky.
 
@@ -262,7 +262,7 @@ f = x_1 \wedge \neg x_1
 
 	Poskytuje základné operácie pre manipuláciu s~BDD. BDD uzly sú uložené v~jednom poli a~využíva indexy uzlov v~tomto poli namiesto ukazateľov na uzly, ako tomu je v~CUDD. Nevyužíva počítadlo referencií na uzly. Garbage collector je volaný len ak je vyčerpaná dostupná pamäť. Funguje inak ako v~prípade CUDD, prechádza všetky uzly v~poli, a~tie na ktoré sa nikto neodkazuje a~ani nie sú koreňmi, označí ako voľné uzly, nemaže ich a~tým šetrí výpočtový čas. Knižnica využíva dynamické zväčšovanie tabuľky výpočtov podľa potreby, ak dôjde počet voľných miest. V~knižnici je veľmi dobre implementované ukladanie medzivýsledkov, čo takisto pridáva na rýchlosti.
 
-	Experimentálne bolo dokázané, že knižnica v určitých príapdoch pracuje rýchlejšie a efektívnejšie~\cite{citation:guanfeng} ako najrozšírenejšia knižnica CUDD. Testovaním porovnávacích štandardov ISCAS85 a smv-bdd-traces98 bolo zistené, že knižnica CacBDD je efektívnejšia a rýchlejšia, pričom v porovnávacom teste smv-bdd-traces98 sa pamäťové nároky takmer nelíšili. Hlavne v testoch \textit{dpd75}, \textit{furnace17} a \textit{mmgt20} dosahuje knižnica niekoľkonásobné zrýchlenie.
+	Experimentálne bolo dokázané, že knižnica v~určitých príapdoch pracuje rýchlejšie a~efektívnejšie~\cite{citation:guanfeng} ako najrozšírenejšia knižnica CUDD. Testovaním porovnávacích štandardov ISCAS85 a smv-bdd-traces98 bolo zistené, že knižnica CacBDD je efektívnejšia a rýchlejšia, pričom v~porovnávacom teste smv-bdd-traces98 sa pamäťové nároky takmer nelíšili. Hlavne v~testoch \textit{dpd75}, \textit{furnace17} a \textit{mmgt20} dosahuje knižnica niekoľkonásobné zrýchlenie.
 
 \section{BuDDy}
 
@@ -278,7 +278,7 @@ f = x_1 \wedge \neg x_1
 
 	Obsahuje viaceré interné reprezentácie Boolovych funkcií, ako sú pravdivostné tabuľky, Boolove výrazy a~BDD. Každá z~reprezentácií obsahuje metódy na zjednodušenie funkcie, vytvorenie novej funkcie aplikovaním operátoru na dve funkcie, na nahradenie premennej konštantou a~pre nahradenie premennej inou funkciou.
 
-	Knižnica sa využíva hlavne na výskumné účely, pretože obsahuje užitočné funkcie na určenie Shannonovho rozvoja, zistenie linearity a~monotónnosti funkcie a~mnohé ďalšie. Takisto obsahuje metódy konverzie medzi reprezentáciami, okrem iných aj konvertor z~pravdivostnej tabuľky na ANF, DNF, CNF a BDD.
+	Knižnica sa využíva hlavne na výskumné účely, pretože obsahuje užitočné funkcie na~určenie Shannonovho rozvoja, zistenie linearity a~monotónnosti funkcie a~mnohé ďalšie. Takisto obsahuje metódy konverzie medzi reprezentáciami, okrem iných aj konvertor z~pravdivostnej tabuľky na ANF, DNF, CNF a BDD.
 
 \section{CORAL}
 
@@ -294,11 +294,11 @@ f = x_1 \wedge \neg x_1
 
 \chapter{Konceptuálny návrh knižnice} \label{chapter:concept}
 
-	V tejto kapitole si bližšie popíšeme návrh knižnice pre manipuláciu s Boolovymi funkciami v ANF. Požiadavkami na knižnicu sú možnosti presne a efektívne reprezentovať Boolove funkcie v ANF. Každá takáto funkcia sa skladá z viacerých častí, takže je potrebné vytvoriť štruktúry, ktoré ich budú verne reprezentovať. To všetko je potrebné dosiahnuť s čo najmenšími pamäťovými nárokmi. Každá Boolova funkcia obsahuje určitý obor premenných, ktoré sa môžu vo funkcii aj opakovať. Je potrebné navrhnuť efektívny spôsob práce s týmito premennými, aby sa dalo rýchlo pristupovať k ich hodnotám, ale pritom sme sa zbavili duplicít. Musí prebehnúť analýza dostupných možností a výber vhodného riešenia. Nad Boolovou funkciou sú definované rôzne operácie ako pridávanie či odoberanie premenných a termov. Od knižnice je požadované aby tieto operácie obsahovala.
+	V~tejto kapitole si bližšie popíšeme návrh knižnice pre manipuláciu s~Boolovymi funkciami v~ANF. Požiadavkami na knižnicu sú možnosti presne a efektívne reprezentovať Boolove funkcie v~ANF. Každá takáto funkcia sa skladá z~viacerých častí, takže je potrebné vytvoriť štruktúry, ktoré ich budú verne reprezentovať. To všetko je potrebné dosiahnuť s~čo najmenšími pamäťovými nárokmi. Každá Boolova funkcia obsahuje určitý obor premenných, ktoré sa môžu vo funkcii aj opakovať. Je potrebné navrhnuť efektívny spôsob práce s~týmito premennými, aby sa dalo rýchlo pristupovať k~ich hodnotám, ale pritom sme sa zbavili duplicít. Musí prebehnúť analýza dostupných možností a výber vhodného riešenia. Nad Boolovou funkciou sú definované rôzne operácie ako pridávanie či odoberanie premenných a termov. Od knižnice je požadované aby tieto operácie obsahovala.
 
 	Ďalšou požiadavkou na knižnicu je čo najefektívnejšia práca s~pamäťou, a~takisto aj rýchlosť pri manipulácií s~veľkým počtom funkcií, prípadne premenných vo funkciách.
 	
-	V neposlednom rade by knižnica mala obsahovať prostriedky pre grafickú reprezentáciu Boolovej funkcie, je teda potrebné sa zamerať na výber vhodného nástroja. Z vytvorenej grafickej reprezentácie by mala byť jasne odvoditeľná štruktúra danej Boolovej funkcie, ako aj hodnoty jej jednotlivých častí.
+	V~neposlednom rade by knižnica mala obsahovať prostriedky pre grafickú reprezentáciu Boolovej funkcie, je teda potrebné sa zamerať na výber vhodného nástroja. Z~vytvorenej grafickej reprezentácie by mala byť jasne odvoditeľná štruktúra danej Boolovej funkcie, ako aj hodnoty jej jednotlivých častí.
 
 \section{Voľba technológií pre vývoj knižnice}
 
@@ -310,6 +310,7 @@ f = x_1 \wedge \neg x_1
 
 	Každá Boolova funkcia obsahuje 0 až n premenných, ktoré je potrebné efektívne reprezentovať. Každá premenná má svoje pomenovanie a~Boolovu hodnotu. Povolená dĺžka názvu premennej by mala byť dostatočná, aby sme dokázali unikátne reprezentovať veľký počet premenných. Príklad takejto premennej môžeme vidieť v~Zdrojovom kóde~\ref{listing:var}.
 
+\newpage
 \begin{lstlisting}[caption=Návrh štruktúry reprezentujúcej premennú. Obsahuje pole pre svoje pomenovanie a pole pre hodnotu typu Boolean., label=listing:var, language=C, frame=tb]
   typedef struct variable {
     char* name;
@@ -321,7 +322,7 @@ f = x_1 \wedge \neg x_1
 
 	Obor všetkých premenných je možné reprezentovať viacerými spôsobmi. Klasické pole poskytuje výhodu, že operácia vyhľadávania je rýchla, ak vieme presný index, na ktorý chceme pristúpiť. To by bolo využiteľné, ak by premenné v~Boolovej funkcií mali len číselný index a~generovali sa od najnižších indexov po najvyššie (aby sme zbytočne nealokovali pamäť o~väčšej veľkosti než je potrebná). V~našom prípade by premenné mali mať ľubovoľné pomenovanie, a~tento postup sa teda ukázal ako nevhodný.
 
-	Druhým spôsobom je použitie hashovacej tabuľky. Tá rieši vyššie spomenutý problém, pretože ak poznáme kľúč k~danému záznamu, prístup k~jeho hodnote je veľmi rýchly, v~závislosti na hashovacej funkcii. Hashovacia tabuľka využíva na pozadí pole, pričom index daného záznamu nám poskytuje hashovacia funkcia, ktorá konvertuje kľúč záznamu na index v poli a naopak. V~hashovacej tabuľke je možné zaistiť aj riešenie problému s~ukladaním duplicitných záznamov, a~to kontrolou, či záznam s~daným kľúčom už v~tabuľke existuje.
+	Druhým spôsobom je použitie hashovacej tabuľky. Tá rieši vyššie spomenutý problém, pretože ak poznáme kľúč k~danému záznamu, prístup k~jeho hodnote je veľmi rýchly, v~závislosti na hashovacej funkcii. Hashovacia tabuľka využíva na pozadí pole, pričom index daného záznamu nám poskytuje hashovacia funkcia, ktorá konvertuje kľúč záznamu na index v~poli a naopak. V~hashovacej tabuľke je možné zaistiť aj riešenie problému s~ukladaním duplicitných záznamov, a~to kontrolou, či záznam s~daným kľúčom už v~tabuľke existuje.
 
 \section{Hashovacia tabuľka premenných funkcie}
 
@@ -349,7 +350,7 @@ f = x_1 \wedge \neg x_1
 
 \section{Reprezentácia termov vo funkcii}
 
-	Každá Boolova funkcia v~ANF sa skladá z~0 až m termov, ktoré obsahujú premenné. Premenné v~terme sú medzi sebou prepojené operáciou logický súčin AND. Každý term by mal v~sebe obsahovať informácie, ktoré premenné obsahuje a~aký je ich celkový počet. Keďže medzi všetkým premennými je rovnaká operácia, nie je potrebné si uchovávať informáciu o~tom, na ktorej pozícií v terme sa nachádza ktorá premenná. Je teda možné premenné reprezentovať jednoduchým zoznamom alebo poľom. 
+	Každá Boolova funkcia v~ANF sa skladá z~0 až m termov, ktoré obsahujú premenné. Premenné v~terme sú medzi sebou prepojené operáciou logický súčin AND. Každý term by mal v~sebe obsahovať informácie, ktoré premenné obsahuje a~aký je ich celkový počet. Keďže medzi všetkým premennými je rovnaká operácia, nie je potrebné si uchovávať informáciu o~tom, na ktorej pozícií v~terme sa nachádza ktorá premenná. Je teda možné premenné reprezentovať jednoduchým zoznamom alebo poľom. 
 
 	Premenné by malo byť do termu možné dynamicky vkladať, takisto ich z~neho odoberať. Term môže obsahovať jednu premennú aj viackrát, prípadne žiadne premenné.
 
@@ -367,7 +368,7 @@ f = x_1 \wedge \neg x_1
 
 \section{Reprezentácia Boolovej funkcie}
 
-	Štruktúra reprezentujúca Boolovu funkciu obsahuje všetky potrebné informácie o~svojom obsahu. Návrh tejto štruktúry ukazuje Zdrojový kód~\ref{listing:anf}. Štruktúra obsahuje zoznam termov, ktoré sa vo funkcii nachádzajú, a~takisto informáciu o~tom, koľko je termov dohromady vo funkcii. Keďže všetky termy v~Boolovej funkcii vo forme ANF sú spojené operáciou exkluzívneho súčtu XOR, nie je potrebné si uchovávať informáciu o~poradí termu vo funkcií. Operácia XOR je asociatívna, teda nezáleží na tom, v akom poradí budeme výraz s viacerými operandami počítať, a takisto nezáleží, kam dáme zátvorky. Túto vlastnosť operácie XOR môžeme vidieť v tabuľkách~\ref{table:xor1}~a~\ref{table:xor2}, ktoré obsahujú pravdivostnú tabuľku pre Boolovu funkciu v dvoch variantách, ktoré sa od seba líšia zátvorkami. 
+	Štruktúra reprezentujúca Boolovu funkciu obsahuje všetky potrebné informácie o~svojom obsahu. Návrh tejto štruktúry ukazuje Zdrojový kód~\ref{listing:anf}. Štruktúra obsahuje zoznam termov, ktoré sa vo funkcii nachádzajú, a~takisto informáciu o~tom, koľko je termov dohromady vo funkcii. Keďže všetky termy v~Boolovej funkcii vo forme ANF sú spojené operáciou exkluzívneho súčtu XOR, nie je potrebné si uchovávať informáciu o~poradí termu vo funkcií. Operácia XOR je asociatívna, teda nezáleží na tom, v~akom poradí budeme výraz s~viacerými operandami počítať, a takisto nezáleží, kam dáme zátvorky. Túto vlastnosť operácie XOR môžeme vidieť v~tabuľkách~\ref{table:xor1}~a~\ref{table:xor2}, ktoré obsahujú pravdivostnú tabuľku pre Boolovu funkciu v~dvoch variantách, ktoré sa od seba líšia zátvorkami. 
 	
 	\begin{table}[htb]
 		\centering
@@ -449,7 +450,7 @@ x_1 \wedge x_1 \wedge x_1 \wedge x_1 = x_1
 
 	Podobne aj pri mazaní premennej z~termu je najprv vykonaná kontrola na rovnosť hodnoty termu s~hodnotou logická 1. Ak term obsahuje nejaké premenné a~má hodnotu logická 1, znamená to že všetky jeho premenné majú hodnotu logická 1, teda aj naša mazaná, a~preto nie je potrebné hodnotu termu znova prepočítavať.
 
-	V~neposlednom rade je optimalizáciou aj to, že zoznam premenných v~terme (respektíve zoznam termov v~štruktúre reprezentujúcej celú funkciu v~ANF) obsahuje len odkazy na dané štruktúry, nie ich kompletný obsah.
+	V~neposlednom rade je optimalizáciou aj to, že zoznam premenných v~terme (respektíve zoznam termov v~štruktúre reprezentujúcej celú funkciu v~ANF) obsahuje len odkazy na~dané štruktúry, nie ich kompletný obsah.
 
 \section{Grafické zobrazenie funkcií} \label{section:conceptGraphs}
 
@@ -458,6 +459,12 @@ x_1 \wedge x_1 \wedge x_1 \wedge x_1 = x_1
 	Existuje viacero prístupov, ako pristupovať k~reprezentácii štruktúr grafom. Spomenieme si dva hlavné formáty: textový formát a~XML. 
 
 	Zástupcom formátov založených na XML je napríklad DGML\footnote{\url{https://msdn.microsoft.com/en-us/library/dn966108.aspx}}. Tento formát bol vyvinutý Microsoftom a~je používaný pri vizualizácií štruktúr vo Visual Studiu. Poskytuje možnosť tvoriť orientované aj neorientované grafy, ako aj napríklad možnosť anotovať jednotlivé prvky grafu. Príklad DGML môžeme vidieť v~Zdrojovom kóde~\ref{listing:dgml}.
+	
+	Z~textových formátov je veľmi rozšírený formát DOT\footnote{\url{http://www.graphviz.org/pdf/dotguide.pdf}}. Poskytuje možnosť vytvárať orientované grafy. DOT je možné používať v~príkazovom riadku, aj cez rôzne grafické prostredia, takisto je dostupných viacero online nástrojov. V~Zdrojovom kóde~\ref{listing:dot} môžeme vidieť jednoduchý graf vo formáte DOT, na Obr.~\ref{image:dot} potom, ako taký graf vyzerá.
+	
+	Pre jednoduchosť formátu DOT, a~takisto veľkej možnosti si ho vyskúšať online v~rôznych nástrojoch, bol nakoniec práve tento formát zvolený ako vhodný pre reprezentáciu Boolovych funkcií v~implementovanej knižnici. 
+	
+	Okrem formátu pre tvorenie grafov knižnica bude obsahovať aj možnosť vypísania obsahu danej Boolovej funkcie do príkazového riadku v~jednoduchom textovom symbolickom formáte. Táto možnosť bude slúžiť pre používateľov, ktorý nemajú prístup k~žiadnemu nástroju pre vykreslenie obrázku vo formáte DOT.
 	
 \newpage	
 \begin{lstlisting}[caption={Ukážka jednoduchého kódu vo formáte DGML, ktorý sa používa na vizualizáciu štruktúr. Obsahuje elementy pre jednotlivé uzly a prepojenia v~grafe, takisto aj pre vlastnosti jednotlivých uzlov.}, label=listing:dgml, language=XML, frame=tb]
@@ -483,8 +490,6 @@ x_1 \wedge x_1 \wedge x_1 \wedge x_1 = x_1
     </DirectedGraph>
 \end{lstlisting}
 
-	Z~textových formátov je veľmi rozšírený formát DOT\footnote{\url{http://www.graphviz.org/pdf/dotguide.pdf}}. Poskytuje možnosť vytvárať orientované grafy. DOT je možné používať v~príkazovom riadku, aj cez rôzne grafické prostredia, takisto je dostupných viacero online nástrojov. V~Zdrojovom kóde~\ref{listing:dot} môžeme vidieť jednoduchý graf vo formáte DOT, na Obr.~\ref{image:dot} potom, ako taký graf vyzerá.
-
 \begin{lstlisting}[caption={Ukážka formátu DOT. Obsahuje niekoľko uzlov a prepojení medzi nimi.}, label=listing:dot, frame=tb]
 1: graph G{
 2:   rankdir=LR;
@@ -504,11 +509,6 @@ x_1 \wedge x_1 \wedge x_1 \wedge x_1 = x_1
 	\label{image:dot}
 \end{figure}	
 
-	Pre jednoduchosť formátu DOT, a~takisto veľkej možnosti si ho vyskúšať online v~rôznych nástrojoch, bol nakoniec práve tento formát zvolený ako vhodný pre reprezentáciu Boolovych funkcií v~implementovanej knižnici. 
-
-	Okrem formátu pre tvorenie grafov knižnica bude obsahovať aj možnosť vypísania obsahu danej Boolovej funkcie do príkazového riadku v~jednoduchom textovom symbolickom formáte. Táto možnosť bude slúžiť pre používateľov, ktorý nemajú prístup k~žiadnemu nástroju pre vykreslenie obrázku vo formáte DOT.
-
-
 \chapter{Implementácia navrhovaného riešenia a použité algoritmy} \label{chapter:impl}
 
 	Táto kapitola popisuje spôsob implementácie knižnice podľa návrhu z~kapitoly~\ref{chapter:concept}. Popisuje súborovú štruktúru a~konkrétny obsah poskytovaných funkcií. Kompletný zoznam a~popis funkcií sa nachádza na priloženom CD v~dokumentácií, ako je popísané v~prílohe~\ref{appendix:doc}, v~tejto kapitole si popíšeme tie zaujímavejšie časti implementácie.
@@ -517,11 +517,11 @@ x_1 \wedge x_1 \wedge x_1 \wedge x_1 = x_1
 
 	Okrem zdrojových súborov sa v~balíčku nachádza aj testovací súbor \texttt{tests.c}, ktorý obsahuje niekoľko testov pre overenie funkčnosti vačšiny funkcií poskytovaných knižnicou. Tento testovací súbor takisto ukazuje možné použitie knižnice a~tiež ukážku vykreslenia grafu Boolovej funkcie v~ANF do súboru vo formáte DOT.
 
-	V knižnici sa okrem autorských súborov nachádza aj hlavičkový súbor \texttt{uthash.h}. Tento súbor je vytiahnutý z~balíčka UTHash\footnote{\url{https://troydhanson.github.io/uthash/}} a~je bezo zmeny používaný. Súbor bol vybraný, namiesto využitia kompletného balíčka UTHash preto, že v~našej knižnici nepotrebujeme ostatné štruktúry a~funkcie dostupné z~ostatných súborov z~UTHash, vystačíme si len s~týmto jedným súborom. 	
+	V~knižnici sa okrem autorských súborov nachádza aj hlavičkový súbor \texttt{uthash.h}. Tento súbor je vytiahnutý z~balíčka UTHash\footnote{\url{https://troydhanson.github.io/uthash/}} a~je bezo zmeny používaný. Súbor bol vybraný, namiesto využitia kompletného balíčka UTHash preto, že v~našej knižnici nepotrebujeme ostatné štruktúry a~funkcie dostupné z~ostatných súborov z~UTHash, vystačíme si len s~týmto jedným súborom. 	
 
 	Knižnica je implementovaná a~testovaná na systéme UNIX, konkrétne Ubuntu verzie 16.04, takže obsahuje prekladový súbor \texttt{makefile} len pre túto platformu. V~aktuálnom stave sa knižnica vytvára ako zdieľaná, je teda pri preklade zdrojových súborov mať administrátorské práva, aby bolo možné nakopírovať príslušné súbory na patričné miesta v~systéme. Používateľovi ale nič nebráni v~tom nevyužiť poskytnutý \texttt{makefile} a~používať súbory knižnice lokálne ako nezdieľanú knižnicu.
 
-	Hlavná logika čo sa týka práce s~hashovacou tabuľkou sa nachádza v~súbore \texttt{anfhashmap.c}. Nachádzajú sa tu funkcie, ktoré sprístupňujú funkcie z~knižnice UTHash pre použitie v~programe, ktoré sú vysoko optimalizované, napríklad preto, že sú implementované ako makrá. Knižnica UTHash pracuje veľmi dobre s pamäťou, za predpokladu, že si používateľ zvolí správny typ kľúča pre vybranú hashovaciu funkciu. Dostupné sú funkcie pre vytvorenie a~rušenie hashovacej tabuľky, pre vkladanie, výber a~odoberanie záznamov. Okrem toho obsahuje funkcie pre výpis obsahu hashovacej tabuľky do konzoly a~takisto pre vykreslenie do grafu vo formáte DOT. 	
+	Hlavná logika čo sa týka práce s~hashovacou tabuľkou sa nachádza v~súbore \texttt{anfhashmap.c}. Nachádzajú sa tu funkcie, ktoré sprístupňujú funkcie z~knižnice UTHash pre použitie v~programe, ktoré sú vysoko optimalizované, napríklad preto, že sú implementované ako makrá. Knižnica UTHash pracuje veľmi dobre s~pamäťou, za predpokladu, že si používateľ zvolí správny typ kľúča pre vybranú hashovaciu funkciu. Dostupné sú funkcie pre vytvorenie a~rušenie hashovacej tabuľky, pre vkladanie, výber a~odoberanie záznamov. Okrem toho obsahuje funkcie pre výpis obsahu hashovacej tabuľky do konzoly a~takisto pre vykreslenie do grafu vo formáte DOT. 	
 
 	Reprezentáciu premenných a~termov poskytujú súbory \texttt{anfnode.c} a~\texttt{anfvariable.c} a~ich príslušné hlavičkové súbory. Používateľ má možnosť vytvárania premenných a~termov, pridania a~odoberania premenných do/z~termu a~takisto vypísanie obsahu termu do konzoly. 
 
@@ -661,13 +661,111 @@ x_1 \wedge x_1 \wedge x_1 \wedge x_1 = x_1
 \end{figure}
 
 
-\chapter{Porovnanie knižnice s~existujúcimi riešeniami} \label{chapter:result}
+\chapter{Porovnanie knižnice s~knižnicou CUDD} \label{chapter:result}
+	
+	Táto kapitola sa bližšie zameriava na popis a vyhodnotenie vykonaných experimentov nad implementovanou knižnicou, a porovnanie výsledkov s knižnicou CUDD, ktorá je spomenutá v podkapitole~\ref{section:cudd}. Knižnica CUDD bola testovaná vo verzií 3.0.0. Všetky testy spomenuté v tejto kapitole prebehli na systéme Ubuntu 64bit.
+	
+\section{Experiment 1 - Boolova funkcia malého rozsahu} \label{section:exp1}
+	V tomto experimente bola vytvorená jednoduchá Boolova funkcia o troch premenných za pomoci knižnice CUDD, a následne pomocou nami vytvorenej knižnice (ďalej v kapitole bude označovaná ako knižnica ANFlib). Experiment je zameraný na používateľa knižnice, ktorý potrebuje reprezentovať či manipulovať s Boolovou funkciou či funkciami malého rozsahu. Výsledkom experimentu je zistenie výhod a nevýhod oboch knižníc pre daný prípad.	Ako testovacia Boolova funkcia bola vybraná funkcia z Rovnice~\ref{eq:exp1}. 
+	\begin{equation}\label{eq:exp1}
+		f = x_1 \oplus x_2 \oplus x_3
+	\end{equation} 
+	V oboch zvolených knižniciach je vytvorenie danej funkcie za pomoci prostriedkov knižníc otázkou niekoľkých desiatok riadkov kódu, takže v tomto ohľade nie je medzi knižnicami rozdiel, s obomi sa pracuje intuitívne.
+	
+	Knižnica CUDD je postavená na BDD, takže už zo svojej podstaty sa v nej nenastavuje konkrétna hodnota premenných, ale je použitá všeobecne neznáma hodnota. Až vytvorený binárny rozhodovací diagram sa postará o vytvorenie všetkých dostupných kombinácií vstupných hodnôt premenných, a podľa toho sa generuje štruktúra BDD. Knižnica \mbox{ANFlib} nepracuje na princípe BDD, v tomto prípade je potrebné nastaviť u každej vstupnej premennej Boolovu hodnotu. Ak chceme pomocou knižnice ANFlib zistiť splniteľnosť Boolovej funkcie, musíme vytvoriť toľko samostatných Boolovych funkcií, koľko je možných kombinácií vstupných hodnôt premenných, konkrétne $2^{2^n}$ funkcií, ako bolo spomenuté v podkapitole~\ref{section:def}.
+	
+	U oboch knižníc v tomto experimente prebehlo meranie, koľko pamäťového miesta zaberá beh programu, ktorý vytvorí Boolovu funkciu z Rovnice~\ref{eq:exp1}, vypíše o nej štatistiky do konzoly a vykreslí graf funkcie vo formáte DOT. Knižnica CUDD je implementovaná v objektovo orientovanom jazyku C++ a je rozsahovo omnoho väčšia, a tým pádom sa musia inicializovať rozsiahlejšie štruktúry ako v knižnici ANFlib, takže toto meranie nemá za úlohu vybrať lepšiu alebo horšiu variantu, pravé výhody knižnice CUDD by sa mali prejaviť až pri funkciách s veľkým rozsahom. Toto meranie je teda skôr informatívne. Je ale dôležité si ukázať pamäťové nároky oboch knižníc aj pre úlohy menšieho rozsahu. 
+	
+	Pre meranie bol použitý nástroj \texttt{valgrind}, konkrétne jeho súčasť \texttt{massif}, čo je nástroj pre meranie využitia haldy počas behu programu. Záznam o maximálnom pamäťovom využití programu sa nachádza v Tabuľke~\ref{table:exp1}.
+	\begin{table}[h]
+		\centering
+		\caption{Maximálne pamäťové nároky programu, ktorý využíva knižnicu CUDD, resp. ANFlib na vytvorenie a vykreslenie Boolovej funkcie o troch premenných.}
+		\label{table:exp1}
+		\begin{tabular}{|r|r|} \hline
+			Knižnica & Maximálna obsadená časť haldy (v bytoch) \\ \hline
+			CUDD & 10 535 032 \\ 
+			ANFlib & 7 184\\ \hline
+		\end{tabular}
+	\end{table}
+
+	Na meranie rýchlosti vykonania programu bol použitý UNIX príkaz \texttt{time}, ktorý ukazuje systémový aj reálny čas, ako dlho bežal daný program. Pre programy s tak malou veľkosťou ako v tomto experimente sú výsledné čísla príliš malé aby bol badateľný nejaký značný rozdiel, výsledky je možné vidieť v Tabuľke~\ref{table:exp2}.
+	\begin{table}[h]
+		\centering
+		\caption{Rýchlosť vykonania programov, ktoré vytvoria a vykreslia Boolovu funkciu o troch premenných za pomoci knižníc CUDD a ANFlib. Čísla sú priemerom z piatich meraní za sebou.}
+		\label{table:exp2}
+		\begin{tabular}{|r|r|r|} \hline
+			Knižnica & reálny čas & systémový čas \\ \hline
+			CUDD & 0.009s & 0.004s \\ 
+			ANFlib & 0.002s & 0.000s\\ \hline
+		\end{tabular}
+	\end{table}
+
+	Experiment dokazuje, že knižnica ANFlib je využiteľná pre prípady, ak používateľ potrebuje reprezentovať Boolovu funkciu malého rozsahu, hlavne z dôvodu, že knižnica CUDD si potrebuje alokovať väčšie množstvo pamäti pre svoje vnútorné štruktúry. Čo sa týka rýchlosti oboch knižníc, rozdiely sú zanedbateľné a obe knižnice sa dajú považovať za rovnako rýchle v tomto experimente.
+
+\section{Experiment 2 - Boolova funkcia s vysokým počtom premenných}
+
+	Tento experiment je variáciou Experimentu 1 v podkapitole~\ref{section:exp1}.  Experiment skúma vlastnosti testovaných knižníc pre Boolove funkcie s vysokým počtom premenných.
+	
+	Pamäťové nároky jednotlivých častí experimentu sú popísané v Tabuľke~\ref{table:exp3}, časová náročnosť jednotlivých meraní je v Tabuľke~\ref{table:exp4}.
+	
+	Pre testovanie boli vybrané dve Boolove funkcie, ktoré sa nachádzajú v Rovnici~\ref{eq:exp2} a Rovnici~\ref{eq:exp3}. Tieto dve Boolove funkcie boli vybrané z dôvodu, že sa u nich očakávajú pre knižnicu ANFlib z pohľadu výkonnosti dva extrémy. Pri reprezentácií funkcie z Rovnice~\ref{eq:exp2} by si podľa očakávania mala viesť funkcia ANFlib dobre, pretože je založená na ANF, a pri reprezentácii pomocou ANF je operácia logický súčin AND veľmi rýchlou operáciu, keďže všetky premenné, nad ktorými je operácia AND vykonaná patria do jedného termu Boolovej funkcie.
+	\begin{equation}\label{eq:exp2}
+		f = x_1 \wedge x_2 \wedge \dots \wedge x_n
+	\end{equation}
+	\begin{equation}\label{eq:exp3}
+		f = x_1 \oplus x_2 \oplus \dots \oplus x_n
+	\end{equation}
+	
+	Naopak, funkcia v Rovnici~\ref{eq:exp3} sa v knižnici ANFlib reprezentuje spôsobom, že každá premenná sa nachádza v samostatnom terme, a tým pádom by mala mať knižnica pri jej reprezentácii vyššie pamäťové nároky.
+	
+	Knižnica ANFlib poskytuje prostriedky, ako ju používať správne, a takisto ako aj nesprávne. Funkcia z Rovnice~\ref{eq:exp3} by sa dala reprezentovať aj spôsobom, že každá premenná sa vytvorí v samostatnej Boolovej funkcii, a tieto funkcie sa následne spoja do jednej. To je príklad nesprávneho využitia prostriedkov knižnice, je to riešenie, ktoré síce bude fungovať, ale jeho nároky na pamäť a čas sa niekoľkonásobne zvýšia.	
+	\begin{table}[h]
+		\centering
+		\caption{Maximálne pamäťové nároky programu, ktorý využíva knižnicu CUDD, resp. ANFlib na vytvorenie a vykreslenie Boolovej funkcie o viacerých premenných. Vytvárané Boolove funkcie sú tie z rovníc~\ref{eq:exp2}~a~\ref{eq:exp3}. V stĺpci Rovnica je označené, z ktorej rovnice bola vybraná použitá Boolova funkcia, poznámka \textit{extrém} označuje variantu, keď je každá premenná v samostatnej funkcii.}
+		\label{table:exp3}
+		\begin{tabular}{|r|r|r|r|} \hline
+			Knižnica & Počet premenných & Rovnica & Maximálna obsadená časť haldy (v bytoch) \\ \hline
+			CUDD & 1000 & \ref{eq:exp2} & 11 663 912 \\ 
+			CUDD & 1000 & \ref{eq:exp3} & 11 747 320 \\ 
+			CUDD & 5000 & \ref{eq:exp2} & 37 068 248 \\ 
+			CUDD & 5000 & \ref{eq:exp3} & 37 068 248 \\ 
+			ANFlib & 1000 & \ref{eq:exp2} & 170 440 \\ 
+			ANFlib & 1000 & \ref{eq:exp3} & 175 256 \\
+			ANFlib & 1000 & \ref{eq:exp3} - extrém & 917 016 \\ 
+			ANFlib & 5000 & \ref{eq:exp2} & 863 944 \\  
+			ANFlib & 5000 & \ref{eq:exp3} & 869 248 \\ 
+			ANFlib & 5000 & \ref{eq:exp3} - extrém & 4 600 320 \\ \hline
+		\end{tabular}
+	\end{table}
+\begin{table}[h]
+	\centering
+	\caption{Rýchlosť vykonania programov, ktoré vytvoria a vykreslia Boolovu funkciu za pomoci knižníc CUDD a ANFlib. Čísla sú priemerom z piatich meraní za sebou.}
+	\label{table:exp4}
+	\begin{tabular}{|r|r|r|r|r|} \hline
+		Knižnica & Počet premenných & Rovnica & reálny čas & systémový čas \\ \hline
+		CUDD & 1000 & \ref{eq:exp2} & 0.046s & 0.017s \\ 
+		CUDD & 1000 & \ref{eq:exp3} & 0.056s & 0.020s \\ 
+		CUDD & 5000 & \ref{eq:exp2} & 0.278s & 0.096s \\ 
+		CUDD & 5000 & \ref{eq:exp3} & 0.217s & 0.116s \\ 
+		ANFlib & 1000 & \ref{eq:exp2} & 0.026s & 0.012s \\ 
+		ANFlib & 1000 & \ref{eq:exp3} & 0.023s & 0.004s \\
+		ANFlib & 1000 & \ref{eq:exp3} - extrém & 0.703s & 0.624s \\ 
+		ANFlib & 5000 & \ref{eq:exp2} & 0.338s & 0.240s \\  
+		ANFlib & 5000 & \ref{eq:exp3} & 0.278s & 0.048s \\ 
+		ANFlib & 5000 & \ref{eq:exp3} - extrém & 22.852s & 21.740s \\ 
+		\hline
+	\end{tabular}
+\end{table}
+
+	Z experimentu vyplýva, že knižnica ANFlib si vedie dobre v pamäťových nárokoch aj pri vyššom počte použitých premenných, naopak v časových nárokoch si vedie lepšie knižnica CUDD.
 \chapter{Záver} \label{chapter:ending}
-%TODO
-%Možné rozšírenie: 
 
-%Zadanie explicitne špecifikuje, že sa knižnica bude zaoberať manipuláciou booleovskych funkcií v ANF, preto pri navrhovaní knižnice bude na to braný zreteľ. Možným rozšírením by bolo vytvorenie konvertoru, ktorý by dokázal dostať na vstup booleovsku funkciu aj v inej reprezentácií ako je ANF, skonvertovať ju na ANF a ďalej potom pracovať s knižnicou. Toto rozšírenie je však ponechané mimo tejto práce.
+	Hlavným cieľom tejto bakalárskej práce bolo vytvoriť knižnicu pre reprezentáciu a manipuláciu s Boolovymi funkciami v Algebraickej Normálne Forme. Implementovaná knižnica by mala používať efektívne algoritmy, hlavne z pohľadu pamäťových nárokov a rýchlosti. Svojimi vlastnosťami by mala byť podobná existujúcim knižniciam, ktoré sú založené na binárnych rozhodovacích diagramoch.
+	
+	Prvá časť práce popisuje úvod do problematiky reprezentácie Boolovych funkcií. Sú v nej popísané rôzne viac či menej efektívne možnosti ich reprezentácie a manipulácie. Podrobnejšie sa v nej rozoberá Algebraická Normálna Forma Boolovej funkcie ako jedna z možností reprezentácie. Táto forma je porovnávaná s dnes najrozšírenejšou reprezentáciou pomocou binárnych rohodovacích diagramov. V ďalšej časti práce sú podrobnejšie rozobrané existujúce riešenia, a popísané ich výhody a nevýhody.
+	
+	Implementovaná knižnica využíva pre reprezentáciu premenných v Boolovej funkcii hashovaciu tabuľku, ktorá využíva znakový reťazec ako kľúč. Ďalej poskytuje možnosť vytvárať, upravovať či mazať jednotlivé premenné z funkcie, takisto manipuláciu s termami vo funkcií, prípadne operácie nad celou funkciou. Poskytuje možnosti vykreslenia Boolovej funkcie do grafu vo formáte DOT.
 
-%rozšírenie pre iné platformy?
-
-%rozne hash funkcie?
+	V Kapitole~\ref{chapter:result} je knižnica porovnaná s dnes veľmi rozšírenou knižnicou CUDD. Z experimentov vyšlo, že nami navrhnutá knižnica poskytuje oproti knižnici CUDD značnú výhodu v oblasti pamäťových nárokov na beh programu, ktorý knižnicu využíva. Naša knižnica síce neposkytuje úplne všetky funkcionality, ktoré ponúka knižnica CUDD, primárne sú to užitočné funkcie, ktoré so sebou prináša reprezentácia pomocou binárnych rozhodovacích dagramov, ale poskytuje všetky dôležité funkcie potrebné pre manipuláciu funkcie v Algebraickej Normálnej Forme. Z experimentov ďalej vyšlo, že čím väčšieho rozsahu je reprezentovaná Boolova funkcia, tým viac nami implementovaná knižnica stráca rýchlosť. V testovaných prípadoch boli rozdiely v niekoľkých desatinách sekúnd, ale rozdiely sa môžu zväčšovať pri zložitejších operáciách.
+	
+	Existuje viacero oblastí, v ktorých by bolo možné ďalej knižnicu vylepšovať. Hlavným funkčným obmedzením momentálne je možnosť reprezentácie výhradne takých funkcií, ktoré už sú v Algebraickej Normálnej Forme. Ak chce užívateľ reprezentovať funkciu v inej forme, musí ju v programe ručne konvertovať. Vítaným rozšírením by bolo teda vytvorenie rozhrania, ktoré by túto konverziu vykonávalo. Ďalším rozšírením by mohlo byť skúšanie vylepšených hashovacích funkcií pre prácu s hashovacou tabuľkou. 
