@@ -9,7 +9,7 @@
 \providecommand{\eprint}[2][]{\url{#2}}
 
 \bibitem{citation:buddy}
-BuDDy: A BDD package. Online 16.05.2017.
+BuDDy: A~BDD package. Online 16.05.2017.
 \newline\urlprefix\url{http://buddy.sourceforge.net/manual/main.html}
 
 \bibitem{citation:bard}
@@ -66,7 +66,7 @@ Koppelberg, S.: \emph{Handbook of Boolean algebras Volume 1}. North Holland,
   1989, ISBN 044470261X.
 
 \bibitem{citation:guanfeng}
-Lv, G.; Su, K.; Xu, Y.: \emph{CacBDD: A BDD Package with Dynamic Cache
+Lv, G.; Su, K.; Xu, Y.: \emph{CacBDD: A~BDD Package with Dynamic Cache
   Management}. Berlin, Heidelberg: Springer Berlin Heidelberg, 2013, ISBN
   978-3-642-39799-8, s. 229--234.
 
