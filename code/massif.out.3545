@@ -1,0 +1,918 @@
+desc: --time-unit=B
+cmd: ./test
+time_unit: B
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=19920
+mem_heap_B=440
+mem_heap_extra_B=280
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=40848
+mem_heap_B=1252
+mem_heap_extra_B=556
+mem_stacks_B=0
+heap_tree=detailed
+n3: 1252 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 952 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 952 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 952 0x804B4E1: main (tests.c:825)
+ n1: 256 0x804B288: thousandAndedVariablesTest (tests.c:762)
+  n0: 256 0x804B4E1: main (tests.c:825)
+ n1: 44 0x804B275: thousandAndedVariablesTest (tests.c:761)
+  n0: 44 0x804B4E1: main (tests.c:825)
+#-----------
+snapshot=3
+#-----------
+time=62096
+mem_heap_B=1764
+mem_heap_extra_B=812
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=4
+#-----------
+time=76160
+mem_heap_B=2160
+mem_heap_extra_B=1040
+mem_stacks_B=0
+heap_tree=detailed
+n3: 2160 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1860 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 1860 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 1860 0x804B4E1: main (tests.c:825)
+ n1: 256 0x804B288: thousandAndedVariablesTest (tests.c:762)
+  n0: 256 0x804B4E1: main (tests.c:825)
+ n1: 44 0x804B275: thousandAndedVariablesTest (tests.c:761)
+  n0: 44 0x804B4E1: main (tests.c:825)
+#-----------
+snapshot=5
+#-----------
+time=97664
+mem_heap_B=2800
+mem_heap_extra_B=1424
+mem_stacks_B=0
+heap_tree=detailed
+n3: 2800 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 2500 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 2500 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 2500 0x804B4E1: main (tests.c:825)
+ n1: 256 0x804B288: thousandAndedVariablesTest (tests.c:762)
+  n0: 256 0x804B4E1: main (tests.c:825)
+ n1: 44 0x804B275: thousandAndedVariablesTest (tests.c:761)
+  n0: 44 0x804B4E1: main (tests.c:825)
+#-----------
+snapshot=6
+#-----------
+time=119168
+mem_heap_B=3440
+mem_heap_extra_B=1808
+mem_stacks_B=0
+heap_tree=detailed
+n3: 3440 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 3140 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 3140 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 3140 0x804B4E1: main (tests.c:825)
+ n1: 256 0x804B288: thousandAndedVariablesTest (tests.c:762)
+  n0: 256 0x804B4E1: main (tests.c:825)
+ n0: 44 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=7
+#-----------
+time=140672
+mem_heap_B=4080
+mem_heap_extra_B=2192
+mem_stacks_B=0
+heap_tree=detailed
+n3: 4080 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 3780 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 3780 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 3780 0x804B4E1: main (tests.c:825)
+ n1: 256 0x804B288: thousandAndedVariablesTest (tests.c:762)
+  n0: 256 0x804B4E1: main (tests.c:825)
+ n0: 44 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=8
+#-----------
+time=155456
+mem_heap_B=4520
+mem_heap_extra_B=2456
+mem_stacks_B=0
+heap_tree=detailed
+n3: 4520 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 4220 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 4220 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 4220 0x804B4E1: main (tests.c:825)
+ n1: 256 0x804B288: thousandAndedVariablesTest (tests.c:762)
+  n0: 256 0x804B4E1: main (tests.c:825)
+ n0: 44 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=9
+#-----------
+time=171584
+mem_heap_B=5000
+mem_heap_extra_B=2744
+mem_stacks_B=0
+heap_tree=detailed
+n3: 5000 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 4700 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 4700 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 4700 0x804B4E1: main (tests.c:825)
+ n1: 256 0x804B288: thousandAndedVariablesTest (tests.c:762)
+  n0: 256 0x804B4E1: main (tests.c:825)
+ n0: 44 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=10
+#-----------
+time=187712
+mem_heap_B=5480
+mem_heap_extra_B=3032
+mem_stacks_B=0
+heap_tree=detailed
+n3: 5480 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 5180 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 5180 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 5180 0x804B4E1: main (tests.c:825)
+ n1: 256 0x804B288: thousandAndedVariablesTest (tests.c:762)
+  n0: 256 0x804B4E1: main (tests.c:825)
+ n0: 44 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=11
+#-----------
+time=203840
+mem_heap_B=5960
+mem_heap_extra_B=3320
+mem_stacks_B=0
+heap_tree=detailed
+n3: 5960 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 5660 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 5660 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 5660 0x804B4E1: main (tests.c:825)
+ n1: 256 0x804B288: thousandAndedVariablesTest (tests.c:762)
+  n0: 256 0x804B4E1: main (tests.c:825)
+ n0: 44 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=12
+#-----------
+time=222656
+mem_heap_B=6520
+mem_heap_extra_B=3656
+mem_stacks_B=0
+heap_tree=detailed
+n3: 6520 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 6220 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 6220 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 6220 0x804B4E1: main (tests.c:825)
+ n1: 256 0x804B288: thousandAndedVariablesTest (tests.c:762)
+  n0: 256 0x804B4E1: main (tests.c:825)
+ n0: 44 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=13
+#-----------
+time=244160
+mem_heap_B=7160
+mem_heap_extra_B=4040
+mem_stacks_B=0
+heap_tree=detailed
+n3: 7160 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 6860 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 6860 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 6860 0x804B4E1: main (tests.c:825)
+ n1: 256 0x804B288: thousandAndedVariablesTest (tests.c:762)
+  n0: 256 0x804B4E1: main (tests.c:825)
+ n0: 44 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=14
+#-----------
+time=265664
+mem_heap_B=7800
+mem_heap_extra_B=4424
+mem_stacks_B=0
+heap_tree=detailed
+n3: 7800 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 7500 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 7500 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 7500 0x804B4E1: main (tests.c:825)
+ n1: 256 0x804B288: thousandAndedVariablesTest (tests.c:762)
+  n0: 256 0x804B4E1: main (tests.c:825)
+ n0: 44 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=15
+#-----------
+time=276416
+mem_heap_B=8120
+mem_heap_extra_B=4616
+mem_stacks_B=0
+heap_tree=detailed
+n3: 8120 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 7820 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 7820 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 7820 0x804B4E1: main (tests.c:825)
+ n1: 256 0x804B288: thousandAndedVariablesTest (tests.c:762)
+  n0: 256 0x804B4E1: main (tests.c:825)
+ n0: 44 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=16
+#-----------
+time=289184
+mem_heap_B=8500
+mem_heap_extra_B=4844
+mem_stacks_B=0
+heap_tree=detailed
+n3: 8500 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 8200 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 8200 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 8200 0x804B4E1: main (tests.c:825)
+ n1: 256 0x804B288: thousandAndedVariablesTest (tests.c:762)
+  n0: 256 0x804B4E1: main (tests.c:825)
+ n0: 44 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=17
+#-----------
+time=305984
+mem_heap_B=9000
+mem_heap_extra_B=5144
+mem_stacks_B=0
+heap_tree=detailed
+n3: 9000 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 8700 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 8700 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 8700 0x804B4E1: main (tests.c:825)
+ n1: 256 0x804B288: thousandAndedVariablesTest (tests.c:762)
+  n0: 256 0x804B4E1: main (tests.c:825)
+ n0: 44 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=18
+#-----------
+time=319424
+mem_heap_B=9400
+mem_heap_extra_B=5384
+mem_stacks_B=0
+heap_tree=detailed
+n3: 9400 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 9100 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 9100 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 9100 0x804B4E1: main (tests.c:825)
+ n1: 256 0x804B288: thousandAndedVariablesTest (tests.c:762)
+  n0: 256 0x804B4E1: main (tests.c:825)
+ n0: 44 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=19
+#-----------
+time=332864
+mem_heap_B=9800
+mem_heap_extra_B=5624
+mem_stacks_B=0
+heap_tree=detailed
+n3: 9800 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 9500 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 9500 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 9500 0x804B4E1: main (tests.c:825)
+ n1: 256 0x804B288: thousandAndedVariablesTest (tests.c:762)
+  n0: 256 0x804B4E1: main (tests.c:825)
+ n0: 44 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=20
+#-----------
+time=346304
+mem_heap_B=10200
+mem_heap_extra_B=5864
+mem_stacks_B=0
+heap_tree=detailed
+n3: 10200 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 9900 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 9900 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 9900 0x804B4E1: main (tests.c:825)
+ n1: 256 0x804B288: thousandAndedVariablesTest (tests.c:762)
+  n0: 256 0x804B4E1: main (tests.c:825)
+ n0: 44 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=21
+#-----------
+time=362432
+mem_heap_B=10680
+mem_heap_extra_B=6152
+mem_stacks_B=0
+heap_tree=detailed
+n3: 10680 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 10380 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 10380 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 10380 0x804B4E1: main (tests.c:825)
+ n1: 256 0x804B288: thousandAndedVariablesTest (tests.c:762)
+  n0: 256 0x804B4E1: main (tests.c:825)
+ n0: 44 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=22
+#-----------
+time=378560
+mem_heap_B=11160
+mem_heap_extra_B=6440
+mem_stacks_B=0
+heap_tree=detailed
+n3: 11160 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 10860 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 10860 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 10860 0x804B4E1: main (tests.c:825)
+ n1: 256 0x804B288: thousandAndedVariablesTest (tests.c:762)
+  n0: 256 0x804B4E1: main (tests.c:825)
+ n0: 44 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=23
+#-----------
+time=394688
+mem_heap_B=11640
+mem_heap_extra_B=6728
+mem_stacks_B=0
+heap_tree=detailed
+n3: 11640 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 11340 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 11340 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 11340 0x804B4E1: main (tests.c:825)
+ n1: 256 0x804B288: thousandAndedVariablesTest (tests.c:762)
+  n0: 256 0x804B4E1: main (tests.c:825)
+ n0: 44 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=24
+#-----------
+time=410816
+mem_heap_B=12120
+mem_heap_extra_B=7016
+mem_stacks_B=0
+heap_tree=detailed
+n3: 12120 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 11820 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 11820 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 11820 0x804B4E1: main (tests.c:825)
+ n1: 256 0x804B288: thousandAndedVariablesTest (tests.c:762)
+  n0: 256 0x804B4E1: main (tests.c:825)
+ n0: 44 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=25
+#-----------
+time=428960
+mem_heap_B=12660
+mem_heap_extra_B=7340
+mem_stacks_B=0
+heap_tree=detailed
+n3: 12660 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 12360 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 12360 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 12360 0x804B4E1: main (tests.c:825)
+ n1: 256 0x804B288: thousandAndedVariablesTest (tests.c:762)
+  n0: 256 0x804B4E1: main (tests.c:825)
+ n0: 44 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=26
+#-----------
+time=447776
+mem_heap_B=13220
+mem_heap_extra_B=7676
+mem_stacks_B=0
+heap_tree=detailed
+n3: 13220 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 12920 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 12920 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 12920 0x804B4E1: main (tests.c:825)
+ n1: 256 0x804B288: thousandAndedVariablesTest (tests.c:762)
+  n0: 256 0x804B4E1: main (tests.c:825)
+ n0: 44 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=27
+#-----------
+time=466592
+mem_heap_B=13780
+mem_heap_extra_B=8012
+mem_stacks_B=0
+heap_tree=detailed
+n3: 13780 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 13480 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 13480 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 13480 0x804B4E1: main (tests.c:825)
+ n1: 256 0x804B288: thousandAndedVariablesTest (tests.c:762)
+  n0: 256 0x804B4E1: main (tests.c:825)
+ n0: 44 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=28
+#-----------
+time=486080
+mem_heap_B=14360
+mem_heap_extra_B=8360
+mem_stacks_B=0
+heap_tree=detailed
+n3: 14360 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 14060 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 14060 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 14060 0x804B4E1: main (tests.c:825)
+ n1: 256 0x804B288: thousandAndedVariablesTest (tests.c:762)
+  n0: 256 0x804B4E1: main (tests.c:825)
+ n0: 44 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=29
+#-----------
+time=507584
+mem_heap_B=15000
+mem_heap_extra_B=8744
+mem_stacks_B=0
+heap_tree=detailed
+n3: 15000 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 14700 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 14700 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 14700 0x804B4E1: main (tests.c:825)
+ n1: 256 0x804B288: thousandAndedVariablesTest (tests.c:762)
+  n0: 256 0x804B4E1: main (tests.c:825)
+ n0: 44 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=30
+#-----------
+time=518336
+mem_heap_B=15320
+mem_heap_extra_B=8936
+mem_stacks_B=0
+heap_tree=detailed
+n3: 15320 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 15020 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 15020 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 15020 0x804B4E1: main (tests.c:825)
+ n1: 256 0x804B288: thousandAndedVariablesTest (tests.c:762)
+  n0: 256 0x804B4E1: main (tests.c:825)
+ n0: 44 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=31
+#-----------
+time=529088
+mem_heap_B=15640
+mem_heap_extra_B=9128
+mem_stacks_B=0
+heap_tree=detailed
+n3: 15640 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 15340 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 15340 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 15340 0x804B4E1: main (tests.c:825)
+ n1: 256 0x804B288: thousandAndedVariablesTest (tests.c:762)
+  n0: 256 0x804B4E1: main (tests.c:825)
+ n0: 44 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=32
+#-----------
+time=539840
+mem_heap_B=15960
+mem_heap_extra_B=9320
+mem_stacks_B=0
+heap_tree=detailed
+n3: 15960 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 15660 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 15660 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 15660 0x804B4E1: main (tests.c:825)
+ n1: 256 0x804B288: thousandAndedVariablesTest (tests.c:762)
+  n0: 256 0x804B4E1: main (tests.c:825)
+ n0: 44 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=33
+#-----------
+time=550592
+mem_heap_B=16280
+mem_heap_extra_B=9512
+mem_stacks_B=0
+heap_tree=detailed
+n2: 16280 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 15980 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 15980 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 15980 0x804B4E1: main (tests.c:825)
+ n0: 300 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=34
+#-----------
+time=562688
+mem_heap_B=16640
+mem_heap_extra_B=9728
+mem_stacks_B=0
+heap_tree=detailed
+n2: 16640 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 16340 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 16340 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 16340 0x804B4E1: main (tests.c:825)
+ n0: 300 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=35
+#-----------
+time=574784
+mem_heap_B=17000
+mem_heap_extra_B=9944
+mem_stacks_B=0
+heap_tree=detailed
+n2: 17000 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 16700 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 16700 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 16700 0x804B4E1: main (tests.c:825)
+ n0: 300 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=36
+#-----------
+time=586880
+mem_heap_B=17360
+mem_heap_extra_B=10160
+mem_stacks_B=0
+heap_tree=detailed
+n2: 17360 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 17060 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 17060 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 17060 0x804B4E1: main (tests.c:825)
+ n0: 300 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=37
+#-----------
+time=598976
+mem_heap_B=17720
+mem_heap_extra_B=10376
+mem_stacks_B=0
+heap_tree=detailed
+n2: 17720 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 17420 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 17420 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 17420 0x804B4E1: main (tests.c:825)
+ n0: 300 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=38
+#-----------
+time=611072
+mem_heap_B=18080
+mem_heap_extra_B=10592
+mem_stacks_B=0
+heap_tree=detailed
+n2: 18080 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 17780 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 17780 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 17780 0x804B4E1: main (tests.c:825)
+ n0: 300 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=39
+#-----------
+time=623840
+mem_heap_B=18460
+mem_heap_extra_B=10820
+mem_stacks_B=0
+heap_tree=detailed
+n2: 18460 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 18160 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 18160 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 18160 0x804B4E1: main (tests.c:825)
+ n0: 300 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=40
+#-----------
+time=637280
+mem_heap_B=18860
+mem_heap_extra_B=11060
+mem_stacks_B=0
+heap_tree=detailed
+n2: 18860 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 18560 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 18560 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 18560 0x804B4E1: main (tests.c:825)
+ n0: 300 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=41
+#-----------
+time=650720
+mem_heap_B=19260
+mem_heap_extra_B=11300
+mem_stacks_B=0
+heap_tree=detailed
+n2: 19260 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 18960 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 18960 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 18960 0x804B4E1: main (tests.c:825)
+ n0: 300 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=42
+#-----------
+time=670880
+mem_heap_B=19860
+mem_heap_extra_B=11660
+mem_stacks_B=0
+heap_tree=detailed
+n2: 19860 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 19560 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 19560 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 19560 0x804B4E1: main (tests.c:825)
+ n0: 300 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=43
+#-----------
+time=715288
+mem_heap_B=63596
+mem_heap_extra_B=11692
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=44
+#-----------
+time=728776
+mem_heap_B=73054
+mem_heap_extra_B=15722
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=738864
+mem_heap_B=78494
+mem_heap_extra_B=19586
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=46
+#-----------
+time=752552
+mem_heap_B=86930
+mem_heap_extra_B=24838
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=47
+#-----------
+time=766000
+mem_heap_B=93362
+mem_heap_extra_B=30302
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=48
+#-----------
+time=774448
+mem_heap_B=99484
+mem_heap_extra_B=32628
+mem_stacks_B=0
+heap_tree=detailed
+n7: 99484 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 44000 0x4049B08: newNodeWithVarsInAnf (anf.c:156)
+  n1: 44000 0x804B3BE: thousandAndedVariablesTest (tests.c:780)
+   n0: 44000 0x804B4E1: main (tests.c:825)
+ n1: 24068 0x404C252: insertToHashMap (anfhashmap.c:45)
+  n1: 24068 0x404A0F7: createVarsInAnf (anf.c:251)
+   n1: 24068 0x4049C5B: newNodeWithVarsInAnf (anf.c:185)
+    n1: 24068 0x804B3BE: thousandAndedVariablesTest (tests.c:780)
+     n0: 24068 0x804B4E1: main (tests.c:825)
+ n1: 19560 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 19560 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 19560 0x804B4E1: main (tests.c:825)
+ n1: 4608 0x404C91F: insertToHashMap (anfhashmap.c:51)
+  n1: 4608 0x404A0F7: createVarsInAnf (anf.c:251)
+   n1: 4608 0x4049C5B: newNodeWithVarsInAnf (anf.c:185)
+    n1: 4608 0x804B3BE: thousandAndedVariablesTest (tests.c:780)
+     n0: 4608 0x804B4E1: main (tests.c:825)
+ n1: 4000 0x404E158: addVariableToNode (anfnode.c:66)
+  n1: 4000 0x404E221: addVariablesToNode (anfnode.c:81)
+   n1: 4000 0x4049C1D: newNodeWithVarsInAnf (anf.c:179)
+    n1: 4000 0x804B3BE: thousandAndedVariablesTest (tests.c:780)
+     n0: 4000 0x804B4E1: main (tests.c:825)
+ n1: 2625 0x404C272: insertToHashMap (anfhashmap.c:46)
+  n1: 2625 0x404A0F7: createVarsInAnf (anf.c:251)
+   n1: 2625 0x4049C5B: newNodeWithVarsInAnf (anf.c:185)
+    n1: 2625 0x804B3BE: thousandAndedVariablesTest (tests.c:780)
+     n0: 2625 0x804B4E1: main (tests.c:825)
+ n0: 623 in 9 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=49
+#-----------
+time=781176
+mem_heap_B=100897
+mem_heap_extra_B=34855
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=50
+#-----------
+time=789624
+mem_heap_B=105697
+mem_heap_extra_B=38503
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=51
+#-----------
+time=798072
+mem_heap_B=110497
+mem_heap_extra_B=42151
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=52
+#-----------
+time=806520
+mem_heap_B=115297
+mem_heap_extra_B=45799
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=53
+#-----------
+time=814968
+mem_heap_B=120097
+mem_heap_extra_B=49447
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=54
+#-----------
+time=815864
+mem_heap_B=120598
+mem_heap_extra_B=49842
+mem_stacks_B=0
+heap_tree=peak
+n7: 120598 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 44000 0x4049B08: newNodeWithVarsInAnf (anf.c:156)
+  n1: 44000 0x804B3BE: thousandAndedVariablesTest (tests.c:780)
+   n0: 44000 0x804B4E1: main (tests.c:825)
+ n1: 44000 0x404C252: insertToHashMap (anfhashmap.c:45)
+  n1: 44000 0x404A0F7: createVarsInAnf (anf.c:251)
+   n1: 44000 0x4049C5B: newNodeWithVarsInAnf (anf.c:185)
+    n1: 44000 0x804B3BE: thousandAndedVariablesTest (tests.c:780)
+     n0: 44000 0x804B4E1: main (tests.c:825)
+ n1: 19560 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 19560 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 19560 0x804B4E1: main (tests.c:825)
+ n1: 4890 0x404C272: insertToHashMap (anfhashmap.c:46)
+  n1: 4890 0x404A0F7: createVarsInAnf (anf.c:251)
+   n1: 4890 0x4049C5B: newNodeWithVarsInAnf (anf.c:185)
+    n1: 4890 0x804B3BE: thousandAndedVariablesTest (tests.c:780)
+     n0: 4890 0x804B4E1: main (tests.c:825)
+ n1: 4000 0x404E158: addVariableToNode (anfnode.c:66)
+  n1: 4000 0x404E221: addVariablesToNode (anfnode.c:81)
+   n1: 4000 0x4049C1D: newNodeWithVarsInAnf (anf.c:179)
+    n1: 4000 0x804B3BE: thousandAndedVariablesTest (tests.c:780)
+     n0: 4000 0x804B4E1: main (tests.c:825)
+ n1: 3072 0x404C91F: insertToHashMap (anfhashmap.c:51)
+  n1: 3072 0x404A0F7: createVarsInAnf (anf.c:251)
+   n1: 3072 0x4049C5B: newNodeWithVarsInAnf (anf.c:185)
+    n1: 3072 0x804B3BE: thousandAndedVariablesTest (tests.c:780)
+     n0: 3072 0x804B4E1: main (tests.c:825)
+ n0: 1076 in 9 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=55
+#-----------
+time=859872
+mem_heap_B=76598
+mem_heap_extra_B=49834
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=56
+#-----------
+time=871200
+mem_heap_B=76942
+mem_heap_extra_B=49842
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=57
+#-----------
+time=879656
+mem_heap_B=70338
+mem_heap_extra_B=47990
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=58
+#-----------
+time=888112
+mem_heap_B=65592
+mem_heap_extra_B=44280
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=59
+#-----------
+time=896560
+mem_heap_B=60792
+mem_heap_extra_B=40632
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=60
+#-----------
+time=905008
+mem_heap_B=55992
+mem_heap_extra_B=36984
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=61
+#-----------
+time=913456
+mem_heap_B=51192
+mem_heap_extra_B=33336
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=62
+#-----------
+time=921904
+mem_heap_B=46392
+mem_heap_extra_B=29688
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=63
+#-----------
+time=930360
+mem_heap_B=41592
+mem_heap_extra_B=26032
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=64
+#-----------
+time=938808
+mem_heap_B=36792
+mem_heap_extra_B=22384
+mem_stacks_B=0
+heap_tree=detailed
+n5: 36792 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 19560 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 19560 0x804B2ED: thousandAndedVariablesTest (tests.c:767)
+   n0: 19560 0x804B4E1: main (tests.c:825)
+ n1: 12408 0x404C252: insertToHashMap (anfhashmap.c:45)
+  n1: 12408 0x404A0F7: createVarsInAnf (anf.c:251)
+   n1: 12408 0x4049C5B: newNodeWithVarsInAnf (anf.c:185)
+    n1: 12408 0x804B3BE: thousandAndedVariablesTest (tests.c:780)
+     n0: 12408 0x804B4E1: main (tests.c:825)
+ n1: 3072 0x404C91F: insertToHashMap (anfhashmap.c:51)
+  n1: 3072 0x404A0F7: createVarsInAnf (anf.c:251)
+   n1: 3072 0x4049C5B: newNodeWithVarsInAnf (anf.c:185)
+    n1: 3072 0x804B3BE: thousandAndedVariablesTest (tests.c:780)
+     n0: 3072 0x804B4E1: main (tests.c:825)
+ n1: 1410 0x404C272: insertToHashMap (anfhashmap.c:46)
+  n1: 1410 0x404A0F7: createVarsInAnf (anf.c:251)
+   n1: 1410 0x4049C5B: newNodeWithVarsInAnf (anf.c:185)
+    n1: 1410 0x804B3BE: thousandAndedVariablesTest (tests.c:780)
+     n0: 1410 0x804B4E1: main (tests.c:825)
+ n0: 342 in 14 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=65
+#-----------
+time=947256
+mem_heap_B=31992
+mem_heap_extra_B=18736
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=66
+#-----------
+time=955704
+mem_heap_B=27192
+mem_heap_extra_B=15088
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=67
+#-----------
+time=966616
+mem_heap_B=19670
+mem_heap_extra_B=11698
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=68
+#-----------
+time=975072
+mem_heap_B=14320
+mem_heap_extra_B=8592
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=69
+#-----------
+time=983520
+mem_heap_B=9040
+mem_heap_extra_B=5424
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=70
+#-----------
+time=991968
+mem_heap_B=3760
+mem_heap_extra_B=2256
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=71
+#-----------
+time=1002088
+mem_heap_B=4096
+mem_heap_extra_B=8
+mem_stacks_B=0
+heap_tree=empty

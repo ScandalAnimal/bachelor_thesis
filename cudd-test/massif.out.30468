@@ -1,0 +1,802 @@
+desc: --time-unit=B
+cmd: ./tutorial
+time_unit: B
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=840
+mem_heap_B=832
+mem_heap_extra_B=8
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=1328
+mem_heap_B=1312
+mem_heap_extra_B=16
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=3
+#-----------
+time=1816
+mem_heap_B=1792
+mem_heap_extra_B=24
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=4
+#-----------
+time=1864
+mem_heap_B=1832
+mem_heap_extra_B=32
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=5
+#-----------
+time=1912
+mem_heap_B=1872
+mem_heap_extra_B=40
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=6
+#-----------
+time=1960
+mem_heap_B=1912
+mem_heap_extra_B=48
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=7
+#-----------
+time=2008
+mem_heap_B=1952
+mem_heap_extra_B=56
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=2064
+mem_heap_B=1996
+mem_heap_extra_B=68
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=9
+#-----------
+time=2099224
+mem_heap_B=2099148
+mem_heap_extra_B=76
+mem_stacks_B=0
+heap_tree=detailed
+n1: 2099148 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 2099148 0x80763AC: MMalloc (safe_mem.c:107)
+  n1: 2097152 0x8058F81: cuddInitTable (cuddTable.c:451)
+   n1: 2097152 0x8057843: Cudd_Init (cuddInit.c:122)
+    n0: 2097152 0x8048C37: main (tutorial.c:54)
+  n0: 1996 in 8 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=10
+#-----------
+time=2100256
+mem_heap_B=2100172
+mem_heap_extra_B=84
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=11
+#-----------
+time=6298632
+mem_heap_B=6294492
+mem_heap_extra_B=4140
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=10497008
+mem_heap_B=10488800
+mem_heap_extra_B=8208
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=10513384
+mem_heap_B=10505168
+mem_heap_extra_B=8216
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=14
+#-----------
+time=10513432
+mem_heap_B=10505208
+mem_heap_extra_B=8224
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=15
+#-----------
+time=10514464
+mem_heap_B=10506232
+mem_heap_extra_B=8232
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=16
+#-----------
+time=10515496
+mem_heap_B=10507256
+mem_heap_extra_B=8240
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=17
+#-----------
+time=10516528
+mem_heap_B=10508280
+mem_heap_extra_B=8248
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=18
+#-----------
+time=10517560
+mem_heap_B=10509304
+mem_heap_extra_B=8256
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=19
+#-----------
+time=10518592
+mem_heap_B=10510328
+mem_heap_extra_B=8264
+mem_stacks_B=0
+heap_tree=detailed
+n2: 10510328 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n4: 10509304 0x80763AC: MMalloc (safe_mem.c:107)
+  n1: 4194320 0x8053C5B: cuddInitCache (cuddCache.c:123)
+   n1: 4194320 0x8057876: Cudd_Init (cuddInit.c:127)
+    n0: 4194320 0x8048C37: main (tutorial.c:54)
+  n1: 4194308 0x80578A1: Cudd_Init (cuddInit.c:132)
+   n0: 4194308 0x8048C37: main (tutorial.c:54)
+  n1: 2097152 0x8058F81: cuddInitTable (cuddTable.c:451)
+   n1: 2097152 0x8057843: Cudd_Init (cuddInit.c:122)
+    n0: 2097152 0x8048C37: main (tutorial.c:54)
+  n0: 23524 in 12 places, all below massif's threshold (1.00%)
+ n0: 1024 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=20
+#-----------
+time=10518640
+mem_heap_B=10510368
+mem_heap_extra_B=8272
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=21
+#-----------
+time=10518656
+mem_heap_B=10510376
+mem_heap_extra_B=8280
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=22
+#-----------
+time=10535032
+mem_heap_B=10526744
+mem_heap_extra_B=8288
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=23
+#-----------
+time=10535032
+mem_heap_B=10526744
+mem_heap_extra_B=8288
+mem_stacks_B=0
+heap_tree=peak
+n2: 10526744 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n4: 10525720 0x80763AC: MMalloc (safe_mem.c:107)
+  n1: 4194320 0x8053C5B: cuddInitCache (cuddCache.c:123)
+   n1: 4194320 0x8057876: Cudd_Init (cuddInit.c:127)
+    n0: 4194320 0x8048C37: main (tutorial.c:54)
+  n1: 4194308 0x80578A1: Cudd_Init (cuddInit.c:132)
+   n0: 4194308 0x8048C37: main (tutorial.c:54)
+  n1: 2097152 0x8058F81: cuddInitTable (cuddTable.c:451)
+   n1: 2097152 0x8057843: Cudd_Init (cuddInit.c:122)
+    n0: 2097152 0x8048C37: main (tutorial.c:54)
+  n0: 39940 in 15 places, all below massif's threshold (1.00%)
+ n0: 1024 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=24
+#-----------
+time=10551408
+mem_heap_B=10510376
+mem_heap_extra_B=8280
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=25
+#-----------
+time=10551424
+mem_heap_B=10510368
+mem_heap_extra_B=8272
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=26
+#-----------
+time=10551472
+mem_heap_B=10510328
+mem_heap_extra_B=8264
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=27
+#-----------
+time=10551528
+mem_heap_B=10510376
+mem_heap_extra_B=8272
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=28
+#-----------
+time=10551584
+mem_heap_B=10510420
+mem_heap_extra_B=8284
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=29
+#-----------
+time=10551608
+mem_heap_B=10510432
+mem_heap_extra_B=8296
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=30
+#-----------
+time=10551632
+mem_heap_B=10510444
+mem_heap_extra_B=8308
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=31
+#-----------
+time=10551656
+mem_heap_B=10510456
+mem_heap_extra_B=8320
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=32
+#-----------
+time=10551680
+mem_heap_B=10510468
+mem_heap_extra_B=8332
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=33
+#-----------
+time=10551704
+mem_heap_B=10510456
+mem_heap_extra_B=8320
+mem_stacks_B=0
+heap_tree=detailed
+n2: 10510456 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n4: 10509432 0x80763AC: MMalloc (safe_mem.c:107)
+  n1: 4194320 0x8053C5B: cuddInitCache (cuddCache.c:123)
+   n1: 4194320 0x8057876: Cudd_Init (cuddInit.c:127)
+    n0: 4194320 0x8048C37: main (tutorial.c:54)
+  n1: 4194308 0x80578A1: Cudd_Init (cuddInit.c:132)
+   n0: 4194308 0x8048C37: main (tutorial.c:54)
+  n1: 2097152 0x8058F81: cuddInitTable (cuddTable.c:451)
+   n1: 2097152 0x8057843: Cudd_Init (cuddInit.c:122)
+    n0: 2097152 0x8048C37: main (tutorial.c:54)
+  n0: 23652 in 18 places, all below massif's threshold (1.00%)
+ n0: 1024 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=34
+#-----------
+time=10551728
+mem_heap_B=10510444
+mem_heap_extra_B=8308
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=35
+#-----------
+time=10551752
+mem_heap_B=10510432
+mem_heap_extra_B=8296
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=36
+#-----------
+time=10551776
+mem_heap_B=10510420
+mem_heap_extra_B=8284
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=37
+#-----------
+time=10551832
+mem_heap_B=10510376
+mem_heap_extra_B=8272
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=38
+#-----------
+time=10551888
+mem_heap_B=10510328
+mem_heap_extra_B=8264
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=39
+#-----------
+time=10551912
+mem_heap_B=10510344
+mem_heap_extra_B=8272
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=40
+#-----------
+time=10551936
+mem_heap_B=10510328
+mem_heap_extra_B=8264
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=41
+#-----------
+time=10552288
+mem_heap_B=10510672
+mem_heap_extra_B=8272
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=42
+#-----------
+time=10552304
+mem_heap_B=10510676
+mem_heap_extra_B=8284
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=43
+#-----------
+time=10552328
+mem_heap_B=10510692
+mem_heap_extra_B=8292
+mem_stacks_B=0
+heap_tree=detailed
+n2: 10510692 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n4: 10509320 0x80763AC: MMalloc (safe_mem.c:107)
+  n1: 4194320 0x8053C5B: cuddInitCache (cuddCache.c:123)
+   n1: 4194320 0x8057876: Cudd_Init (cuddInit.c:127)
+    n0: 4194320 0x8048C37: main (tutorial.c:54)
+  n1: 4194308 0x80578A1: Cudd_Init (cuddInit.c:132)
+   n0: 4194308 0x8048C37: main (tutorial.c:54)
+  n1: 2097152 0x8058F81: cuddInitTable (cuddTable.c:451)
+   n1: 2097152 0x8057843: Cudd_Init (cuddInit.c:122)
+    n0: 2097152 0x8048C37: main (tutorial.c:54)
+  n0: 23540 in 20 places, all below massif's threshold (1.00%)
+ n0: 1372 in 3 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=44
+#-----------
+time=10552352
+mem_heap_B=10510708
+mem_heap_extra_B=8300
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=10552376
+mem_heap_B=10510692
+mem_heap_extra_B=8292
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=46
+#-----------
+time=10552432
+mem_heap_B=10510740
+mem_heap_extra_B=8300
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=47
+#-----------
+time=10552488
+mem_heap_B=10510784
+mem_heap_extra_B=8312
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=48
+#-----------
+time=10552512
+mem_heap_B=10510796
+mem_heap_extra_B=8324
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=49
+#-----------
+time=10552536
+mem_heap_B=10510808
+mem_heap_extra_B=8336
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=50
+#-----------
+time=10552560
+mem_heap_B=10510820
+mem_heap_extra_B=8348
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=51
+#-----------
+time=10552584
+mem_heap_B=10510832
+mem_heap_extra_B=8360
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=52
+#-----------
+time=10552608
+mem_heap_B=10510844
+mem_heap_extra_B=8372
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=53
+#-----------
+time=10552632
+mem_heap_B=10510856
+mem_heap_extra_B=8384
+mem_stacks_B=0
+heap_tree=detailed
+n2: 10510856 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n4: 10509484 0x80763AC: MMalloc (safe_mem.c:107)
+  n1: 4194320 0x8053C5B: cuddInitCache (cuddCache.c:123)
+   n1: 4194320 0x8057876: Cudd_Init (cuddInit.c:127)
+    n0: 4194320 0x8048C37: main (tutorial.c:54)
+  n1: 4194308 0x80578A1: Cudd_Init (cuddInit.c:132)
+   n0: 4194308 0x8048C37: main (tutorial.c:54)
+  n1: 2097152 0x8058F81: cuddInitTable (cuddTable.c:451)
+   n1: 2097152 0x8057843: Cudd_Init (cuddInit.c:122)
+    n0: 2097152 0x8048C37: main (tutorial.c:54)
+  n0: 23704 in 21 places, all below massif's threshold (1.00%)
+ n0: 1372 in 3 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=54
+#-----------
+time=10552656
+mem_heap_B=10510868
+mem_heap_extra_B=8396
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=55
+#-----------
+time=10552680
+mem_heap_B=10510856
+mem_heap_extra_B=8384
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=56
+#-----------
+time=10556784
+mem_heap_B=10514952
+mem_heap_extra_B=8392
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=57
+#-----------
+time=10556808
+mem_heap_B=10514940
+mem_heap_extra_B=8380
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=58
+#-----------
+time=10556832
+mem_heap_B=10514928
+mem_heap_extra_B=8368
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=59
+#-----------
+time=10556856
+mem_heap_B=10514916
+mem_heap_extra_B=8356
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=60
+#-----------
+time=10556880
+mem_heap_B=10514904
+mem_heap_extra_B=8344
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=61
+#-----------
+time=10556904
+mem_heap_B=10514892
+mem_heap_extra_B=8332
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=62
+#-----------
+time=10556928
+mem_heap_B=10514880
+mem_heap_extra_B=8320
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=63
+#-----------
+time=10556984
+mem_heap_B=10514836
+mem_heap_extra_B=8308
+mem_stacks_B=0
+heap_tree=detailed
+n2: 10514836 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n4: 10509368 0x80763AC: MMalloc (safe_mem.c:107)
+  n1: 4194320 0x8053C5B: cuddInitCache (cuddCache.c:123)
+   n1: 4194320 0x8057876: Cudd_Init (cuddInit.c:127)
+    n0: 4194320 0x8048C37: main (tutorial.c:54)
+  n1: 4194308 0x80578A1: Cudd_Init (cuddInit.c:132)
+   n0: 4194308 0x8048C37: main (tutorial.c:54)
+  n1: 2097152 0x8058F81: cuddInitTable (cuddTable.c:451)
+   n1: 2097152 0x8057843: Cudd_Init (cuddInit.c:122)
+    n0: 2097152 0x8048C37: main (tutorial.c:54)
+  n0: 23588 in 22 places, all below massif's threshold (1.00%)
+ n0: 5468 in 3 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=64
+#-----------
+time=10557040
+mem_heap_B=10514788
+mem_heap_extra_B=8300
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=65
+#-----------
+time=10557064
+mem_heap_B=10514772
+mem_heap_extra_B=8292
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=66
+#-----------
+time=10557080
+mem_heap_B=10514768
+mem_heap_extra_B=8280
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=67
+#-----------
+time=10561184
+mem_heap_B=10510672
+mem_heap_extra_B=8272
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=68
+#-----------
+time=10561536
+mem_heap_B=10510328
+mem_heap_extra_B=8264
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=69
+#-----------
+time=14759912
+mem_heap_B=6316020
+mem_heap_extra_B=4196
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=70
+#-----------
+time=14776288
+mem_heap_B=6299652
+mem_heap_extra_B=4188
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=71
+#-----------
+time=14777320
+mem_heap_B=6298628
+mem_heap_extra_B=4180
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=72
+#-----------
+time=14778352
+mem_heap_B=6297604
+mem_heap_extra_B=4172
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=73
+#-----------
+time=14779384
+mem_heap_B=6296580
+mem_heap_extra_B=4164
+mem_stacks_B=0
+heap_tree=detailed
+n2: 6296580 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n3: 6295556 0x80763AC: MMalloc (safe_mem.c:107)
+  n1: 4194320 0x8053C5B: cuddInitCache (cuddCache.c:123)
+   n1: 4194320 0x8057876: Cudd_Init (cuddInit.c:127)
+    n0: 4194320 0x8048C37: main (tutorial.c:54)
+  n1: 2097152 0x8058F81: cuddInitTable (cuddTable.c:451)
+   n1: 2097152 0x8057843: Cudd_Init (cuddInit.c:122)
+    n0: 2097152 0x8048C37: main (tutorial.c:54)
+  n0: 4084 in 23 places, all below massif's threshold (1.00%)
+ n0: 1024 in 3 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=74
+#-----------
+time=14780416
+mem_heap_B=6295556
+mem_heap_extra_B=4156
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=75
+#-----------
+time=14781448
+mem_heap_B=6294532
+mem_heap_extra_B=4148
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=76
+#-----------
+time=14781936
+mem_heap_B=6294052
+mem_heap_extra_B=4140
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=77
+#-----------
+time=14782424
+mem_heap_B=6293572
+mem_heap_extra_B=4132
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=78
+#-----------
+time=18980800
+mem_heap_B=2099252
+mem_heap_extra_B=76
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=79
+#-----------
+time=18980848
+mem_heap_B=2099212
+mem_heap_extra_B=68
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=80
+#-----------
+time=18980896
+mem_heap_B=2099172
+mem_heap_extra_B=60
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=81
+#-----------
+time=18980944
+mem_heap_B=2099132
+mem_heap_extra_B=52
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=82
+#-----------
+time=18980992
+mem_heap_B=2099092
+mem_heap_extra_B=44
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=83
+#-----------
+time=18981040
+mem_heap_B=2099052
+mem_heap_extra_B=36
+mem_stacks_B=0
+heap_tree=detailed
+n2: 2099052 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 2098028 0x80763AC: MMalloc (safe_mem.c:107)
+  n1: 2097152 0x8058F81: cuddInitTable (cuddTable.c:451)
+   n1: 2097152 0x8057843: Cudd_Init (cuddInit.c:122)
+    n0: 2097152 0x8048C37: main (tutorial.c:54)
+  n0: 876 in 24 places, all below massif's threshold (1.00%)
+ n0: 1024 in 3 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=84
+#-----------
+time=18981096
+mem_heap_B=2099008
+mem_heap_extra_B=24
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=85
+#-----------
+time=21078256
+mem_heap_B=1856
+mem_heap_extra_B=16
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=86
+#-----------
+time=21079096
+mem_heap_B=1024
+mem_heap_extra_B=8
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=87
+#-----------
+time=21080128
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty

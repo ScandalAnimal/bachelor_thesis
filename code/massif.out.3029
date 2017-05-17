@@ -1,0 +1,1035 @@
+desc: --time-unit=B
+cmd: ./test
+time_unit: B
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=4843984
+mem_heap_B=552308
+mem_heap_extra_B=132908
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=8281952
+mem_heap_B=560052
+mem_heap_extra_B=140508
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=3
+#-----------
+time=10678448
+mem_heap_B=564412
+mem_heap_extra_B=144452
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=4
+#-----------
+time=14088944
+mem_heap_B=567952
+mem_heap_extra_B=147232
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=5
+#-----------
+time=18758848
+mem_heap_B=568396
+mem_heap_extra_B=146756
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=6
+#-----------
+time=22435712
+mem_heap_B=557236
+mem_heap_extra_B=138668
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=7
+#-----------
+time=24832688
+mem_heap_B=573117
+mem_heap_extra_B=150259
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=28494240
+mem_heap_B=570262
+mem_heap_extra_B=147642
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=9
+#-----------
+time=31293664
+mem_heap_B=587908
+mem_heap_extra_B=164012
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=10
+#-----------
+time=34116960
+mem_heap_B=587872
+mem_heap_extra_B=163232
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=11
+#-----------
+time=37704104
+mem_heap_B=569778
+mem_heap_extra_B=148662
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=40503496
+mem_heap_B=590088
+mem_heap_extra_B=164288
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=44204992
+mem_heap_B=581762
+mem_heap_extra_B=157710
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=14
+#-----------
+time=47445360
+mem_heap_B=591082
+mem_heap_extra_B=165222
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=15
+#-----------
+time=49881016
+mem_heap_B=584711
+mem_heap_extra_B=160353
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=16
+#-----------
+time=54065032
+mem_heap_B=583082
+mem_heap_extra_B=159134
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=17
+#-----------
+time=56987880
+mem_heap_B=585802
+mem_heap_extra_B=161918
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=18
+#-----------
+time=59264576
+mem_heap_B=580582
+mem_heap_extra_B=157386
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=19
+#-----------
+time=62674632
+mem_heap_B=602852
+mem_heap_extra_B=175156
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=20
+#-----------
+time=65074072
+mem_heap_B=616132
+mem_heap_extra_B=190868
+mem_stacks_B=0
+heap_tree=detailed
+n9: 616132 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 384000 0x404C732: insertToHashMap (anfhashmap.c:51)
+  n1: 384000 0x4049DC7: createVarInAnf (anf.c:212)
+   n1: 384000 0x4049A12: newNodeWithOneVarInAnf (anf.c:133)
+    n1: 384000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+     n0: 384000 0x804B25C: main (tests.c:775)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n2: 94116 0x404C252: insertToHashMap (anfhashmap.c:45)
+  n2: 50116 0x404A25D: duplicateVars (anf.c:293)
+   n3: 50028 0x404A2FF: newAnfFrom2Anfs (anf.c:308)
+    n1: 25036 0x804A05C: evaluateBooleanFunction (tests.c:435)
+     n1: 25036 0x804B0D5: thousandXoredVariablesTest (tests.c:727)
+      n0: 25036 0x804B25C: main (tests.c:775)
+    n1: 24992 0x804A0CD: evaluateBooleanFunction (tests.c:445)
+     n1: 24992 0x804B0D5: thousandXoredVariablesTest (tests.c:727)
+      n0: 24992 0x804B25C: main (tests.c:775)
+    n0: 0 in 1 place, below massif's threshold (1.00%)
+   n0: 88 in 1 place, below massif's threshold (1.00%)
+  n1: 44000 0x4049DC7: createVarInAnf (anf.c:212)
+   n1: 44000 0x4049A12: newNodeWithOneVarInAnf (anf.c:133)
+    n1: 44000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+     n0: 44000 0x804B25C: main (tests.c:775)
+ n2: 44088 0x404C6A9: insertToHashMap (anfhashmap.c:51)
+  n1: 44000 0x4049DC7: createVarInAnf (anf.c:212)
+   n1: 44000 0x4049A12: newNodeWithOneVarInAnf (anf.c:133)
+    n1: 44000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+     n0: 44000 0x804B25C: main (tests.c:775)
+  n0: 88 in 1 place, below massif's threshold (1.00%)
+ n2: 25632 0x404E058: newNode (anfnode.c:42)
+  n2: 13632 0x4049AE6: newNodeWithVarsInAnf (anf.c:150)
+   n1: 13620 0x404A530: newAnfFrom2Anfs (anf.c:334)
+    n0: 13620 in 3 places, all below massif's threshold (1.00%)
+   n0: 12 in 1 place, below massif's threshold (1.00%)
+  n1: 12000 0x404999F: newNodeWithOneVarInAnf (anf.c:122)
+   n1: 12000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+    n0: 12000 0x804B25C: main (tests.c:775)
+ n1: 19560 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 19560 0x804AF8F: thousandXoredVariablesTest (tests.c:715)
+   n0: 19560 0x804B25C: main (tests.c:775)
+ n2: 16032 0x404A154: newAnf (anf.c:262)
+  n1: 16000 0x804B01E: thousandXoredVariablesTest (tests.c:719)
+   n0: 16000 0x804B25C: main (tests.c:775)
+  n0: 32 in 1 place, below massif's threshold (1.00%)
+ n0: 13795 in 9 places, all below massif's threshold (1.00%)
+ n1: 10365 0x404C272: insertToHashMap (anfhashmap.c:46)
+  n0: 10365 in 2 places, all below massif's threshold (1.00%)
+ n1: 8544 0x404E158: addVariableToNode (anfnode.c:66)
+  n0: 8544 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=21
+#-----------
+time=68918360
+mem_heap_B=617028
+mem_heap_extra_B=190612
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=22
+#-----------
+time=71923120
+mem_heap_B=620372
+mem_heap_extra_B=194700
+mem_stacks_B=0
+heap_tree=detailed
+n9: 620372 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 384000 0x404C732: insertToHashMap (anfhashmap.c:51)
+  n1: 384000 0x4049DC7: createVarInAnf (anf.c:212)
+   n1: 384000 0x4049A12: newNodeWithOneVarInAnf (anf.c:133)
+    n1: 384000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+     n0: 384000 0x804B25C: main (tests.c:775)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n2: 96756 0x404C252: insertToHashMap (anfhashmap.c:45)
+  n2: 52756 0x404A25D: duplicateVars (anf.c:293)
+   n3: 52668 0x404A2FF: newAnfFrom2Anfs (anf.c:308)
+    n1: 26356 0x804A05C: evaluateBooleanFunction (tests.c:435)
+     n1: 26356 0x804B0D5: thousandXoredVariablesTest (tests.c:727)
+      n0: 26356 0x804B25C: main (tests.c:775)
+    n1: 26312 0x804A0CD: evaluateBooleanFunction (tests.c:445)
+     n1: 26312 0x804B0D5: thousandXoredVariablesTest (tests.c:727)
+      n0: 26312 0x804B25C: main (tests.c:775)
+    n0: 0 in 1 place, below massif's threshold (1.00%)
+   n0: 88 in 1 place, below massif's threshold (1.00%)
+  n1: 44000 0x4049DC7: createVarInAnf (anf.c:212)
+   n1: 44000 0x4049A12: newNodeWithOneVarInAnf (anf.c:133)
+    n1: 44000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+     n0: 44000 0x804B25C: main (tests.c:775)
+ n2: 44088 0x404C6A9: insertToHashMap (anfhashmap.c:51)
+  n1: 44000 0x4049DC7: createVarInAnf (anf.c:212)
+   n1: 44000 0x4049A12: newNodeWithOneVarInAnf (anf.c:133)
+    n1: 44000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+     n0: 44000 0x804B25C: main (tests.c:775)
+  n0: 88 in 1 place, below massif's threshold (1.00%)
+ n2: 26376 0x404E058: newNode (anfnode.c:42)
+  n2: 14376 0x4049AE6: newNodeWithVarsInAnf (anf.c:150)
+   n1: 14364 0x404A530: newAnfFrom2Anfs (anf.c:334)
+    n0: 14364 in 3 places, all below massif's threshold (1.00%)
+   n0: 12 in 1 place, below massif's threshold (1.00%)
+  n1: 12000 0x404999F: newNodeWithOneVarInAnf (anf.c:122)
+   n1: 12000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+    n0: 12000 0x804B25C: main (tests.c:775)
+ n1: 19560 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 19560 0x804AF8F: thousandXoredVariablesTest (tests.c:715)
+   n0: 19560 0x804B25C: main (tests.c:775)
+ n2: 16032 0x404A154: newAnf (anf.c:262)
+  n1: 16000 0x804B01E: thousandXoredVariablesTest (tests.c:719)
+   n0: 16000 0x804B25C: main (tests.c:775)
+  n0: 32 in 1 place, below massif's threshold (1.00%)
+ n0: 14103 in 9 places, all below massif's threshold (1.00%)
+ n1: 10665 0x404C272: insertToHashMap (anfhashmap.c:46)
+  n0: 10665 in 2 places, all below massif's threshold (1.00%)
+ n1: 8792 0x404E158: addVariableToNode (anfnode.c:66)
+  n0: 8792 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=23
+#-----------
+time=74793208
+mem_heap_B=606062
+mem_heap_extra_B=178122
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=24
+#-----------
+time=77663288
+mem_heap_B=617968
+mem_heap_extra_B=188952
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=25
+#-----------
+time=81510648
+mem_heap_B=598301
+mem_heap_extra_B=170859
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=26
+#-----------
+time=84935072
+mem_heap_B=622984
+mem_heap_extra_B=191944
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=27
+#-----------
+time=87087648
+mem_heap_B=631480
+mem_heap_extra_B=201816
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=28
+#-----------
+time=89957720
+mem_heap_B=626780
+mem_heap_extra_B=195676
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=29
+#-----------
+time=92433224
+mem_heap_B=634804
+mem_heap_extra_B=205012
+mem_stacks_B=0
+heap_tree=detailed
+n9: 634804 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 384000 0x404C732: insertToHashMap (anfhashmap.c:51)
+  n1: 384000 0x4049DC7: createVarInAnf (anf.c:212)
+   n1: 384000 0x4049A12: newNodeWithOneVarInAnf (anf.c:133)
+    n1: 384000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+     n0: 384000 0x804B25C: main (tests.c:775)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n2: 103884 0x404C252: insertToHashMap (anfhashmap.c:45)
+  n2: 59884 0x404A25D: duplicateVars (anf.c:293)
+   n3: 59796 0x404A2FF: newAnfFrom2Anfs (anf.c:308)
+    n1: 29920 0x804A0CD: evaluateBooleanFunction (tests.c:445)
+     n1: 29920 0x804B0D5: thousandXoredVariablesTest (tests.c:727)
+      n0: 29920 0x804B25C: main (tests.c:775)
+    n1: 29876 0x804A05C: evaluateBooleanFunction (tests.c:435)
+     n1: 29876 0x804B0D5: thousandXoredVariablesTest (tests.c:727)
+      n0: 29876 0x804B25C: main (tests.c:775)
+    n0: 0 in 1 place, below massif's threshold (1.00%)
+   n0: 88 in 1 place, below massif's threshold (1.00%)
+  n1: 44000 0x4049DC7: createVarInAnf (anf.c:212)
+   n1: 44000 0x4049A12: newNodeWithOneVarInAnf (anf.c:133)
+    n1: 44000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+     n0: 44000 0x804B25C: main (tests.c:775)
+ n2: 44088 0x404C6A9: insertToHashMap (anfhashmap.c:51)
+  n1: 44000 0x4049DC7: createVarInAnf (anf.c:212)
+   n1: 44000 0x4049A12: newNodeWithOneVarInAnf (anf.c:133)
+    n1: 44000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+     n0: 44000 0x804B25C: main (tests.c:775)
+  n0: 88 in 1 place, below massif's threshold (1.00%)
+ n2: 28332 0x404E058: newNode (anfnode.c:42)
+  n2: 16332 0x4049AE6: newNodeWithVarsInAnf (anf.c:150)
+   n1: 16308 0x404A530: newAnfFrom2Anfs (anf.c:334)
+    n0: 16308 in 3 places, all below massif's threshold (1.00%)
+   n0: 24 in 1 place, below massif's threshold (1.00%)
+  n1: 12000 0x404999F: newNodeWithOneVarInAnf (anf.c:122)
+   n1: 12000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+    n0: 12000 0x804B25C: main (tests.c:775)
+ n1: 19560 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 19560 0x804AF8F: thousandXoredVariablesTest (tests.c:715)
+   n0: 19560 0x804B25C: main (tests.c:775)
+ n0: 17989 in 9 places, all below massif's threshold (1.00%)
+ n2: 16032 0x404A154: newAnf (anf.c:262)
+  n1: 16000 0x804B01E: thousandXoredVariablesTest (tests.c:719)
+   n0: 16000 0x804B25C: main (tests.c:775)
+  n0: 32 in 1 place, below massif's threshold (1.00%)
+ n1: 11475 0x404C272: insertToHashMap (anfhashmap.c:46)
+  n0: 11475 in 2 places, all below massif's threshold (1.00%)
+ n1: 9444 0x404E158: addVariableToNode (anfnode.c:66)
+  n0: 9444 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=30
+#-----------
+time=95303320
+mem_heap_B=609536
+mem_heap_extra_B=180456
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=31
+#-----------
+time=100325944
+mem_heap_B=618589
+mem_heap_extra_B=187515
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=32
+#-----------
+time=105172840
+mem_heap_B=621369
+mem_heap_extra_B=189887
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=33
+#-----------
+time=107756576
+mem_heap_B=608021
+mem_heap_extra_B=179467
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=34
+#-----------
+time=111842000
+mem_heap_B=591399
+mem_heap_extra_B=167257
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=35
+#-----------
+time=115717648
+mem_heap_B=596805
+mem_heap_extra_B=169707
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=36
+#-----------
+time=120191384
+mem_heap_B=648204
+mem_heap_extra_B=217148
+mem_stacks_B=0
+heap_tree=detailed
+n9: 648204 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 384000 0x404C732: insertToHashMap (anfhashmap.c:51)
+  n1: 384000 0x4049DC7: createVarInAnf (anf.c:212)
+   n1: 384000 0x4049A12: newNodeWithOneVarInAnf (anf.c:133)
+    n1: 384000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+     n0: 384000 0x804B25C: main (tests.c:775)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n2: 112332 0x404C252: insertToHashMap (anfhashmap.c:45)
+  n2: 68332 0x404A25D: duplicateVars (anf.c:293)
+   n3: 68244 0x404A2FF: newAnfFrom2Anfs (anf.c:308)
+    n1: 34144 0x804A0CD: evaluateBooleanFunction (tests.c:445)
+     n1: 34144 0x804B0D5: thousandXoredVariablesTest (tests.c:727)
+      n0: 34144 0x804B25C: main (tests.c:775)
+    n1: 34100 0x804A05C: evaluateBooleanFunction (tests.c:435)
+     n1: 34100 0x804B0D5: thousandXoredVariablesTest (tests.c:727)
+      n0: 34100 0x804B25C: main (tests.c:775)
+    n0: 0 in 1 place, below massif's threshold (1.00%)
+   n0: 88 in 1 place, below massif's threshold (1.00%)
+  n1: 44000 0x4049DC7: createVarInAnf (anf.c:212)
+   n1: 44000 0x4049A12: newNodeWithOneVarInAnf (anf.c:133)
+    n1: 44000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+     n0: 44000 0x804B25C: main (tests.c:775)
+ n2: 44088 0x404C6A9: insertToHashMap (anfhashmap.c:51)
+  n1: 44000 0x4049DC7: createVarInAnf (anf.c:212)
+   n1: 44000 0x4049A12: newNodeWithOneVarInAnf (anf.c:133)
+    n1: 44000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+     n0: 44000 0x804B25C: main (tests.c:775)
+  n0: 88 in 1 place, below massif's threshold (1.00%)
+ n2: 30612 0x404E058: newNode (anfnode.c:42)
+  n2: 18612 0x4049AE6: newNodeWithVarsInAnf (anf.c:150)
+   n3: 18600 0x404A530: newAnfFrom2Anfs (anf.c:334)
+    n1: 9300 0x804A0CD: evaluateBooleanFunction (tests.c:445)
+     n1: 9300 0x804B0D5: thousandXoredVariablesTest (tests.c:727)
+      n0: 9300 0x804B25C: main (tests.c:775)
+    n1: 9300 0x804A05C: evaluateBooleanFunction (tests.c:435)
+     n1: 9300 0x804B0D5: thousandXoredVariablesTest (tests.c:727)
+      n0: 9300 0x804B25C: main (tests.c:775)
+    n0: 0 in 1 place, below massif's threshold (1.00%)
+   n0: 12 in 1 place, below massif's threshold (1.00%)
+  n1: 12000 0x404999F: newNodeWithOneVarInAnf (anf.c:122)
+   n1: 12000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+    n0: 12000 0x804B25C: main (tests.c:775)
+ n1: 19560 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 19560 0x804AF8F: thousandXoredVariablesTest (tests.c:715)
+   n0: 19560 0x804B25C: main (tests.c:775)
+ n0: 18941 in 9 places, all below massif's threshold (1.00%)
+ n2: 16032 0x404A154: newAnf (anf.c:262)
+  n1: 16000 0x804B01E: thousandXoredVariablesTest (tests.c:719)
+   n0: 16000 0x804B25C: main (tests.c:775)
+  n0: 32 in 1 place, below massif's threshold (1.00%)
+ n1: 12435 0x404C272: insertToHashMap (anfhashmap.c:46)
+  n0: 12435 in 2 places, all below massif's threshold (1.00%)
+ n1: 10204 0x404E158: addVariableToNode (anfnode.c:66)
+  n0: 10204 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=37
+#-----------
+time=122775192
+mem_heap_B=593864
+mem_heap_extra_B=169504
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=38
+#-----------
+time=125358984
+mem_heap_B=636264
+mem_heap_extra_B=201888
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=39
+#-----------
+time=127942784
+mem_heap_B=645160
+mem_heap_extra_B=212440
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=40
+#-----------
+time=131513424
+mem_heap_B=649064
+mem_heap_extra_B=215464
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=41
+#-----------
+time=134097152
+mem_heap_B=649100
+mem_heap_extra_B=214756
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=42
+#-----------
+time=136680912
+mem_heap_B=654436
+mem_heap_extra_B=222764
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=43
+#-----------
+time=140974032
+mem_heap_B=657204
+mem_heap_extra_B=225580
+mem_stacks_B=0
+heap_tree=detailed
+n9: 657204 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 384000 0x404C732: insertToHashMap (anfhashmap.c:51)
+  n1: 384000 0x4049DC7: createVarInAnf (anf.c:212)
+   n1: 384000 0x4049A12: newNodeWithOneVarInAnf (anf.c:133)
+    n1: 384000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+     n0: 384000 0x804B25C: main (tests.c:775)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n2: 118052 0x404C252: insertToHashMap (anfhashmap.c:45)
+  n2: 74052 0x404A25D: duplicateVars (anf.c:293)
+   n3: 73964 0x404A2FF: newAnfFrom2Anfs (anf.c:308)
+    n1: 37004 0x804A05C: evaluateBooleanFunction (tests.c:435)
+     n1: 37004 0x804B0D5: thousandXoredVariablesTest (tests.c:727)
+      n0: 37004 0x804B25C: main (tests.c:775)
+    n1: 36960 0x804A0CD: evaluateBooleanFunction (tests.c:445)
+     n1: 36960 0x804B0D5: thousandXoredVariablesTest (tests.c:727)
+      n0: 36960 0x804B25C: main (tests.c:775)
+    n0: 0 in 1 place, below massif's threshold (1.00%)
+   n0: 88 in 1 place, below massif's threshold (1.00%)
+  n1: 44000 0x4049DC7: createVarInAnf (anf.c:212)
+   n1: 44000 0x4049A12: newNodeWithOneVarInAnf (anf.c:133)
+    n1: 44000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+     n0: 44000 0x804B25C: main (tests.c:775)
+ n2: 44088 0x404C6A9: insertToHashMap (anfhashmap.c:51)
+  n1: 44000 0x4049DC7: createVarInAnf (anf.c:212)
+   n1: 44000 0x4049A12: newNodeWithOneVarInAnf (anf.c:133)
+    n1: 44000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+     n0: 44000 0x804B25C: main (tests.c:775)
+  n0: 88 in 1 place, below massif's threshold (1.00%)
+ n2: 32112 0x404E058: newNode (anfnode.c:42)
+  n2: 20112 0x4049AE6: newNodeWithVarsInAnf (anf.c:150)
+   n3: 20100 0x404A530: newAnfFrom2Anfs (anf.c:334)
+    n1: 10080 0x804A0CD: evaluateBooleanFunction (tests.c:445)
+     n1: 10080 0x804B0D5: thousandXoredVariablesTest (tests.c:727)
+      n0: 10080 0x804B25C: main (tests.c:775)
+    n1: 10020 0x804A05C: evaluateBooleanFunction (tests.c:435)
+     n1: 10020 0x804B0D5: thousandXoredVariablesTest (tests.c:727)
+      n0: 10020 0x804B25C: main (tests.c:775)
+    n0: 0 in 1 place, below massif's threshold (1.00%)
+   n0: 12 in 1 place, below massif's threshold (1.00%)
+  n1: 12000 0x404999F: newNodeWithOneVarInAnf (anf.c:122)
+   n1: 12000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+    n0: 12000 0x804B25C: main (tests.c:775)
+ n0: 19571 in 9 places, all below massif's threshold (1.00%)
+ n1: 19560 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 19560 0x804AF8F: thousandXoredVariablesTest (tests.c:715)
+   n0: 19560 0x804B25C: main (tests.c:775)
+ n2: 16032 0x404A154: newAnf (anf.c:262)
+  n1: 16000 0x804B01E: thousandXoredVariablesTest (tests.c:719)
+   n0: 16000 0x804B25C: main (tests.c:775)
+  n0: 32 in 1 place, below massif's threshold (1.00%)
+ n1: 13085 0x404C272: insertToHashMap (anfhashmap.c:46)
+  n0: 13085 in 2 places, all below massif's threshold (1.00%)
+ n1: 10704 0x404E158: addVariableToNode (anfnode.c:66)
+  n0: 10704 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=44
+#-----------
+time=143557840
+mem_heap_B=647320
+mem_heap_extra_B=213080
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=147433488
+mem_heap_B=619414
+mem_heap_extra_B=188042
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=46
+#-----------
+time=152139800
+mem_heap_B=661884
+mem_heap_extra_B=229740
+mem_stacks_B=0
+heap_tree=detailed
+n9: 661884 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 384000 0x404C732: insertToHashMap (anfhashmap.c:51)
+  n1: 384000 0x4049DC7: createVarInAnf (anf.c:212)
+   n1: 384000 0x4049A12: newNodeWithOneVarInAnf (anf.c:133)
+    n1: 384000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+     n0: 384000 0x804B25C: main (tests.c:775)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n2: 120956 0x404C252: insertToHashMap (anfhashmap.c:45)
+  n2: 76956 0x404A25D: duplicateVars (anf.c:293)
+   n3: 76868 0x404A2FF: newAnfFrom2Anfs (anf.c:308)
+    n1: 38456 0x804A0CD: evaluateBooleanFunction (tests.c:445)
+     n1: 38456 0x804B0D5: thousandXoredVariablesTest (tests.c:727)
+      n0: 38456 0x804B25C: main (tests.c:775)
+    n1: 38412 0x804A05C: evaluateBooleanFunction (tests.c:435)
+     n1: 38412 0x804B0D5: thousandXoredVariablesTest (tests.c:727)
+      n0: 38412 0x804B25C: main (tests.c:775)
+    n0: 0 in 1 place, below massif's threshold (1.00%)
+   n0: 88 in 1 place, below massif's threshold (1.00%)
+  n1: 44000 0x4049DC7: createVarInAnf (anf.c:212)
+   n1: 44000 0x4049A12: newNodeWithOneVarInAnf (anf.c:133)
+    n1: 44000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+     n0: 44000 0x804B25C: main (tests.c:775)
+ n2: 44088 0x404C6A9: insertToHashMap (anfhashmap.c:51)
+  n1: 44000 0x4049DC7: createVarInAnf (anf.c:212)
+   n1: 44000 0x4049A12: newNodeWithOneVarInAnf (anf.c:133)
+    n1: 44000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+     n0: 44000 0x804B25C: main (tests.c:775)
+  n0: 88 in 1 place, below massif's threshold (1.00%)
+ n2: 32940 0x404E058: newNode (anfnode.c:42)
+  n2: 20940 0x4049AE6: newNodeWithVarsInAnf (anf.c:150)
+   n3: 20928 0x404A530: newAnfFrom2Anfs (anf.c:334)
+    n1: 10476 0x804A05C: evaluateBooleanFunction (tests.c:435)
+     n1: 10476 0x804B0D5: thousandXoredVariablesTest (tests.c:727)
+      n0: 10476 0x804B25C: main (tests.c:775)
+    n1: 10452 0x804A0CD: evaluateBooleanFunction (tests.c:445)
+     n1: 10452 0x804B0D5: thousandXoredVariablesTest (tests.c:727)
+      n0: 10452 0x804B25C: main (tests.c:775)
+    n0: 0 in 1 place, below massif's threshold (1.00%)
+   n0: 12 in 1 place, below massif's threshold (1.00%)
+  n1: 12000 0x404999F: newNodeWithOneVarInAnf (anf.c:122)
+   n1: 12000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+    n0: 12000 0x804B25C: main (tests.c:775)
+ n0: 19913 in 9 places, all below massif's threshold (1.00%)
+ n1: 19560 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 19560 0x804AF8F: thousandXoredVariablesTest (tests.c:715)
+   n0: 19560 0x804B25C: main (tests.c:775)
+ n2: 16032 0x404A154: newAnf (anf.c:262)
+  n1: 16000 0x804B01E: thousandXoredVariablesTest (tests.c:719)
+   n0: 16000 0x804B25C: main (tests.c:775)
+  n0: 32 in 1 place, below massif's threshold (1.00%)
+ n1: 13415 0x404C272: insertToHashMap (anfhashmap.c:46)
+  n0: 13415 in 2 places, all below massif's threshold (1.00%)
+ n1: 10980 0x404E158: addVariableToNode (anfnode.c:66)
+  n0: 10980 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=47
+#-----------
+time=156015416
+mem_heap_B=634058
+mem_heap_extra_B=200382
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=48
+#-----------
+time=158599152
+mem_heap_B=635967
+mem_heap_extra_B=201777
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=49
+#-----------
+time=161182920
+mem_heap_B=659324
+mem_heap_extra_B=225580
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=50
+#-----------
+time=163335504
+mem_heap_B=662424
+mem_heap_extra_B=229240
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=51
+#-----------
+time=163367040
+mem_heap_B=666444
+mem_heap_extra_B=234132
+mem_stacks_B=0
+heap_tree=detailed
+n9: 666444 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 384000 0x404C732: insertToHashMap (anfhashmap.c:51)
+  n1: 384000 0x4049DC7: createVarInAnf (anf.c:212)
+   n1: 384000 0x4049A12: newNodeWithOneVarInAnf (anf.c:133)
+    n1: 384000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+     n0: 384000 0x804B25C: main (tests.c:775)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n2: 123772 0x404C252: insertToHashMap (anfhashmap.c:45)
+  n2: 79772 0x404A25D: duplicateVars (anf.c:293)
+   n3: 79684 0x404A2FF: newAnfFrom2Anfs (anf.c:308)
+    n1: 39864 0x804A0CD: evaluateBooleanFunction (tests.c:445)
+     n1: 39864 0x804B0D5: thousandXoredVariablesTest (tests.c:727)
+      n0: 39864 0x804B25C: main (tests.c:775)
+    n1: 39820 0x804A05C: evaluateBooleanFunction (tests.c:435)
+     n1: 39820 0x804B0D5: thousandXoredVariablesTest (tests.c:727)
+      n0: 39820 0x804B25C: main (tests.c:775)
+    n0: 0 in 1 place, below massif's threshold (1.00%)
+   n0: 88 in 1 place, below massif's threshold (1.00%)
+  n1: 44000 0x4049DC7: createVarInAnf (anf.c:212)
+   n1: 44000 0x4049A12: newNodeWithOneVarInAnf (anf.c:133)
+    n1: 44000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+     n0: 44000 0x804B25C: main (tests.c:775)
+ n2: 44088 0x404C6A9: insertToHashMap (anfhashmap.c:51)
+  n1: 44000 0x4049DC7: createVarInAnf (anf.c:212)
+   n1: 44000 0x4049A12: newNodeWithOneVarInAnf (anf.c:133)
+    n1: 44000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+     n0: 44000 0x804B25C: main (tests.c:775)
+  n0: 88 in 1 place, below massif's threshold (1.00%)
+ n2: 33756 0x404E058: newNode (anfnode.c:42)
+  n2: 21756 0x4049AE6: newNodeWithVarsInAnf (anf.c:150)
+   n3: 21732 0x404A530: newAnfFrom2Anfs (anf.c:334)
+    n1: 10872 0x804A0CD: evaluateBooleanFunction (tests.c:445)
+     n1: 10872 0x804B0D5: thousandXoredVariablesTest (tests.c:727)
+      n0: 10872 0x804B25C: main (tests.c:775)
+    n1: 10860 0x804A05C: evaluateBooleanFunction (tests.c:435)
+     n1: 10860 0x804B0D5: thousandXoredVariablesTest (tests.c:727)
+      n0: 10860 0x804B25C: main (tests.c:775)
+    n0: 0 in 1 place, below massif's threshold (1.00%)
+   n0: 24 in 1 place, below massif's threshold (1.00%)
+  n1: 12000 0x404999F: newNodeWithOneVarInAnf (anf.c:122)
+   n1: 12000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+    n0: 12000 0x804B25C: main (tests.c:775)
+ n0: 20249 in 9 places, all below massif's threshold (1.00%)
+ n1: 19560 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 19560 0x804AF8F: thousandXoredVariablesTest (tests.c:715)
+   n0: 19560 0x804B25C: main (tests.c:775)
+ n2: 16032 0x404A154: newAnf (anf.c:262)
+  n1: 16000 0x804B01E: thousandXoredVariablesTest (tests.c:719)
+   n0: 16000 0x804B25C: main (tests.c:775)
+  n0: 32 in 1 place, below massif's threshold (1.00%)
+ n1: 13735 0x404C272: insertToHashMap (anfhashmap.c:46)
+  n0: 13735 in 2 places, all below massif's threshold (1.00%)
+ n1: 11252 0x404E158: addVariableToNode (anfnode.c:66)
+  n0: 11252 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=52
+#-----------
+time=165519616
+mem_heap_B=665564
+mem_heap_extra_B=232292
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=53
+#-----------
+time=167672208
+mem_heap_B=667424
+mem_heap_extra_B=234800
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=54
+#-----------
+time=169824816
+mem_heap_B=665200
+mem_heap_extra_B=231904
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=55
+#-----------
+time=171977408
+mem_heap_B=661364
+mem_heap_extra_B=226940
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=56
+#-----------
+time=174130016
+mem_heap_B=655620
+mem_heap_extra_B=219740
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=57
+#-----------
+time=175724024
+mem_heap_B=671184
+mem_heap_extra_B=238408
+mem_stacks_B=0
+heap_tree=detailed
+n9: 671184 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 384000 0x404C732: insertToHashMap (anfhashmap.c:51)
+  n1: 384000 0x4049DC7: createVarInAnf (anf.c:212)
+   n1: 384000 0x4049A12: newNodeWithOneVarInAnf (anf.c:133)
+    n1: 384000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+     n0: 384000 0x804B25C: main (tests.c:775)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n2: 126764 0x404C252: insertToHashMap (anfhashmap.c:45)
+  n2: 82764 0x404A25D: duplicateVars (anf.c:293)
+   n3: 82676 0x404A2FF: newAnfFrom2Anfs (anf.c:308)
+    n1: 41360 0x804A0CD: evaluateBooleanFunction (tests.c:445)
+     n1: 41360 0x804B0D5: thousandXoredVariablesTest (tests.c:727)
+      n0: 41360 0x804B25C: main (tests.c:775)
+    n1: 41316 0x804A05C: evaluateBooleanFunction (tests.c:435)
+     n1: 41316 0x804B0D5: thousandXoredVariablesTest (tests.c:727)
+      n0: 41316 0x804B25C: main (tests.c:775)
+    n0: 0 in 1 place, below massif's threshold (1.00%)
+   n0: 88 in 1 place, below massif's threshold (1.00%)
+  n1: 44000 0x4049DC7: createVarInAnf (anf.c:212)
+   n1: 44000 0x4049A12: newNodeWithOneVarInAnf (anf.c:133)
+    n1: 44000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+     n0: 44000 0x804B25C: main (tests.c:775)
+ n2: 44088 0x404C6A9: insertToHashMap (anfhashmap.c:51)
+  n1: 44000 0x4049DC7: createVarInAnf (anf.c:212)
+   n1: 44000 0x4049A12: newNodeWithOneVarInAnf (anf.c:133)
+    n1: 44000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+     n0: 44000 0x804B25C: main (tests.c:775)
+  n0: 88 in 1 place, below massif's threshold (1.00%)
+ n2: 34560 0x404E058: newNode (anfnode.c:42)
+  n2: 22560 0x4049AE6: newNodeWithVarsInAnf (anf.c:150)
+   n3: 22548 0x404A530: newAnfFrom2Anfs (anf.c:334)
+    n1: 11280 0x804A0CD: evaluateBooleanFunction (tests.c:445)
+     n1: 11280 0x804B0D5: thousandXoredVariablesTest (tests.c:727)
+      n0: 11280 0x804B25C: main (tests.c:775)
+    n1: 11268 0x804A05C: evaluateBooleanFunction (tests.c:435)
+     n1: 11268 0x804B0D5: thousandXoredVariablesTest (tests.c:727)
+      n0: 11268 0x804B25C: main (tests.c:775)
+    n0: 0 in 1 place, below massif's threshold (1.00%)
+   n0: 12 in 1 place, below massif's threshold (1.00%)
+  n1: 12000 0x404999F: newNodeWithOneVarInAnf (anf.c:122)
+   n1: 12000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+    n0: 12000 0x804B25C: main (tests.c:775)
+ n0: 20585 in 9 places, all below massif's threshold (1.00%)
+ n1: 19560 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 19560 0x804AF8F: thousandXoredVariablesTest (tests.c:715)
+   n0: 19560 0x804B25C: main (tests.c:775)
+ n2: 16032 0x404A154: newAnf (anf.c:262)
+  n1: 16000 0x804B01E: thousandXoredVariablesTest (tests.c:719)
+   n0: 16000 0x804B25C: main (tests.c:775)
+  n0: 32 in 1 place, below massif's threshold (1.00%)
+ n2: 14075 0x404C272: insertToHashMap (anfhashmap.c:46)
+  n2: 9185 0x404A25D: duplicateVars (anf.c:293)
+   n1: 9175 0x404A2FF: newAnfFrom2Anfs (anf.c:308)
+    n0: 9175 in 3 places, all below massif's threshold (1.00%)
+   n0: 10 in 1 place, below massif's threshold (1.00%)
+  n0: 4890 in 1 place, below massif's threshold (1.00%)
+ n1: 11520 0x404E158: addVariableToNode (anfnode.c:66)
+  n0: 11520 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=58
+#-----------
+time=177876608
+mem_heap_B=660024
+mem_heap_extra_B=217128
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=59
+#-----------
+time=179946056
+mem_heap_B=678888
+mem_heap_extra_B=239840
+mem_stacks_B=0
+heap_tree=peak
+n10: 678888 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 384000 0x404C732: insertToHashMap (anfhashmap.c:51)
+  n1: 384000 0x4049DC7: createVarInAnf (anf.c:212)
+   n1: 384000 0x4049A12: newNodeWithOneVarInAnf (anf.c:133)
+    n1: 384000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+     n0: 384000 0x804B25C: main (tests.c:775)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n2: 127732 0x404C252: insertToHashMap (anfhashmap.c:45)
+  n2: 83732 0x404A25D: duplicateVars (anf.c:293)
+   n3: 83644 0x404A2FF: newAnfFrom2Anfs (anf.c:308)
+    n1: 41844 0x804A05C: evaluateBooleanFunction (tests.c:435)
+     n1: 41844 0x804B0D5: thousandXoredVariablesTest (tests.c:727)
+      n0: 41844 0x804B25C: main (tests.c:775)
+    n1: 41800 0x804A0CD: evaluateBooleanFunction (tests.c:445)
+     n1: 41800 0x804B0D5: thousandXoredVariablesTest (tests.c:727)
+      n0: 41800 0x804B25C: main (tests.c:775)
+    n0: 0 in 1 place, below massif's threshold (1.00%)
+   n0: 88 in 1 place, below massif's threshold (1.00%)
+  n1: 44000 0x4049DC7: createVarInAnf (anf.c:212)
+   n1: 44000 0x4049A12: newNodeWithOneVarInAnf (anf.c:133)
+    n1: 44000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+     n0: 44000 0x804B25C: main (tests.c:775)
+ n2: 44088 0x404C6A9: insertToHashMap (anfhashmap.c:51)
+  n1: 44000 0x4049DC7: createVarInAnf (anf.c:212)
+   n1: 44000 0x4049A12: newNodeWithOneVarInAnf (anf.c:133)
+    n1: 44000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+     n0: 44000 0x804B25C: main (tests.c:775)
+  n0: 88 in 1 place, below massif's threshold (1.00%)
+ n2: 34836 0x404E058: newNode (anfnode.c:42)
+  n2: 22836 0x4049AE6: newNodeWithVarsInAnf (anf.c:150)
+   n3: 22812 0x404A530: newAnfFrom2Anfs (anf.c:334)
+    n1: 11412 0x804A05C: evaluateBooleanFunction (tests.c:435)
+     n1: 11412 0x804B0D5: thousandXoredVariablesTest (tests.c:727)
+      n0: 11412 0x804B25C: main (tests.c:775)
+    n1: 11400 0x804A0CD: evaluateBooleanFunction (tests.c:445)
+     n1: 11400 0x804B0D5: thousandXoredVariablesTest (tests.c:727)
+      n0: 11400 0x804B25C: main (tests.c:775)
+    n0: 0 in 1 place, below massif's threshold (1.00%)
+   n0: 24 in 1 place, below massif's threshold (1.00%)
+  n1: 12000 0x404999F: newNodeWithOneVarInAnf (anf.c:122)
+   n1: 12000 0x804B094: thousandXoredVariablesTest (tests.c:723)
+    n0: 12000 0x804B25C: main (tests.c:775)
+ n1: 19560 0x404E5BA: createVarWithOrigin (anfvariable.c:32)
+  n1: 19560 0x804AF8F: thousandXoredVariablesTest (tests.c:715)
+   n0: 19560 0x804B25C: main (tests.c:775)
+ n2: 16032 0x404A154: newAnf (anf.c:262)
+  n1: 16000 0x804B01E: thousandXoredVariablesTest (tests.c:719)
+   n0: 16000 0x804B25C: main (tests.c:775)
+  n0: 32 in 1 place, below massif's threshold (1.00%)
+ n0: 14555 in 8 places, all below massif's threshold (1.00%)
+ n2: 14185 0x404C272: insertToHashMap (anfhashmap.c:46)
+  n2: 9295 0x404A25D: duplicateVars (anf.c:293)
+   n1: 9285 0x404A2FF: newAnfFrom2Anfs (anf.c:308)
+    n0: 9285 in 3 places, all below massif's threshold (1.00%)
+   n0: 10 in 1 place, below massif's threshold (1.00%)
+  n0: 4890 in 1 place, below massif's threshold (1.00%)
+ n1: 12288 0x404C91F: insertToHashMap (anfhashmap.c:51)
+  n1: 12288 0x404A25D: duplicateVars (anf.c:293)
+   n1: 12288 0x404A2FF: newAnfFrom2Anfs (anf.c:308)
+    n0: 12288 in 2 places, all below massif's threshold (1.00%)
+ n1: 11612 0x404E158: addVariableToNode (anfnode.c:66)
+  n0: 11612 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=60
+#-----------
+time=182099528
+mem_heap_B=653614
+mem_heap_extra_B=208922
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=61
+#-----------
+time=184252104
+mem_heap_B=667140
+mem_heap_extra_B=220756
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=62
+#-----------
+time=186404696
+mem_heap_B=655706
+mem_heap_extra_B=212814
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=63
+#-----------
+time=188557272
+mem_heap_B=673640
+mem_heap_extra_B=229824
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=64
+#-----------
+time=190709888
+mem_heap_B=639154
+mem_heap_extra_B=202574
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=65
+#-----------
+time=192862488
+mem_heap_B=678868
+mem_heap_extra_B=238148
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=66
+#-----------
+time=195015200
+mem_heap_B=613104
+mem_heap_extra_B=186032
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=67
+#-----------
+time=197167784
+mem_heap_B=674536
+mem_heap_extra_B=239744
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=68
+#-----------
+time=199320368
+mem_heap_B=268370
+mem_heap_extra_B=114222
+mem_stacks_B=0
+heap_tree=empty

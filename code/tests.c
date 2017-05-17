@@ -387,7 +387,7 @@ int bigDataInputTest(char* graphOutput) {
     return OK;
 }
 
-tAnf* evaluateBooleanFunction(tAnf* indexes[], int testNumber, int *helperFunctionsCounter) {
+tAnf* evaluateBooleanFunction(tAnf* indexes[], int indexesCount, int testNumber, int *helperFunctionsCounter) {
 
     if (testNumber == 6) {
         // A0 = A1 xor A2 xor A3;
@@ -417,6 +417,39 @@ tAnf* evaluateBooleanFunction(tAnf* indexes[], int testNumber, int *helperFuncti
             return NULL;
         }
         freeAnf(resultTemp);
+        return result;
+    }
+    else if (testNumber == 9) {
+        // result = A0 xor A1 ... xor A999;
+
+        tAnf* result = NULL;
+        tAnf* resultTemp = NULL;
+        for (int i = 0; i < indexesCount; i += 2) {
+            if (i == 0) {
+                resultTemp = newAnfFrom2Anfs(indexes[i], indexes[i+1], true);
+                if (resultTemp == NULL) {
+                    return NULL;
+                }    
+            }
+            else {
+                resultTemp = newAnfFrom2Anfs(result, indexes[i+1], true);
+                if (resultTemp == NULL) {
+                    return NULL;
+                }
+                freeAnf(result);
+                if ((i + 2) >= indexesCount) {
+                    return resultTemp;
+                }
+            }
+            
+            result = newAnfFrom2Anfs(resultTemp, indexes[i+2], true);
+            if (result == NULL) {
+                freeAnf(resultTemp);
+                return NULL;
+            }
+            freeAnf(resultTemp);    
+        }
+
         return result;
     }
     else if (testNumber == 7) {
@@ -516,7 +549,7 @@ int shiftRegisterTest(char* graphOutput) {
     for (int count = 0; count < 20; count++) {
 
         int x = 0;
-        newA0 = evaluateBooleanFunction(reg, 6, &x);
+        newA0 = evaluateBooleanFunction(reg, registerLength, 6, &x);
 
         freeAnf(reg[3]);
         for (int i = (registerLength - 1); i > 0; i--) {
@@ -576,7 +609,7 @@ int andInBooleanFunctionTest(char* graphOutput) {
     int helperFunctionsCounter = 1;
     // for (int count = 0; count < 3; count++) {
 
-        newA0 = evaluateBooleanFunction(reg, 7, &helperFunctionsCounter);
+        newA0 = evaluateBooleanFunction(reg, registerLength, 7, &helperFunctionsCounter);
 
         freeAnf(reg[3]);
         for (int i = (registerLength - 1); i > 0; i--) {
@@ -642,7 +675,7 @@ int threeXoredVariablesTest() {
         }
 
         int x = 0;
-        result = evaluateBooleanFunction(function, 8, &x);
+        result = evaluateBooleanFunction(function, arrayLength, 8, &x);
 
         printAnf(result);
 
@@ -655,6 +688,108 @@ int threeXoredVariablesTest() {
         }
         freeAnf(result);
 
+    }
+
+    return OK;
+}
+
+int thousandXoredVariablesTest(char* graphOutput) {
+
+    int varCount = 5000;
+    tVar variables[varCount];
+    int arrayLength = ARRAY_SIZE(variables);
+    tAnf* function[arrayLength];
+    tAnf* result;
+
+    char* prefix = "x";
+    for (int i = 0; i < varCount; i++) {
+
+        tVar* value;
+        
+        value = malloc(sizeof(tVar));
+        value->name = malloc(sizeof(char) * KEY_MAX_LENGTH);
+        
+        snprintf(value->name, KEY_MAX_LENGTH, "%s%d", prefix, i);
+        value->value = getRandomBooleanValue();
+
+        variables[i] = createVarWithOrigin(value->name, value->value,"");
+        free(value->name);
+        free(value);
+    
+        function[i] = newAnf();
+        if (function[i] == NULL) {
+            return ERROR;
+        }
+        newNodeWithOneVarInAnf(function[i], variables[i]);
+    }
+
+    int x = 0;
+    result = evaluateBooleanFunction(function, arrayLength, 9, &x);
+
+    // printAnf(result);
+
+    freopen (graphOutput, "a+", stdout);
+    generateAnfGraph(result, graphOutput);
+    freopen("/dev/tty", "w", stdout);
+
+    for (int i = 0; i < arrayLength; i++) {
+        freeAnf(function[i]);
+    }
+    freeAnf(result);
+
+    for (int i = 0; i < varCount; i++) {
+
+        // printf("%s %d\n", variables[i].name, variables[i].value);
+        free(variables[i].name);
+    }
+
+    return OK;
+}
+
+int thousandAndedVariablesTest(char* graphOutput) {
+
+    int varCount = 5000;
+    tVar variables[varCount];
+    int arrayLength = ARRAY_SIZE(variables);
+    tAnf* function;
+
+    char* prefix = "x";
+    for (int i = 0; i < varCount; i++) {
+
+        tVar* value;
+        
+        value = malloc(sizeof(tVar));
+        value->name = malloc(sizeof(char) * KEY_MAX_LENGTH);
+        
+        snprintf(value->name, KEY_MAX_LENGTH, "%s%d", prefix, i);
+        value->value = getRandomBooleanValue();
+
+        variables[i] = createVarWithOrigin(value->name, value->value,"");
+        free(value->name);
+        free(value);
+
+    }
+
+    function = newAnf();
+    if (function == NULL) {
+        for (int i = 0; i < varCount; i++) {
+            free(variables[i].name);
+        }
+        return ERROR;
+    }
+    newNodeWithVarsInAnf(function, variables, arrayLength);
+
+    printAnf(function);
+
+    freopen (graphOutput, "a+", stdout);
+    generateAnfGraph(function, graphOutput);
+    freopen("/dev/tty", "w", stdout);
+
+    freeAnf(function);
+
+    for (int i = 0; i < varCount; i++) {
+
+        free(variables[i].name);
     }
 
     return OK;
@@ -685,7 +820,9 @@ int main(int argc, char* argv[]) {
 
     // freopen ("./testOutput/test7-output", "a+", stdout);
     // int test7Result = andInBooleanFunctionTest("./testOutput/test7-graph.gv");
-    int test8Result = threeXoredVariablesTest();
+    // int test8Result = threeXoredVariablesTest();
+    // int test9Result = thousandXoredVariablesTest("./testOutput/test9-graph.gv");
+    int test10Result = thousandAndedVariablesTest("./testOutput/test10-graph.gv");
 
     // freopen("/dev/tty", "w", stdout);
     // printf("TEST 01: HashMap Test                 ..... Result: %s %d\n", (test1Result == OK) ? "SUCCESS" : "FAILURE", test1Result);
@@ -695,7 +832,9 @@ int main(int argc, char* argv[]) {
     // printf("TEST 05: Big Data HashMap Input Test  ..... Result: %s %d\n", (test5Result == OK) ? "SUCCESS" : "FAILURE", test5Result);
     // printf("TEST 06: Shift Register Test          ..... Result: %s %d\n", (test6Result == OK) ? "SUCCESS" : "FAILURE", test6Result);
     // printf("TEST 07: And In Boolean Function Test ..... Result: %s %d\n", (test7Result == OK) ? "SUCCESS" : "FAILURE", test7Result);
-    printf("TEST 08: Three XORed Variables Test ..... Result: %s %d\n", (test8Result == OK) ? "SUCCESS" : "FAILURE", test8Result);
+    // printf("TEST 08: Three XORed Variables Test ..... Result: %s %d\n", (test8Result == OK) ? "SUCCESS" : "FAILURE", test8Result);
+    // printf("TEST 09 : Thousand XORed Variables Test ..... Result: %s %d\n", (test9Result == OK) ? "SUCCESS" : "FAILURE", test9Result);
+    printf("TEST 10 : Thousand ANDed Variables Test ..... Result: %s %d\n", (test10Result == OK) ? "SUCCESS" : "FAILURE", test10Result);
 
 
 }
