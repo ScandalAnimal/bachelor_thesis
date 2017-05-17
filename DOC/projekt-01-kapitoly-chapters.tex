@@ -18,7 +18,7 @@
 
 	Boolove funkcie sú také funkcie, ktorých výsledkom je logická nula alebo logická jednotka. Využívajú sa na mnohých miestach v~počítačovej vede, napríklad pri vyhodnocovaní podmienok v~programe alebo ako návratový typ nejakej funkcie alebo testu, ktorý určuje či funkcia alebo test prebieha ako sa očakáva. Ich primárnym účelom je popísať stav alebo jav len dvomi hodnotami, ktoré sú si navzájom opačné, čím programátor získava ďalšiu možnosť práce s~informáciami. Existuje viacero možných reprezentácií Boolovych funkcií, napríklad pravdivostné tabuľky alebo Karnaughove mapy. Okrem toho existuje aj viacero komplexnejších reprezentácií, ako je napríklad Algebraická Normálna Forma či binárne rozhodovacie diagramy.
 	
-\section{Definícia Boolovej funkcie}
+\section{Definícia Boolovej funkcie} \label{section:def}
 
 	Ako uvádza Crama~\cite{citation:Crama}, Boolova funkcia je každá funkcia $f: \mathcal{B}^{n} \rightarrow \mathcal{B}$, kde $\mathcal{B}$ je množina $\{0,1\}$, v~ktorej $n$ je kladné prirodzené číslo, a~$\mathcal{B}^{n}$ označuje $n$-násobný kartézsky súčin množiny $\mathcal{B}$ samej so sebou. Každý bod funkcie $X^*$ = ($x_1,x_2, \ldots, x_n$) naberá hodnotu buď logická 0 alebo logická 1 z~množiny $\mathcal{B}$.
 	
@@ -244,7 +244,7 @@ f = x_1 \wedge \neg x_1
 
 	Existujú viaceré knižnice vytvorené za účelom manipulácie s~Boolovymi funkciami. Nasledujúca kapitola sa zaoberá niektorými vybranými, hlavne tými, ktoré využívajú binárne rozhodovacie stromy (BDD). Okrem toho existujú aj ďalšie implementácie, ktoré nevyužívajú BDD, ale sú založené napríklad na SAT. Tie sa využívajú v~oblastiach overovania modelov, a vo väčšine prípadov majú vyššie pamäťové a časové nároky.
 
-\section{Colorado University Decision Diagram Package - CUDD}
+\section{Colorado University Decision Diagram Package - CUDD} \label{section:cudd}
 
 	CUDD je verejne dostupná knižnica\footnote{\url{http://vlsi.colorado.edu/~fabio/}}, ktorej vývoj sa začal už v~70. rokoch a~naďalej pokračuje. Je založená na prehľadávaní do hĺbky.
 
@@ -662,6 +662,48 @@ x_1 \wedge x_1 \wedge x_1 \wedge x_1 = x_1
 
 
 \chapter{Porovnanie knižnice s~existujúcimi riešeniami} \label{chapter:result}
+	
+	Táto kapitola sa bližšie zameriava popisom a vyhodnotením vykonaných experimentov nad implementovanou knižnicou, a porovnanie výsledkov s knižnicou CUDD, ktorá je spomenutá v podkapitole~\ref{section:cudd}. Knižnica CUDD bola testovaná vo verzií 3.0.0. Všetky testy spomenuté v tejto kapitole prebehli na systéme Ubuntu 64bit.
+	
+\section{Experiment 1 - Boolova funkcia malého rozsahu}
+	V tomto experimente bola vytvorená jednoduchá Boolova funkcia o troch premenných za pomoci knižnice CUDD, a následne pomocou nami vytvorenej knižnice (ďalej v kapitole bude označovaná ako knižnica ANFlib). Experiment je zameraný na používateľa knižnice, ktorý potrebuje reprezentovať či manipulovať s Boolovou funkciou či funkciami malého rozsahu. Výsledkom experimentu je zistenie výhod a nevýhod oboch knižníc pre daný prípad.	Ako testovacia Boolova funkcia bola vybraná funkcia z Rovnice~\ref{eq:exp1}. 
+	\begin{equation}\label{eq:exp1}
+		f = x_1 \oplus x_2 \oplus x_3
+	\end{equation} 
+	V oboch zvolených knižniciach je vytvorenie danej funkcie za pomoci prostriedkov knižníc otázkou niekoľkých desiatok riadkov kódu, takže v tomto ohľade nie je medzi knižnicami rozdiel, s obomi sa pracuje intuitívne.
+	
+	Knižnica CUDD je postavená na BDD, takže už zo svojej podstaty sa v nej nenastavuje konkrétna hodnota premenných, ale je použitá všeobecne neznáma hodnota. Až vytvorený binárny rozhodovací diagram sa postará o vytvorenie všetkých dostupných kombinácií vstupných hodnôt premenných, a podľa toho sa generuje štruktúra BDD. Knižnica ANFlib nepracuje na princípe BDD, v tomto prípade je potrebné nastaviť u každej vstupnej premennej Boolovu hodnotu. Ak chceme pomocou knižnice ANFlib zistiť splniteľnosť Boolovej funkcie, musíme vytvoriť toľko samostatných Boolovych funkcií, koľko je možných kombinácií vstupných hodnôt premenných, konkrétne $2^{2^n}$ funkcií, ako bolo spomenuté v podkapitole~\ref{section:def}.
+	
+	U oboch knižníc v tomto experimente prebehlo meranie, koľko pamäťového miesta zaberá beh programu, ktorý vytvorí Boolovu funkciu z Rovnice~\ref{eq:exp1}, vypíše o nej štatistiky do konzoly a vykreslí graf funkcie vo formáte DOT. Knižnica CUDD je implementovaná v objektovo orientovanom jazyku C++ a je rozsahovo omnoho väčšia, a tým pádom sa musia inicializovať rozsiahlejšie štruktúry ako v knižnici ANFlib, takže toto meranie nemá za úlohu vybrať lepšiu alebo horšiu variantu, pravé výhody knižnice CUDD by sa mali prejaviť až pri funkciách s veľkým rozsahom. Toto meranie je teda skôr informatívne. Je ale dôležité si ukázať pamäťové nároky oboch knižníc aj pre úlohy menšieho rozsahu. 
+	
+	Pre meranie bol použitý nástroj \texttt{valgrind}, konkrétne jeho súčasť \texttt{massif}, čo je nástroj pre meranie využitia haldy počas behu programu. Záznam o maximálnom pamäťovom využití programu sa nachádza v Tabuľke~\ref{table:exp1}.
+	\begin{table}[h]
+		\centering
+		\caption{Maximálne pamäťové nároky programu, ktorý využíva knižnicu CUDD, resp. ANFlib na vytvorenie a vykreslenie Boolovej funkcie o troch premenných.}
+		\label{table:exp1}
+		\begin{tabular}{|r|r|} \hline
+			Knižnica & Maximálna obsadená časť haldy (v bytoch) \\ \hline
+			CUDD & 10 535 032 \\ 
+			ANFlib & 7 184\\ \hline
+		\end{tabular}
+	\end{table}
+
+	Na meranie rýchlosti vykonania programu bol použitý UNIX príkaz \texttt{time}, ktorý ukazuje systémový aj reálny čas, ako dlho bežal daný program. Pre programy s tak malou veľkosťou ako v tomto experimente sú výsledné čísla príliš malé aby bol badateľný nejaký značný rozdiel, výsledky je možné vidieť v Tabuľke~\ref{table:exp2}.
+	\begin{table}[h]
+		\centering
+		\caption{Rýchlosť vykonania programov, ktoré vytvoria a vykreslia Boolovu funkciu o troch premenných za pomoci knižníc CUDD a ANFlib.}
+		\label{table:exp2}
+		\begin{tabular}{|r|r|r|} \hline
+			Knižnica & reálny čas & systémový čas \\ \hline
+			CUDD & 0m 0.009s & 0m0.004s \\ 
+			ANFlib & 0m 0.002s & 0m 0.000s\\ \hline
+		\end{tabular}
+	\end{table}
+
+	Experiment dokazuje, že knižnica ANFlib je využiteľná pre prípady, ak používateľ potrebuje reprezentovať Boolovu funkciu malého rozsahu, hlavne z dôvodu, že knižnica CUDD si potrebuje alokovať väčšie množstvo pamäti pre svoje vnútorné štruktúry. Čo sa týka rýchlosti oboch knižníc, rozdiely sú zanedbateľné a obe knižnice sa dajú považovať za rovnako rýchle v tomto experimente.
+
+\section{Experiment 2 - Boolova funkcia s vysokým počtom premenných}
+
 \chapter{Záver} \label{chapter:ending}
 %TODO
 %Možné rozšírenie: 
