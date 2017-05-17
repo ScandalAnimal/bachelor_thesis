@@ -29,7 +29,8 @@
 \contentsline {section}{\numberline {5.3}Grafick\IeC {\'a} reprezent\IeC {\'a}cia \IeC {\v s}trukt\IeC {\'u}r}{25}{section.5.3}
 \contentsline {chapter}{\numberline {6}Porovnanie kni\IeC {\v z}nice s~existuj\IeC {\'u}cimi rie\IeC {\v s}eniami}{28}{chapter.6}
 \contentsline {section}{\numberline {6.1}Experiment 1 - Boolova funkcia mal\IeC {\'e}ho rozsahu}{28}{section.6.1}
-\contentsline {chapter}{\numberline {7}Z\IeC {\'a}ver}{30}{chapter.7}
-\contentsline {chapter}{Literat\IeC {\'u}ra}{31}{chapter*.18}
-\contentsline {chapter}{\numberline {A}Obsah CD}{33}{appendix.A}
+\contentsline {section}{\numberline {6.2}Experiment 2 - Boolova funkcia s vysok\IeC {\'y}m po\IeC {\v c}tom premenn\IeC {\'y}ch}{29}{section.6.2}
+\contentsline {chapter}{\numberline {7}Z\IeC {\'a}ver}{31}{chapter.7}
+\contentsline {chapter}{Literat\IeC {\'u}ra}{32}{chapter*.20}
+\contentsline {chapter}{\numberline {A}Obsah CD}{34}{appendix.A}
 \contentsfinish 
