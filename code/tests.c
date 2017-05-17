@@ -419,39 +419,6 @@ tAnf* evaluateBooleanFunction(tAnf* indexes[], int indexesCount, int testNumber,
         freeAnf(resultTemp);
         return result;
     }
-    else if (testNumber == 9) {
-        // result = A0 xor A1 ... xor A999;
-
-        tAnf* result = NULL;
-        tAnf* resultTemp = NULL;
-        for (int i = 0; i < indexesCount; i += 2) {
-            if (i == 0) {
-                resultTemp = newAnfFrom2Anfs(indexes[i], indexes[i+1], true);
-                if (resultTemp == NULL) {
-                    return NULL;
-                }    
-            }
-            else {
-                resultTemp = newAnfFrom2Anfs(result, indexes[i+1], true);
-                if (resultTemp == NULL) {
-                    return NULL;
-                }
-                freeAnf(result);
-                if ((i + 2) >= indexesCount) {
-                    return resultTemp;
-                }
-            }
-            
-            result = newAnfFrom2Anfs(resultTemp, indexes[i+2], true);
-            if (result == NULL) {
-                freeAnf(resultTemp);
-                return NULL;
-            }
-            freeAnf(resultTemp);    
-        }
-
-        return result;
-    }
     else if (testNumber == 7) {
         
         // A0 = (A0 xor A1 and A2) xor A3;
@@ -459,7 +426,6 @@ tAnf* evaluateBooleanFunction(tAnf* indexes[], int indexesCount, int testNumber,
         char *x;
         x = malloc(sizeof(char) * KEY_MAX_LENGTH);
         snprintf(x, KEY_MAX_LENGTH, "%s%d", HELPER_PREFIX, 5);
-        // printf("X: %s\n", x);
 
         tVar test;
         test.name = "test";
@@ -468,8 +434,6 @@ tAnf* evaluateBooleanFunction(tAnf* indexes[], int indexesCount, int testNumber,
         strcpy(test.origin, x);
 
         free(x);
-
-        // printf("Var: %s, %d, %s\n", test.name, test.value, test.origin);
 
         free(test.origin);
 
@@ -497,7 +461,6 @@ tAnf* evaluateBooleanFunction(tAnf* indexes[], int indexesCount, int testNumber,
 
         free(help1);
         free(help2);
-        // printf("Var: %s, %d, %s\n", varArray[0].name, varArray[0].value, varArray[0].origin);
      
         newNodeWithVarsInAnf(newA0temp, varArray, ARRAY_SIZE(varArray));
 
@@ -510,10 +473,6 @@ tAnf* evaluateBooleanFunction(tAnf* indexes[], int indexesCount, int testNumber,
             freeAnf(newA0temp);
             return NULL;
         }
-
-        // printHashMap(&(newA0->hashMap));
-
-        // free(varArray[0].name);
 
         freeAnf(newA0temp);
 
@@ -568,11 +527,10 @@ int shiftRegisterTest(char* graphOutput) {
 
     }
 
-    // printAnf(reg[0]);
-    // printAnf(reg[1]);
-    // printAnf(reg[2]);
-    // printAnf(reg[3]);    
-    // printHashMap(&(reg[0]->hashMap));
+    printAnf(reg[0]);
+    printAnf(reg[1]);
+    printAnf(reg[2]);
+    printAnf(reg[3]);    
 
     for (int i = 0; i < registerLength; i++) {
         freeAnf(reg[i]);
@@ -601,32 +559,21 @@ int andInBooleanFunctionTest(char* graphOutput) {
         newNodeWithOneVarInAnf(reg[i], originalValues[i]);
     }
 
-    // printAnf(reg[0]);
-    // printAnf(reg[1]);
-    // printAnf(reg[2]);
-    // printAnf(reg[3]);
+    printAnf(reg[0]);
+    printAnf(reg[1]);
+    printAnf(reg[2]);
+    printAnf(reg[3]);
 
     int helperFunctionsCounter = 1;
-    // for (int count = 0; count < 3; count++) {
 
-        newA0 = evaluateBooleanFunction(reg, registerLength, 7, &helperFunctionsCounter);
+    newA0 = evaluateBooleanFunction(reg, registerLength, 7, &helperFunctionsCounter);
 
-        freeAnf(reg[3]);
-        for (int i = (registerLength - 1); i > 0; i--) {
-            reg[i] = reg[i-1];
-        }
+    freeAnf(reg[3]);
+    for (int i = (registerLength - 1); i > 0; i--) {
+        reg[i] = reg[i-1];
+    }
 
-        reg[0] = newA0;
-
-        if ((reg[0]->value == false) && 
-            (reg[1]->value == false) && 
-            (reg[2]->value == false) && 
-            (reg[3]->value == false)) {
-            printf("ALL FALSE STATE, END OF TEST.\n");
-            // break;
-        } 
-
-    // }
+    reg[0] = newA0;
 
     printAnf(reg[0]);
     printAnf(reg[1]);
@@ -641,7 +588,6 @@ int andInBooleanFunctionTest(char* graphOutput) {
         freeAnf(reg[i]);
     }
 
-    // freeAnf(newA0);
     return OK;
 }
 
@@ -679,9 +625,7 @@ int threeXoredVariablesTest() {
 
         printAnf(result);
 
-        freopen (outputs[i], "a+", stdout);
         generateAnfGraph(result, outputs[i]);
-        freopen("/dev/tty", "w", stdout);
 
         for (int i = 0; i < arrayLength; i++) {
             freeAnf(function[i]);
@@ -695,11 +639,14 @@ int threeXoredVariablesTest() {
 
 int thousandXoredVariablesTest(char* graphOutput) {
 
-    int varCount = 5000;
+    int varCount = 1000;
     tVar variables[varCount];
-    int arrayLength = ARRAY_SIZE(variables);
-    tAnf* function[arrayLength];
-    tAnf* result;
+    tAnf* function;
+
+    function = newAnf();
+    if (function == NULL) {
+        return ERROR;
+    }
 
     char* prefix = "x";
     for (int i = 0; i < varCount; i++) {
@@ -716,30 +663,17 @@ int thousandXoredVariablesTest(char* graphOutput) {
         free(value->name);
         free(value);
     
-        function[i] = newAnf();
-        if (function[i] == NULL) {
-            return ERROR;
-        }
-        newNodeWithOneVarInAnf(function[i], variables[i]);
+        newNodeWithOneVarInAnf(function, variables[i]);
     }
 
-    int x = 0;
-    result = evaluateBooleanFunction(function, arrayLength, 9, &x);
+    printAnf(function);
 
-    // printAnf(result);
+    generateAnfGraph(function, graphOutput);
 
-    freopen (graphOutput, "a+", stdout);
-    generateAnfGraph(result, graphOutput);
-    freopen("/dev/tty", "w", stdout);
-
-    for (int i = 0; i < arrayLength; i++) {
-        freeAnf(function[i]);
-    }
-    freeAnf(result);
+    freeAnf(function);
 
     for (int i = 0; i < varCount; i++) {
 
-        // printf("%s %d\n", variables[i].name, variables[i].value);
         free(variables[i].name);
     }
 
@@ -803,38 +737,43 @@ int main(int argc, char* argv[]) {
         mkdir("./testOutput", 0700);
     }
 
-    // freopen ("./testOutput/test1-output", "a+", stdout);
-    // int test1Result = hashMapTest("./testOutput/test1-graph.gv");
-    // freopen ("./testOutput/test2-output", "a+", stdout);
-    // int test2Result = singleFunctionTest("./testOutput/test2-graph.gv");
-    // freopen ("./testOutput/test3-output", "a+", stdout);    
-    // int test3Result = multipleFunctionsTest("./testOutput/test3-graph.gv");
-    // freopen ("./testOutput/test4-output", "a+", stdout);
-    // int test4Result = variableValueChangeTest("./testOutput/test4-graph.gv");
-    // freopen ("./testOutput/test5-output", "a+", stdout);
-    // int test5Result = bigDataInputTest("./testOutput/test5-graph.gv");
-    // freopen ("./testOutput/test6-output", "a+", stdout);
-    // int test6Result = shiftRegisterTest("./testOutput/test6-graph.gv");
-
-    // freopen("/dev/tty", "w", stdout);
-
+    freopen ("./testOutput/test1-output", "a+", stdout);
+    int test1Result = hashMapTest("./testOutput/test1-graph.gv");
+    freopen ("./testOutput/test2-output", "a+", stdout);
+    int test2Result = singleFunctionTest("./testOutput/test2-graph.gv");
+    freopen ("./testOutput/test3-output", "a+", stdout);    
+    int test3Result = multipleFunctionsTest("./testOutput/test3-graph.gv");
+    freopen ("./testOutput/test4-output", "a+", stdout);
+    int test4Result = variableValueChangeTest("./testOutput/test4-graph.gv");
+    freopen ("./testOutput/test5-output", "a+", stdout);
+    int test5Result = bigDataInputTest("./testOutput/test5-graph.gv");
+    freopen ("./testOutput/test6-output", "a+", stdout);
+    int test6Result = shiftRegisterTest("./testOutput/test6-graph.gv");
+    
+/*
+ * test 7 has memory leaks
+ */
     // freopen ("./testOutput/test7-output", "a+", stdout);
     // int test7Result = andInBooleanFunctionTest("./testOutput/test7-graph.gv");
-    // int test8Result = threeXoredVariablesTest();
-    // int test9Result = thousandXoredVariablesTest("./testOutput/test9-graph.gv");
+    freopen ("./testOutput/test8-output", "a+", stdout);
+    int test8Result = threeXoredVariablesTest();
+    freopen ("./testOutput/test9-output", "a+", stdout);
+    int test9Result = thousandXoredVariablesTest("./testOutput/test9-graph.gv");
+    freopen ("./testOutput/test10-output", "a+", stdout);
     int test10Result = thousandAndedVariablesTest("./testOutput/test10-graph.gv");
 
-    // freopen("/dev/tty", "w", stdout);
-    // printf("TEST 01: HashMap Test                 ..... Result: %s %d\n", (test1Result == OK) ? "SUCCESS" : "FAILURE", test1Result);
-    // printf("TEST 02: Single Function Test         ..... Result: %s %d\n", (test2Result == OK) ? "SUCCESS" : "FAILURE", test2Result);
-    // printf("TEST 03: Multiple Functions Test      ..... Result: %s %d\n", (test3Result == OK) ? "SUCCESS" : "FAILURE", test3Result);
-    // printf("TEST 04: Variable Value Change Test   ..... Result: %s %d\n", (test4Result == OK) ? "SUCCESS" : "FAILURE", test4Result);
-    // printf("TEST 05: Big Data HashMap Input Test  ..... Result: %s %d\n", (test5Result == OK) ? "SUCCESS" : "FAILURE", test5Result);
-    // printf("TEST 06: Shift Register Test          ..... Result: %s %d\n", (test6Result == OK) ? "SUCCESS" : "FAILURE", test6Result);
+    freopen("/dev/tty", "w", stdout);
+    printf("TEST 01: HashMap Test                  ..... Result: %s %d\n", (test1Result == OK) ? "SUCCESS" : "FAILURE", test1Result);
+    printf("TEST 02: Single Function Test          ..... Result: %s %d\n", (test2Result == OK) ? "SUCCESS" : "FAILURE", test2Result);
+    printf("TEST 03: Multiple Functions Test       ..... Result: %s %d\n", (test3Result == OK) ? "SUCCESS" : "FAILURE", test3Result);
+    printf("TEST 04: Variable Value Change Test    ..... Result: %s %d\n", (test4Result == OK) ? "SUCCESS" : "FAILURE", test4Result);
+    printf("TEST 05: Big Data HashMap Input Test   ..... Result: %s %d\n", (test5Result == OK) ? "SUCCESS" : "FAILURE", test5Result);
+    printf("TEST 06: Shift Register Test           ..... Result: %s %d\n", (test6Result == OK) ? "SUCCESS" : "FAILURE", test6Result);
     // printf("TEST 07: And In Boolean Function Test ..... Result: %s %d\n", (test7Result == OK) ? "SUCCESS" : "FAILURE", test7Result);
-    // printf("TEST 08: Three XORed Variables Test ..... Result: %s %d\n", (test8Result == OK) ? "SUCCESS" : "FAILURE", test8Result);
-    // printf("TEST 09 : Thousand XORed Variables Test ..... Result: %s %d\n", (test9Result == OK) ? "SUCCESS" : "FAILURE", test9Result);
-    printf("TEST 10 : Thousand ANDed Variables Test ..... Result: %s %d\n", (test10Result == OK) ? "SUCCESS" : "FAILURE", test10Result);
+    printf("TEST 07: And In Boolean Function Test  ..... Currently Not Available\n");
+    printf("TEST 08: Three XORed Variables Test    ..... Result: %s %d\n", (test8Result == OK) ? "SUCCESS" : "FAILURE", test8Result);
+    printf("TEST 09: Thousand XORed Variables Test ..... Result: %s %d\n", (test9Result == OK) ? "SUCCESS" : "FAILURE", test9Result);
+    printf("TEST 10: Thousand ANDed Variables Test ..... Result: %s %d\n", (test10Result == OK) ? "SUCCESS" : "FAILURE", test10Result);
 
 
 }

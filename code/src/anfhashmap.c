@@ -41,6 +41,10 @@ int insertToHashMap(tMap m, char *name, bool value, char* origin) {
 
     tVar** map = (tVar**) m;
 
+    if (origin == NULL) {
+        origin = "";
+    }
+
     tVar* s = NULL;
     s = (tVar*) malloc(sizeof(tVar));
     s->name = malloc(sizeof(char) * (strlen(name) + 1));

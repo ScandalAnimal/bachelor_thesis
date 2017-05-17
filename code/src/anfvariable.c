@@ -22,6 +22,7 @@ tVar createVar(char* name, bool value) {
     tVar var;
     var.name = name;
     var.value = value;
+    var.origin = "";
     return var;    
 }
 
@@ -41,6 +42,7 @@ tVar createTrueVar(char* name) {
     tVar var;
     var.name = name;
     var.value = true;
+    var.origin = "";
     return var;    
 }
 
@@ -49,5 +51,6 @@ tVar createFalseVar(char* name) {
     tVar var;
     var.name = name;
     var.value = false;
+    var.origin = "";
     return var;    
 }
